@@ -1,0 +1,153 @@
+'use client'
+import { useResumeStore } from '@/store/resumeStore'
+import ModernTemplate from './templates/ModernTemplate'
+import ExecutiveTemplate from './templates/ExecutiveTemplate'
+import CreativeTemplate from './templates/CreativeTemplate'
+import ProfessionalTemplate from './templates/ProfessionalTemplate'
+import ElegantTemplate from './templates/ElegantTemplate'
+import TechTemplate from './templates/TechTemplate'
+import CompactTemplate from './templates/CompactTemplate'
+import BoldTemplate from './templates/BoldTemplate'
+import NeonTemplate from './templates/NeonTemplate'
+import SplitTemplate from './templates/SplitTemplate'
+import InfographicTemplate from './templates/InfographicTemplate'
+import TimelineTemplate from './templates/TimelineTemplate'
+import MinimalTemplate from './templates/MinimalTemplate'
+import { StripeTemplate, SidebarRightTemplate, GradientTemplate, CardGridTemplate, MonochromeTemplate, PastelTemplate, DarkProTemplate, NewspaperTemplate } from './templates/TemplatesBatch1'
+import { RetroTemplate, HexagonTemplate, ZigzagTemplate, FrostedTemplate, AccentBottomTemplate, DotMatrixTemplate, OrigamiTemplate } from './templates/TemplatesBatch2'
+import { ArchitectTemplate, WatercolorTemplate, NeonSidebarTemplate, MinimalistProTemplate, ColorblockTemplate, ScandiTemplate } from './templates/TemplatesBatch3'
+import { BrutalistTemplate, SoftCorporateTemplate, CyberTemplate, TrifoldTemplate, MosaicTemplate, InkTemplate } from './templates/TemplatesBatch4'
+import { AmberTemplate, ForestTemplate, OceanTemplate, RoseTemplate, SlateTemplate } from './templates/TemplatesBatch5'
+import { IndigoTemplate, CrimsonTemplate, TealTemplate, MidnightTemplate, SunriseTemplate, LavenderTemplate, CopperTemplate, MintTemplate, CharcoalTemplate, CobaltTemplate } from './templates/TemplatesBatch6'
+import { DecoTemplate, NeonGridTemplate, LinenTemplate, PrismTemplate, StackedTemplate, NeonMinimalTemplate, CoralTemplate, SageTemplate } from './templates/TemplatesBatch7'
+import { IvoryTemplate, SteelTemplate, PlumTemplate, JadeTemplate, GraphiteTemplate, BlushTemplate, OnyxTemplate, TerracottaTemplate, ArcticTemplate, VelvetTemplate, EmeraldTemplate, SapphireTemplate, RubyTemplate, TopazTemplate, OpalTemplate, GarnetTemplate, CitrineTemplate, AmethystTemplate, TurquoiseTemplate, PearlTemplate, BronzeTemplate, SilverTemplate, GoldTemplate, PlatinumTemplate, DiamondTemplate, ObsidianTemplate, MalachiteTemplate, CoralReefTemplate, AzureTemplate, MarigoldTemplate, LilacTemplate, PeachTemplate, SkyTemplate, DawnTemplate, DuskTemplate, NightTemplate, TwilightTemplate } from './templates/TemplatesBatch8'
+import { QuantumTemplate, AtlasTemplate, NexusTemplate, MeridianTemplate, VertexTemplate, ZenithTemplate, PraxisTemplate, SolarisTemplate, CipherTemplate, LuminaTemplate } from './templates/TemplatesPro'
+
+export const templateMap = {
+  modern: ModernTemplate,
+  executive: ExecutiveTemplate,
+  creative: CreativeTemplate,
+  professional: ProfessionalTemplate,
+  elegant: ElegantTemplate,
+  tech: TechTemplate,
+  compact: CompactTemplate,
+  bold: BoldTemplate,
+  neon: NeonTemplate,
+  split: SplitTemplate,
+  infographic: InfographicTemplate,
+  timeline: TimelineTemplate,
+  minimal: MinimalTemplate,
+  stripe: StripeTemplate,
+  sidebarright: SidebarRightTemplate,
+  gradient: GradientTemplate,
+  cardgrid: CardGridTemplate,
+  monochrome: MonochromeTemplate,
+  pastel: PastelTemplate,
+  darkpro: DarkProTemplate,
+  newspaper: NewspaperTemplate,
+  retro: RetroTemplate,
+  hexagon: HexagonTemplate,
+  zigzag: ZigzagTemplate,
+  frosted: FrostedTemplate,
+  accentbottom: AccentBottomTemplate,
+  dotmatrix: DotMatrixTemplate,
+  origami: OrigamiTemplate,
+  architect: ArchitectTemplate,
+  watercolor: WatercolorTemplate,
+  neonsidebar: NeonSidebarTemplate,
+  minimalistpro: MinimalistProTemplate,
+  colorblock: ColorblockTemplate,
+  scandi: ScandiTemplate,
+  brutalist: BrutalistTemplate,
+  softcorporate: SoftCorporateTemplate,
+  cyber: CyberTemplate,
+  trifold: TrifoldTemplate,
+  mosaic: MosaicTemplate,
+  ink: InkTemplate,
+  amber: AmberTemplate,
+  forest: ForestTemplate,
+  ocean: OceanTemplate,
+  rose: RoseTemplate,
+  slate: SlateTemplate,
+  indigo: IndigoTemplate,
+  crimson: CrimsonTemplate,
+  teal: TealTemplate,
+  midnight: MidnightTemplate,
+  sunrise: SunriseTemplate,
+  lavender: LavenderTemplate,
+  copper: CopperTemplate,
+  mint: MintTemplate,
+  charcoal: CharcoalTemplate,
+  cobalt: CobaltTemplate,
+  deco: DecoTemplate,
+  neongrid: NeonGridTemplate,
+  linen: LinenTemplate,
+  prism: PrismTemplate,
+  stacked: StackedTemplate,
+  neonminimal: NeonMinimalTemplate,
+  coral: CoralTemplate,
+  sage: SageTemplate,
+  ivory: IvoryTemplate,
+  steel: SteelTemplate,
+  plum: PlumTemplate,
+  jade: JadeTemplate,
+  graphite: GraphiteTemplate,
+  blush: BlushTemplate,
+  onyx: OnyxTemplate,
+  terracotta: TerracottaTemplate,
+  arctic: ArcticTemplate,
+  velvet: VelvetTemplate,
+  emerald: EmeraldTemplate,
+  sapphire: SapphireTemplate,
+  ruby: RubyTemplate,
+  topaz: TopazTemplate,
+  opal: OpalTemplate,
+  garnet: GarnetTemplate,
+  citrine: CitrineTemplate,
+  amethyst: AmethystTemplate,
+  turquoise: TurquoiseTemplate,
+  pearl: PearlTemplate,
+  bronze: BronzeTemplate,
+  silver: SilverTemplate,
+  gold: GoldTemplate,
+  platinum: PlatinumTemplate,
+  diamond: DiamondTemplate,
+  obsidian: ObsidianTemplate,
+  malachite: MalachiteTemplate,
+  coralreef: CoralReefTemplate,
+  azure: AzureTemplate,
+  marigold: MarigoldTemplate,
+  lilac: LilacTemplate,
+  peach: PeachTemplate,
+  sky: SkyTemplate,
+  dawn: DawnTemplate,
+  dusk: DuskTemplate,
+  night: NightTemplate,
+  twilight: TwilightTemplate,
+  quantum: QuantumTemplate,
+  atlas: AtlasTemplate,
+  nexus: NexusTemplate,
+  meridian: MeridianTemplate,
+  vertex: VertexTemplate,
+  zenith: ZenithTemplate,
+  praxis: PraxisTemplate,
+  solaris: SolarisTemplate,
+  cipher: CipherTemplate,
+  lumina: LuminaTemplate,
+}
+
+export default function ResumePreview() {
+  const { resume } = useResumeStore()
+  const Template = templateMap[resume.template] || ModernTemplate
+
+  return (
+    <div style={{ width: '100%', height: '100%', overflowY: 'auto', overflowX: 'auto', background: '#d1d5db', borderRadius: 12, padding: 20, display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}>
+      <div
+        id="resume-preview"
+        style={{ background: 'white', boxShadow: '0 4px 40px rgba(0,0,0,0.35)', borderRadius: 2, width: '210mm', minHeight: '297mm', flexShrink: 0 }}
+      >
+        <Template resume={resume} />
+      </div>
+    </div>
+  )
+}

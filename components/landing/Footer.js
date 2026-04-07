@@ -1,0 +1,106 @@
+'use client'
+import Link from 'next/link'
+import { Zap } from 'lucide-react'
+
+const footerLinks = [
+  {
+    title: 'Product',
+    links: ['Features', 'Templates', 'Pricing', 'Changelog'],
+  },
+  {
+    title: 'Company',
+    links: ['About', 'Blog', 'Careers', 'Press'],
+  },
+  {
+    title: 'Legal',
+    links: ['Privacy', 'Terms', 'Cookies', 'Security'],
+  },
+]
+
+export default function Footer() {
+  return (
+    <footer style={{
+      width: '100%',
+      background: '#050508',
+      borderTop: '1px solid rgba(255,255,255,0.06)',
+    }}>
+      <div style={{ width: '100%', maxWidth: 1280, margin: '0 auto', padding: '60px 24px 32px' }}>
+        {/* Top grid */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
+          gap: 40,
+          marginBottom: 48,
+        }}>
+          {/* Brand */}
+          <div style={{ gridColumn: 'span 2', minWidth: 200 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
+              <div style={{
+                width: 32, height: 32, borderRadius: 8,
+                background: 'linear-gradient(135deg, #8b5cf6, #3b82f6)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+              }}>
+                <Zap size={16} color="white" />
+              </div>
+              <span className="gradient-text" style={{ fontWeight: 700, fontSize: '1.1rem' }}>Resume Maker</span>
+            </div>
+            <p style={{ color: '#64748b', fontSize: '0.875rem', lineHeight: 1.7, maxWidth: 260 }}>
+              The most powerful resume builder for modern professionals. Land your dream job faster.
+            </p>
+            {/* Social icons */}
+            <div style={{ display: 'flex', gap: 10, marginTop: 20 }}>
+              {['GH', 'TW', 'LI'].map((s) => (
+                <a key={s} href="#" style={{
+                  width: 36, height: 36, borderRadius: 8,
+                  background: 'rgba(255,255,255,0.04)',
+                  border: '1px solid rgba(255,255,255,0.08)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  color: '#94a3b8', fontSize: '0.7rem', fontWeight: 700,
+                  textDecoration: 'none', transition: 'all 0.2s',
+                }}
+                  onMouseEnter={e => { e.currentTarget.style.color = 'white'; e.currentTarget.style.borderColor = 'rgba(139,92,246,0.5)' }}
+                  onMouseLeave={e => { e.currentTarget.style.color = '#94a3b8'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)' }}
+                >
+                  {s}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Link columns */}
+          {footerLinks.map((col) => (
+            <div key={col.title}>
+              <h4 style={{ color: 'white', fontWeight: 600, fontSize: '0.875rem', marginBottom: 16 }}>{col.title}</h4>
+              <ul style={{ display: 'flex', flexDirection: 'column', gap: 10, listStyle: 'none' }}>
+                {col.links.map((link) => (
+                  <li key={link}>
+                    <Link href="#" style={{ color: '#64748b', fontSize: '0.875rem', textDecoration: 'none', transition: 'color 0.2s' }}
+                      onMouseEnter={e => e.currentTarget.style.color = 'white'}
+                      onMouseLeave={e => e.currentTarget.style.color = '#64748b'}
+                    >
+                      {link}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom bar */}
+        <div style={{
+          borderTop: '1px solid rgba(255,255,255,0.06)',
+          paddingTop: 24,
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: 12,
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}>
+          <p style={{ color: '#334155', fontSize: '0.875rem' }}>© 2026 Resume Maker. All rights reserved.</p>
+          <p style={{ color: '#334155', fontSize: '0.875rem' }}>Made with ❤️ for job seekers worldwide</p>
+        </div>
+      </div>
+    </footer>
+  )
+}
