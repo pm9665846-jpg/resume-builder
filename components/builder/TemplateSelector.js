@@ -1,16 +1,17 @@
-'use client'
+﻿'use client'
+import { useState } from 'react'
 import { useResumeStore } from '@/store/resumeStore'
-import { Check } from 'lucide-react'
+import { Check, X, RotateCcw } from 'lucide-react'
 import { templateMap } from './ResumePreview'
 
 const templateList = [
   { id: 'modern',        name: 'Modern',          tag: 'Popular',    defaultColor: '#8b5cf6' },
   { id: 'professional',  name: 'Professional',    tag: 'Corporate',  defaultColor: '#1e3a5f' },
   { id: 'tech',          name: 'Tech',            tag: 'Dev',        defaultColor: '#00d4aa' },
-  { id: 'neon',          name: 'Neon Dark',       tag: '✨ New',     defaultColor: '#00ff88' },
-  { id: 'split',         name: 'Split',           tag: '✨ New',     defaultColor: '#6366f1' },
-  { id: 'infographic',   name: 'Infographic',     tag: '✨ New',     defaultColor: '#8b5cf6' },
-  { id: 'timeline',      name: 'Timeline',        tag: '✨ New',     defaultColor: '#0ea5e9' },
+  { id: 'neon',          name: 'Neon Dark',       tag: 'âœ¨ New',     defaultColor: '#00ff88' },
+  { id: 'split',         name: 'Split',           tag: 'âœ¨ New',     defaultColor: '#6366f1' },
+  { id: 'infographic',   name: 'Infographic',     tag: 'âœ¨ New',     defaultColor: '#8b5cf6' },
+  { id: 'timeline',      name: 'Timeline',        tag: 'âœ¨ New',     defaultColor: '#0ea5e9' },
   { id: 'elegant',       name: 'Elegant',         tag: 'Luxury',     defaultColor: '#b8860b' },
   { id: 'creative',      name: 'Creative',        tag: 'Artistic',   defaultColor: '#ec4899' },
   { id: 'bold',          name: 'Bold',            tag: 'Impact',     defaultColor: '#f97316' },
@@ -104,16 +105,16 @@ const templateList = [
   { id: 'dusk',          name: 'Dusk',            tag: 'Evening',    defaultColor: '#4338ca' },
   { id: 'night',         name: 'Night',           tag: 'Dark',       defaultColor: '#818cf8' },
   { id: 'twilight',      name: 'Twilight',        tag: 'Dark',       defaultColor: '#a78bfa' },
-  { id: 'quantum',       name: 'Quantum',         tag: '⭐ Pro',     defaultColor: '#6d28d9' },
-  { id: 'atlas',         name: 'Atlas',           tag: '⭐ Pro',     defaultColor: '#0f172a' },
-  { id: 'nexus',         name: 'Nexus',           tag: '⭐ Pro',     defaultColor: '#d4af37' },
-  { id: 'meridian',      name: 'Meridian',        tag: '⭐ Pro',     defaultColor: '#0f4c81' },
-  { id: 'vertex',        name: 'Vertex',          tag: '⭐ Pro',     defaultColor: '#2563eb' },
-  { id: 'zenith',        name: 'Zenith',          tag: '⭐ Pro',     defaultColor: '#dc2626' },
-  { id: 'praxis',        name: 'Praxis',          tag: '⭐ Pro',     defaultColor: '#1e40af' },
-  { id: 'solaris',       name: 'Solaris',         tag: '⭐ Pro',     defaultColor: '#7c3aed' },
-  { id: 'cipher',        name: 'Cipher',          tag: '⭐ Pro',     defaultColor: '#10b981' },
-  { id: 'lumina',        name: 'Lumina',          tag: '⭐ Pro',     defaultColor: '#8b5cf6' },
+  { id: 'quantum',       name: 'Quantum',         tag: 'â­ Pro',     defaultColor: '#6d28d9' },
+  { id: 'atlas',         name: 'Atlas',           tag: 'â­ Pro',     defaultColor: '#0f172a' },
+  { id: 'nexus',         name: 'Nexus',           tag: 'â­ Pro',     defaultColor: '#d4af37' },
+  { id: 'meridian',      name: 'Meridian',        tag: 'â­ Pro',     defaultColor: '#0f4c81' },
+  { id: 'vertex',        name: 'Vertex',          tag: 'â­ Pro',     defaultColor: '#2563eb' },
+  { id: 'zenith',        name: 'Zenith',          tag: 'â­ Pro',     defaultColor: '#dc2626' },
+  { id: 'praxis',        name: 'Praxis',          tag: 'â­ Pro',     defaultColor: '#1e40af' },
+  { id: 'solaris',       name: 'Solaris',         tag: 'â­ Pro',     defaultColor: '#7c3aed' },
+  { id: 'cipher',        name: 'Cipher',          tag: 'â­ Pro',     defaultColor: '#10b981' },
+  { id: 'lumina',        name: 'Lumina',          tag: 'â­ Pro',     defaultColor: '#8b5cf6' },
 ]
 
 const sampleResume = {
@@ -125,8 +126,8 @@ const sampleResume = {
     summary: 'Senior Software Engineer with 4+ years building scalable applications.',
   },
   experience: [
-    { id: '1', role: 'Senior Engineer', company: 'Google India', location: 'Bengaluru', startDate: 'Jan 2022', endDate: '', current: true, description: '• Built microservices handling 15M+ requests/day\n• Led team of 6 engineers' },
-    { id: '2', role: 'Software Engineer', company: 'Razorpay', location: 'Bengaluru', startDate: 'Jul 2020', endDate: 'Dec 2021', current: false, description: '• Built merchant dashboard for 200K+ merchants' },
+    { id: '1', role: 'Senior Engineer', company: 'Google India', location: 'Bengaluru', startDate: 'Jan 2022', endDate: '', current: true, description: 'â€¢ Built microservices handling 15M+ requests/day\nâ€¢ Led team of 6 engineers' },
+    { id: '2', role: 'Software Engineer', company: 'Razorpay', location: 'Bengaluru', startDate: 'Jul 2020', endDate: 'Dec 2021', current: false, description: 'â€¢ Built merchant dashboard for 200K+ merchants' },
   ],
   education: [{ id: '1', degree: 'B.Tech Computer Science', school: 'IIT Bombay', startDate: '2015', endDate: '2019', gpa: '9.2 / 10', achievements: "Dean's List" }],
   skills: [
@@ -182,11 +183,13 @@ const colors = [
 
 export default function TemplateSelector() {
   const { resume, updateTemplate, updateThemeColor } = useResumeStore()
+  const [colorOpen, setColorOpen] = useState(true)
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-      {/* Template grid */}
-      <div>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+
+      {/* Template grid — scrollable */}
+      <div style={{ flex: 1, overflowY: 'auto', paddingBottom: 12 }}>
         <p style={{ fontSize: '0.68rem', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 10 }}>
           Template — <span style={{ color: '#a78bfa' }}>{templateList.find(t => t.id === resume.template)?.name || 'Modern'}</span>
         </p>
@@ -207,27 +210,62 @@ export default function TemplateSelector() {
         </div>
       </div>
 
-      {/* Color picker */}
-      <div>
-        <p style={{ fontSize: '0.68rem', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 10 }}>
-          Theme Color — <span style={{ color: resume.themeColor, fontFamily: 'monospace' }}>{resume.themeColor}</span>
-        </p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(8, 1fr)', gap: 7 }}>
-          {colors.map(color => (
-            <button key={color} onClick={() => updateThemeColor(color)}
-              style={{ width: '100%', aspectRatio: '1', borderRadius: '50%', background: color, border: 'none', cursor: 'pointer', outline: resume.themeColor === color ? '2px solid white' : 'none', outlineOffset: 2, display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'transform 0.15s' }}
-              onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.2)'}
-              onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}>
-              {resume.themeColor === color && <Check size={9} color="white" />}
-            </button>
-          ))}
+      {/* Color section — sticky bottom, collapsible */}
+      <div style={{ flexShrink: 0, borderTop: '1px solid rgba(255,255,255,0.08)', background: '#050508', position: 'sticky', bottom: 0 }}>
+
+        {/* Header row — always visible */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 0', cursor: 'pointer' }} onClick={() => setColorOpen(o => !o)}>
+          <p style={{ fontSize: '0.68rem', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.1em', userSelect: 'none' }}>
+            Theme Color
+            {colorOpen && <span style={{ color: resume.themeColor, fontFamily: 'monospace', marginLeft: 6 }}>{resume.themeColor}</span>}
+          </p>
+
+          {/* × to close, ↩ to open */}
+          <button
+            onClick={e => { e.stopPropagation(); setColorOpen(o => !o) }}
+            title={colorOpen ? 'Hide color picker' : 'Show color picker'}
+            style={{
+              display: 'flex', alignItems: 'center', gap: 4,
+              padding: colorOpen ? '0' : '3px 9px',
+              width: colorOpen ? 20 : 'auto',
+              height: colorOpen ? 20 : 'auto',
+              borderRadius: colorOpen ? '50%' : 6,
+              background: colorOpen ? 'rgba(248,113,113,0.15)' : 'rgba(139,92,246,0.15)',
+              border: colorOpen ? '1px solid rgba(248,113,113,0.35)' : '1px solid rgba(139,92,246,0.35)',
+              color: colorOpen ? '#f87171' : '#a78bfa',
+              cursor: 'pointer', fontSize: '0.65rem', fontWeight: 700,
+              justifyContent: 'center',
+              transition: 'all 0.2s',
+            }}
+            onMouseEnter={e => e.currentTarget.style.opacity = '0.8'}
+            onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+          >
+            {colorOpen ? <X size={11} /> : <><RotateCcw size={10} /> Show</>}
+          </button>
         </div>
-        <div style={{ marginTop: 10, display: 'flex', alignItems: 'center', gap: 8 }}>
-          <label style={{ fontSize: '0.72rem', color: '#64748b' }}>Custom:</label>
-          <input type="color" value={resume.themeColor} onChange={e => updateThemeColor(e.target.value)}
-            style={{ width: 30, height: 30, borderRadius: 6, border: 'none', cursor: 'pointer', background: 'transparent' }} />
-        </div>
+
+        {/* Collapsible body */}
+        {colorOpen && (
+          <div style={{ paddingBottom: 14 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(8, 1fr)', gap: 7 }}>
+              {colors.map(color => (
+                <button key={color} onClick={() => updateThemeColor(color)}
+                  style={{ width: '100%', aspectRatio: '1', borderRadius: '50%', background: color, border: 'none', cursor: 'pointer', outline: resume.themeColor === color ? '2px solid white' : 'none', outlineOffset: 2, display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'transform 0.15s' }}
+                  onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.2)'}
+                  onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}>
+                  {resume.themeColor === color && <Check size={9} color="white" />}
+                </button>
+              ))}
+            </div>
+            <div style={{ marginTop: 10, display: 'flex', alignItems: 'center', gap: 8 }}>
+              <label style={{ fontSize: '0.72rem', color: '#64748b' }}>Custom:</label>
+              <input type="color" value={resume.themeColor} onChange={e => updateThemeColor(e.target.value)}
+                style={{ width: 30, height: 30, borderRadius: 6, border: 'none', cursor: 'pointer', background: 'transparent' }} />
+            </div>
+          </div>
+        )}
       </div>
+
     </div>
   )
 }

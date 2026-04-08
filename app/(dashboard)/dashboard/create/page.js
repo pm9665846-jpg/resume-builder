@@ -176,7 +176,7 @@ function BuilderContent() {
         </div>
 
         {/* Form content */}
-        <div style={{ flex: 1, overflowY: 'auto', padding: 18 }}>
+        <div style={{ flex: 1, overflowY: activeSection === 'design' ? 'hidden' : 'auto', padding: 18, display: 'flex', flexDirection: 'column' }}>
           <AnimatePresence mode="wait">
             <motion.div
               key={activeSection}
@@ -184,6 +184,7 @@ function BuilderContent() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -8 }}
               transition={{ duration: 0.15 }}
+              style={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }}
             >
               {ActiveComponent && <ActiveComponent />}
             </motion.div>

@@ -135,8 +135,8 @@ export default function DashboardPage() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               {[
                 { icon: Plus, label: 'Create Resume', sub: 'Start from scratch', color: '#8b5cf6', href: '/dashboard/create' },
-                { icon: Sparkles, label: 'AI Suggestions', sub: 'Improve your resume', color: '#3b82f6', href: '#' },
-                { icon: Download, label: 'Export All', sub: 'Download as PDF/DOCX', color: '#06b6d4', href: '#' },
+                { icon: Sparkles, label: 'AI Suggestions', sub: 'Improve your resume', color: '#3b82f6', href: '/dashboard/ai-suggestions' },
+                { icon: Download, label: 'Export All', sub: 'Download as PDF/DOCX', color: '#06b6d4', href: '/dashboard/export' },
               ].map((action) => (
                 <Link key={action.label} href={action.href} style={{ textDecoration: 'none' }}>
                   <div style={{

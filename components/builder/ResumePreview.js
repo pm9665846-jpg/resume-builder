@@ -141,10 +141,28 @@ export default function ResumePreview() {
   const Template = templateMap[resume.template] || ModernTemplate
 
   return (
-    <div style={{ width: '100%', height: '100%', overflowY: 'auto', overflowX: 'auto', background: '#d1d5db', borderRadius: 12, padding: 20, display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}>
+    <div style={{
+      width: '100%',
+      height: '100%',
+      overflowY: 'auto',
+      overflowX: 'auto',
+      background: '#d1d5db',
+      borderRadius: 12,
+      padding: 20,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'flex-start',
+    }}>
       <div
         id="resume-preview"
-        style={{ background: 'white', boxShadow: '0 4px 40px rgba(0,0,0,0.35)', borderRadius: 2, width: '210mm', minHeight: '297mm', flexShrink: 0 }}
+        style={{
+          background: 'white',
+          boxShadow: '0 4px 40px rgba(0,0,0,0.35)',
+          borderRadius: 2,
+          width: '210mm',
+          minHeight: '297mm',
+          flexShrink: 0,
+        }}
       >
         <Template resume={resume} />
       </div>
