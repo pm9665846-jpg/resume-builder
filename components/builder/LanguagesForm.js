@@ -14,7 +14,7 @@ export default function LanguagesForm() {
   const { languages = [] } = resume
   const [input, setInput] = useState('')
   const [proficiency, setProficiency] = useState('Professional')
-
+  
   function handleAdd(name) {
     const n = name || input.trim()
     if (n && !languages.find(l => l.name.toLowerCase() === n.toLowerCase())) {

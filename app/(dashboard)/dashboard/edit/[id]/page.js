@@ -77,7 +77,15 @@ export default function EditResumePage() {
 
   async function handleExportPDF() {
     setExportLoading(true)
-    try { await exportToPDF('resume-preview') } finally { setExportLoading(false) }
+    try {
+      // Small delay to let the loading state render first
+      await new Promise(r => setTimeout(r, 100))
+      await exportToPDF('resume-preview')
+    } catch (e) {
+      console.error('PDF export failed:', e)
+    } finally {
+      setExportLoading(false)
+    }
   }
 
   async function handleSave() {

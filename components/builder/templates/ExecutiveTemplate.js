@@ -60,21 +60,57 @@ export default function ExecutiveTemplate({ resume }) {
   )
 
   return (
-    <div style={{ background: 'white', fontFamily: "'Arial', sans-serif", fontSize: '10.5px', lineHeight: 1.5, minHeight: '297mm', display: 'flex' }}>
+    <div style={{ 
+      background: 'white', 
+      fontFamily: "'Arial', 'Helvetica', sans-serif", 
+      fontSize: '10.5px', 
+      lineHeight: 1.5, 
+      minHeight: '297mm', 
+      display: 'flex',
+      position: 'relative',
+      width: '100%',
+      maxWidth: '210mm',
+      margin: '0 auto'
+    }}>
 
       {/* ── COLORED SIDEBAR ── */}
-      <div style={{ width: '32%', background: tc, padding: '26px 16px 40px', color: 'white', flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 16 }}>
+      <div style={{ 
+        width: '32%', 
+        background: tc, 
+        padding: '26px 16px 40px', 
+        color: 'white', 
+        flexShrink: 0, 
+        display: 'flex', 
+        flexDirection: 'column', 
+        gap: 16,
+        wordBreak: 'break-word',
+        overflowWrap: 'break-word'
+      }}>
 
         {/* Avatar + Name */}
         <div>
-          <div style={{ width: 64, height: 64, borderRadius: '50%', background: 'rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 12, fontSize: 22, fontWeight: 800, color: 'white', overflow: 'hidden', border: '2px solid rgba(255,255,255,0.4)' }}>
+          <div style={{ 
+            width: 64, 
+            height: 64, 
+            borderRadius: '50%', 
+            background: 'rgba(255,255,255,0.2)', 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center', 
+            marginBottom: 12, 
+            fontSize: 22, 
+            fontWeight: 800, 
+            color: 'white', 
+            overflow: 'hidden', 
+            border: '2px solid rgba(255,255,255,0.4)'
+          }}>
             {photo ? (
               <img src={photo} alt="Profile" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             ) : (
               name.charAt(0).toUpperCase()
             )}
           </div>
-          <h1 style={{ fontSize: 15, fontWeight: 800, color: 'white', lineHeight: 1.2, marginBottom: 3 }}>{name}</h1>
+          <h1 style={{ fontSize: 15, fontWeight: 800, color: 'white', lineHeight: 1.2, marginBottom: 3, wordBreak: 'break-word' }}>{name}</h1>
           <p style={{ fontSize: 9.5, color: 'rgba(255,255,255,0.75)', fontWeight: 600, letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: 12 }}>{jobTitle}</p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
             {[{ I: Mail, v: email }, { I: Phone, v: phone }, { I: MapPin, v: location }, { I: Globe, v: website }, { I: Link2, v: linkedin }]
@@ -94,8 +130,8 @@ export default function ExecutiveTemplate({ resume }) {
           {skl.map(s => (
             <div key={s.id} style={{ marginBottom: 6 }}>
               <p style={{ fontSize: 9, color: 'rgba(255,255,255,0.9)', marginBottom: 2 }}>{s.name}</p>
-              <div style={{ height: 3, background: 'rgba(255,255,255,0.2)', borderRadius: 2 }}>
-                <div style={{ height: 3, background: 'rgba(255,255,255,0.85)', borderRadius: 2, width: `${s.level || 80}%` }} />
+              <div style={{ height: 3, background: 'rgba(255,255,255,0.2)', borderRadius: 2, position: 'relative' }}>
+                <div style={{ position: 'absolute', top: 0, left: 0, height: 3, background: 'rgba(255,255,255,0.85)', borderRadius: 2, width: `${s.level || 80}%`, maxWidth: '100%' }} />
               </div>
             </div>
           ))}
@@ -142,12 +178,20 @@ export default function ExecutiveTemplate({ resume }) {
       </div>
 
       {/* ── RIGHT CONTENT ── */}
-      <div style={{ flex: 1, padding: '26px 22px 40px', display: 'flex', flexDirection: 'column', gap: 16 }}>
+      <div style={{ 
+        flex: 1, 
+        padding: '26px 22px 40px', 
+        display: 'flex', 
+        flexDirection: 'column', 
+        gap: 16,
+        wordBreak: 'break-word',
+        overflowWrap: 'break-word'
+      }}>
 
         {/* Summary */}
         <div style={{ paddingBottom: 14, borderBottom: `2px solid ${tc}20` }}>
           <MT>Executive Profile</MT>
-          <p style={{ color: '#333', fontSize: 10.5, lineHeight: 1.8 }}>{summary}</p>
+          <p style={{ color: '#333', fontSize: 10.5, lineHeight: 1.8, margin: 0 }}>{summary}</p>
         </div>
 
         {/* Experience */}
@@ -155,21 +199,29 @@ export default function ExecutiveTemplate({ resume }) {
           <MT>Career History</MT>
           {exp.map((e, i) => (
             <div key={e.id} style={{ marginBottom: i < exp.length - 1 ? 14 : 0, paddingLeft: 10, borderLeft: `2px solid ${tc}30` }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                <div>
-                  <p style={{ fontWeight: 800, fontSize: 12, color: '#111' }}>{e.role}</p>
-                  <p style={{ color: tc, fontSize: 10, fontWeight: 700 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 6 }}>
+                <div style={{ flex: 1 }}>
+                  <p style={{ fontWeight: 800, fontSize: 12, color: '#111', margin: '0 0 2px 0' }}>{e.role}</p>
+                  <p style={{ color: tc, fontSize: 10, fontWeight: 700, margin: 0 }}>
                     {e.company}{e.location ? <span style={{ color: '#888', fontWeight: 400 }}> · {e.location}</span> : ''}
                   </p>
                 </div>
-                <span style={{ fontSize: 8.5, color: '#777', background: '#f5f5f5', padding: '2px 7px', borderRadius: 3, whiteSpace: 'nowrap', marginLeft: 8, flexShrink: 0 }}>
+                <span style={{ 
+                  fontSize: 8.5, 
+                  color: '#777', 
+                  background: '#f5f5f5', 
+                  padding: '2px 7px', 
+                  borderRadius: 3, 
+                  whiteSpace: 'nowrap', 
+                  flexShrink: 0 
+                }}>
                   {e.startDate} — {e.current ? 'Present' : e.endDate}
                 </span>
               </div>
               {e.description && (
                 <div style={{ marginTop: 4 }}>
                   {e.description.split('\n').filter(Boolean).map((line, li) => (
-                    <p key={li} style={{ color: '#444', fontSize: 9.5, lineHeight: 1.65, marginBottom: 2 }}>{line}</p>
+                    <p key={li} style={{ color: '#444', fontSize: 9.5, lineHeight: 1.65, marginBottom: 2, marginTop: 0 }}>{line}</p>
                   ))}
                 </div>
               )}
@@ -183,9 +235,9 @@ export default function ExecutiveTemplate({ resume }) {
             <MT>Key Initiatives</MT>
             {prj.map((p, i) => (
               <div key={p.id} style={{ marginBottom: i < prj.length - 1 ? 10 : 0, padding: '8px 10px', background: `${tc}06`, border: `1px solid ${tc}18`, borderRadius: 5 }}>
-                <p style={{ fontWeight: 800, fontSize: 11, color: '#111', marginBottom: 3 }}>{p.name}</p>
-                {p.tech && <p style={{ color: '#888', fontSize: 9, marginBottom: 3 }}>{p.tech}</p>}
-                {p.description && <p style={{ color: '#444', fontSize: 9.5, lineHeight: 1.6 }}>{p.description}</p>}
+                <p style={{ fontWeight: 800, fontSize: 11, color: '#111', margin: '0 0 3px 0' }}>{p.name}</p>
+                {p.tech && <p style={{ color: '#888', fontSize: 9, margin: '0 0 3px 0' }}>{p.tech}</p>}
+                {p.description && <p style={{ color: '#444', fontSize: 9.5, lineHeight: 1.6, margin: 0 }}>{p.description}</p>}
               </div>
             ))}
           </div>

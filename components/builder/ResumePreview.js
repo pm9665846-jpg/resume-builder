@@ -159,9 +159,12 @@ export default function ResumePreview() {
           background: 'white',
           boxShadow: '0 4px 40px rgba(0,0,0,0.35)',
           borderRadius: 2,
-          width: '210mm',
-          minHeight: '297mm',
+          width: '794px',
+          minHeight: '1123px',
           flexShrink: 0,
+          fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif",
+          WebkitFontSmoothing: 'antialiased',
+          MozOsxFontSmoothing: 'grayscale',
         }}
       >
         <Template resume={resume} />
