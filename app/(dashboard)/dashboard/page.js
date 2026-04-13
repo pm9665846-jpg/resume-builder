@@ -2,6 +2,15 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Plus, FileText, TrendingUp, Eye, Download, Clock, ArrowRight, Sparkles } from 'lucide-react'
+import { useSession } from 'next-auth/react'
+
+function getGreeting() {
+  const hour = new Date().getHours()
+  if (hour >= 5 && hour < 12) return 'Good morning'
+  if (hour >= 12 && hour < 17) return 'Good afternoon'
+  if (hour >= 17 && hour < 21) return 'Good evening'
+  return 'Good night'
+}
 
 const stats = [
   { label: 'Total Resumes', value: '3', icon: FileText, color: '#8b5cf6', change: '+1 this week' },
@@ -20,6 +29,10 @@ const container = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } 
 const item = { hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0, transition: { duration: 0.4 } } }
 
 export default function DashboardPage() {
+  const { data: session } = useSession()
+  const userName = session?.user?.name?.split(' ')[0] || 'there'
+  const greeting = getGreeting()
+
   return (
     <div style={{ padding: '40px 32px', maxWidth: 1200, margin: '0 auto' }}>
       <motion.div variants={container} initial="hidden" animate="show">
@@ -28,7 +41,7 @@ export default function DashboardPage() {
         <motion.div variants={item} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 40, flexWrap: 'wrap', gap: 16 }}>
           <div>
             <h1 style={{ fontSize: '1.875rem', fontWeight: 900, color: 'var(--text)', marginBottom: 4 }}>
-              Good morning, <span className="gradient-text">Prachi</span> 👋
+              {greeting}, <span className="gradient-text">{userName}</span> 👋
             </h1>
             <p style={{ color: 'var(--text2)' }}>Ready to land your dream job today?</p>
           </div>

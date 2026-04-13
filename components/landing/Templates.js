@@ -33,7 +33,7 @@ const templates = [
 
 const sampleResume = {
   personalInfo: {
-    name: 'Prachi Mishra', jobTitle: 'Software Engineer',
+    name: 'xyz', jobTitle: 'Software Engineer',
     email: 'prachi@email.com', phone: '+91 98765 43210',
     location: 'Mumbai, India', website: 'prachi.dev',
     linkedin: 'linkedin.com/in/prachi',

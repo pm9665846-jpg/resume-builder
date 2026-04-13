@@ -2,7 +2,7 @@ import { Mail, Phone, MapPin, Globe, Link2, Award } from 'lucide-react'
 
 // ── SPLIT: Diagonal split header, bold typography, magazine-style layout
 const SAMPLE = {
-  name: 'Prachi Mishra', jobTitle: 'Product Designer & Developer',
+  name: 'xyz', jobTitle: 'Product Designer & Developer',
   email: 'prachi@email.com', phone: '+91 98765 43210',
   location: 'Mumbai, India', website: 'prachidev.com', linkedin: 'linkedin.com/in/prachi',
   summary: 'Creative technologist blending design thinking with engineering precision. 4+ years crafting digital products used by millions. Expert in building design systems, leading cross-functional teams, and shipping pixel-perfect experiences.',

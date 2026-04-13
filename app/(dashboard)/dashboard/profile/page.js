@@ -8,7 +8,7 @@ import GlowCard from '@/components/ui/GlowCard'
 import FloatingBackground from '@/components/ui/FloatingBackground'
 
 export default function ProfilePage() {
-  const [profile, setProfile] = useState({ name: 'Prachi Mishra', email: 'prachi@example.com', phone: '', location: '', bio: '' })
+  const [profile, setProfile] = useState({ name: 'xyz', email: 'abc@gmail.com', phone: '', location: '', bio: '' })
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
 

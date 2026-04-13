@@ -2,7 +2,7 @@ import { Mail, Phone, MapPin, Globe, Link2, Award, Star, Zap } from 'lucide-reac
 
 // ── NEON DARK: Full dark background resume with neon accents, glowing borders
 const SAMPLE = {
-  name: 'Prachi Mishra', jobTitle: 'Senior Software Engineer',
+  name: 'xyz', jobTitle: 'Senior Software Engineer',
   email: 'prachi@email.com', phone: '+91 98765 43210',
   location: 'Mumbai, India', website: 'prachidev.com', linkedin: 'linkedin.com/in/prachi',
   summary: 'Results-driven Senior Software Engineer with 4+ years building scalable full-stack applications. Led teams of 6 engineers, reduced system latency by 40%, and shipped products used by 500K+ users.',

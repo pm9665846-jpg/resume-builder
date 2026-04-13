@@ -2,7 +2,7 @@ import { Mail, Phone, MapPin, Globe, Link2, Award, TrendingUp } from 'lucide-rea
 
 // ── INFOGRAPHIC: Visual stats, hexagon skills, timeline experience
 const SAMPLE = {
-  name: 'Prachi Mishra', jobTitle: 'Data Scientist & ML Engineer',
+  name: 'xyz', jobTitle: 'Data Scientist & ML Engineer',
   email: 'prachi@email.com', phone: '+91 98765 43210',
   location: 'Bengaluru, India', website: 'prachidev.com', linkedin: 'linkedin.com/in/prachi',
   summary: 'Data Scientist with 4+ years extracting actionable insights from complex datasets. Built ML models generating $20M+ in business value. Expert in deep learning, NLP, and production ML systems.',

@@ -1,7 +1,7 @@
 import { Mail, Phone, MapPin, Globe, Link2, Award } from 'lucide-react'
 
 const SAMPLE = {
-  name: 'Prachi Mishra', jobTitle: 'Software Engineer',
+  name: 'xyz', jobTitle: 'Software Engineer',
   email: 'prachi.mishra@email.com', phone: '+91 98765 43210',
   location: 'Mumbai, India', website: 'prachidev.com', linkedin: 'linkedin.com/in/prachi',
   summary: 'Detail-oriented Software Engineer with 4+ years building clean, efficient web applications. Strong focus on code quality, performance optimization, and developer experience. Committed to continuous learning and delivering measurable impact.',

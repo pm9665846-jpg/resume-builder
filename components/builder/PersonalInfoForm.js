@@ -97,9 +97,9 @@ export default function PersonalInfoForm() {
         </div>
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-        <Field label="Full Name" icon={User} value={personalInfo.name || ''} onChange={u('name')} placeholder="Prachi Mishra" span2 />
+        <Field label="Full Name" icon={User} value={personalInfo.name || ''} onChange={u('name')} placeholder="xyz" span2 />
         <Field label="Job Title" icon={Briefcase} value={personalInfo.jobTitle || ''} onChange={u('jobTitle')} placeholder="Software Engineer" span2 />
-        <Field label="Email" icon={Mail} value={personalInfo.email || ''} onChange={u('email')} placeholder="prachi@example.com" type="email" />
+        <Field label="Email" icon={Mail} value={personalInfo.email || ''} onChange={u('email')} placeholder="abc@gmail.com" type="email" />
         <Field label="Phone" icon={Phone} value={personalInfo.phone || ''} onChange={u('phone')} placeholder="+91 98765 43210" type="tel" />
         <Field label="Location" icon={MapPin} value={personalInfo.location || ''} onChange={u('location')} placeholder="Mumbai, India" />
         <Field label="Website" icon={Globe} value={personalInfo.website || ''} onChange={u('website')} placeholder="yoursite.com" />

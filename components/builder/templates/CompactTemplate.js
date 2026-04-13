@@ -1,7 +1,7 @@
 import { Mail, Phone, MapPin, Globe, Link2, Award } from 'lucide-react'
 
 const SAMPLE = {
-  name: 'Prachi Mishra', jobTitle: 'Data Scientist',
+  name: 'xyz', jobTitle: 'Data Scientist',
   email: 'prachi.mishra@email.com', phone: '+91 98765 43210',
   location: 'Bengaluru, India', website: 'prachidev.com', linkedin: 'linkedin.com/in/prachi',
   summary: 'Data Scientist with 4+ years extracting actionable insights from complex datasets. Expertise in ML model development, statistical analysis, and data visualization. Delivered models generating $20M+ in business value. Strong communicator bridging technical and business teams.',

@@ -1,7 +1,7 @@
 import { Mail, Phone, MapPin, Globe, Link2, Award } from 'lucide-react'
 
 const SAMPLE = {
-  name: 'Prachi Mishra', jobTitle: 'Growth & Marketing Lead',
+  name: 'xyz', jobTitle: 'Growth & Marketing Lead',
   email: 'prachi.mishra@email.com', phone: '+91 98765 43210',
   location: 'Mumbai, India', website: 'prachidev.com', linkedin: 'linkedin.com/in/prachi',
   summary: 'High-impact Growth & Marketing Leader with 5+ years driving explosive user acquisition and revenue growth. Scaled startups from 0 to 5M users. Expert in performance marketing, product-led growth, and data-driven experimentation. Generated $30M+ in attributed revenue.',

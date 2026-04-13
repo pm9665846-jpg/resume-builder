@@ -12,7 +12,7 @@ const SUGGESTION_TYPES = [
     color: '#8b5cf6',
     description: 'AI-crafted summary that grabs attention',
     fields: [
-      { key: 'name', label: 'Your Name', placeholder: 'e.g. Prachi Mishra' },
+      { key: 'name', label: 'Your Name', placeholder: 'e.g. xyz' },
       { key: 'jobTitle', label: 'Job Title', placeholder: 'e.g. Software Engineer' },
     ],
   },

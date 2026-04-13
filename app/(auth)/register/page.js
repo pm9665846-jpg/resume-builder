@@ -196,7 +196,7 @@ function RegisterForm() {
 
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               {[
-                { key: 'name', label: 'Full Name', type: 'text', placeholder: 'Prachi Mishra', icon: User },
+                { key: 'name', label: 'Full Name', type: 'text', placeholder: 'xyz', icon: User },
                 { key: 'email', label: 'Email', type: 'email', placeholder: 'you@example.com', icon: Mail },
                 { key: 'password', label: 'Password', type: 'password', placeholder: 'Min. 8 characters', icon: Lock },
               ].map(({ key, label, type, placeholder, icon: Icon }) => (
