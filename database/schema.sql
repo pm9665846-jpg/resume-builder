@@ -87,7 +87,7 @@ VALUES (
       "email": "prachi@email.com",
       "phone": "+91 98765 43210",
       "location": "Mumbai, India",
-      "website": "prachidev.com",
+      "website": "abcdev.com",
       "linkedin": "linkedin.com/in/prachi",
       "github": "github.com/prachi",
       "summary": "Results-driven Senior Software Engineer with 4+ years building scalable full-stack applications. Led teams of 6 engineers, reduced system latency by 40%, and shipped products used by 500K+ users.",

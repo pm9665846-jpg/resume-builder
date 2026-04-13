@@ -4,7 +4,7 @@ const SAMPLE = {
   name: 'xyz', jobTitle: 'Senior Software Engineer',
   email: 'abc@gmail.com', phone: '+91 98765 43210',
   location: 'Mumbai, Maharashtra, India',
-  website: 'prachidev.com', linkedin: 'linkedin.com/in/prachi-mishra',
+  website: 'abcdev.com', linkedin: 'linkedin.com/in/abc@gmail.com',
   summary: 'Results-driven Senior Software Engineer with 4+ years of experience designing and building scalable full-stack web applications. Proven track record of leading cross-functional teams, reducing system latency by 40%, and shipping products used by 500K+ users. Passionate about clean architecture, developer experience, and mentoring junior engineers.',
   experience: [
     { id: 's1', role: 'Senior Software Engineer', company: 'Google India', location: 'Bengaluru, India', startDate: 'Jan 2022', endDate: '', current: true, description: '• Architected and deployed microservices handling 15M+ API requests/day using Node.js and Kubernetes\n• Led a team of 6 engineers to deliver the Payments 2.0 platform, reducing transaction failures by 35%\n• Implemented real-time data pipelines with Apache Kafka, improving data freshness from 5 min to 30 sec\n• Mentored 3 junior engineers; 2 received promotions within 12 months' },

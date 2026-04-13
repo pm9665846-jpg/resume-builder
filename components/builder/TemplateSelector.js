@@ -119,7 +119,7 @@ const sampleResume = {
   personalInfo: {
     name: 'xyz', jobTitle: 'Software Engineer',
     email: 'prachi@email.com', phone: '+91 98765 43210',
-    location: 'Mumbai, India', website: 'prachidev.com',
+    location: 'Mumbai, India', website: 'abcdev.com',
     linkedin: 'linkedin.com/in/prachi',
     summary: 'Senior Software Engineer with 4+ years building scalable applications.',
   },

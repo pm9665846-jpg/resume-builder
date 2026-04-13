@@ -3,7 +3,7 @@ import { Mail, Phone, MapPin, Globe, Link2, Award } from 'lucide-react'
 const SAMPLE = {
   name: 'xyz', jobTitle: 'Data Scientist',
   email: 'abc@gmail.com', phone: '+91 98765 43210',
-  location: 'Bengaluru, India', website: 'prachidev.com', linkedin: 'linkedin.com/in/prachi',
+  location: 'Bengaluru, India', website: 'abcdev.com', linkedin: 'linkedin.com/in/prachi',
   summary: 'Data Scientist with 4+ years extracting actionable insights from complex datasets. Expertise in ML model development, statistical analysis, and data visualization. Delivered models generating $20M+ in business value. Strong communicator bridging technical and business teams.',
   experience: [
     { id: 's1', role: 'Senior Data Scientist', company: 'Walmart Global Tech', location: 'Bengaluru', startDate: 'Apr 2022', endDate: '', current: true, description: '• Built demand forecasting model reducing inventory waste by 18% ($8M annual savings)\n• Developed customer churn prediction model with 91% accuracy, retaining 50K+ customers\n• Led team of 4 data scientists; established MLOps practices reducing model deployment time by 60%\n• Published 2 internal research papers on recommendation systems' },

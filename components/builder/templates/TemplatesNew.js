@@ -3,7 +3,7 @@ import { Mail, Phone, MapPin, Globe, Link2, Award, Star, Briefcase, GraduationCa
 const S = {
   name: 'xyz', jobTitle: 'Senior Software Engineer',
   email: 'prachi@email.com', phone: '+91 98765 43210', location: 'Mumbai, India',
-  website: 'prachidev.com', linkedin: 'linkedin.com/in/prachi',
+  website: 'abcdev.com', linkedin: 'linkedin.com/in/prachi',
   summary: 'Senior Software Engineer with 4+ years building scalable full-stack applications. Led teams, reduced latency by 40%, shipped products used by 500K+ users.',
   experience: [
     { id: 's1', role: 'Senior Engineer', company: 'Google India', location: 'Bengaluru', startDate: 'Jan 2022', endDate: '', current: true, description: '• Architected microservices handling 15M+ API requests/day\n• Led Payments 2.0 reducing failures by 35%\n• Mentored 3 junior engineers' },

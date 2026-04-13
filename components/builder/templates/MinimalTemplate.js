@@ -3,7 +3,7 @@ import { Mail, Phone, MapPin, Globe, Link2, Award } from 'lucide-react'
 const SAMPLE = {
   name: 'xyz', jobTitle: 'Software Engineer',
   email: 'abc@gmail.com', phone: '+91 98765 43210',
-  location: 'Mumbai, India', website: 'prachidev.com', linkedin: 'linkedin.com/in/prachi',
+  location: 'Mumbai, India', website: 'abcdev.com', linkedin: 'linkedin.com/in/prachi',
   summary: 'Detail-oriented Software Engineer with 4+ years building clean, efficient web applications. Strong focus on code quality, performance optimization, and developer experience. Committed to continuous learning and delivering measurable impact.',
   experience: [
     { id: 's1', role: 'Software Engineer II', company: 'Microsoft', location: 'Hyderabad', startDate: 'Mar 2022', endDate: '', current: true, description: '• Developed core features for Azure DevOps used by 10M+ developers worldwide\n• Reduced build pipeline execution time by 35% through parallel processing optimizations\n• Authored 15 internal technical RFCs adopted across 4 engineering teams\n• Achieved 98% unit test coverage on critical payment processing modules' },

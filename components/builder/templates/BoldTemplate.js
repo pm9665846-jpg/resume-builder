@@ -3,7 +3,7 @@ import { Mail, Phone, MapPin, Globe, Link2, Award } from 'lucide-react'
 const SAMPLE = {
   name: 'xyz', jobTitle: 'Growth & Marketing Lead',
   email: 'abc@gmail.com', phone: '+91 98765 43210',
-  location: 'Mumbai, India', website: 'prachidev.com', linkedin: 'linkedin.com/in/prachi',
+  location: 'Mumbai, India', website: 'abcdev.com', linkedin: 'linkedin.com/in/prachi',
   summary: 'High-impact Growth & Marketing Leader with 5+ years driving explosive user acquisition and revenue growth. Scaled startups from 0 to 5M users. Expert in performance marketing, product-led growth, and data-driven experimentation. Generated $30M+ in attributed revenue.',
   experience: [
     { id: 's1', role: 'Head of Growth', company: 'Meesho', location: 'Bengaluru', startDate: 'Feb 2022', endDate: '', current: true, description: '• Scaled user base from 2M to 15M in 18 months through viral referral programs\n• Managed ₹50Cr+ annual marketing budget with 4.2x average ROAS\n• Built and led 12-person growth team across acquisition, retention, and monetization\n• Launched 3 growth experiments per week; 40% success rate vs industry avg of 10%' },

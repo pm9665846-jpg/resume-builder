@@ -4,7 +4,7 @@ import { Mail, Phone, MapPin, Globe, Link2, Award, Circle } from 'lucide-react'
 const SAMPLE = {
   name: 'xyz', jobTitle: 'Engineering Manager',
   email: 'prachi@email.com', phone: '+91 98765 43210',
-  location: 'Mumbai, India', website: 'prachidev.com', linkedin: 'linkedin.com/in/prachi',
+  location: 'Mumbai, India', website: 'abcdev.com', linkedin: 'linkedin.com/in/prachi',
   summary: 'Engineering Manager with 6+ years building and scaling high-performance engineering teams. Delivered $50M+ in product value. Expert in technical leadership, system architecture, and creating engineering cultures that ship fast and break nothing.',
   experience: [
     { id: 's1', role: 'Engineering Manager', company: 'Flipkart', location: 'Bengaluru', startDate: 'Jan 2022', endDate: '', current: true, description: '• Managed 3 teams (28 engineers) across Checkout, Payments, and Fraud Detection\n• Reduced checkout latency by 45% through architectural improvements\n• Grew team from 12 to 28 engineers while maintaining 95% retention rate' },

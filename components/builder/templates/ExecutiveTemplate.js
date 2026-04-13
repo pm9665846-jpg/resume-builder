@@ -3,7 +3,7 @@ import { Mail, Phone, MapPin, Globe, Link2, Award } from 'lucide-react'
 const SAMPLE = {
   name: 'xyz', jobTitle: 'Chief Technology Officer',
   email: 'abc@gmail.com', phone: '+91 98765 43210',
-  location: 'Mumbai, India', website: 'prachidev.com', linkedin: 'linkedin.com/in/prachi',
+  location: 'Mumbai, India', website: 'abcdev.com', linkedin: 'linkedin.com/in/prachi',
   summary: 'Visionary CTO with 10+ years leading technology strategy and engineering excellence at scale. Built and scaled engineering teams from 5 to 200+. Delivered $100M+ in product value. Expert in cloud architecture, digital transformation, and building high-performance engineering cultures.',
   experience: [
     { id: 's1', role: 'Chief Technology Officer', company: 'FinTech Unicorn', location: 'Mumbai', startDate: 'Jan 2021', endDate: '', current: true, description: '• Led technology strategy for a $1.2B fintech company serving 15M+ customers\n• Scaled engineering team from 40 to 180 engineers across 3 countries\n• Architected cloud migration saving $4M annually in infrastructure costs\n• Launched 3 new product lines generating $50M+ ARR in 18 months' },

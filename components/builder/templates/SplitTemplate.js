@@ -4,7 +4,7 @@ import { Mail, Phone, MapPin, Globe, Link2, Award } from 'lucide-react'
 const SAMPLE = {
   name: 'xyz', jobTitle: 'Product Designer & Developer',
   email: 'prachi@email.com', phone: '+91 98765 43210',
-  location: 'Mumbai, India', website: 'prachidev.com', linkedin: 'linkedin.com/in/prachi',
+  location: 'Mumbai, India', website: 'abcdev.com', linkedin: 'linkedin.com/in/prachi',
   summary: 'Creative technologist blending design thinking with engineering precision. 4+ years crafting digital products used by millions. Expert in building design systems, leading cross-functional teams, and shipping pixel-perfect experiences.',
   experience: [
     { id: 's1', role: 'Senior Product Designer', company: 'Zomato', location: 'Gurugram', startDate: 'Feb 2022', endDate: '', current: true, description: '• Redesigned restaurant discovery flow, increasing engagement by 42%\n• Built design system with 200+ components used by 50+ designers\n• Conducted 50+ user research sessions informing 3 major product pivots' },

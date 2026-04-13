@@ -3,7 +3,7 @@ import { Mail, Phone, MapPin, Globe, Award } from 'lucide-react'
 const SAMPLE = {
   name: 'xyz', jobTitle: 'Senior Product Manager',
   email: 'abc@gmail.com', phone: '+91 98765 43210',
-  location: 'Mumbai, India', website: 'prachidev.com',
+  location: 'Mumbai, India', website: 'abcdev.com',
   summary: 'Accomplished Senior Product Manager with 6+ years driving product strategy and execution at scale. Led cross-functional teams of 20+ to deliver products generating $50M+ ARR. Known for data-driven decision making and exceptional stakeholder communication.',
   experience: [
     { id: 's1', role: 'Senior Product Manager', company: 'Flipkart', location: 'Bengaluru', startDate: 'Mar 2021', endDate: '', current: true, description: '• Owned the Checkout & Payments product roadmap, driving 28% increase in conversion rate\n• Led a team of 4 PMs, 12 engineers, and 3 designers across 2 product lines\n• Launched Buy Now Pay Later feature generating ₹200Cr+ GMV in first quarter\n• Reduced cart abandonment by 22% through A/B tested UX improvements' },

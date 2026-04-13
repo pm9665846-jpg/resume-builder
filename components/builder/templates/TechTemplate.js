@@ -3,7 +3,7 @@ import { Mail, Phone, MapPin, Globe, Link2, Award } from 'lucide-react'
 const SAMPLE = {
   name: 'xyz', jobTitle: 'Full Stack Developer',
   email: 'abc@gmail.com', phone: '+91 98765 43210',
-  location: 'Mumbai, India', website: 'prachidev.com',
+  location: 'Mumbai, India', website: 'abcdev.com',
   linkedin: 'linkedin.com/in/prachi',
   summary: 'Full-stack developer with 4+ years building high-performance web applications. Expert in React, Node.js, and cloud infrastructure. Open-source contributor with 500+ GitHub stars across personal projects.',
   experience: [
