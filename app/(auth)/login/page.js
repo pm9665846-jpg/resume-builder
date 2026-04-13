@@ -44,7 +44,7 @@ function LoginForm() {
 
   if (status === 'loading') {
     return (
-      <div style={{ minHeight: '100vh', background: '#050508', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ minHeight: '100vh', background: 'var(--bg)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ width: 32, height: 32, border: '3px solid rgba(139,92,246,0.3)', borderTopColor: '#8b5cf6', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
       </div>
     )
@@ -83,7 +83,7 @@ function LoginForm() {
   }
 
   return (
-    <div style={{ minHeight: '100vh', width: '100%', background: '#050508', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px', position: 'relative' }}>
+    <div style={{ minHeight: '100vh', width: '100%', background: 'var(--bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px', position: 'relative' }}>
       {/* Background */}
       <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
         <div className="grid-pattern" style={{ position: 'absolute', inset: 0, opacity: 0.3 }} />
@@ -104,12 +104,12 @@ function LoginForm() {
             </div>
             <span className="gradient-text" style={{ fontWeight: 700, fontSize: '1.2rem' }}>Resume Maker</span>
           </Link>
-          <h1 style={{ fontSize: '1.75rem', fontWeight: 900, color: 'white', marginBottom: 6 }}>Welcome back</h1>
-          <p style={{ color: '#94a3b8', fontSize: '0.875rem' }}>Sign in to continue building your career</p>
+          <h1 style={{ fontSize: '1.75rem', fontWeight: 900, color: 'var(--text)', marginBottom: 6 }}>Welcome back</h1>
+          <p style={{ color: 'var(--text2)', fontSize: '0.875rem' }}>Sign in to continue building your career</p>
         </div>
 
         {/* Card */}
-        <div style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 20, padding: 28, backdropFilter: 'blur(20px)' }}>
+        <div style={{ background: 'var(--card2)', border: '1px solid var(--border2)', borderRadius: 20, padding: 28, backdropFilter: 'blur(20px)' }}>
 
           {/* Error */}
           {error && (
@@ -161,15 +161,15 @@ function LoginForm() {
 
           {/* Divider */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
-            <div style={{ flex: 1, height: 1, background: 'rgba(255,255,255,0.08)' }} />
-            <span style={{ color: '#475569', fontSize: '0.75rem' }}>or sign in with email</span>
-            <div style={{ flex: 1, height: 1, background: 'rgba(255,255,255,0.08)' }} />
+            <div style={{ flex: 1, height: 1, background: 'var(--border)' }} />
+            <span style={{ color: 'var(--text3)', fontSize: '0.75rem' }}>or sign in with email</span>
+            <div style={{ flex: 1, height: 1, background: 'var(--border)' }} />
           </div>
 
           {/* Email/Password form */}
           <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
             <div>
-              <label style={{ display: 'block', fontSize: '0.7rem', fontWeight: 600, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 6 }}>Email</label>
+              <label style={{ display: 'block', fontSize: '0.7rem', fontWeight: 600, color: 'var(--text2)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 6 }}>Email</label>
               <div style={{ position: 'relative' }}>
                 <Mail size={14} color="#64748b" style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} />
                 <input type="email" placeholder="you@example.com" value={form.email}
@@ -180,7 +180,7 @@ function LoginForm() {
             </div>
 
             <div>
-              <label style={{ display: 'block', fontSize: '0.7rem', fontWeight: 600, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 6 }}>Password</label>
+              <label style={{ display: 'block', fontSize: '0.7rem', fontWeight: 600, color: 'var(--text2)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 6 }}>Password</label>
               <div style={{ position: 'relative' }}>
                 <Lock size={14} color="#64748b" style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} />
                 <input type={showPass ? 'text' : 'password'} placeholder="••••••••" value={form.password}
@@ -211,12 +211,11 @@ function LoginForm() {
             </button>
           </form>
 
-          <p style={{ textAlign: 'center', marginTop: 20, fontSize: '0.85rem', color: '#64748b' }}>
+          <p style={{ textAlign: 'center', marginTop: 20, fontSize: '0.85rem', color: 'var(--text3)' }}>
             Don&apos;t have an account?{' '}
             <Link href="/register" style={{ color: '#a78bfa', textDecoration: 'none', fontWeight: 600 }}>Create one free</Link>
           </p>
-
-          <p style={{ textAlign: 'center', marginTop: 10, fontSize: '0.72rem', color: '#334155' }}>
+          <p style={{ textAlign: 'center', marginTop: 10, fontSize: '0.72rem', color: 'var(--text4)' }}>
             🔒 Stays signed in for 7 days
           </p>
         </div>
@@ -227,7 +226,7 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <Suspense fallback={<div style={{ minHeight: '100vh', background: '#050508' }} />}>
+    <Suspense fallback={<div style={{ minHeight: '100vh', background: 'var(--bg)' }} />}>
       <LoginForm />
     </Suspense>
   )

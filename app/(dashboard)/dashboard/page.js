@@ -27,10 +27,10 @@ export default function DashboardPage() {
         {/* Header */}
         <motion.div variants={item} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 40, flexWrap: 'wrap', gap: 16 }}>
           <div>
-            <h1 style={{ fontSize: '1.875rem', fontWeight: 900, color: 'white', marginBottom: 4 }}>
+            <h1 style={{ fontSize: '1.875rem', fontWeight: 900, color: 'var(--text)', marginBottom: 4 }}>
               Good morning, <span className="gradient-text">Prachi</span> 👋
             </h1>
-            <p style={{ color: '#94a3b8' }}>Ready to land your dream job today?</p>
+            <p style={{ color: 'var(--text2)' }}>Ready to land your dream job today?</p>
           </div>
           <Link href="/dashboard/create" style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
@@ -51,8 +51,8 @@ export default function DashboardPage() {
         }}>
           {stats.map((stat) => (
             <div key={stat.label} style={{
-              background: 'rgba(255,255,255,0.04)',
-              border: '1px solid rgba(255,255,255,0.08)',
+              background: 'var(--card)',
+              border: '1px solid var(--border)',
               borderRadius: 16, padding: 20,
               transition: 'border-color 0.3s',
             }}
@@ -66,8 +66,8 @@ export default function DashboardPage() {
               }}>
                 <stat.icon size={18} color={stat.color} />
               </div>
-              <p style={{ fontSize: '2rem', fontWeight: 900, color: 'white', lineHeight: 1 }}>{stat.value}</p>
-              <p style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: 4 }}>{stat.label}</p>
+              <p style={{ fontSize: '2rem', fontWeight: 900, color: 'var(--text)', lineHeight: 1 }}>{stat.value}</p>
+              <p style={{ fontSize: '0.75rem', color: 'var(--text2)', marginTop: 4 }}>{stat.label}</p>
               <p style={{ fontSize: '0.75rem', color: stat.color, marginTop: 4 }}>{stat.change}</p>
             </div>
           ))}
@@ -79,7 +79,7 @@ export default function DashboardPage() {
           {/* Recent Resumes */}
           <motion.div variants={item}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
-              <h2 style={{ color: 'white', fontWeight: 700, fontSize: '1.1rem' }}>Recent Resumes</h2>
+              <h2 style={{ color: 'var(--text)', fontWeight: 700, fontSize: '1.1rem' }}>Recent Resumes</h2>
               <Link href="/dashboard/resumes" style={{
                 color: '#a78bfa', fontSize: '0.875rem', textDecoration: 'none',
                 display: 'flex', alignItems: 'center', gap: 4,
@@ -97,8 +97,8 @@ export default function DashboardPage() {
                   style={{
                     display: 'flex', alignItems: 'center', gap: 16,
                     padding: '16px 20px', borderRadius: 14,
-                    background: 'rgba(255,255,255,0.04)',
-                    border: '1px solid rgba(255,255,255,0.06)',
+                    background: 'var(--card)',
+                    border: '1px solid var(--border3)',
                     transition: 'border-color 0.2s',
                     cursor: 'pointer',
                   }}
@@ -113,8 +113,8 @@ export default function DashboardPage() {
                     <FileText size={18} color={resume.color} />
                   </div>
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <p style={{ color: 'white', fontWeight: 500, fontSize: '0.9rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{resume.title}</p>
-                    <p style={{ color: '#64748b', fontSize: '0.75rem', marginTop: 2 }}>{resume.template} template</p>
+                    <p style={{ color: 'var(--text)', fontWeight: 500, fontSize: '0.9rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{resume.title}</p>
+                    <p style={{ color: 'var(--text3)', fontSize: '0.75rem', marginTop: 2 }}>{resume.template} template</p>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 4, color: '#475569', fontSize: '0.75rem', flexShrink: 0 }}>
                     <Clock size={12} /> {resume.updated}
@@ -131,7 +131,7 @@ export default function DashboardPage() {
 
           {/* Quick Actions */}
           <motion.div variants={item}>
-            <h2 style={{ color: 'white', fontWeight: 700, fontSize: '1.1rem', marginBottom: 20 }}>Quick Actions</h2>
+            <h2 style={{ color: 'var(--text)', fontWeight: 700, fontSize: '1.1rem', marginBottom: 20 }}>Quick Actions</h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               {[
                 { icon: Plus, label: 'Create Resume', sub: 'Start from scratch', color: '#8b5cf6', href: '/dashboard/create' },
@@ -142,8 +142,8 @@ export default function DashboardPage() {
                   <div style={{
                     display: 'flex', alignItems: 'center', gap: 14,
                     padding: '16px', borderRadius: 14,
-                    background: 'rgba(255,255,255,0.04)',
-                    border: '1px solid rgba(255,255,255,0.06)',
+                    background: 'var(--card)',
+                    border: '1px solid var(--border3)',
                     cursor: 'pointer', transition: 'all 0.2s',
                   }}
                     onMouseEnter={e => { e.currentTarget.style.borderColor = `${action.color}40`; e.currentTarget.style.transform = 'translateY(-2px)' }}
@@ -157,8 +157,8 @@ export default function DashboardPage() {
                       <action.icon size={18} color={action.color} />
                     </div>
                     <div>
-                      <p style={{ color: 'white', fontWeight: 500, fontSize: '0.875rem' }}>{action.label}</p>
-                      <p style={{ color: '#64748b', fontSize: '0.75rem', marginTop: 2 }}>{action.sub}</p>
+                      <p style={{ color: 'var(--text)', fontWeight: 500, fontSize: '0.875rem' }}>{action.label}</p>
+                      <p style={{ color: 'var(--text3)', fontSize: '0.75rem', marginTop: 2 }}>{action.sub}</p>
                     </div>
                   </div>
                 </Link>

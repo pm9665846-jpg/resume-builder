@@ -30,16 +30,11 @@ export default function Hero() {
 
   return (
     <section style={{
-      width: '100%',
-      minHeight: '100vh',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      paddingTop: '80px',
-      paddingBottom: '60px',
-      position: 'relative',
-      overflow: 'hidden',
-      background: '#050508',
+      width: '100%', minHeight: '100vh',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      paddingTop: '80px', paddingBottom: '60px',
+      position: 'relative', overflow: 'hidden',
+      background: 'var(--hero-bg)',
     }}>
       {/* Background orbs */}
       <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
@@ -81,11 +76,9 @@ export default function Hero() {
         {/* Headline */}
         <motion.h1 variants={item} style={{
           fontSize: 'clamp(2.5rem, 7vw, 5rem)',
-          fontWeight: 900,
-          lineHeight: 1.05,
-          letterSpacing: '-0.02em',
-          marginBottom: 24,
-          color: 'white',
+          fontWeight: 900, lineHeight: 1.05,
+          letterSpacing: '-0.02em', marginBottom: 24,
+          color: 'var(--text)',
         }}>
           Build Resumes<br />
           <span className="gradient-text">That Get You Hired</span>
@@ -94,10 +87,8 @@ export default function Hero() {
         {/* Subheadline */}
         <motion.p variants={item} style={{
           fontSize: 'clamp(1rem, 2.5vw, 1.2rem)',
-          color: '#94a3b8',
-          maxWidth: 600,
-          margin: '0 auto 40px',
-          lineHeight: 1.7,
+          color: 'var(--text2)',
+          maxWidth: 600, margin: '0 auto 40px', lineHeight: 1.7,
         }}>
           Create stunning, ATS-optimized resumes in minutes. Choose from premium templates,
           customize with live preview, and export to PDF or DOCX instantly.
@@ -124,13 +115,13 @@ export default function Hero() {
           <Link href="#templates" style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
             padding: '14px 32px', borderRadius: 12,
-            background: 'rgba(255,255,255,0.06)',
-            border: '1px solid rgba(255,255,255,0.12)',
-            color: 'white', fontWeight: 600, fontSize: '1rem',
+            background: 'var(--card2)',
+            border: '1px solid var(--border2)',
+            color: 'var(--text)', fontWeight: 600, fontSize: '1rem',
             textDecoration: 'none', transition: 'all 0.3s',
           }}
-            onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'}
-            onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,0.06)'}
+            onMouseEnter={e => e.currentTarget.style.background = 'var(--card3)'}
+            onMouseLeave={e => e.currentTarget.style.background = 'var(--card2)'}
           >
             View Templates
           </Link>
@@ -140,7 +131,7 @@ export default function Hero() {
         <motion.div variants={item} style={{
           display: 'flex', flexWrap: 'wrap', gap: 24,
           justifyContent: 'center', alignItems: 'center',
-          color: '#64748b', fontSize: '0.875rem',
+          color: 'var(--text3)', fontSize: '0.875rem',
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <div style={{ display: 'flex' }}>
@@ -171,44 +162,39 @@ export default function Hero() {
         <motion.div variants={item} style={{ marginTop: 64, position: 'relative' }}>
           <div style={{
             borderRadius: 20, padding: 4,
-            background: 'rgba(255,255,255,0.06)',
-            border: '1px solid rgba(255,255,255,0.12)',
+            background: 'var(--card2)',
+            border: '1px solid var(--border2)',
             boxShadow: '0 0 60px rgba(139,92,246,0.2)',
           }}>
             <div style={{
               borderRadius: 16, overflow: 'hidden',
-              background: '#0a0a12',
-              aspectRatio: '16/9',
-              display: 'flex',
-              padding: 24,
-              gap: 16,
+              background: 'var(--bg2)',
+              aspectRatio: '16/9', display: 'flex', padding: 24, gap: 16,
             }}>
               {/* Left panel */}
               <div style={{ width: '33%', display: 'flex', flexDirection: 'column', gap: 10 }}>
                 {[...Array(5)].map((_, i) => (
                   <motion.div key={i}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.6 + i * 0.1 }}
-                    style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: 10, padding: 12 }}
+                    initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.6 + i * 0.1 }}
+                    style={{ background: 'var(--card)', border: '1px solid var(--border3)', borderRadius: 10, padding: 12 }}
                   >
                     <div style={{ height: 8, background: 'rgba(139,92,246,0.3)', borderRadius: 4, width: '70%', marginBottom: 8 }} />
-                    <div style={{ height: 6, background: 'rgba(255,255,255,0.08)', borderRadius: 4, marginBottom: 4 }} />
-                    <div style={{ height: 6, background: 'rgba(255,255,255,0.06)', borderRadius: 4, width: '60%' }} />
+                    <div style={{ height: 6, background: 'var(--card3)', borderRadius: 4, marginBottom: 4 }} />
+                    <div style={{ height: 6, background: 'var(--card2)', borderRadius: 4, width: '60%' }} />
                   </motion.div>
                 ))}
               </div>
               {/* Right preview */}
-              <div style={{ flex: 1, background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: 12, padding: 20 }}>
-                <div style={{ height: 16, background: 'linear-gradient(to right, rgba(139,92,246,0.4), rgba(59,130,246,0.4))', borderRadius: 6, width: '50%', marginBottom: 12 }} />
-                <div style={{ height: 8, background: 'rgba(255,255,255,0.08)', borderRadius: 4, marginBottom: 8 }} />
-                <div style={{ height: 8, background: 'rgba(255,255,255,0.06)', borderRadius: 4, width: '75%', marginBottom: 16 }} />
-                <div style={{ height: 1, background: 'rgba(255,255,255,0.05)', marginBottom: 16 }} />
+              <div style={{ flex: 1, background: 'var(--card)', border: '1px solid var(--border3)', borderRadius: 12, padding: 20 }}>
+                <div style={{ height: 16, background: 'linear-gradient(to right,rgba(139,92,246,0.4),rgba(59,130,246,0.4))', borderRadius: 6, width: '50%', marginBottom: 12 }} />
+                <div style={{ height: 8, background: 'var(--card3)', borderRadius: 4, marginBottom: 8 }} />
+                <div style={{ height: 8, background: 'var(--card2)', borderRadius: 4, width: '75%', marginBottom: 16 }} />
+                <div style={{ height: 1, background: 'var(--border)', marginBottom: 16 }} />
                 {[...Array(3)].map((_, i) => (
                   <div key={i} style={{ marginBottom: 14 }}>
                     <div style={{ height: 10, background: 'rgba(139,92,246,0.2)', borderRadius: 4, width: '40%', marginBottom: 6 }} />
-                    <div style={{ height: 6, background: 'rgba(255,255,255,0.07)', borderRadius: 4, marginBottom: 4 }} />
-                    <div style={{ height: 6, background: 'rgba(255,255,255,0.05)', borderRadius: 4, width: '80%' }} />
+                    <div style={{ height: 6, background: 'var(--card3)', borderRadius: 4, marginBottom: 4 }} />
+                    <div style={{ height: 6, background: 'var(--card2)', borderRadius: 4, width: '80%' }} />
                   </div>
                 ))}
               </div>

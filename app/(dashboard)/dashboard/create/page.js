@@ -48,18 +48,45 @@ function BuilderContent() {
     resetResume({ template: templateParam, themeColor: color })
   }, [templateParam]) // eslint-disable-line
 
-  // Auto-save
+  // Auto-save — create on first change, update on subsequent changes
   useEffect(() => {
     if (!isDirty) return
     const timer = setTimeout(async () => {
-      if (!resume.id) return // only auto-save if already saved once
       setIsSaving(true)
       try {
-        await fetch(`/api/resumes/${resume.id}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ title: resume.title || 'Untitled Resume', template: resume.template, themeColor: resume.themeColor, data: resume }),
-        })
+        const payload = {
+          title:      resume.title || 'Untitled Resume',
+          template:   resume.template,
+          themeColor: resume.themeColor,
+          fontFamily: resume.fontFamily || 'Arial, Helvetica, sans-serif',
+          data: {
+            personalInfo:   resume.personalInfo,
+            experience:     resume.experience,
+            education:      resume.education,
+            skills:         resume.skills,
+            projects:       resume.projects,
+            certifications: resume.certifications,
+            languages:      resume.languages,
+            achievements:   resume.achievements,
+          },
+        }
+        if (!resume.id) {
+          const res = await fetch('/api/resumes', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          })
+          const json = await res.json()
+          if (json.id) {
+            useResumeStore.getState().setResume({ ...resume, id: json.id })
+          }
+        } else {
+          await fetch(`/api/resumes/${resume.id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          })
+        }
         setLastSaved(new Date())
       } catch (e) { console.error(e) } finally {
         setIsSaving(false)
@@ -85,29 +112,37 @@ function BuilderContent() {
     setIsSaving(true)
     try {
       const payload = {
-        title: resume.title || 'Untitled Resume',
-        template: resume.template,
+        title:      resume.title || 'Untitled Resume',
+        template:   resume.template,
         themeColor: resume.themeColor,
-        data: resume,
+        fontFamily: resume.fontFamily || 'Arial, Helvetica, sans-serif',
+        data: {
+          personalInfo:   resume.personalInfo,
+          experience:     resume.experience,
+          education:      resume.education,
+          skills:         resume.skills,
+          projects:       resume.projects,
+          certifications: resume.certifications,
+          languages:      resume.languages,
+          achievements:   resume.achievements,
+        },
       }
 
       if (resume.id) {
-        // Update existing
         await fetch(`/api/resumes/${resume.id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
         })
       } else {
-        // Create new
         const res = await fetch('/api/resumes', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
         })
-        const data = await res.json()
-        if (data.id) {
-          useResumeStore.getState().setResume({ ...resume, id: data.id })
+        const json = await res.json()
+        if (json.id) {
+          useResumeStore.getState().setResume({ ...resume, id: json.id })
         }
       }
 

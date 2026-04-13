@@ -40,8 +40,9 @@ function get(val, fallback) {
 }
 
 export default function ModernTemplate({ resume }) {
-  const { personalInfo = {}, experience = [], education = [], skills = [], projects = [], certifications = [], languages = [], themeColor = '#8b5cf6' } = resume
+  const { personalInfo = {}, experience = [], education = [], skills = [], projects = [], certifications = [], languages = [], themeColor = '#8b5cf6', fontFamily = "'Arial', 'Helvetica', sans-serif" } = resume
   const tc = themeColor
+  const ff = fontFamily
 
   const name = get(personalInfo.name, SAMPLE.name)
   const jobTitle = get(personalInfo.jobTitle, SAMPLE.jobTitle)
@@ -73,7 +74,7 @@ export default function ModernTemplate({ resume }) {
     <div style={{ 
       background: 'white', 
       color: '#1a1a1a', 
-      fontFamily: "'Arial', 'Helvetica', sans-serif", 
+      fontFamily: ff, 
       fontSize: '10.5px', 
       lineHeight: 1.5, 
       minHeight: '297mm', 
@@ -110,7 +111,7 @@ export default function ModernTemplate({ resume }) {
         </div>
       </div>
 
-      <div style={{ padding: '18px 32px 40px', display: 'flex', flexDirection: 'column', gap: 16, wordBreak: 'break-word', overflowWrap: 'break-word' }}>
+      <div style={{ padding: '18px 32px 60px', display: 'flex', flexDirection: 'column', gap: 16, wordBreak: 'break-word', overflowWrap: 'break-word' }}>
 
         {/* ── SUMMARY ── */}
         <Section title="Professional Summary" color={tc}>
@@ -209,21 +210,23 @@ export default function ModernTemplate({ resume }) {
           ))}
         </Section>
 
-        {/* ── CERTIFICATIONS ── */}
-        <Section title="Certifications" color={tc}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 8 }}>
-            {certs.map(c => (
-              <div key={c.id} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '8px 10px', background: '#fafafa', border: '1px solid #eee', borderRadius: 6 }}>
-                <Award size={14} color={tc} style={{ flexShrink: 0, marginTop: 1 }} />
-                <div>
-                  <p style={{ fontWeight: 700, fontSize: 10, color: '#111', lineHeight: 1.3, margin: '0 0 2px 0' }}>{c.name || 'Certification'}</p>
-                  <p style={{ color: '#777', fontSize: 9, margin: 0 }}>{c.issuer || 'Issuer'}{c.date ? ` · ${c.date}` : ''}</p>
-                  {c.credentialId && <p style={{ color: '#aaa', fontSize: 8.5, margin: '2px 0 0 0' }}>ID: {c.credentialId}</p>}
+        {/* ── CERTIFICATIONS ── force onto page 2 when printing ── */}
+        <div data-page-break="true" style={{ pageBreakBefore: 'always', breakBefore: 'page', paddingTop: '32px' }}>
+          <Section title="Certifications" color={tc}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 8 }}>
+              {certs.map(c => (
+                <div key={c.id} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '8px 10px', background: '#fafafa', border: '1px solid #eee', borderRadius: 6 }}>
+                  <Award size={14} color={tc} style={{ flexShrink: 0, marginTop: 1 }} />
+                  <div>
+                    <p style={{ fontWeight: 700, fontSize: 10, color: '#111', lineHeight: 1.3, margin: '0 0 2px 0' }}>{c.name || 'Certification'}</p>
+                    <p style={{ color: '#777', fontSize: 9, margin: 0 }}>{c.issuer || 'Issuer'}{c.date ? ` · ${c.date}` : ''}</p>
+                    {c.credentialId && <p style={{ color: '#aaa', fontSize: 8.5, margin: '2px 0 0 0' }}>ID: {c.credentialId}</p>}
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </Section>
+              ))}
+            </div>
+          </Section>
+        </div>
 
         {/* ── LANGUAGES ── */}
         <Section title="Languages" color={tc}>

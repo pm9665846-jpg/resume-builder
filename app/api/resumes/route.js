@@ -1,55 +1,69 @@
 import { NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import { query } from '@/lib/db'
-import { cookies } from 'next/headers'
+import { getSessionUserId, buildResumeData } from '@/lib/session'
 
-async function getUserId() {
-  // Primary: NextAuth JWT session
-  const session = await getServerSession(authOptions)
-  if (session?.user?.id) return session.user.id
-
-  // Fallback: custom session_user cookie (used by /api/auth/login)
-  const cookieStore = await cookies()
-  const raw = cookieStore.get('session_user')?.value
-  if (raw) {
-    try {
-      const user = JSON.parse(raw)
-      if (user?.id) return String(user.id)
-    } catch {}
-  }
-  return null
-}
-
+// ── GET /api/resumes ── List all resumes for logged-in user
 export async function GET() {
   try {
-    const userId = await getUserId()
+    const userId = await getSessionUserId()
     if (!userId) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
     const rows = await query(
-      'SELECT id, title, template, theme_color, is_draft, created_at, updated_at FROM resumes WHERE user_id = ? ORDER BY updated_at DESC',
+      `SELECT id, title, template, theme_color, is_draft, created_at, updated_at
+       FROM resumes
+       WHERE user_id = ?
+       ORDER BY updated_at DESC`,
       [userId]
     )
-    return NextResponse.json({ resumes: rows })
+
+    const resumes = rows.map(r => ({
+      id:         r.id,
+      title:      r.title,
+      template:   r.template,
+      themeColor: r.theme_color,
+      fontFamily: 'Arial, Helvetica, sans-serif',
+      isDraft:    Boolean(r.is_draft),
+      createdAt:  r.created_at,
+      updatedAt:  r.updated_at,
+    }))
+
+    return NextResponse.json({ success: true, resumes })
   } catch (err) {
+    console.error('[GET /api/resumes]', err)
     return NextResponse.json({ error: err.message }, { status: 500 })
   }
 }
 
+// ── POST /api/resumes ── Create new resume
 export async function POST(req) {
   try {
-    const userId = await getUserId()
+    const userId = await getSessionUserId()
     if (!userId) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
-    const { title, template, themeColor, data } = await req.json()
+    const body = await req.json()
+
+    const title      = body.title      || 'Untitled Resume'
+    const template   = body.template   || 'modern'
+    const themeColor = body.themeColor || '#8b5cf6'
+    const fontFamily = body.fontFamily || 'Arial, Helvetica, sans-serif'
+    const isDraft    = body.isDraft    ? 1 : 0
+
+    // Build clean validated data object
+    const data = buildResumeData(body.data || body)
 
     const result = await query(
-      'INSERT INTO resumes (user_id, title, template, theme_color, data, is_draft) VALUES (?, ?, ?, ?, ?, ?)',
-      [userId, title || 'Untitled Resume', template || 'modern', themeColor || '#8b5cf6', JSON.stringify(data || {}), false]
+      `INSERT INTO resumes (user_id, title, template, theme_color, is_draft, data)
+       VALUES (?, ?, ?, ?, ?, ?)`,
+      [userId, title, template, themeColor, isDraft, JSON.stringify(data)]
     )
 
-    return NextResponse.json({ id: result.insertId, success: true })
+    return NextResponse.json({
+      success: true,
+      id: result.insertId,
+      message: 'Resume created successfully',
+    }, { status: 201 })
   } catch (err) {
+    console.error('[POST /api/resumes]', err)
     return NextResponse.json({ error: err.message }, { status: 500 })
   }
 }

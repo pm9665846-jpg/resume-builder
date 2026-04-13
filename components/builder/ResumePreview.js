@@ -22,6 +22,10 @@ import { IndigoTemplate, CrimsonTemplate, TealTemplate, MidnightTemplate, Sunris
 import { DecoTemplate, NeonGridTemplate, LinenTemplate, PrismTemplate, StackedTemplate, NeonMinimalTemplate, CoralTemplate, SageTemplate } from './templates/TemplatesBatch7'
 import { IvoryTemplate, SteelTemplate, PlumTemplate, JadeTemplate, GraphiteTemplate, BlushTemplate, OnyxTemplate, TerracottaTemplate, ArcticTemplate, VelvetTemplate, EmeraldTemplate, SapphireTemplate, RubyTemplate, TopazTemplate, OpalTemplate, GarnetTemplate, CitrineTemplate, AmethystTemplate, TurquoiseTemplate, PearlTemplate, BronzeTemplate, SilverTemplate, GoldTemplate, PlatinumTemplate, DiamondTemplate, ObsidianTemplate, MalachiteTemplate, CoralReefTemplate, AzureTemplate, MarigoldTemplate, LilacTemplate, PeachTemplate, SkyTemplate, DawnTemplate, DuskTemplate, NightTemplate, TwilightTemplate } from './templates/TemplatesBatch8'
 import { QuantumTemplate, AtlasTemplate, NexusTemplate, MeridianTemplate, VertexTemplate, ZenithTemplate, PraxisTemplate, SolarisTemplate, CipherTemplate, LuminaTemplate } from './templates/TemplatesPro'
+import { AuroraTemplate, MagazineTemplate, CircuitTemplate, CanvasTemplate, MetroTemplate, FoldTemplate, ClassicTableTemplate } from './templates/TemplatesNew'
+import { RibbonTemplate, GlassProTemplate, NordicTemplate, BoldBlocksTemplate, SpotlightTemplate, TimelineProTemplate } from './templates/TemplatesNew3'
+import { DuotoneTemplate, PassportTemplate, TerminalTemplate, BlueprintTemplate, InfoPanelTemplate, VintageTemplate, GradientFlowTemplate, SidebarAccentTemplate, HexGridTemplate, CleanCorporateTemplate } from './templates/TemplatesNew4'
+import { BlossomTemplate, MistTemplate, MeadowTemplate, GoldenAgeTemplate, FrostTemplate, VividTemplate, NavyProTemplate, HexFolioTemplate, TealCardTemplate, CrimsonSideTemplate, CoralBoxTemplate, CleanListTemplate, SimpleDocTemplate, TimelineSideTemplate, DotFlowTemplate, OceanCardTemplate, NavyBlockTemplate, RightNameTemplate, BlackBoxTemplate, SplitCleanTemplate, DarkPanelTemplate, AccentBarTemplate, StripEdgeTemplate, TopBandTemplate, CornerPhotoTemplate, LabelRowTemplate, VelvetRoseTemplate, ManuscriptTemplate } from './templates/TemplatesNew5'
 
 export const templateMap = {
   modern: ModernTemplate,
@@ -134,6 +138,57 @@ export const templateMap = {
   solaris: SolarisTemplate,
   cipher: CipherTemplate,
   lumina: LuminaTemplate,
+  aurora: AuroraTemplate,
+  magazine: MagazineTemplate,
+  circuit: CircuitTemplate,
+  canvas: CanvasTemplate,
+  metro: MetroTemplate,
+  fold: FoldTemplate,
+  classictable: ClassicTableTemplate,
+  ribbon: RibbonTemplate,
+  glasspro: GlassProTemplate,
+  nordic: NordicTemplate,
+  boldblocks: BoldBlocksTemplate,
+  spotlight: SpotlightTemplate,
+  timelinepro: TimelineProTemplate,
+  duotone: DuotoneTemplate,
+  passport: PassportTemplate,
+  terminal: TerminalTemplate,
+  blueprint: BlueprintTemplate,
+  infopanel: InfoPanelTemplate,
+  vintage: VintageTemplate,
+  gradientflow: GradientFlowTemplate,
+  sidebaraccent: SidebarAccentTemplate,
+  hexgrid: HexGridTemplate,
+  cleancorporate: CleanCorporateTemplate,
+  blossom: BlossomTemplate,
+  mist: MistTemplate,
+  meadow: MeadowTemplate,
+  goldenage: GoldenAgeTemplate,
+  frost: FrostTemplate,
+  vivid: VividTemplate,
+  navypro: NavyProTemplate,
+  hexfolio: HexFolioTemplate,
+  tealcard: TealCardTemplate,
+  crimsonside: CrimsonSideTemplate,
+  coralbox: CoralBoxTemplate,
+  cleanlist: CleanListTemplate,
+  simpledoc: SimpleDocTemplate,
+  timelineside: TimelineSideTemplate,
+  dotflow: DotFlowTemplate,
+  oceancard: OceanCardTemplate,
+  navyblock: NavyBlockTemplate,
+  rightname: RightNameTemplate,
+  blackbox: BlackBoxTemplate,
+  splitclean: SplitCleanTemplate,
+  darkpanel: DarkPanelTemplate,
+  accentbar: AccentBarTemplate,
+  stripedge: StripEdgeTemplate,
+  topband: TopBandTemplate,
+  cornerphoto: CornerPhotoTemplate,
+  labelrow: LabelRowTemplate,
+  velvetrose: VelvetRoseTemplate,
+  manuscript: ManuscriptTemplate,
 }
 
 export default function ResumePreview() {

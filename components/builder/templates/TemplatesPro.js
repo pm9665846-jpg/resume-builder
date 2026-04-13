@@ -317,10 +317,10 @@ export function AtlasTemplate({ resume }) {
 }
 
 // ══════════════════════════════════════════════════════════════
-// PRO-3: NEXUS — Dark luxury with gold accents & timeline
+// PRO-3: NEXUS — Light modern with gradient banner & timeline
 // ══════════════════════════════════════════════════════════════
 export function NexusTemplate({ resume }) {
-  const { personalInfo = {}, experience = [], education = [], skills = [], projects = [], certifications = [], themeColor = '#d4af37' } = resume
+  const { personalInfo = {}, experience = [], education = [], skills = [], projects = [], certifications = [], themeColor = '#6366f1' } = resume
   const tc = themeColor
   const name = g(personalInfo.name, S.name), jobTitle = g(personalInfo.jobTitle, S.jobTitle)
   const email = g(personalInfo.email, S.email), phone = g(personalInfo.phone, S.phone)
@@ -331,128 +331,142 @@ export function NexusTemplate({ resume }) {
   const skl = skills.length > 0 ? skills : S.skills
   const prj = projects.length > 0 ? projects : S.projects
 
+  const SH = ({ children }) => (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 14 }}>
+      <div style={{ width: 4, height: 16, borderRadius: 2, background: `linear-gradient(to bottom, ${tc}, ${tc}60)` }} />
+      <h2 style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.16em', color: tc }}>{children}</h2>
+    </div>
+  )
+
   return (
-    <div style={{ background: '#0d0d0d', color: '#e8e8e8', fontFamily: "'Arial', sans-serif", fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm', display: 'flex' }}>
-      {/* Left dark sidebar */}
-      <div style={{ width: '38%', background: '#111', borderRight: `1px solid ${tc}25`, padding: '28px 18px 40px', flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 20 }}>
-        {/* Photo */}
-        {photo ? (
-          <div style={{ textAlign: 'center' }}>
-            <div style={{ width: 90, height: 90, borderRadius: '50%', background: `linear-gradient(135deg, ${tc}, ${tc}60)`, padding: 2, margin: '0 auto 14px' }}>
+    <div style={{ background: '#f8f9ff', fontFamily: "'Arial', sans-serif", fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm', display: 'flex', flexDirection: 'column' }}>
+
+      {/* ── TOP BANNER ── */}
+      <div style={{ background: `linear-gradient(135deg, ${tc} 0%, ${tc}cc 60%, ${tc}88 100%)`, padding: '28px 32px 24px', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', top: -30, right: -30, width: 140, height: 140, borderRadius: '50%', background: 'rgba(255,255,255,0.08)' }} />
+        <div style={{ position: 'absolute', bottom: -20, right: 80, width: 90, height: 90, borderRadius: '50%', background: 'rgba(255,255,255,0.06)' }} />
+        <div style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: 20 }}>
+          {photo ? (
+            <div style={{ width: 80, height: 80, borderRadius: '50%', background: 'rgba(255,255,255,0.2)', padding: 3, flexShrink: 0 }}>
               <img src={photo} alt="" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
             </div>
+          ) : null}
+          <div style={{ flex: 1 }}>
+            <h1 style={{ fontSize: 26, fontWeight: 900, color: 'white', lineHeight: 1.2, marginBottom: 5, letterSpacing: '-0.01em' }}>{name}</h1>
+            <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.85)', fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: 12 }}>{jobTitle}</p>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 18px', fontSize: 9 }}>
+              {[{ I: Mail, v: email }, { I: Phone, v: phone }, { I: MapPin, v: location }].filter(x => x.v).map(({ I, v }, i) => (
+                <span key={i} style={{ display: 'flex', alignItems: 'center', gap: 5, color: 'rgba(255,255,255,0.8)' }}><I size={9} color="rgba(255,255,255,0.9)" />{v}</span>
+              ))}
+            </div>
           </div>
-        ) : <div style={{ height: 10 }} />}
+        </div>
+      </div>
 
-        <div>
-          <h1 style={{ fontSize: 18, fontWeight: 900, color: 'white', lineHeight: 1.2, marginBottom: 6 }}>{name}</h1>
-          <p style={{ fontSize: 10, color: tc, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: 14 }}>{jobTitle}</p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-            {[{ I: Mail, v: email }, { I: Phone, v: phone }, { I: MapPin, v: location }].filter(x => x.v).map(({ I, v }, i) => (
-              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 9, color: '#9ca3af' }}>
-                <I size={9} color={tc} style={{ flexShrink: 0 }} />{v}
+      {/* ── SUMMARY STRIP ── */}
+      <div style={{ background: 'white', padding: '14px 32px', borderBottom: `1px solid ${tc}20`, borderTop: `3px solid ${tc}30` }}>
+        <p style={{ color: '#475569', fontSize: 10.5, lineHeight: 1.85, fontStyle: 'italic' }}>{summary}</p>
+      </div>
+
+      {/* ── MAIN BODY ── */}
+      <div style={{ display: 'flex', flex: 1 }}>
+
+        {/* Left sidebar */}
+        <div style={{ width: '36%', background: 'white', padding: '22px 20px 40px', borderRight: `1px solid ${tc}15`, flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 20 }}>
+
+          {/* Skills */}
+          <div>
+            <SH>Skills</SH>
+            {skl.map(s => (
+              <div key={s.id} style={{ marginBottom: 8 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 3 }}>
+                  <span style={{ fontSize: 9.5, color: '#1e293b', fontWeight: 500 }}>{s.name}</span>
+                  <span style={{ fontSize: 8, color: tc, fontWeight: 700 }}>{s.level}%</span>
+                </div>
+                <div style={{ height: 5, background: `${tc}15`, borderRadius: 99 }}>
+                  <div style={{ height: '100%', borderRadius: 99, width: `${s.level}%`, background: `linear-gradient(to right, ${tc}, ${tc}aa)` }} />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Education */}
+          <div>
+            <SH>Education</SH>
+            {edu.map(e => (
+              <div key={e.id} style={{ marginBottom: 12, padding: '10px 12px', background: `${tc}08`, borderRadius: 8, border: `1px solid ${tc}20` }}>
+                <p style={{ fontWeight: 700, fontSize: 10, color: '#0f172a', lineHeight: 1.3 }}>{e.degree}</p>
+                <p style={{ color: tc, fontSize: 9.5, fontWeight: 600 }}>{e.school}</p>
+                <p style={{ color: '#64748b', fontSize: 8.5 }}>{e.startDate} — {e.endDate}</p>
+                {e.gpa && <p style={{ color: '#64748b', fontSize: 8.5 }}>GPA: {e.gpa}</p>}
+              </div>
+            ))}
+          </div>
+
+          {/* Certifications */}
+          <div>
+            <SH>Certifications</SH>
+            {(certifications.length > 0 ? certifications : S.certifications).map(c => (
+              <div key={c.id} style={{ display: 'flex', gap: 8, marginBottom: 9 }}>
+                <Award size={10} color={tc} style={{ flexShrink: 0, marginTop: 1 }} />
+                <div>
+                  <p style={{ fontSize: 9.5, color: '#1e293b', fontWeight: 600, lineHeight: 1.3 }}>{c.name}</p>
+                  <p style={{ color: '#64748b', fontSize: 8.5 }}>{c.issuer}{c.date ? ` · ${c.date}` : ''}</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Skills */}
-        <div>
-          <h3 style={{ fontSize: 8.5, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.16em', color: tc, marginBottom: 12, paddingBottom: 6, borderBottom: `1px solid ${tc}30` }}>Technical Skills</h3>
-          {skl.map(s => (
-            <div key={s.id} style={{ marginBottom: 7 }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 3 }}>
-                <span style={{ fontSize: 9.5, color: '#d1d5db' }}>{s.name}</span>
-                <span style={{ fontSize: 8, color: tc }}>{s.level}%</span>
-              </div>
-              <div style={{ height: 2, background: '#2a2a2a', borderRadius: 1 }}>
-                <div style={{ height: 2, background: `linear-gradient(to right, ${tc}, ${tc}70)`, borderRadius: 1, width: `${s.level}%` }} />
-              </div>
-            </div>
-          ))}
-        </div>
+        {/* Right content */}
+        <div style={{ flex: 1, padding: '22px 26px 40px', background: '#f8f9ff' }}>
 
-        {/* Education */}
-        <div>
-          <h3 style={{ fontSize: 8.5, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.16em', color: tc, marginBottom: 12, paddingBottom: 6, borderBottom: `1px solid ${tc}30` }}>Education</h3>
-          {edu.map(e => (
-            <div key={e.id} style={{ marginBottom: 10 }}>
-              <p style={{ fontWeight: 700, fontSize: 10, color: 'white', lineHeight: 1.3 }}>{e.degree}</p>
-              <p style={{ color: tc, fontSize: 9.5 }}>{e.school}</p>
-              <p style={{ color: '#6b7280', fontSize: 8.5 }}>{e.startDate} — {e.endDate}</p>
-              {e.gpa && <p style={{ color: '#9ca3af', fontSize: 8.5 }}>GPA: {e.gpa}</p>}
-            </div>
-          ))}
-        </div>
-
-        {/* Certifications */}
-        <div>
-          <h3 style={{ fontSize: 8.5, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.16em', color: tc, marginBottom: 12, paddingBottom: 6, borderBottom: `1px solid ${tc}30` }}>Certifications</h3>
-          {(certifications.length > 0 ? certifications : S.certifications).map(c => (
-            <div key={c.id} style={{ display: 'flex', gap: 7, marginBottom: 8 }}>
-              <Award size={9} color={tc} style={{ flexShrink: 0, marginTop: 1 }} />
-              <div>
-                <p style={{ fontSize: 9.5, color: '#d1d5db', fontWeight: 600, lineHeight: 1.3 }}>{c.name}</p>
-                <p style={{ color: '#6b7280', fontSize: 8.5 }}>{c.issuer}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Right content */}
-      <div style={{ flex: 1, padding: '28px 24px 40px' }}>
-        {/* Summary */}
-        <div style={{ marginBottom: 22, padding: '14px 16px', background: '#1a1a1a', borderRadius: 8, borderLeft: `3px solid ${tc}` }}>
-          <p style={{ color: '#9ca3af', fontSize: 10.5, lineHeight: 1.85 }}>{summary}</p>
-        </div>
-
-        {/* Experience with timeline */}
-        <div style={{ marginBottom: 22 }}>
-          <h2 style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.16em', color: tc, marginBottom: 16, paddingBottom: 6, borderBottom: `1px solid ${tc}20` }}>Career History</h2>
-          {exp.map((e, i) => (
-            <div key={e.id} style={{ display: 'flex', gap: 14, marginBottom: i < exp.length - 1 ? 18 : 0 }}>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
-                <div style={{ width: 10, height: 10, borderRadius: '50%', background: i === 0 ? tc : '#374151', border: `2px solid ${i === 0 ? tc : '#4b5563'}`, flexShrink: 0 }} />
-                {i < exp.length - 1 && <div style={{ width: 1, flex: 1, background: '#2a2a2a', marginTop: 3 }} />}
-              </div>
-              <div style={{ flex: 1, paddingBottom: i < exp.length - 1 ? 8 : 0 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 3 }}>
-                  <div>
-                    <p style={{ fontWeight: 800, fontSize: 12, color: 'white' }}>{e.role}</p>
-                    <p style={{ color: tc, fontSize: 10, fontWeight: 700 }}>{e.company}{e.location ? <span style={{ color: '#6b7280', fontWeight: 400 }}> · {e.location}</span> : ''}</p>
-                  </div>
-                  <span style={{ fontSize: 8.5, color: tc, background: `${tc}15`, border: `1px solid ${tc}30`, padding: '2px 8px', borderRadius: 4, whiteSpace: 'nowrap', marginLeft: 8, flexShrink: 0 }}>
-                    {e.startDate} — {e.current ? 'Present' : e.endDate}
-                  </span>
+          {/* Experience */}
+          <div style={{ marginBottom: 22 }}>
+            <SH>Career History</SH>
+            {exp.map((e, i) => (
+              <div key={e.id} style={{ display: 'flex', gap: 14, marginBottom: i < exp.length - 1 ? 18 : 0 }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
+                  <div style={{ width: 11, height: 11, borderRadius: '50%', background: i === 0 ? tc : 'white', border: `2px solid ${tc}`, flexShrink: 0 }} />
+                  {i < exp.length - 1 && <div style={{ width: 1.5, flex: 1, background: `${tc}30`, marginTop: 3 }} />}
                 </div>
-                {e.description && e.description.split('\n').filter(Boolean).map((l, li) => (
-                  <p key={li} style={{ color: '#9ca3af', fontSize: 9.5, lineHeight: 1.65, marginBottom: 2 }}>{l}</p>
-                ))}
+                <div style={{ flex: 1, paddingBottom: i < exp.length - 1 ? 8 : 0 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 3 }}>
+                    <div>
+                      <p style={{ fontWeight: 800, fontSize: 11.5, color: '#0f172a' }}>{e.role}</p>
+                      <p style={{ color: tc, fontSize: 10, fontWeight: 600 }}>{e.company}{e.location ? <span style={{ color: '#94a3b8', fontWeight: 400 }}> · {e.location}</span> : ''}</p>
+                    </div>
+                    <span style={{ fontSize: 8.5, color: tc, background: `${tc}12`, border: `1px solid ${tc}25`, padding: '2px 8px', borderRadius: 20, whiteSpace: 'nowrap', marginLeft: 8, flexShrink: 0 }}>
+                      {e.startDate} — {e.current ? 'Present' : e.endDate}
+                    </span>
+                  </div>
+                  {e.description && e.description.split('\n').filter(Boolean).map((l, li) => (
+                    <p key={li} style={{ color: '#475569', fontSize: 9.5, lineHeight: 1.65, marginBottom: 2 }}>{l}</p>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        {/* Projects */}
-        <div>
-          <h2 style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.16em', color: tc, marginBottom: 14, paddingBottom: 6, borderBottom: `1px solid ${tc}20` }}>Key Projects</h2>
-          {prj.map((p, i) => (
-            <div key={p.id} style={{ marginBottom: i < prj.length - 1 ? 12 : 0, padding: '10px 14px', background: '#1a1a1a', border: `1px solid ${tc}20`, borderRadius: 8 }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 4 }}>
-                <p style={{ fontWeight: 800, fontSize: 11, color: 'white' }}>{p.name}</p>
-                {p.link && <a href={`https://${p.link}`} style={{ fontSize: 8.5, color: tc, textDecoration: 'none' }}>🔗 {p.link}</a>}
+          {/* Projects */}
+          <div>
+            <SH>Key Projects</SH>
+            {prj.map((p, i) => (
+              <div key={p.id} style={{ marginBottom: i < prj.length - 1 ? 10 : 0, padding: '10px 14px', background: 'white', border: `1px solid ${tc}20`, borderRadius: 10, boxShadow: `0 2px 8px ${tc}08` }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 4 }}>
+                  <p style={{ fontWeight: 800, fontSize: 11, color: '#0f172a' }}>{p.name}</p>
+                  {p.link && <a href={`https://${p.link}`} style={{ fontSize: 8.5, color: tc, textDecoration: 'none', flexShrink: 0, marginLeft: 8 }}>🔗 {p.link}</a>}
+                </div>
+                {p.tech && <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginBottom: 5 }}>{p.tech.split(',').map((t, ti) => <span key={ti} style={{ fontSize: 8, padding: '1px 7px', borderRadius: 3, background: `${tc}10`, color: tc, border: `1px solid ${tc}20`, fontWeight: 600 }}>{t.trim()}</span>)}</div>}
+                {p.description && <p style={{ color: '#475569', fontSize: 9.5, lineHeight: 1.6 }}>{p.description}</p>}
               </div>
-              {p.tech && <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginBottom: 5 }}>{p.tech.split(',').map((t, ti) => <span key={ti} style={{ fontSize: 8, padding: '1px 7px', borderRadius: 3, background: `${tc}15`, color: tc, border: `1px solid ${tc}25`, fontWeight: 600 }}>{t.trim()}</span>)}</div>}
-              {p.description && <p style={{ color: '#9ca3af', fontSize: 9.5, lineHeight: 1.6 }}>{p.description}</p>}
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </div>
   )
 }
-
 // ══════════════════════════════════════════════════════════════
 // PRO-4: MERIDIAN — Clean two-tone with diagonal header cut
 // ══════════════════════════════════════════════════════════════
@@ -1130,10 +1144,10 @@ export function SolarisTemplate({ resume }) {
 }
 
 // ══════════════════════════════════════════════════════════════
-// PRO-9: CIPHER — Monospace tech with terminal aesthetic
+// PRO-9: CIPHER — Soft sage green, clean card-based layout
 // ══════════════════════════════════════════════════════════════
 export function CipherTemplate({ resume }) {
-  const { personalInfo = {}, experience = [], education = [], skills = [], projects = [], certifications = [], themeColor = '#10b981' } = resume
+  const { personalInfo = {}, experience = [], education = [], skills = [], projects = [], certifications = [], themeColor = '#059669' } = resume
   const tc = themeColor
   const name = g(personalInfo.name, S.name), jobTitle = g(personalInfo.jobTitle, S.jobTitle)
   const email = g(personalInfo.email, S.email), phone = g(personalInfo.phone, S.phone)
@@ -1144,108 +1158,101 @@ export function CipherTemplate({ resume }) {
   const skl = skills.length > 0 ? skills : S.skills
   const prj = projects.length > 0 ? projects : S.projects
 
+  const SH = ({ children }) => (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+      <div style={{ width: 20, height: 3, borderRadius: 2, background: tc }} />
+      <h2 style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.18em', color: tc }}>{children}</h2>
+    </div>
+  )
+
   return (
-    <div style={{ background: '#0d1117', color: '#c9d1d9', fontFamily: "'Courier New', 'Consolas', monospace", fontSize: 10, lineHeight: 1.6, minHeight: '297mm' }}>
-      {/* Terminal header */}
-      <div style={{ background: '#161b22', borderBottom: `1px solid ${tc}30`, padding: '20px 28px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 14 }}>
-          <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#ff5f57' }} />
-          <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#febc2e' }} />
-          <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#28c840' }} />
-          <span style={{ marginLeft: 8, fontSize: 9, color: '#6e7681' }}>resume.sh — {name}</span>
+    <div style={{ background: '#f0fdf4', fontFamily: 'Arial, sans-serif', fontSize: 10.5, lineHeight: 1.55, minHeight: '297mm' }}>
+      {/* Header — two-tone split */}
+      <div style={{ display: 'flex', minHeight: 120 }}>
+        <div style={{ width: '42%', background: tc, padding: '28px 22px 22px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          {photo && <img src={photo} alt="" style={{ width: 68, height: 68, borderRadius: '50%', objectFit: 'cover', border: '3px solid rgba(255,255,255,0.4)', marginBottom: 12 }} />}
+          <h1 style={{ fontSize: 20, fontWeight: 900, color: 'white', lineHeight: 1.2, marginBottom: 4 }}>{name}</h1>
+          <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.85)', fontWeight: 600, letterSpacing: '0.05em' }}>{jobTitle}</p>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
-          {photo && <img src={photo} alt="" style={{ width: 72, height: 72, borderRadius: 4, objectFit: 'cover', border: `2px solid ${tc}`, flexShrink: 0 }} />}
-          <div>
-            <p style={{ color: tc, fontSize: 9, marginBottom: 4 }}>$ whoami</p>
-            <h1 style={{ fontSize: 22, fontWeight: 700, color: 'white', marginBottom: 4 }}>{name}</h1>
-            <p style={{ color: tc, fontSize: 9, marginBottom: 2 }}>$ cat role.txt</p>
-            <p style={{ color: '#e6edf3', fontSize: 10.5, marginBottom: 8 }}>{jobTitle}</p>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '3px 16px', fontSize: 9, color: '#8b949e' }}>
-              {[email, phone, location].filter(Boolean).map((v, i) => <span key={i} style={{ color: '#8b949e' }}><span style={{ color: tc }}>→</span> {v}</span>)}
-            </div>
-          </div>
+        <div style={{ flex: 1, background: '#dcfce7', padding: '28px 22px 22px', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 6 }}>
+          {[{ I: Mail, v: email }, { I: Phone, v: phone }, { I: MapPin, v: location }].filter(x => x.v).map(({ I, v }, i) => (
+            <span key={i} style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 9.5, color: '#065f46' }}><I size={10} color={tc} />{v}</span>
+          ))}
+          <p style={{ fontSize: 9.5, color: '#047857', lineHeight: 1.7, marginTop: 6, fontStyle: 'italic' }}>{summary}</p>
         </div>
       </div>
 
-      <div style={{ display: 'flex' }}>
-        {/* Main */}
-        <div style={{ flex: 1, padding: '18px 22px' }}>
-          <div style={{ marginBottom: 18 }}>
-            <p style={{ color: tc, fontSize: 9, marginBottom: 6 }}>$ cat summary.txt</p>
-            <p style={{ color: '#8b949e', fontSize: 10, lineHeight: 1.8, padding: '10px 14px', background: '#161b22', border: `1px solid ${tc}20`, borderRadius: 6 }}>{summary}</p>
-          </div>
+      {/* Body */}
+      <div style={{ display: 'flex', padding: '20px 0' }}>
+        {/* Left */}
+        <div style={{ width: '42%', padding: '0 22px', borderRight: `1px solid #bbf7d0` }}>
+          <SH>Skills</SH>
+          {skl.map(s => (
+            <div key={s.id} style={{ marginBottom: 8 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 3 }}>
+                <span style={{ fontSize: 9.5, color: '#064e3b', fontWeight: 500 }}>{s.name}</span>
+                <span style={{ fontSize: 8, color: tc, fontWeight: 700 }}>{s.level}%</span>
+              </div>
+              <div style={{ height: 5, background: '#bbf7d0', borderRadius: 99 }}>
+                <div style={{ height: '100%', borderRadius: 99, width: `${s.level}%`, background: `linear-gradient(to right, ${tc}, ${tc}bb)` }} />
+              </div>
+            </div>
+          ))}
 
-          <div style={{ marginBottom: 18 }}>
-            <p style={{ color: tc, fontSize: 9, marginBottom: 10 }}>$ ls -la experience/</p>
-            {exp.map((e, i) => (
-              <div key={e.id} style={{ marginBottom: i < exp.length - 1 ? 14 : 0, padding: '10px 14px', background: '#161b22', border: `1px solid ${tc}20`, borderRadius: 6 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 4 }}>
-                  <div>
-                    <p style={{ fontWeight: 700, fontSize: 11, color: 'white' }}>{e.role}</p>
-                    <p style={{ color: tc, fontSize: 9.5 }}>{e.company}{e.location ? ` @ ${e.location}` : ''}</p>
-                  </div>
-                  <span style={{ fontSize: 8.5, color: tc, background: `${tc}15`, border: `1px solid ${tc}30`, padding: '2px 8px', borderRadius: 3, whiteSpace: 'nowrap', marginLeft: 8, flexShrink: 0 }}>
-                    {e.startDate} → {e.current ? 'now' : e.endDate}
-                  </span>
-                </div>
-                {e.description && e.description.split('\n').filter(Boolean).map((l, li) => (
-                  <p key={li} style={{ color: '#8b949e', fontSize: 9.5, lineHeight: 1.65, marginBottom: 2 }}>{l}</p>
-                ))}
+          <div style={{ marginTop: 18 }}>
+            <SH>Education</SH>
+            {edu.map(e => (
+              <div key={e.id} style={{ marginBottom: 10, padding: '9px 11px', background: '#dcfce7', borderRadius: 8, border: `1px solid #86efac` }}>
+                <p style={{ fontWeight: 700, fontSize: 10, color: '#064e3b' }}>{e.degree}</p>
+                <p style={{ color: tc, fontSize: 9.5, fontWeight: 600 }}>{e.school}</p>
+                <p style={{ color: '#6b7280', fontSize: 8.5 }}>{e.startDate} — {e.endDate}</p>
+                {e.gpa && <p style={{ color: '#6b7280', fontSize: 8.5 }}>GPA: {e.gpa}</p>}
               </div>
             ))}
           </div>
 
-          <div>
-            <p style={{ color: tc, fontSize: 9, marginBottom: 10 }}>$ ls -la projects/</p>
-            {prj.map((p, i) => (
-              <div key={p.id} style={{ marginBottom: i < prj.length - 1 ? 10 : 0, padding: '10px 14px', background: '#161b22', border: `1px solid ${tc}20`, borderRadius: 6 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
-                  <p style={{ fontWeight: 700, fontSize: 11, color: 'white' }}>{p.name}</p>
-                  {p.link && <a href={`https://${p.link}`} style={{ fontSize: 8.5, color: tc, textDecoration: 'none' }}>→ {p.link}</a>}
+          <div style={{ marginTop: 18 }}>
+            <SH>Certifications</SH>
+            {(certifications.length > 0 ? certifications : S.certifications).map(c => (
+              <div key={c.id} style={{ display: 'flex', gap: 7, marginBottom: 8 }}>
+                <Award size={10} color={tc} style={{ flexShrink: 0, marginTop: 1 }} />
+                <div>
+                  <p style={{ fontSize: 9.5, color: '#064e3b', fontWeight: 600, lineHeight: 1.3 }}>{c.name}</p>
+                  <p style={{ color: '#6b7280', fontSize: 8.5 }}>{c.issuer}{c.date ? ` · ${c.date}` : ''}</p>
                 </div>
-                {p.tech && <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginBottom: 5 }}>{p.tech.split(',').map((t, ti) => <span key={ti} style={{ fontSize: 8, padding: '1px 7px', borderRadius: 3, background: `${tc}15`, color: tc, border: `1px solid ${tc}25`, fontWeight: 700 }}>{t.trim()}</span>)}</div>}
-                {p.description && <p style={{ color: '#8b949e', fontSize: 9.5, lineHeight: 1.6 }}>{p.description}</p>}
               </div>
             ))}
           </div>
         </div>
 
-        {/* Sidebar */}
-        <div style={{ width: 200, padding: '18px 16px', borderLeft: `1px solid ${tc}20`, flexShrink: 0 }}>
-          <div style={{ marginBottom: 18 }}>
-            <p style={{ color: tc, fontSize: 9, marginBottom: 10 }}>$ cat skills.json</p>
-            {skl.map(s => (
-              <div key={s.id} style={{ marginBottom: 6 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 2 }}>
-                  <span style={{ fontSize: 9.5, color: '#e6edf3' }}>{s.name}</span>
-                  <span style={{ fontSize: 8, color: tc }}>{s.level}%</span>
+        {/* Right */}
+        <div style={{ flex: 1, padding: '0 22px' }}>
+          <SH>Experience</SH>
+          {exp.map((e, i) => (
+            <div key={e.id} style={{ marginBottom: i < exp.length - 1 ? 14 : 0, padding: '10px 14px', background: 'white', borderRadius: 10, border: `1px solid #bbf7d0`, boxShadow: '0 1px 6px rgba(5,150,105,0.07)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 3 }}>
+                <div>
+                  <p style={{ fontWeight: 800, fontSize: 11, color: '#064e3b' }}>{e.role}</p>
+                  <p style={{ color: tc, fontSize: 10, fontWeight: 600 }}>{e.company}{e.location ? <span style={{ color: '#9ca3af', fontWeight: 400 }}> · {e.location}</span> : ''}</p>
                 </div>
-                <div style={{ height: 3, background: '#21262d', borderRadius: 2 }}>
-                  <div style={{ height: 3, background: tc, borderRadius: 2, width: `${s.level}%` }} />
+                <span style={{ fontSize: 8.5, color: tc, background: '#dcfce7', padding: '2px 8px', borderRadius: 20, border: `1px solid #86efac`, whiteSpace: 'nowrap', marginLeft: 8, flexShrink: 0 }}>{e.startDate} — {e.current ? 'Present' : e.endDate}</span>
+              </div>
+              {e.description && e.description.split('\n').filter(Boolean).map((l, li) => (
+                <p key={li} style={{ color: '#374151', fontSize: 9.5, lineHeight: 1.65, marginBottom: 2 }}>{l}</p>
+              ))}
+            </div>
+          ))}
+
+          <div style={{ marginTop: 18 }}>
+            <SH>Projects</SH>
+            {prj.map((p, i) => (
+              <div key={p.id} style={{ marginBottom: i < prj.length - 1 ? 10 : 0, padding: '10px 14px', background: 'white', borderRadius: 10, border: `1px solid #bbf7d0` }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
+                  <p style={{ fontWeight: 700, fontSize: 11, color: '#064e3b' }}>{p.name}</p>
+                  {p.link && <a href={`https://${p.link}`} style={{ fontSize: 8.5, color: tc, textDecoration: 'none' }}>🔗 {p.link}</a>}
                 </div>
-              </div>
-            ))}
-          </div>
-
-          <div style={{ marginBottom: 18 }}>
-            <p style={{ color: tc, fontSize: 9, marginBottom: 10 }}>$ cat education.txt</p>
-            {edu.map(e => (
-              <div key={e.id} style={{ padding: '8px 10px', background: '#161b22', border: `1px solid ${tc}20`, borderRadius: 6, marginBottom: 8 }}>
-                <p style={{ fontWeight: 700, fontSize: 9.5, color: 'white', lineHeight: 1.3 }}>{e.degree}</p>
-                <p style={{ color: tc, fontSize: 8.5 }}>{e.school}</p>
-                <p style={{ color: '#6e7681', fontSize: 8 }}>{e.startDate} — {e.endDate}</p>
-                {e.gpa && <p style={{ color: '#8b949e', fontSize: 8 }}>GPA: {e.gpa}</p>}
-              </div>
-            ))}
-          </div>
-
-          <div>
-            <p style={{ color: tc, fontSize: 9, marginBottom: 10 }}>$ cat certs.txt</p>
-            {(certifications.length > 0 ? certifications : S.certifications).map(c => (
-              <div key={c.id} style={{ marginBottom: 8 }}>
-                <p style={{ fontSize: 9.5, color: '#e6edf3', fontWeight: 600, lineHeight: 1.3 }}>{c.name}</p>
-                <p style={{ color: '#6e7681', fontSize: 8.5 }}>{c.issuer}{c.date ? ` · ${c.date}` : ''}</p>
+                {p.tech && <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginBottom: 4 }}>{p.tech.split(',').map((t, ti) => <span key={ti} style={{ fontSize: 8, padding: '1px 7px', borderRadius: 3, background: '#dcfce7', color: tc, border: `1px solid #86efac`, fontWeight: 600 }}>{t.trim()}</span>)}</div>}
+                {p.description && <p style={{ color: '#374151', fontSize: 9.5, lineHeight: 1.6 }}>{p.description}</p>}
               </div>
             ))}
           </div>
@@ -1255,11 +1262,10 @@ export function CipherTemplate({ resume }) {
   )
 }
 
-// ══════════════════════════════════════════════════════════════
-// PRO-10: LUMINA — Glassmorphism on gradient background
+// PRO-10: LUMINA — Soft lavender, airy card layout with pastel accents
 // ══════════════════════════════════════════════════════════════
 export function LuminaTemplate({ resume }) {
-  const { personalInfo = {}, experience = [], education = [], skills = [], projects = [], certifications = [], themeColor = '#8b5cf6' } = resume
+  const { personalInfo = {}, experience = [], education = [], skills = [], projects = [], certifications = [], themeColor = '#7c3aed' } = resume
   const tc = themeColor
   const name = g(personalInfo.name, S.name), jobTitle = g(personalInfo.jobTitle, S.jobTitle)
   const email = g(personalInfo.email, S.email), phone = g(personalInfo.phone, S.phone)
@@ -1270,114 +1276,113 @@ export function LuminaTemplate({ resume }) {
   const skl = skills.length > 0 ? skills : S.skills
   const prj = projects.length > 0 ? projects : S.projects
 
-  const Glass = ({ children, style = {} }) => (
-    <div style={{ background: 'rgba(255,255,255,0.08)', backdropFilter: 'blur(12px)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: 14, padding: '14px 18px', marginBottom: 12, ...style }}>
-      {children}
+  const SH = ({ children }) => (
+    <div style={{ marginBottom: 12 }}>
+      <h2 style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.18em', color: tc, marginBottom: 4 }}>{children}</h2>
+      <div style={{ height: 2, background: `linear-gradient(to right, ${tc}60, transparent)`, borderRadius: 1 }} />
     </div>
   )
 
   return (
-    <div style={{ background: `linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%)`, fontFamily: "'Arial', sans-serif", fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm', padding: '22px 22px 40px' }}>
-      {/* Hero glass card */}
-      <Glass style={{ marginBottom: 14, padding: '20px 24px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
-          {photo && (
-            <div style={{ width: 80, height: 80, borderRadius: '50%', background: `linear-gradient(135deg, ${tc}, ${tc}60)`, padding: 3, flexShrink: 0 }}>
-              <img src={photo} alt="" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
-            </div>
-          )}
-          <div>
-            <h1 style={{ fontSize: 26, fontWeight: 900, color: 'white', letterSpacing: '-0.01em', marginBottom: 4 }}>{name}</h1>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: `${tc}25`, border: `1px solid ${tc}40`, borderRadius: 999, padding: '3px 12px', marginBottom: 10 }}>
-              <span style={{ fontSize: 10, fontWeight: 700, color: tc }}>{jobTitle}</span>
-            </div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '3px 14px', fontSize: 9.5, color: 'rgba(255,255,255,0.65)' }}>
-              {[{ I: Mail, v: email }, { I: Phone, v: phone }, { I: MapPin, v: location }].filter(x => x.v).map(({ I, v }, i) => (
-                <span key={i} style={{ display: 'flex', alignItems: 'center', gap: 4 }}><I size={8} color={tc} />{v}</span>
-              ))}
-            </div>
+    <div style={{ background: '#faf5ff', fontFamily: 'Arial, sans-serif', fontSize: 10.5, lineHeight: 1.55, minHeight: '297mm' }}>
+
+      {/* ── HEADER — centered with soft gradient band ── */}
+      <div style={{ background: `linear-gradient(160deg, #ede9fe 0%, #f5f3ff 50%, #faf5ff 100%)`, padding: '30px 36px 22px', textAlign: 'center', borderBottom: `2px solid ${tc}25`, position: 'relative' }}>
+        {/* Decorative blobs */}
+        <div style={{ position: 'absolute', top: -20, left: -20, width: 120, height: 120, borderRadius: '50%', background: `${tc}10`, zIndex: 0 }} />
+        <div style={{ position: 'absolute', bottom: -10, right: 30, width: 80, height: 80, borderRadius: '50%', background: `${tc}08`, zIndex: 0 }} />
+
+        <div style={{ position: 'relative', zIndex: 1 }}>
+          {photo && <img src={photo} alt="" style={{ width: 76, height: 76, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}50`, margin: '0 auto 12px', display: 'block', boxShadow: `0 4px 20px ${tc}25` }} />}
+          <h1 style={{ fontSize: 26, fontWeight: 900, color: '#3b0764', letterSpacing: '-0.01em', marginBottom: 5 }}>{name}</h1>
+          <span style={{ display: 'inline-block', fontSize: 10, fontWeight: 700, color: tc, background: `${tc}15`, border: `1px solid ${tc}30`, borderRadius: 999, padding: '3px 14px', marginBottom: 12, letterSpacing: '0.05em' }}>{jobTitle}</span>
+          <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '4px 16px', fontSize: 9.5, color: '#6b21a8' }}>
+            {[{ I: Mail, v: email }, { I: Phone, v: phone }, { I: MapPin, v: location }].filter(x => x.v).map(({ I, v }, i) => (
+              <span key={i} style={{ display: 'flex', alignItems: 'center', gap: 4 }}><I size={9} color={tc} />{v}</span>
+            ))}
           </div>
         </div>
-      </Glass>
+      </div>
 
       {/* Summary */}
-      <Glass style={{ marginBottom: 14 }}>
-        <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 10.5, lineHeight: 1.85 }}>{summary}</p>
-      </Glass>
+      <div style={{ padding: '14px 36px', background: '#ede9fe', borderBottom: `1px solid ${tc}20` }}>
+        <p style={{ color: '#4c1d95', fontSize: 10.5, lineHeight: 1.85, fontStyle: 'italic', textAlign: 'center' }}>{summary}</p>
+      </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '3fr 2fr', gap: 12 }}>
-        <div>
-          <Glass>
-            <h2 style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.14em', color: tc, marginBottom: 14 }}>Experience</h2>
-            {exp.map((e, i) => (
-              <div key={e.id} style={{ marginBottom: i < exp.length - 1 ? 14 : 0 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 3 }}>
-                  <div>
-                    <p style={{ fontWeight: 800, fontSize: 11.5, color: 'white' }}>{e.role}</p>
-                    <p style={{ color: tc, fontSize: 10, fontWeight: 700 }}>{e.company}{e.location ? <span style={{ color: 'rgba(255,255,255,0.4)', fontWeight: 400 }}> · {e.location}</span> : ''}</p>
-                  </div>
-                  <span style={{ fontSize: 8.5, color: tc, background: `${tc}20`, border: `1px solid ${tc}30`, padding: '2px 8px', borderRadius: 4, whiteSpace: 'nowrap', marginLeft: 8, flexShrink: 0 }}>
-                    {e.startDate} — {e.current ? 'Present' : e.endDate}
-                  </span>
+      {/* Body */}
+      <div style={{ display: 'grid', gridTemplateColumns: '3fr 2fr', gap: 0 }}>
+        {/* Left */}
+        <div style={{ padding: '20px 24px', borderRight: `1px solid ${tc}15` }}>
+          <SH>Experience</SH>
+          {exp.map((e, i) => (
+            <div key={e.id} style={{ marginBottom: i < exp.length - 1 ? 14 : 0, paddingBottom: i < exp.length - 1 ? 14 : 0, borderBottom: i < exp.length - 1 ? `1px dashed ${tc}20` : 'none' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 3 }}>
+                <div>
+                  <p style={{ fontWeight: 800, fontSize: 11.5, color: '#3b0764' }}>{e.role}</p>
+                  <p style={{ color: tc, fontSize: 10, fontWeight: 600 }}>{e.company}{e.location ? <span style={{ color: '#a78bfa', fontWeight: 400 }}> · {e.location}</span> : ''}</p>
                 </div>
-                {e.description && e.description.split('\n').filter(Boolean).map((l, li) => (
-                  <p key={li} style={{ color: 'rgba(255,255,255,0.6)', fontSize: 9.5, lineHeight: 1.65, marginBottom: 2 }}>{l}</p>
-                ))}
+                <span style={{ fontSize: 8.5, color: tc, background: `${tc}12`, border: `1px solid ${tc}25`, padding: '2px 9px', borderRadius: 20, whiteSpace: 'nowrap', marginLeft: 8, flexShrink: 0 }}>{e.startDate} — {e.current ? 'Present' : e.endDate}</span>
               </div>
-            ))}
-          </Glass>
-          <Glass>
-            <h2 style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.14em', color: tc, marginBottom: 12 }}>Projects</h2>
+              {e.description && e.description.split('\n').filter(Boolean).map((l, li) => (
+                <p key={li} style={{ color: '#4c1d95', fontSize: 9.5, lineHeight: 1.65, marginBottom: 2 }}>{l}</p>
+              ))}
+            </div>
+          ))}
+
+          <div style={{ marginTop: 18 }}>
+            <SH>Projects</SH>
             {prj.map((p, i) => (
-              <div key={p.id} style={{ marginBottom: i < prj.length - 1 ? 10 : 0, padding: '8px 10px', background: 'rgba(255,255,255,0.05)', border: `1px solid ${tc}20`, borderRadius: 8 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 3 }}>
-                  <p style={{ fontWeight: 800, fontSize: 11, color: 'white' }}>{p.name}</p>
+              <div key={p.id} style={{ marginBottom: i < prj.length - 1 ? 10 : 0, padding: '10px 12px', background: '#ede9fe', borderRadius: 10, border: `1px solid ${tc}20` }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
+                  <p style={{ fontWeight: 700, fontSize: 11, color: '#3b0764' }}>{p.name}</p>
                   {p.link && <a href={`https://${p.link}`} style={{ fontSize: 8.5, color: tc, textDecoration: 'none' }}>🔗 {p.link}</a>}
                 </div>
-                {p.tech && <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginBottom: 4 }}>{p.tech.split(',').map((t, ti) => <span key={ti} style={{ fontSize: 8, padding: '1px 7px', borderRadius: 3, background: `${tc}20`, color: tc, border: `1px solid ${tc}30`, fontWeight: 600 }}>{t.trim()}</span>)}</div>}
-                {p.description && <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 9.5, lineHeight: 1.6 }}>{p.description}</p>}
+                {p.tech && <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginBottom: 4 }}>{p.tech.split(',').map((t, ti) => <span key={ti} style={{ fontSize: 8, padding: '1px 7px', borderRadius: 3, background: `${tc}15`, color: tc, border: `1px solid ${tc}25`, fontWeight: 600 }}>{t.trim()}</span>)}</div>}
+                {p.description && <p style={{ color: '#4c1d95', fontSize: 9.5, lineHeight: 1.6 }}>{p.description}</p>}
               </div>
             ))}
-          </Glass>
+          </div>
         </div>
-        <div>
-          <Glass>
-            <h2 style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.14em', color: tc, marginBottom: 12 }}>Skills</h2>
-            {skl.map(s => (
-              <div key={s.id} style={{ marginBottom: 7 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 3 }}>
-                  <span style={{ fontSize: 9.5, color: 'rgba(255,255,255,0.85)', fontWeight: 500 }}>{s.name}</span>
-                  <span style={{ fontSize: 8, color: tc, fontWeight: 700 }}>{s.level}%</span>
-                </div>
-                <div style={{ height: 4, background: 'rgba(255,255,255,0.1)', borderRadius: 999 }}>
-                  <div style={{ height: 4, background: `linear-gradient(to right, ${tc}, ${tc}80)`, borderRadius: 999, width: `${s.level}%` }} />
-                </div>
+
+        {/* Right */}
+        <div style={{ padding: '20px 20px', background: '#faf5ff' }}>
+          <SH>Skills</SH>
+          {skl.map(s => (
+            <div key={s.id} style={{ marginBottom: 8 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 3 }}>
+                <span style={{ fontSize: 9.5, color: '#3b0764', fontWeight: 500 }}>{s.name}</span>
+                <span style={{ fontSize: 8, color: tc, fontWeight: 700 }}>{s.level}%</span>
               </div>
-            ))}
-          </Glass>
-          <Glass>
-            <h2 style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.14em', color: tc, marginBottom: 12 }}>Education</h2>
+              <div style={{ height: 5, background: '#ede9fe', borderRadius: 99 }}>
+                <div style={{ height: '100%', borderRadius: 99, width: `${s.level}%`, background: `linear-gradient(to right, ${tc}, ${tc}99)` }} />
+              </div>
+            </div>
+          ))}
+
+          <div style={{ marginTop: 18 }}>
+            <SH>Education</SH>
             {edu.map(e => (
-              <div key={e.id} style={{ marginBottom: 8 }}>
-                <p style={{ fontWeight: 700, fontSize: 10, color: 'white', lineHeight: 1.3 }}>{e.degree}</p>
+              <div key={e.id} style={{ marginBottom: 10, padding: '9px 11px', background: '#ede9fe', borderRadius: 8, border: `1px solid ${tc}20` }}>
+                <p style={{ fontWeight: 700, fontSize: 10, color: '#3b0764' }}>{e.degree}</p>
                 <p style={{ color: tc, fontSize: 9.5, fontWeight: 600 }}>{e.school}</p>
-                <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 8.5 }}>{e.startDate} — {e.endDate}</p>
-                {e.gpa && <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 8.5 }}>GPA: {e.gpa}</p>}
+                <p style={{ color: '#7c3aed', fontSize: 8.5 }}>{e.startDate} — {e.endDate}</p>
+                {e.gpa && <p style={{ color: '#6b7280', fontSize: 8.5 }}>GPA: {e.gpa}</p>}
               </div>
             ))}
-          </Glass>
-          <Glass>
-            <h2 style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.14em', color: tc, marginBottom: 12 }}>Certifications</h2>
+          </div>
+
+          <div style={{ marginTop: 18 }}>
+            <SH>Certifications</SH>
             {(certifications.length > 0 ? certifications : S.certifications).map(c => (
-              <div key={c.id} style={{ display: 'flex', gap: 6, marginBottom: 8 }}>
+              <div key={c.id} style={{ display: 'flex', gap: 7, marginBottom: 9 }}>
                 <Award size={10} color={tc} style={{ flexShrink: 0, marginTop: 1 }} />
                 <div>
-                  <p style={{ fontWeight: 700, fontSize: 9.5, color: 'white', lineHeight: 1.3 }}>{c.name}</p>
-                  <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 8.5 }}>{c.issuer}{c.date ? ` · ${c.date}` : ''}</p>
+                  <p style={{ fontSize: 9.5, color: '#3b0764', fontWeight: 600, lineHeight: 1.3 }}>{c.name}</p>
+                  <p style={{ color: '#7c3aed', fontSize: 8.5 }}>{c.issuer}{c.date ? ` · ${c.date}` : ''}</p>
                 </div>
               </div>
             ))}
-          </Glass>
+          </div>
         </div>
       </div>
     </div>

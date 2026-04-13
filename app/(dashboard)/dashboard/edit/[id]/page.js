@@ -44,9 +44,16 @@ export default function EditResumePage() {
       try {
         const res = await fetch(`/api/resumes/${params.id}`)
         if (!res.ok) { setError('Resume not found'); setLoading(false); return }
-        const { resume: data } = await res.json()
-        // Merge saved data into store
-        setResume({ ...data.data, id: data.id, title: data.title, template: data.template, themeColor: data.theme_color })
+        const { resume: r } = await res.json()
+        // Restore full resume into store
+        setResume({
+          ...r.data,
+          id:         r.id,
+          title:      r.title,
+          template:   r.template,
+          themeColor: r.themeColor,
+          fontFamily: r.fontFamily || 'Arial, Helvetica, sans-serif',
+        })
         setLoading(false)
       } catch {
         setError('Failed to load resume')
@@ -65,7 +72,22 @@ export default function EditResumePage() {
         await fetch(`/api/resumes/${resume.id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ title: resume.title || 'Untitled Resume', template: resume.template, themeColor: resume.themeColor, data: resume }),
+          body: JSON.stringify({
+            title:      resume.title || 'Untitled Resume',
+            template:   resume.template,
+            themeColor: resume.themeColor,
+            fontFamily: resume.fontFamily,
+            data: {
+              personalInfo:   resume.personalInfo,
+              experience:     resume.experience,
+              education:      resume.education,
+              skills:         resume.skills,
+              projects:       resume.projects,
+              certifications: resume.certifications,
+              languages:      resume.languages,
+              achievements:   resume.achievements,
+            },
+          }),
         })
         setLastSaved(new Date())
       } catch (e) { console.error(e) } finally { setIsSaving(false) }
@@ -91,10 +113,26 @@ export default function EditResumePage() {
   async function handleSave() {
     setIsSaving(true)
     try {
+      const payload = {
+        title:      resume.title || 'Untitled Resume',
+        template:   resume.template,
+        themeColor: resume.themeColor,
+        fontFamily: resume.fontFamily,
+        data: {
+          personalInfo:   resume.personalInfo,
+          experience:     resume.experience,
+          education:      resume.education,
+          skills:         resume.skills,
+          projects:       resume.projects,
+          certifications: resume.certifications,
+          languages:      resume.languages,
+          achievements:   resume.achievements,
+        },
+      }
       await fetch(`/api/resumes/${resume.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title: resume.title || 'Untitled Resume', template: resume.template, themeColor: resume.themeColor, data: resume }),
+        body: JSON.stringify(payload),
       })
       setLastSaved(new Date())
       setSaveSuccess(true)

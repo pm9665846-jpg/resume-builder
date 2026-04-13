@@ -21,29 +21,29 @@ function timeAgo(dateStr) {
 
 function DeleteModal({ resume, onConfirm, onCancel, loading }) {
   return (
-    <div style={{ position: 'fixed', inset: 0, zIndex: 200, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(6px)' }}>
+    <div style={{ position: 'fixed', inset: 0, zIndex: 200, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--modal-bg)', backdropFilter: 'blur(6px)' }}>
       <motion.div
         initial={{ opacity: 0, scale: 0.92, y: 10 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        style={{ background: '#0f0f1a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 18, padding: '28px 28px 24px', maxWidth: 380, width: '90%', boxShadow: '0 24px 60px rgba(0,0,0,0.6)' }}
+        style={{ background: 'var(--delete-modal)', border: '1px solid var(--delete-border)', borderRadius: 18, padding: '28px 28px 24px', maxWidth: 380, width: '90%', boxShadow: '0 24px 60px rgba(0,0,0,0.4)' }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 16 }}>
           <div style={{ width: 44, height: 44, borderRadius: '50%', background: 'rgba(248,113,113,0.12)', border: '1px solid rgba(248,113,113,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
             <AlertTriangle size={20} color="#f87171" />
           </div>
           <div>
-            <p style={{ color: 'white', fontWeight: 700, fontSize: '1rem', marginBottom: 2 }}>Delete Resume?</p>
-            <p style={{ color: '#64748b', fontSize: '0.78rem' }}>This cannot be undone</p>
+            <p style={{ color: 'var(--text)', fontWeight: 700, fontSize: '1rem', marginBottom: 2 }}>Delete Resume?</p>
+            <p style={{ color: 'var(--text3)', fontSize: '0.78rem' }}>This cannot be undone</p>
           </div>
         </div>
-        <p style={{ color: '#94a3b8', fontSize: '0.85rem', lineHeight: 1.6, marginBottom: 22, padding: '10px 14px', background: 'rgba(255,255,255,0.03)', borderRadius: 8 }}>
-          <span style={{ color: 'white', fontWeight: 600 }}>&ldquo;{resume?.title}&rdquo;</span> will be permanently deleted from your account.
+        <p style={{ color: 'var(--text2)', fontSize: '0.85rem', lineHeight: 1.6, marginBottom: 22, padding: '10px 14px', background: 'var(--card)', borderRadius: 8 }}>
+          <span style={{ color: 'var(--text)', fontWeight: 600 }}>&ldquo;{resume?.title}&rdquo;</span> will be permanently deleted from your account.
         </p>
         <div style={{ display: 'flex', gap: 10 }}>
           <button
             onClick={onCancel}
-            style={{ flex: 1, padding: '10px 0', borderRadius: 10, border: '1px solid rgba(255,255,255,0.1)', background: 'transparent', color: '#94a3b8', fontSize: '0.85rem', cursor: 'pointer', fontWeight: 600, transition: 'all 0.15s' }}
-            onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.05)'}
+            style={{ flex: 1, padding: '10px 0', borderRadius: 10, border: '1px solid var(--border)', background: 'transparent', color: 'var(--text2)', fontSize: '0.85rem', cursor: 'pointer', fontWeight: 600, transition: 'all 0.15s' }}
+            onMouseEnter={e => e.currentTarget.style.background = 'var(--hover-bg)'}
             onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
           >
             Cancel
@@ -70,9 +70,9 @@ function ResumeCard({ resume, onDelete, index }) {
       exit={{ opacity: 0, scale: 0.92 }}
       transition={{ delay: index * 0.05, duration: 0.3 }}
       className="rounded-2xl overflow-hidden group"
-      style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', transition: 'border-color 0.2s, transform 0.2s' }}
+      style={{ background: 'var(--card)', border: '1px solid var(--border)', transition: 'border-color 0.2s, transform 0.2s' }}
       onMouseEnter={e => { e.currentTarget.style.borderColor = `${color}40`; e.currentTarget.style.transform = 'translateY(-2px)' }}
-      onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.transform = 'translateY(0)' }}
+      onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.transform = 'translateY(0)' }}
     >
       {/* Thumbnail */}
       <div style={{ background: 'white', aspectRatio: '3/4', padding: '14px 12px', position: 'relative', overflow: 'hidden' }}>
@@ -111,7 +111,7 @@ function ResumeCard({ resume, onDelete, index }) {
       {/* Footer */}
       <div style={{ padding: '12px 14px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
         <div style={{ flex: 1, minWidth: 0 }}>
-          <p style={{ color: 'white', fontWeight: 600, fontSize: '0.85rem', marginBottom: 4, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+          <p style={{ color: 'var(--text)', fontWeight: 600, fontSize: '0.85rem', marginBottom: 4, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
             {resume.title}
           </p>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
@@ -177,7 +177,7 @@ export default function ResumesPage() {
   )
 
   return (
-    <div className="relative min-h-screen p-8" style={{ background: '#050508' }}>
+    <div className="relative min-h-screen p-8" style={{ background: 'var(--dash-bg)' }}>
       <FloatingBackground />
       {deleteTarget && (
         <DeleteModal
@@ -194,8 +194,8 @@ export default function ResumesPage() {
           {/* Header */}
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h1 className="text-3xl font-black text-white mb-1">My Resumes</h1>
-              <p style={{ color: '#94a3b8' }}>
+              <h1 className="text-3xl font-black mb-1" style={{ color: 'var(--text)' }}>My Resumes</h1>
+              <p style={{ color: 'var(--text2)' }}>
                 {loading ? 'Loading...' : `${filtered.length} resume${filtered.length !== 1 ? 's' : ''} saved`}
               </p>
             </div>
@@ -243,16 +243,16 @@ export default function ResumesPage() {
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 className="rounded-2xl border-2 border-dashed cursor-pointer flex flex-col items-center justify-center gap-3"
-                style={{ aspectRatio: '3/4', borderColor: 'rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.02)', transition: 'all 0.2s' }}
+                style={{ borderColor: 'var(--border)', background: 'var(--card)', transition: 'all 0.2s' }}
                 onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(139,92,246,0.5)'; e.currentTarget.style.background = 'rgba(139,92,246,0.04)' }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'; e.currentTarget.style.background = 'rgba(255,255,255,0.02)' }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.background = 'var(--card)' }}
               >
                 <div className="w-14 h-14 rounded-2xl flex items-center justify-center" style={{ background: 'rgba(139,92,246,0.15)', border: '1px solid rgba(139,92,246,0.25)' }}>
                   <Plus size={24} style={{ color: '#a78bfa' }} />
                 </div>
                 <div style={{ textAlign: 'center' }}>
-                  <p className="text-sm font-semibold" style={{ color: '#94a3b8', marginBottom: 2 }}>Create New Resume</p>
-                  <p style={{ fontSize: '0.7rem', color: '#475569' }}>Start from scratch</p>
+                  <p className="text-sm font-semibold" style={{ color: 'var(--text2)', marginBottom: 2 }}>Create New Resume</p>
+                  <p style={{ fontSize: '0.7rem', color: 'var(--text3)' }}>Start from scratch</p>
                 </div>
               </motion.div>
             </Link>
@@ -262,7 +262,7 @@ export default function ResumesPage() {
               <div
                 key={i}
                 className="rounded-2xl"
-                style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)', aspectRatio: '3/4', animation: 'pulse 1.5s ease-in-out infinite' }}
+                style={{ background: 'var(--card)', border: '1px solid var(--border3)', aspectRatio: '3/4', animation: 'pulse 1.5s ease-in-out infinite' }}
               />
             ))}
 
@@ -289,8 +289,8 @@ export default function ResumesPage() {
               <div style={{ width: 64, height: 64, borderRadius: '50%', background: 'rgba(139,92,246,0.1)', border: '1px solid rgba(139,92,246,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
                 <FileText size={28} color="#a78bfa" />
               </div>
-              <p style={{ color: 'white', fontWeight: 700, fontSize: '1.1rem', marginBottom: 8 }}>No resumes yet</p>
-              <p style={{ color: '#64748b', fontSize: '0.85rem', marginBottom: 24 }}>Create your first resume and save it to see it here</p>
+              <p style={{ color: 'var(--text)', fontWeight: 700, fontSize: '1.1rem', marginBottom: 8 }}>No resumes yet</p>
+              <p style={{ color: 'var(--text3)', fontSize: '0.85rem', marginBottom: 24 }}>Create your first resume and save it to see it here</p>
               <Link href="/dashboard/create">
                 <Button icon={<Plus size={14} />}>Create Your First Resume</Button>
               </Link>

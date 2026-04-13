@@ -16,7 +16,9 @@ export default function RootLayout({ children }) {
       </head>
       <body style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
         <AuthSessionProvider>
-          {children}
+          {/* <ThemeProvider> */}
+            {children}
+          {/* </ThemeProvider> */}
         </AuthSessionProvider>
       </body>
     </html>

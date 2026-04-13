@@ -102,11 +102,9 @@ function SuggestionCard({ type, index }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.08 }}
       style={{
-        background: 'rgba(255,255,255,0.04)',
-        border: `1px solid ${expanded ? type.color + '30' : 'rgba(255,255,255,0.08)'}`,
-        borderRadius: 18,
-        overflow: 'hidden',
-        transition: 'border-color 0.3s',
+        background: 'var(--card)',
+        border: `1px solid ${expanded ? type.color + '30' : 'var(--border)'}`,
+        borderRadius: 18, overflow: 'hidden', transition: 'border-color 0.3s',
       }}
     >
       {/* Header */}
@@ -127,8 +125,8 @@ function SuggestionCard({ type, index }) {
           <Icon size={20} color={type.color} />
         </div>
         <div style={{ flex: 1 }}>
-          <p style={{ color: 'white', fontWeight: 700, fontSize: '0.95rem', marginBottom: 3 }}>{type.label}</p>
-          <p style={{ color: '#64748b', fontSize: '0.78rem' }}>{type.description}</p>
+          <p style={{ color: 'var(--text)', fontWeight: 700, fontSize: '0.95rem', marginBottom: 3 }}>{type.label}</p>
+          <p style={{ color: 'var(--text3)', fontSize: '0.78rem' }}>{type.description}</p>
         </div>
         <div style={{ color: '#475569', flexShrink: 0 }}>
           {expanded ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
@@ -145,7 +143,7 @@ function SuggestionCard({ type, index }) {
             transition={{ duration: 0.25 }}
             style={{ overflow: 'hidden' }}
           >
-            <div style={{ padding: '0 20px 20px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+            <div style={{ padding: '0 20px 20px', borderTop: '1px solid var(--border3)' }}>
 
               {/* Mode toggle */}
               <div style={{ display: 'flex', gap: 8, marginTop: 16, marginBottom: 16 }}>
@@ -156,8 +154,8 @@ function SuggestionCard({ type, index }) {
                     style={{
                       padding: '5px 14px', borderRadius: 8, fontSize: '0.75rem', fontWeight: 600,
                       cursor: 'pointer', border: 'none', transition: 'all 0.2s',
-                      background: (i === 1) === useCustom ? `${type.color}25` : 'rgba(255,255,255,0.05)',
-                      color: (i === 1) === useCustom ? type.color : '#64748b',
+                      background: (i === 1) === useCustom ? `${type.color}25` : 'var(--card2)',
+                      color: (i === 1) === useCustom ? type.color : 'var(--text3)',
                       outline: (i === 1) === useCustom ? `1px solid ${type.color}40` : 'none',
                     }}
                   >
@@ -171,7 +169,7 @@ function SuggestionCard({ type, index }) {
                 <div style={{ display: 'grid', gridTemplateColumns: type.fields.length > 1 ? '1fr 1fr' : '1fr', gap: 12, marginBottom: 16 }}>
                   {type.fields.map(field => (
                     <div key={field.key}>
-                      <label style={{ display: 'block', fontSize: '0.68rem', fontWeight: 600, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 6 }}>
+                      <label style={{ display: 'block', fontSize: '0.68rem', fontWeight: 600, color: 'var(--text2)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 6 }}>
                         {field.label}
                       </label>
                       <input
@@ -390,7 +388,7 @@ function CustomPromptCard() {
 
 export default function AISuggestionsPage() {
   return (
-    <div className="relative min-h-screen" style={{ background: '#050508', padding: '40px 32px' }}>
+    <div className="relative min-h-screen" style={{ background: 'var(--dash-bg)', padding: '40px 32px' }}>
       <FloatingBackground />
       <div className="relative z-10" style={{ maxWidth: 780, margin: '0 auto' }}>
 
@@ -401,10 +399,10 @@ export default function AISuggestionsPage() {
               <Sparkles size={22} color="white" />
             </div>
             <div>
-              <h1 style={{ fontSize: '1.75rem', fontWeight: 900, color: 'white', marginBottom: 2 }}>
+              <h1 style={{ fontSize: '1.75rem', fontWeight: 900, color: 'var(--text)', marginBottom: 2 }}>
                 AI Suggestions
               </h1>
-              <p style={{ color: '#94a3b8', fontSize: '0.875rem' }}>
+              <p style={{ color: 'var(--text2)', fontSize: '0.875rem' }}>
                 Powered by Gemini — generate professional content in seconds
               </p>
             </div>

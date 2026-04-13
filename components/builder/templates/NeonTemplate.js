@@ -64,10 +64,10 @@ export default function NeonTemplate({ resume }) {
   )
 
   return (
-    <div style={{ background: '#0a0a0f', color: '#e2e8f0', fontFamily: "'Arial', sans-serif", fontSize: '10.5px', lineHeight: 1.55, minHeight: '297mm' }}>
+    <div style={{ background: '#ffffff', color: '#1e293b', fontFamily: "'Arial', sans-serif", fontSize: '10.5px', lineHeight: 1.55, minHeight: '297mm' }}>
 
       {/* ── HEADER ── */}
-      <div style={{ padding: '32px 32px 24px', borderBottom: `1px solid ${tcDim}`, position: 'relative', overflow: 'hidden' }}>
+      <div style={{ padding: '32px 32px 24px', borderBottom: `2px solid ${tc}`, position: 'relative', overflow: 'hidden', background: '#ffffff' }}>
         {/* Background glow */}
         <div style={{ position: 'absolute', top: -40, left: -40, width: 200, height: 200, borderRadius: '50%', background: `radial-gradient(circle, ${tcGlow} 0%, transparent 70%)`, pointerEvents: 'none' }} />
 
@@ -76,11 +76,11 @@ export default function NeonTemplate({ resume }) {
             <img src={photo} alt="Profile" style={{ width: 68, height: 68, borderRadius: '50%', objectFit: 'cover', border: `2px solid ${tc}`, boxShadow: `0 0 12px ${tc}60`, flexShrink: 0 }} />
           )}
           <div>
-            <h1 style={{ fontSize: 30, fontWeight: 900, color: 'white', letterSpacing: '-0.02em', lineHeight: 1, marginBottom: 5 }}>{name}</h1>
+            <h1 style={{ fontSize: 30, fontWeight: 900, color: '#0f172a', letterSpacing: '-0.02em', lineHeight: 1, marginBottom: 5 }}>{name}</h1>
             <p style={{ fontSize: 12, fontWeight: 700, color: tc, marginBottom: 14, letterSpacing: '0.06em', textTransform: 'uppercase' }}>{jobTitle}</p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px 16px', fontSize: 9 }}>
               {contacts.map(({ icon: Icon, val }, i) => (
-                <span key={i} style={{ display: 'flex', alignItems: 'center', gap: 5, color: '#94a3b8' }}>
+                <span key={i} style={{ display: 'flex', alignItems: 'center', gap: 5, color: '#475569' }}>
                   <Icon size={9} color={tc} />{val}
                 </span>
               ))}
@@ -91,12 +91,12 @@ export default function NeonTemplate({ resume }) {
 
       <div style={{ display: 'flex' }}>
         {/* ── LEFT COLUMN ── */}
-        <div style={{ width: '38%', padding: '22px 18px', borderRight: `1px solid ${tcDim}`, flexShrink: 0 }}>
+        <div style={{ width: '38%', padding: '22px 18px', borderRight: `1px solid ${tcDim}`, flexShrink: 0, background: '#ffffff' }}>
 
           {/* Summary */}
           <div style={{ marginBottom: 20 }}>
             <SH>About</SH>
-            <p style={{ color: '#94a3b8', fontSize: 9.5, lineHeight: 1.75 }}>{summary}</p>
+            <p style={{ color: '#334155', fontSize: 9.5, lineHeight: 1.75 }}>{summary}</p>
           </div>
 
           {/* Skills */}
@@ -105,10 +105,10 @@ export default function NeonTemplate({ resume }) {
             {skl.map(s => (
               <div key={s.id} style={{ marginBottom: 7 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 3 }}>
-                  <span style={{ fontSize: 9.5, color: '#cbd5e1' }}>{s.name}</span>
+                  <span style={{ fontSize: 9.5, color: '#1e293b' }}>{s.name}</span>
                   <span style={{ fontSize: 8, color: tc }}>{s.level || 80}%</span>
                 </div>
-                <div style={{ height: 3, background: '#1e293b', borderRadius: 2 }}>
+                <div style={{ height: 3, background: '#e2e8f0', borderRadius: 2 }}>
                   <div style={{ height: 3, background: `linear-gradient(to right, ${tc}, ${tc}80)`, borderRadius: 2, width: `${s.level || 80}%`, boxShadow: `0 0 6px ${tc}60` }} />
                 </div>
               </div>
@@ -119,10 +119,10 @@ export default function NeonTemplate({ resume }) {
           <div style={{ marginBottom: 20 }}>
             <SH>Education</SH>
             {edu.map(e => (
-              <div key={e.id} style={{ marginBottom: 10, padding: '8px 10px', background: '#0f172a', border: `1px solid ${tcDim}`, borderRadius: 6 }}>
-                <p style={{ fontWeight: 700, fontSize: 10, color: 'white', lineHeight: 1.3 }}>{e.degree}</p>
+              <div key={e.id} style={{ marginBottom: 10, padding: '8px 10px', background: '#f8fafc', border: `1px solid ${tcDim}`, borderRadius: 6 }}>
+                <p style={{ fontWeight: 700, fontSize: 10, color: '#0f172a', lineHeight: 1.3 }}>{e.degree}</p>
                 <p style={{ color: tc, fontSize: 9, marginTop: 2 }}>{e.school}</p>
-                <p style={{ color: '#475569', fontSize: 8.5 }}>{e.startDate} — {e.endDate}</p>
+                <p style={{ color: '#64748b', fontSize: 8.5 }}>{e.startDate} — {e.endDate}</p>
                 {e.gpa && <p style={{ color: '#64748b', fontSize: 8.5 }}>GPA: {e.gpa}</p>}
               </div>
             ))}
@@ -135,8 +135,8 @@ export default function NeonTemplate({ resume }) {
               <div key={c.id} style={{ display: 'flex', gap: 7, marginBottom: 8 }}>
                 <Award size={10} color={tc} style={{ flexShrink: 0, marginTop: 1 }} />
                 <div>
-                  <p style={{ fontSize: 9.5, color: '#cbd5e1', fontWeight: 600, lineHeight: 1.3 }}>{c.name}</p>
-                  <p style={{ color: '#475569', fontSize: 8.5 }}>{c.issuer}{c.date ? ` · ${c.date}` : ''}</p>
+                  <p style={{ fontSize: 9.5, color: '#1e293b', fontWeight: 600, lineHeight: 1.3 }}>{c.name}</p>
+                  <p style={{ color: '#64748b', fontSize: 8.5 }}>{c.issuer}{c.date ? ` · ${c.date}` : ''}</p>
                 </div>
               </div>
             ))}
@@ -147,7 +147,7 @@ export default function NeonTemplate({ resume }) {
             <SH>Languages</SH>
             {langs.map(l => (
               <div key={l.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-                <span style={{ fontSize: 10, color: '#cbd5e1', fontWeight: 600 }}>{l.name}</span>
+                <span style={{ fontSize: 10, color: '#1e293b', fontWeight: 600 }}>{l.name}</span>
                 <span style={{ fontSize: 8.5, padding: '2px 8px', borderRadius: 999, background: tcGlow, border: `1px solid ${tcDim}`, color: tc }}>{l.proficiency}</span>
               </div>
             ))}
@@ -155,7 +155,7 @@ export default function NeonTemplate({ resume }) {
         </div>
 
         {/* ── RIGHT COLUMN ── */}
-        <div style={{ flex: 1, padding: '22px 22px' }}>
+        <div style={{ flex: 1, padding: '22px 22px', background: '#ffffff' }}>
 
           {/* Experience */}
           <div style={{ marginBottom: 20 }}>
@@ -168,9 +168,9 @@ export default function NeonTemplate({ resume }) {
 
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 2 }}>
                   <div>
-                    <p style={{ fontWeight: 800, fontSize: 11.5, color: 'white' }}>{e.role}</p>
+                    <p style={{ fontWeight: 800, fontSize: 11.5, color: '#0f172a' }}>{e.role}</p>
                     <p style={{ color: tc, fontSize: 10, fontWeight: 600 }}>
-                      {e.company}{e.location ? <span style={{ color: '#475569', fontWeight: 400 }}> · {e.location}</span> : ''}
+                      {e.company}{e.location ? <span style={{ color: '#64748b', fontWeight: 400 }}> · {e.location}</span> : ''}
                     </p>
                   </div>
                   <span style={{ fontSize: 8.5, color: tc, background: tcGlow, border: `1px solid ${tcDim}`, padding: '2px 8px', borderRadius: 4, whiteSpace: 'nowrap', marginLeft: 8, flexShrink: 0 }}>
@@ -180,7 +180,7 @@ export default function NeonTemplate({ resume }) {
                 {e.description && (
                   <div style={{ marginTop: 5 }}>
                     {e.description.split('\n').filter(Boolean).map((line, li) => (
-                      <p key={li} style={{ color: '#94a3b8', fontSize: 9.5, lineHeight: 1.65, marginBottom: 2 }}>{line}</p>
+                      <p key={li} style={{ color: '#334155', fontSize: 9.5, lineHeight: 1.65, marginBottom: 2 }}>{line}</p>
                     ))}
                   </div>
                 )}
@@ -192,9 +192,9 @@ export default function NeonTemplate({ resume }) {
           <div>
             <SH>Projects</SH>
             {prj.map((p, i) => (
-              <div key={p.id} style={{ marginBottom: i < prj.length - 1 ? 10 : 0, padding: '10px 12px', background: '#0f172a', border: `1px solid ${tcDim}`, borderRadius: 8, boxShadow: `0 0 12px ${tcGlow}` }}>
+              <div key={p.id} style={{ marginBottom: i < prj.length - 1 ? 10 : 0, padding: '10px 12px', background: '#f8fafc', border: `1px solid ${tcDim}`, borderRadius: 8, boxShadow: `0 0 12px ${tcGlow}` }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 4 }}>
-                  <p style={{ fontWeight: 800, fontSize: 11, color: 'white' }}>{p.name}</p>
+                  <p style={{ fontWeight: 800, fontSize: 11, color: '#0f172a' }}>{p.name}</p>
                   {p.link && <a href={`https://${p.link}`} style={{ fontSize: 8.5, color: tc, textDecoration: 'none', flexShrink: 0, marginLeft: 8 }}>🔗 {p.link}</a>}
                 </div>
                 {p.tech && (
@@ -204,7 +204,7 @@ export default function NeonTemplate({ resume }) {
                     ))}
                   </div>
                 )}
-                {p.description && <p style={{ color: '#94a3b8', fontSize: 9.5, lineHeight: 1.6 }}>{p.description}</p>}
+                {p.description && <p style={{ color: '#334155', fontSize: 9.5, lineHeight: 1.6 }}>{p.description}</p>}
               </div>
             ))}
           </div>

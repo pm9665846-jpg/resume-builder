@@ -1,63 +1,108 @@
 import { NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import { query } from '@/lib/db'
-import { cookies } from 'next/headers'
+import { getSessionUserId, buildResumeData } from '@/lib/session'
 
-async function getUserId() {
-  const session = await getServerSession(authOptions)
-  if (session?.user?.id) return session.user.id
-
-  const cookieStore = await cookies()
-  const raw = cookieStore.get('session_user')?.value
-  if (raw) {
-    try {
-      const user = JSON.parse(raw)
-      if (user?.id) return String(user.id)
-    } catch {}
-  }
-  return null
-}
-
-export async function GET(req, { params }) {
+// ── GET /api/resumes/:id ──
+export async function GET(req, context) {
   try {
-    const userId = await getUserId()
+    const { id } = await context.params
+    const userId = await getSessionUserId()
     if (!userId) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
-    const rows = await query('SELECT * FROM resumes WHERE id = ? AND user_id = ?', [params.id, userId])
-    if (!rows.length) return NextResponse.json({ error: 'Not found' }, { status: 404 })
-
-    const resume = rows[0]
-    return NextResponse.json({ resume: { ...resume, data: JSON.parse(resume.data || '{}') } })
-  } catch (err) {
-    return NextResponse.json({ error: err.message }, { status: 500 })
-  }
-}
-
-export async function PUT(req, { params }) {
-  try {
-    const userId = await getUserId()
-    if (!userId) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-
-    const { title, template, themeColor, data } = await req.json()
-    await query(
-      'UPDATE resumes SET title = ?, template = ?, theme_color = ?, data = ?, updated_at = NOW() WHERE id = ? AND user_id = ?',
-      [title, template, themeColor, JSON.stringify(data), params.id, userId]
+    const rows = await query(
+      'SELECT * FROM resumes WHERE id = ? AND user_id = ?',
+      [id, userId]
     )
-    return NextResponse.json({ success: true })
+    if (!rows.length) return NextResponse.json({ error: 'Resume not found' }, { status: 404 })
+
+    const row  = rows[0]
+    const data = JSON.parse(row.data || '{}')
+
+    return NextResponse.json({
+      success: true,
+      resume: {
+        id:         row.id,
+        title:      row.title,
+        template:   row.template,
+        themeColor: row.theme_color,
+        fontFamily: data.fontFamily || 'Arial, Helvetica, sans-serif',
+        isDraft:    Boolean(row.is_draft),
+        createdAt:  row.created_at,
+        updatedAt:  row.updated_at,
+        data: {
+          personalInfo:   data.personalInfo   || {},
+          experience:     data.experience     || [],
+          education:      data.education      || [],
+          skills:         data.skills         || [],
+          projects:       data.projects       || [],
+          certifications: data.certifications || [],
+          languages:      data.languages      || [],
+          achievements:   data.achievements   || [],
+        },
+      },
+    })
   } catch (err) {
+    console.error('[GET /api/resumes/:id]', err)
     return NextResponse.json({ error: err.message }, { status: 500 })
   }
 }
 
-export async function DELETE(req, { params }) {
+// ── PUT /api/resumes/:id ──
+export async function PUT(req, context) {
   try {
-    const userId = await getUserId()
+    const { id } = await context.params
+    const userId = await getSessionUserId()
     if (!userId) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
-    await query('DELETE FROM resumes WHERE id = ? AND user_id = ?', [params.id, userId])
-    return NextResponse.json({ success: true })
+    const existing = await query(
+      'SELECT id, data FROM resumes WHERE id = ? AND user_id = ?',
+      [id, userId]
+    )
+    if (!existing.length) return NextResponse.json({ error: 'Resume not found' }, { status: 404 })
+
+    const body = await req.json()
+
+    const title      = body.title      || 'Untitled Resume'
+    const template   = body.template   || 'modern'
+    const themeColor = body.themeColor || '#8b5cf6'
+    const isDraft    = body.isDraft    ? 1 : 0
+
+    const existingData = JSON.parse(existing[0].data || '{}')
+    const incomingData = body.data || body
+    const merged = buildResumeData({ ...existingData, ...incomingData })
+
+    await query(
+      `UPDATE resumes
+       SET title = ?, template = ?, theme_color = ?, is_draft = ?, data = ?, updated_at = NOW()
+       WHERE id = ? AND user_id = ?`,
+      [title, template, themeColor, isDraft, JSON.stringify(merged), id, userId]
+    )
+
+    return NextResponse.json({ success: true, message: 'Resume updated successfully' })
   } catch (err) {
+    console.error('[PUT /api/resumes/:id]', err)
+    return NextResponse.json({ error: err.message }, { status: 500 })
+  }
+}
+
+// ── DELETE /api/resumes/:id ──
+export async function DELETE(req, context) {
+  try {
+    const { id } = await context.params
+    const userId = await getSessionUserId()
+    if (!userId) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+
+    const existing = await query(
+      'SELECT id FROM resumes WHERE id = ? AND user_id = ?',
+      [id, userId]
+    )
+    if (!existing.length) return NextResponse.json({ error: 'Resume not found' }, { status: 404 })
+
+    await query('DELETE FROM resumes WHERE id = ? AND user_id = ?', [id, userId])
+
+    return NextResponse.json({ success: true, message: 'Resume deleted successfully' })
+  } catch (err) {
+    console.error('[DELETE /api/resumes/:id]', err)
     return NextResponse.json({ error: err.message }, { status: 500 })
   }
 }

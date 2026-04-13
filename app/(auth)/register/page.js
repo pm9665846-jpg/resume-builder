@@ -85,7 +85,7 @@ function RegisterForm() {
   const tc = templateColors[selectedTemplate] || '#8b5cf6'
 
   return (
-    <div style={{ minHeight: '100vh', width: '100%', background: '#050508', display: 'flex', position: 'relative' }}>
+    <div style={{ minHeight: '100vh', width: '100%', background: 'var(--bg)', display: 'flex', position: 'relative' }}>
       {/* Background */}
       <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
         <div className="grid-pattern" style={{ position: 'absolute', inset: 0, opacity: 0.3 }} />
@@ -149,14 +149,14 @@ function RegisterForm() {
               </div>
               <span className="gradient-text" style={{ fontWeight: 700, fontSize: '1.2rem' }}>Resume Maker</span>
             </Link>
-            <h1 style={{ fontSize: '1.75rem', fontWeight: 900, color: 'white', marginBottom: 6 }}>Create your account</h1>
-            <p style={{ color: '#94a3b8', fontSize: '0.875rem' }}>
+            <h1 style={{ fontSize: '1.75rem', fontWeight: 900, color: 'var(--text)', marginBottom: 6 }}>Create your account</h1>
+            <p style={{ color: 'var(--text2)', fontSize: '0.875rem' }}>
               Start building with the <span style={{ color: tc, fontWeight: 600 }}>{templateNames[selectedTemplate]}</span> template
             </p>
           </div>
 
           {/* Card */}
-          <div style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 20, padding: 28, backdropFilter: 'blur(20px)' }}>
+          <div style={{ background: 'var(--card2)', border: '1px solid var(--border2)', borderRadius: 20, padding: 28, backdropFilter: 'blur(20px)' }}>
             {error && (
               <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}
                 style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.2)', borderRadius: 10, padding: '10px 14px', marginBottom: 18, color: '#f87171', fontSize: '0.85rem', textAlign: 'center' }}>
@@ -189,9 +189,9 @@ function RegisterForm() {
 
             {/* Divider */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 18 }}>
-              <div style={{ flex: 1, height: 1, background: 'rgba(255,255,255,0.08)' }} />
-              <span style={{ color: '#475569', fontSize: '0.72rem' }}>or register with email</span>
-              <div style={{ flex: 1, height: 1, background: 'rgba(255,255,255,0.08)' }} />
+              <div style={{ flex: 1, height: 1, background: 'var(--border)' }} />
+              <span style={{ color: 'var(--text3)', fontSize: '0.72rem' }}>or register with email</span>
+              <div style={{ flex: 1, height: 1, background: 'var(--border)' }} />
             </div>
 
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -201,7 +201,7 @@ function RegisterForm() {
                 { key: 'password', label: 'Password', type: 'password', placeholder: 'Min. 8 characters', icon: Lock },
               ].map(({ key, label, type, placeholder, icon: Icon }) => (
                 <div key={key}>
-                  <label style={{ display: 'block', fontSize: '0.7rem', fontWeight: 600, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 6 }}>{label}</label>
+                  <label style={{ display: 'block', fontSize: '0.7rem', fontWeight: 600, color: 'var(--text2)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 6 }}>{label}</label>
                   <div style={{ position: 'relative' }}>
                     <Icon size={14} color="#64748b" style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} />
                     <input
@@ -245,7 +245,7 @@ function RegisterForm() {
               </button>
             </form>
 
-            <p style={{ textAlign: 'center', marginTop: 20, fontSize: '0.85rem', color: '#64748b' }}>
+            <p style={{ textAlign: 'center', marginTop: 20, fontSize: '0.85rem', color: 'var(--text3)' }}>
               Already have an account?{' '}
               <Link href="/login" style={{ color: '#a78bfa', textDecoration: 'none', fontWeight: 600 }}>Sign in</Link>
             </p>
@@ -358,7 +358,7 @@ function TemplateMiniPreview({ templateId, color }) {
 
 export default function RegisterPage() {
   return (
-    <Suspense fallback={<div style={{ minHeight: '100vh', background: '#050508' }} />}>
+    <Suspense fallback={<div style={{ minHeight: '100vh', background: 'var(--bg)' }} />}>
       <RegisterForm />
     </Suspense>
   )

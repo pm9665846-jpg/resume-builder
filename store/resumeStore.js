@@ -6,6 +6,7 @@ const defaultResume = {
   title: 'My Resume',
   template: 'modern',
   themeColor: '#8b5cf6',
+  fontFamily: 'Arial',
   personalInfo: {
     name: '',
     jobTitle: '',
@@ -46,6 +47,9 @@ export const useResumeStore = create((set) => ({
 
   updateThemeColor: (themeColor) =>
     set((state) => ({ resume: { ...state.resume, themeColor }, isDirty: true })),
+
+  updateFontFamily: (fontFamily) =>
+    set((state) => ({ resume: { ...state.resume, fontFamily }, isDirty: true })),
 
   // Experience
   addExperience: () =>

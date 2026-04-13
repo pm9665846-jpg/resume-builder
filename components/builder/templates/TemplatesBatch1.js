@@ -290,25 +290,25 @@ export function DarkProTemplate({ resume }) {
   const prj = projects.length > 0 ? projects : S.projects
   const SH = ({ t }) => <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}><h2 style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.16em', color: tc, whiteSpace: 'nowrap' }}>{t}</h2><div style={{ flex: 1, height: 1, background: `${tc}40` }} /></div>
   return (
-    <div style={{ background: '#0d1117', color: '#e6edf3', fontFamily: 'Arial, sans-serif', fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm' }}>
-      <div style={{ padding: '28px 32px 20px', borderBottom: `2px solid ${tc}40`, display: 'flex', alignItems: 'center', gap: 20 }}>
+    <div style={{ background: '#ffffff', color: '#1e293b', fontFamily: 'Arial, sans-serif', fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm' }}>
+      <div style={{ padding: '28px 32px 20px', borderBottom: `2px solid ${tc}`, display: 'flex', alignItems: 'center', gap: 20, background: '#ffffff' }}>
         {photo && <img src={photo} alt="" style={{ width: 72, height: 72, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}`, flexShrink: 0 }} />}
         <div>
-          <h1 style={{ fontSize: 26, fontWeight: 900, color: 'white', marginBottom: 4 }}>{name}</h1>
+          <h1 style={{ fontSize: 26, fontWeight: 900, color: '#0f172a', marginBottom: 4 }}>{name}</h1>
           <p style={{ fontSize: 12, color: tc, fontWeight: 700, marginBottom: 10 }}>{jobTitle}</p>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px', fontSize: 9.5, color: '#8b949e' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px', fontSize: 9.5, color: '#475569' }}>
             {[{ I: Mail, v: email }, { I: Phone, v: phone }, { I: MapPin, v: location }].filter(x => x.v).map(({ I, v }, i) => <span key={i} style={{ display: 'flex', alignItems: 'center', gap: 4 }}><I size={9} color={tc} />{v}</span>)}
           </div>
         </div>
       </div>
-      <div style={{ padding: '20px 32px 40px' }}>
-        <div style={{ marginBottom: 16, padding: '12px 16px', background: '#161b22', border: `1px solid ${tc}30`, borderRadius: 8 }}><p style={{ color: '#8b949e', fontSize: 10.5, lineHeight: 1.8 }}>{summary}</p></div>
-        <div style={{ marginBottom: 16 }}><SH t="Experience" />{exp.map((e, i) => <div key={e.id} style={{ marginBottom: i < exp.length - 1 ? 12 : 0, padding: '10px 12px', background: '#161b22', border: `1px solid #30363d`, borderRadius: 6 }}><div style={{ display: 'flex', justifyContent: 'space-between' }}><div><p style={{ fontWeight: 800, fontSize: 11, color: 'white' }}>{e.role}</p><p style={{ color: tc, fontSize: 10, fontWeight: 600 }}>{e.company}</p></div><span style={{ fontSize: 8.5, color: '#8b949e' }}>{e.startDate} — {e.current ? 'Present' : e.endDate}</span></div>{e.description && e.description.split('\n').filter(Boolean).map((l, li) => <p key={li} style={{ color: '#8b949e', fontSize: 9.5, lineHeight: 1.6 }}>{l}</p>)}</div>)}</div>
+      <div style={{ padding: '20px 32px 40px', background: '#ffffff' }}>
+        <div style={{ marginBottom: 16, padding: '12px 16px', background: '#f8fafc', border: `1px solid ${tc}40`, borderRadius: 8 }}><p style={{ color: '#334155', fontSize: 10.5, lineHeight: 1.8 }}>{summary}</p></div>
+        <div style={{ marginBottom: 16 }}><SH t="Experience" />{exp.map((e, i) => <div key={e.id} style={{ marginBottom: i < exp.length - 1 ? 12 : 0, padding: '10px 12px', background: '#f8fafc', border: `1px solid #e2e8f0`, borderRadius: 6 }}><div style={{ display: 'flex', justifyContent: 'space-between' }}><div><p style={{ fontWeight: 800, fontSize: 11, color: '#0f172a' }}>{e.role}</p><p style={{ color: tc, fontSize: 10, fontWeight: 600 }}>{e.company}</p></div><span style={{ fontSize: 8.5, color: '#64748b' }}>{e.startDate} — {e.current ? 'Present' : e.endDate}</span></div>{e.description && e.description.split('\n').filter(Boolean).map((l, li) => <p key={li} style={{ color: '#334155', fontSize: 9.5, lineHeight: 1.6 }}>{l}</p>)}</div>)}</div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 16 }}>
-          <div><SH t="Skills" />{skl.map(s => <div key={s.id} style={{ marginBottom: 5 }}><div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 2 }}><span style={{ fontSize: 9.5, color: '#e6edf3' }}>{s.name}</span><span style={{ fontSize: 8, color: tc }}>{s.level}%</span></div><div style={{ height: 3, background: '#21262d', borderRadius: 2 }}><div style={{ height: 3, background: tc, borderRadius: 2, width: `${s.level}%` }} /></div></div>)}</div>
-          <div><SH t="Education" />{edu.map(e => <div key={e.id} style={{ marginBottom: 8, padding: '8px 10px', background: '#161b22', border: '1px solid #30363d', borderRadius: 6 }}><p style={{ fontWeight: 700, fontSize: 10, color: 'white' }}>{e.degree}</p><p style={{ color: '#8b949e', fontSize: 9.5 }}>{e.school}</p><p style={{ color: '#6e7681', fontSize: 9 }}>{e.startDate} — {e.endDate}</p></div>)}</div>
+          <div><SH t="Skills" />{skl.map(s => <div key={s.id} style={{ marginBottom: 5 }}><div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 2 }}><span style={{ fontSize: 9.5, color: '#1e293b' }}>{s.name}</span><span style={{ fontSize: 8, color: tc }}>{s.level}%</span></div><div style={{ height: 3, background: '#e2e8f0', borderRadius: 2 }}><div style={{ height: 3, background: tc, borderRadius: 2, width: `${s.level}%` }} /></div></div>)}</div>
+          <div><SH t="Education" />{edu.map(e => <div key={e.id} style={{ marginBottom: 8, padding: '8px 10px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 6 }}><p style={{ fontWeight: 700, fontSize: 10, color: '#0f172a' }}>{e.degree}</p><p style={{ color: '#475569', fontSize: 9.5 }}>{e.school}</p><p style={{ color: '#64748b', fontSize: 9 }}>{e.startDate} — {e.endDate}</p></div>)}</div>
         </div>
-        <SH t="Projects" />{prj.map((p, i) => <div key={p.id} style={{ marginBottom: i < prj.length - 1 ? 8 : 0, padding: '10px 12px', background: '#161b22', border: `1px solid ${tc}30`, borderRadius: 6 }}><p style={{ fontWeight: 700, fontSize: 10.5, color: 'white' }}>{p.name}</p>{p.tech && <p style={{ color: tc, fontSize: 9, marginBottom: 2 }}>{p.tech}</p>}{p.description && <p style={{ color: '#8b949e', fontSize: 9.5, lineHeight: 1.6 }}>{p.description}</p>}</div>)}
+        <SH t="Projects" />{prj.map((p, i) => <div key={p.id} style={{ marginBottom: i < prj.length - 1 ? 8 : 0, padding: '10px 12px', background: '#f8fafc', border: `1px solid ${tc}40`, borderRadius: 6 }}><p style={{ fontWeight: 700, fontSize: 10.5, color: '#0f172a' }}>{p.name}</p>{p.tech && <p style={{ color: tc, fontSize: 9, marginBottom: 2 }}>{p.tech}</p>}{p.description && <p style={{ color: '#334155', fontSize: 9.5, lineHeight: 1.6 }}>{p.description}</p>}</div>)}
       </div>
     </div>
   )
