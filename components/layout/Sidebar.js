@@ -86,6 +86,7 @@ export default function Sidebar() {
             </p>
           </div>
         </div>
+
         <button
           onClick={handleSignOut}
           style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 12px', borderRadius: 12, width: '100%', background: 'none', border: 'none', cursor: 'pointer', color: '#64748b', fontSize: '0.875rem', transition: 'all 0.2s' }}

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Plus, FileText, TrendingUp, Eye, Download, Clock, ArrowRight, Sparkles } from 'lucide-react'
 import { useSession } from 'next-auth/react'
+import AdBanner from '@/components/ads/AdBanner'
 
 function getGreeting() {
   const hour = new Date().getHours()
@@ -38,7 +39,7 @@ export default function DashboardPage() {
       <motion.div variants={container} initial="hidden" animate="show">
 
         {/* Header */}
-        <motion.div variants={item} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 40, flexWrap: 'wrap', gap: 16 }}>
+        <motion.div variants={item} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24, flexWrap: 'wrap', gap: 16 }}>
           <div>
             <h1 style={{ fontSize: '1.875rem', fontWeight: 900, color: 'var(--text)', marginBottom: 4 }}>
               {greeting}, <span className="gradient-text">{userName}</span> 👋
@@ -54,6 +55,11 @@ export default function DashboardPage() {
           }}>
             <Plus size={16} /> New Resume
           </Link>
+        </motion.div>
+
+        {/* Inline Ad Card */}
+        <motion.div variants={item} style={{ marginBottom: 32 }}>
+          <AdBanner position="top" variant="card" />
         </motion.div>
 
         {/* Stats */}

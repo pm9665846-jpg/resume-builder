@@ -56,6 +56,7 @@ providers.push(
           name: user.name,
           email: user.email,
           image: user.avatar || null,
+          role: user.role || 'user',
         }
       } catch (err) {
         console.error('Auth error:', err.message)
@@ -102,11 +103,15 @@ export const authOptions = {
       if (user) {
         token.id = user.id
         token.provider = account?.provider || 'credentials'
+        token.role = user.role || 'user'
       }
       if (account?.provider === 'google' && !token.id) {
         try {
-          const rows = await query('SELECT id FROM users WHERE email = ?', [token.email?.toLowerCase()])
-          if (rows.length) token.id = String(rows[0].id)
+          const rows = await query('SELECT id, role FROM users WHERE email = ?', [token.email?.toLowerCase()])
+          if (rows.length) {
+            token.id = String(rows[0].id)
+            token.role = rows[0].role || 'user'
+          }
         } catch {}
       }
       return token
@@ -116,6 +121,7 @@ export const authOptions = {
       if (token) {
         session.user.id = token.id
         session.user.provider = token.provider
+        session.user.role = token.role || 'user'
       }
       return session
     },

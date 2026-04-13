@@ -78,7 +78,14 @@ function LoginForm() {
       setError('Invalid email or password.')
       setLoading(false)
     } else {
-      router.push(callbackUrl)
+      // Role-based redirect — fetch session to get role
+      const res = await fetch('/api/auth/session')
+      const session = await res.json()
+      if (session?.user?.role === 'admin') {
+        router.push('/admin')
+      } else {
+        router.push(callbackUrl)
+      }
     }
   }
 
