@@ -2,7 +2,7 @@ import { Mail, Phone, MapPin, Globe, Link2, Award, Star } from 'lucide-react'
 
 const SAMPLE = {
   name: 'xyz', jobTitle: 'Senior Software Engineer',
-  email: 'prachi.mishra@email.com', phone: '+91 98765 43210',
+  email: 'abc@gmail.com', phone: '+91 98765 43210',
   location: 'Mumbai, Maharashtra, India',
   website: 'prachidev.com', linkedin: 'linkedin.com/in/prachi-mishra',
   summary: 'Results-driven Senior Software Engineer with 4+ years of experience designing and building scalable full-stack web applications. Proven track record of leading cross-functional teams, reducing system latency by 40%, and shipping products used by 500K+ users. Passionate about clean architecture, developer experience, and mentoring junior engineers.',

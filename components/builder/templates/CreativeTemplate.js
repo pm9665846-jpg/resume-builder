@@ -2,7 +2,7 @@ import { Mail, Phone, MapPin, Globe, Link2, Award } from 'lucide-react'
 
 const SAMPLE = {
   name: 'xyz', jobTitle: 'UI/UX Designer & Frontend Developer',
-  email: 'prachi.mishra@email.com', phone: '+91 98765 43210',
+  email: 'abc@gmail.com', phone: '+91 98765 43210',
   location: 'Mumbai, India', website: 'prachidesigns.com', linkedin: 'linkedin.com/in/prachi',
   summary: 'Creative UI/UX Designer with 4+ years crafting intuitive digital experiences. Blend of design thinking and frontend engineering skills. Delivered 30+ products across fintech, edtech, and e-commerce. Passionate about accessibility and design systems.',
   experience: [

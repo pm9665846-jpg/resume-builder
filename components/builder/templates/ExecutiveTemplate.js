@@ -2,7 +2,7 @@ import { Mail, Phone, MapPin, Globe, Link2, Award } from 'lucide-react'
 
 const SAMPLE = {
   name: 'xyz', jobTitle: 'Chief Technology Officer',
-  email: 'prachi.mishra@email.com', phone: '+91 98765 43210',
+  email: 'abc@gmail.com', phone: '+91 98765 43210',
   location: 'Mumbai, India', website: 'prachidev.com', linkedin: 'linkedin.com/in/prachi',
   summary: 'Visionary CTO with 10+ years leading technology strategy and engineering excellence at scale. Built and scaled engineering teams from 5 to 200+. Delivered $100M+ in product value. Expert in cloud architecture, digital transformation, and building high-performance engineering cultures.',
   experience: [

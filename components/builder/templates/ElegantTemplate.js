@@ -2,7 +2,7 @@ import { Mail, Phone, MapPin, Globe, Award } from 'lucide-react'
 
 const SAMPLE = {
   name: 'xyz', jobTitle: 'Senior Product Manager',
-  email: 'prachi.mishra@email.com', phone: '+91 98765 43210',
+  email: 'abc@gmail.com', phone: '+91 98765 43210',
   location: 'Mumbai, India', website: 'prachidev.com',
   summary: 'Accomplished Senior Product Manager with 6+ years driving product strategy and execution at scale. Led cross-functional teams of 20+ to deliver products generating $50M+ ARR. Known for data-driven decision making and exceptional stakeholder communication.',
   experience: [
