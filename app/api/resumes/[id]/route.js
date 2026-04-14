@@ -68,8 +68,20 @@ export async function PUT(req, context) {
     const isDraft    = body.isDraft    ? 1 : 0
 
     const existingData = JSON.parse(existing[0].data || '{}')
-    const incomingData = body.data || body
-    const merged = buildResumeData({ ...existingData, ...incomingData })
+    const incomingData = body.data || {}
+
+    // Deep merge: incoming fields override existing, missing fields keep existing values
+    const merged = buildResumeData({
+      fontFamily: body.fontFamily || existingData.fontFamily,
+      personalInfo:   { ...existingData.personalInfo,   ...incomingData.personalInfo },
+      experience:     incomingData.experience     ?? existingData.experience,
+      education:      incomingData.education      ?? existingData.education,
+      skills:         incomingData.skills         ?? existingData.skills,
+      projects:       incomingData.projects       ?? existingData.projects,
+      certifications: incomingData.certifications ?? existingData.certifications,
+      languages:      incomingData.languages      ?? existingData.languages,
+      achievements:   incomingData.achievements   ?? existingData.achievements,
+    })
 
     await query(
       `UPDATE resumes

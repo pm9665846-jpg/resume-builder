@@ -45,14 +45,21 @@ export default function EditResumePage() {
         const res = await fetch(`/api/resumes/${params.id}`)
         if (!res.ok) { setError('Resume not found'); setLoading(false); return }
         const { resume: r } = await res.json()
-        // Restore full resume into store
+        // Restore full resume into store — spread data fields at top level
         setResume({
-          ...r.data,
-          id:         r.id,
-          title:      r.title,
-          template:   r.template,
-          themeColor: r.themeColor,
-          fontFamily: r.fontFamily || 'Arial, Helvetica, sans-serif',
+          id:             r.id,
+          title:          r.title,
+          template:       r.template,
+          themeColor:     r.themeColor,
+          fontFamily:     r.fontFamily || r.data?.fontFamily || 'Arial, Helvetica, sans-serif',
+          personalInfo:   r.data?.personalInfo   || {},
+          experience:     r.data?.experience     || [],
+          education:      r.data?.education      || [],
+          skills:         r.data?.skills         || [],
+          projects:       r.data?.projects       || [],
+          certifications: r.data?.certifications || [],
+          languages:      r.data?.languages      || [],
+          achievements:   r.data?.achievements   || [],
         })
         setLoading(false)
       } catch {

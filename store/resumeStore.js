@@ -35,6 +35,7 @@ export const useResumeStore = create((set) => ({
   lastSaved: null,
 
   setResume: (resume) => set({ resume, isDirty: false }),
+  setResumeId: (id) => set((state) => ({ resume: { ...state.resume, id } })),
 
   updatePersonalInfo: (field, value) =>
     set((state) => ({
@@ -175,7 +176,7 @@ export const useResumeStore = create((set) => ({
   reorderSections: (newOrder) =>
     set((state) => ({ resume: { ...state.resume, sectionOrder: newOrder }, isDirty: true })),
 
-  resetResume: (overrides = {}) => set({ resume: { ...defaultResume, id: generateId(), ...overrides }, isDirty: false }),
+  resetResume: (overrides = {}) => set({ resume: { ...defaultResume, id: null, ...overrides }, isDirty: false }),
   setIsSaving: (isSaving) => set({ isSaving }),
   setLastSaved: (lastSaved) => set({ lastSaved }),
 }))

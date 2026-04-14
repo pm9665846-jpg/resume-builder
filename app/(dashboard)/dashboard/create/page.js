@@ -37,6 +37,7 @@ function BuilderContent() {
   const templateParam = searchParams.get('template') || 'modern'
 
   const { resume, isDirty, isSaving, lastSaved, setIsSaving, setLastSaved, resetResume, updateTemplate, updateThemeColor } = useResumeStore()
+  const setResumeId = useResumeStore(s => s.setResumeId)
   const [activeSection, setActiveSection] = useState('personal')
   const [showPreview, setShowPreview] = useState(true)
   const [exportLoading, setExportLoading] = useState(false)
@@ -78,7 +79,7 @@ function BuilderContent() {
           })
           const json = await res.json()
           if (json.id) {
-            useResumeStore.getState().setResume({ ...resume, id: json.id })
+            useResumeStore.getState().setResumeId(json.id)
           }
         } else {
           await fetch(`/api/resumes/${resume.id}`, {
@@ -142,7 +143,7 @@ function BuilderContent() {
         })
         const json = await res.json()
         if (json.id) {
-          useResumeStore.getState().setResume({ ...resume, id: json.id })
+          setResumeId(json.id)
         }
       }
 
