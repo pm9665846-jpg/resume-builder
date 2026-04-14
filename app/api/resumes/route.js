@@ -9,23 +9,31 @@ export async function GET() {
     if (!userId) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
     const rows = await query(
-      `SELECT id, title, template, theme_color, is_draft, created_at, updated_at
+      `SELECT id, title, template, theme_color, is_draft, data, created_at, updated_at
        FROM resumes
        WHERE user_id = ?
        ORDER BY updated_at DESC`,
       [userId]
     )
 
-    const resumes = rows.map(r => ({
-      id:         r.id,
-      title:      r.title,
-      template:   r.template,
-      themeColor: r.theme_color,
-      fontFamily: 'Arial, Helvetica, sans-serif',
-      isDraft:    Boolean(r.is_draft),
-      createdAt:  r.created_at,
-      updatedAt:  r.updated_at,
-    }))
+    const resumes = rows.map(r => {
+      let jobTitle = ''
+      try {
+        const parsed = JSON.parse(r.data || '{}')
+        jobTitle = parsed?.personalInfo?.jobTitle || ''
+      } catch {}
+      return {
+        id:         r.id,
+        title:      r.title,
+        jobTitle,
+        template:   r.template,
+        themeColor: r.theme_color,
+        fontFamily: 'Arial, Helvetica, sans-serif',
+        isDraft:    Boolean(r.is_draft),
+        createdAt:  r.created_at,
+        updatedAt:  r.updated_at,
+      }
+    })
 
     return NextResponse.json({ success: true, resumes })
   } catch (err) {
