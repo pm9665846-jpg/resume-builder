@@ -1,5 +1,14 @@
 'use client'
 import { useResumeStore } from '@/store/resumeStore'
+
+// Convert stored fileName to displayable URL
+function resolvePhotoUrl(photo) {
+  if (!photo) return ''
+  // Already a full URL or base64
+  if (photo.startsWith('http') || photo.startsWith('data:') || photo.startsWith('/')) return photo
+  // Just a filename — prepend uploads path
+  return `/uploads/${photo}`
+}
 import ModernTemplate from './templates/ModernTemplate'
 import ExecutiveTemplate from './templates/ExecutiveTemplate'
 import CreativeTemplate from './templates/CreativeTemplate'
@@ -26,6 +35,27 @@ import { AuroraTemplate, MagazineTemplate, CircuitTemplate, CanvasTemplate, Metr
 import { RibbonTemplate, GlassProTemplate, NordicTemplate, BoldBlocksTemplate, SpotlightTemplate, TimelineProTemplate } from './templates/TemplatesNew3'
 import { DuotoneTemplate, PassportTemplate, TerminalTemplate, BlueprintTemplate, InfoPanelTemplate, VintageTemplate, GradientFlowTemplate, SidebarAccentTemplate, HexGridTemplate, CleanCorporateTemplate } from './templates/TemplatesNew4'
 import { BlossomTemplate, MistTemplate, MeadowTemplate, GoldenAgeTemplate, FrostTemplate, VividTemplate, NavyProTemplate, HexFolioTemplate, TealCardTemplate, CrimsonSideTemplate, CoralBoxTemplate, CleanListTemplate, SimpleDocTemplate, TimelineSideTemplate, DotFlowTemplate, OceanCardTemplate, NavyBlockTemplate, RightNameTemplate, BlackBoxTemplate, SplitCleanTemplate, DarkPanelTemplate, AccentBarTemplate, StripEdgeTemplate, TopBandTemplate, CornerPhotoTemplate, LabelRowTemplate, VelvetRoseTemplate, ManuscriptTemplate } from './templates/TemplatesNew5'
+import { ZenTemplate, CharcoalSideTemplate, CinemaTemplate, ArchiveTemplate, PrismaTemplate, NorthTemplate, StudioTemplate, LegacyTemplate, SpectrumTemplate, MonolithTemplate } from './templates/TemplatesNew6'
+import AuroraProTemplate from './templates/AuroraProTemplate'
+import PetalTemplate from './templates/PetalTemplate'
+import FoldioTemplate from './templates/FoldioTemplate'
+import NightOwlTemplate from './templates/NightOwlTemplate'
+import GeometricTemplate from './templates/GeometricTemplate'
+import WaveFlowTemplate from './templates/WaveFlowTemplate'
+import TidalTemplate from './templates/TidalTemplate'
+import CrestTemplate from './templates/CrestTemplate'
+import MidwaveTemplate from './templates/MidwaveTemplate'
+import TagStormTemplate from './templates/TagStormTemplate'
+import CardDeckTemplate from './templates/CardDeckTemplate'
+import TriwaveTemplate from './templates/TriwaveTemplate'
+import RippleTemplate from './templates/RippleTemplate'
+import SurgeTemplate from './templates/SurgeTemplate'
+import RippleBgTemplate from './templates/RippleBgTemplate'
+import SlashTemplate from './templates/SlashTemplate'
+import BubbleSkillTemplate from './templates/BubbleSkillTemplate'
+import ParaTagTemplate from './templates/ParaTagTemplate'
+import AccentBarTemplate2 from './templates/AccentBarTemplate2'
+import RunwayTemplate from './templates/RunwayTemplate'
 
 export const templateMap = {
   modern: ModernTemplate,
@@ -189,11 +219,58 @@ export const templateMap = {
   labelrow: LabelRowTemplate,
   velvetrose: VelvetRoseTemplate,
   manuscript: ManuscriptTemplate,
+  zen: ZenTemplate,
+  charcoalside: CharcoalSideTemplate,
+  cinema: CinemaTemplate,
+  archive: ArchiveTemplate,
+  prisma: PrismaTemplate,
+  north: NorthTemplate,
+  studio: StudioTemplate,
+  legacy: LegacyTemplate,
+  spectrum: SpectrumTemplate,
+  monolith: MonolithTemplate,
+  aurorapro: AuroraProTemplate,
+  petal: PetalTemplate,
+  foldio: FoldioTemplate,
+  nightowl: NightOwlTemplate,
+  geometric: GeometricTemplate,
+  waveflow: WaveFlowTemplate,
+  tidal: TidalTemplate,
+  crest: CrestTemplate,
+  midwave: MidwaveTemplate,
+  tagstorm: TagStormTemplate,
+  carddeck: CardDeckTemplate,
+  triwave: TriwaveTemplate,
+  ripple: RippleTemplate,
+  surge: SurgeTemplate,
+  ripplebg: RippleBgTemplate,
+  slash: SlashTemplate,
+  bubbleskill: BubbleSkillTemplate,
+  paratag: ParaTagTemplate,
+  accentbar2: AccentBarTemplate2,
+  runway: RunwayTemplate,
 }
 
 export default function ResumePreview() {
   const { resume } = useResumeStore()
   const Template = templateMap[resume.template] || ModernTemplate
+
+  // Convert stored fileName to full URL for display
+  const resolvedResume = {
+    ...resume,
+    interests: resume.interests || [],
+    data: {
+      ...resume.data,
+      personalInfo: {
+        ...resume.data?.personalInfo,
+        photo: resolvePhotoUrl(resume.data?.personalInfo?.photo),
+      },
+    },
+    personalInfo: {
+      ...resume.personalInfo,
+      photo: resolvePhotoUrl(resume.personalInfo?.photo),
+    },
+  }
 
   return (
     <div style={{
@@ -222,7 +299,7 @@ export default function ResumePreview() {
           MozOsxFontSmoothing: 'grayscale',
         }}
       >
-        <Template resume={resume} />
+        <Template resume={resolvedResume} />
       </div>
     </div>
   )

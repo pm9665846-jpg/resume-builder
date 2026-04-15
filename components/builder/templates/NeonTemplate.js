@@ -73,7 +73,7 @@ export default function NeonTemplate({ resume }) {
 
         <div style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: 18 }}>
           {photo && (
-            <img src={photo} alt="Profile" style={{ width: 68, height: 68, borderRadius: '50%', objectFit: 'cover', border: `2px solid ${tc}`, boxShadow: `0 0 12px ${tc}60`, flexShrink: 0 }} />
+            <img src={photo} alt="Profile" style={{ width: 114, height: 114, borderRadius: '50%', objectFit: 'cover', border: `2px solid ${tc}`, boxShadow: `0 0 12px ${tc}60`, flexShrink: 0 }} />
           )}
           <div>
             <h1 style={{ fontSize: 30, fontWeight: 900, color: '#0f172a', letterSpacing: '-0.02em', lineHeight: 1, marginBottom: 5 }}>{name}</h1>

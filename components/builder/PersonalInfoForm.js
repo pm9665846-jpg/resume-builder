@@ -36,12 +36,19 @@ export default function PersonalInfoForm() {
   const u = (field) => (e) => updatePersonalInfo(field, e.target.value)
   const fileRef = useRef(null)
 
-  function handlePhoto(e) {
+  async function handlePhoto(e) {
     const file = e.target.files?.[0]
     if (!file) return
-    const reader = new FileReader()
-    reader.onload = (ev) => updatePersonalInfo('photo', ev.target.result)
-    reader.readAsDataURL(file)
+
+    const formData = new FormData()
+    formData.append('file', file)
+
+    const res = await fetch('/api/upload', { method: 'POST', body: formData })
+    const data = await res.json()
+
+    if (data.fileName) {
+      updatePersonalInfo('photo', data.fileName)
+    }
   }
 
   return (
@@ -62,7 +69,7 @@ export default function PersonalInfoForm() {
           onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(139,92,246,0.4)'}
         >
           {personalInfo.photo ? (
-            <img src={personalInfo.photo} alt="Profile" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <img src={personalInfo.photo.startsWith('http') || personalInfo.photo.startsWith('data:') || personalInfo.photo.startsWith('/') ? personalInfo.photo : `/uploads/${personalInfo.photo}`} alt="Profile" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           ) : (
             <Camera size={22} color="#7c3aed" />
           )}

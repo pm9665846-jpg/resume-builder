@@ -27,7 +27,7 @@ export function AmberTemplate({ resume }) {
     <div style={{ background: 'white', fontFamily: 'Arial, sans-serif', fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm' }}>
       <div style={{ background: `linear-gradient(to bottom right, #fffbeb, #fef3c7)`, padding: '28px 32px 20px', borderBottom: `3px solid ${tc}` }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
-          {photo && <img src={photo} alt="" style={{ width: 72, height: 72, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}`, flexShrink: 0 }} />}
+          {photo && <img src={photo} alt="" style={{ width: 96, height: 96, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}`, flexShrink: 0 }} />}
           <div>
             <h1 style={{ fontSize: 26, fontWeight: 900, color: '#1c1917', marginBottom: 3 }}>{name}</h1>
             <p style={{ fontSize: 12, color: tc, fontWeight: 700, marginBottom: 8 }}>{jobTitle}</p>
@@ -73,7 +73,7 @@ export function ForestTemplate({ resume }) {
   return (
     <div style={{ background: 'white', fontFamily: 'Arial, sans-serif', fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm', display: 'flex' }}>
       <div style={{ width: '35%', background: tc, padding: '26px 16px 40px', color: 'white', flexShrink: 0 }}>
-        {photo && <img src={photo} alt="" style={{ width: 72, height: 72, borderRadius: '50%', objectFit: 'cover', border: '3px solid rgba(255,255,255,0.3)', marginBottom: 14 }} />}
+        {photo && <img src={photo} alt="" style={{ width: 96, height: 96, borderRadius: '50%', objectFit: 'cover', border: '3px solid rgba(255,255,255,0.3)', marginBottom: 14 }} />}
         <h1 style={{ fontSize: 16, fontWeight: 800, lineHeight: 1.2, marginBottom: 4 }}>{name}</h1>
         <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.8)', marginBottom: 14 }}>{jobTitle}</p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 5, marginBottom: 18 }}>
@@ -108,7 +108,7 @@ export function OceanTemplate({ resume }) {
   return (
     <div style={{ background: 'white', fontFamily: 'Arial, sans-serif', fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm' }}>
       <div style={{ background: `linear-gradient(135deg, #0c4a6e 0%, ${tc} 60%, #0ea5e9 100%)`, padding: '28px 32px 22px', color: 'white', display: 'flex', alignItems: 'center', gap: 20 }}>
-        {photo && <img src={photo} alt="" style={{ width: 76, height: 76, borderRadius: '50%', objectFit: 'cover', border: '3px solid rgba(255,255,255,0.4)', flexShrink: 0 }} />}
+        {photo && <img src={photo} alt="" style={{ width: 100, height: 100, borderRadius: '50%', objectFit: 'cover', border: '3px solid rgba(255,255,255,0.4)', flexShrink: 0 }} />}
         <div>
           <h1 style={{ fontSize: 26, fontWeight: 900, marginBottom: 4 }}>{name}</h1>
           <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.85)', fontWeight: 600, marginBottom: 10 }}>{jobTitle}</p>
@@ -153,7 +153,7 @@ export function RoseTemplate({ resume }) {
   return (
     <div style={{ background: '#fff1f2', fontFamily: 'Arial, sans-serif', fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm', padding: '24px 28px 40px' }}>
       <div style={{ background: 'white', borderRadius: 16, padding: '20px 24px', marginBottom: 14, boxShadow: `0 4px 20px ${tc}15`, display: 'flex', alignItems: 'center', gap: 18 }}>
-        {photo && <img src={photo} alt="" style={{ width: 72, height: 72, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}40`, flexShrink: 0 }} />}
+        {photo && <img src={photo} alt="" style={{ width: 96, height: 96, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}40`, flexShrink: 0 }} />}
         <div>
           <h1 style={{ fontSize: 24, fontWeight: 900, color: '#1a1a2e', marginBottom: 3 }}>{name}</h1>
           <p style={{ fontSize: 11, color: tc, fontWeight: 700, marginBottom: 8 }}>{jobTitle}</p>
@@ -204,7 +204,7 @@ export function SlateTemplate({ resume }) {
   return (
     <div style={{ background: 'white', fontFamily: 'Arial, sans-serif', fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm' }}>
       <div style={{ background: '#1e293b', padding: '26px 32px 20px', color: 'white', display: 'flex', alignItems: 'center', gap: 20 }}>
-        {photo && <img src={photo} alt="" style={{ width: 72, height: 72, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}`, flexShrink: 0 }} />}
+        {photo && <img src={photo} alt="" style={{ width: 96, height: 96, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}`, flexShrink: 0 }} />}
         <div>
           <h1 style={{ fontSize: 26, fontWeight: 900, marginBottom: 4 }}>{name}</h1>
           <p style={{ fontSize: 11, color: tc, fontWeight: 600, marginBottom: 10 }}>{jobTitle}</p>

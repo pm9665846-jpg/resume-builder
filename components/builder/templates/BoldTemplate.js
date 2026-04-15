@@ -69,7 +69,7 @@ export default function BoldTemplate({ resume }) {
         <div style={{ position: 'absolute', top: 0, right: 70, width: 80, height: '100%', background: tc, opacity: 0.1, transform: 'skewX(-10deg)' }} />
         <div style={{ display: 'flex', alignItems: 'center', gap: 18, position: 'relative' }}>
           {photo && (
-            <img src={photo} alt="Profile" style={{ width: 68, height: 68, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}`, flexShrink: 0 }} />
+            <img src={photo} alt="Profile" style={{ width: 80, height: 80, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}`, flexShrink: 0 }} />
           )}
           <div>
             <h1 style={{ fontSize: 30, fontWeight: 900, color: 'white', letterSpacing: '-0.02em', lineHeight: 1, marginBottom: 5 }}>{name}</h1>

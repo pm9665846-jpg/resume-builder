@@ -12,7 +12,8 @@ import CertificationsForm from '@/components/builder/CertificationsForm'
 import LanguagesForm from '@/components/builder/LanguagesForm'
 import TemplateSelector from '@/components/builder/TemplateSelector'
 import ResumePreview from '@/components/builder/ResumePreview'
-import { Save, Download, FileText, User, Briefcase, GraduationCap, Code2, Palette, Eye, EyeOff, Zap, CheckCircle, Award, Languages, ArrowLeft } from 'lucide-react'
+import InterestsForm from '@/components/builder/InterestsForm'
+import { Save, Download, FileText, User, Briefcase, GraduationCap, Code2, Palette, Eye, EyeOff, Zap, CheckCircle, Award, Languages, ArrowLeft, Heart } from 'lucide-react'
 import { exportToPDF } from '@/lib/exportResume'
 import Link from 'next/link'
 
@@ -24,6 +25,7 @@ const sections = [
   { id: 'projects',       label: 'Projects',   icon: Code2,         component: ProjectsForm },
   { id: 'certifications', label: 'Certs',      icon: Award,         component: CertificationsForm },
   { id: 'languages',      label: 'Languages',  icon: Languages,     component: LanguagesForm },
+  { id: 'interests',      label: 'Interests',  icon: Heart,         component: InterestsForm },
   { id: 'design',         label: 'Design',     icon: Palette,       component: TemplateSelector },
 ]
 
@@ -60,6 +62,7 @@ export default function EditResumePage() {
           certifications: r.data?.certifications || [],
           languages:      r.data?.languages      || [],
           achievements:   r.data?.achievements   || [],
+          interests:      r.data?.interests      || [],
         })
         setLoading(false)
       } catch {
@@ -93,6 +96,7 @@ export default function EditResumePage() {
               certifications: resume.certifications,
               languages:      resume.languages,
               achievements:   resume.achievements,
+              interests:      resume.interests || [],
             },
           }),
         })
@@ -134,6 +138,7 @@ export default function EditResumePage() {
           certifications: resume.certifications,
           languages:      resume.languages,
           achievements:   resume.achievements,
+          interests:      resume.interests || [],
         },
       }
       await fetch(`/api/resumes/${resume.id}`, {

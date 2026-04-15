@@ -63,7 +63,7 @@ export function SoftCorporateTemplate({ resume }) {
   return (
     <div style={{ background: '#fdf8f0', fontFamily: 'Georgia, serif', fontSize: 10.5, lineHeight: 1.6, minHeight: '297mm' }}>
       <div style={{ background: `linear-gradient(to right, ${tc}, #92400e)`, padding: '26px 32px 20px', color: 'white', display: 'flex', alignItems: 'center', gap: 20 }}>
-        {photo && <img src={photo} alt="" style={{ width: 72, height: 72, borderRadius: '50%', objectFit: 'cover', border: '3px solid rgba(255,255,255,0.4)', flexShrink: 0 }} />}
+        {photo && <img src={photo} alt="" style={{ width: 96, height: 96, borderRadius: '50%', objectFit: 'cover', border: '3px solid rgba(255,255,255,0.4)', flexShrink: 0 }} />}
         <div>
           <h1 style={{ fontSize: 26, fontWeight: 700, marginBottom: 4 }}>{name}</h1>
           <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.85)', fontStyle: 'italic', marginBottom: 10 }}>{jobTitle}</p>
@@ -161,7 +161,7 @@ export function TrifoldTemplate({ resume }) {
   return (
     <div style={{ background: 'white', fontFamily: 'Arial, sans-serif', fontSize: 10, lineHeight: 1.5, minHeight: '297mm' }}>
       <div style={{ background: tc, padding: '22px 24px 18px', color: 'white', textAlign: 'center' }}>
-        {photo && <img src={photo} alt="" style={{ width: 64, height: 64, borderRadius: '50%', objectFit: 'cover', border: '3px solid rgba(255,255,255,0.4)', margin: '0 auto 10px' }} />}
+        {photo && <img src={photo} alt="" style={{ width: 114, height: 114, borderRadius: '50%', objectFit: 'cover', border: '3px solid rgba(255,255,255,0.4)', margin: '0 auto 10px' }} />}
         <h1 style={{ fontSize: 22, fontWeight: 800, marginBottom: 3 }}>{name}</h1>
         <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.85)', marginBottom: 8 }}>{jobTitle}</p>
         <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '3px 14px', fontSize: 8.5, color: 'rgba(255,255,255,0.75)' }}>
@@ -202,7 +202,7 @@ export function MosaicTemplate({ resume }) {
     <div style={{ background: '#f9fafb', fontFamily: 'Arial, sans-serif', fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm', padding: '20px 20px 40px' }}>
       <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 12, marginBottom: 12 }}>
         <div style={{ background: tc, borderRadius: 12, padding: '20px 22px', color: 'white', display: 'flex', alignItems: 'center', gap: 16 }}>
-          {photo && <img src={photo} alt="" style={{ width: 68, height: 68, borderRadius: '50%', objectFit: 'cover', border: '3px solid rgba(255,255,255,0.4)', flexShrink: 0 }} />}
+          {photo && <img src={photo} alt="" style={{ width: 114, height: 114, borderRadius: '50%', objectFit: 'cover', border: '3px solid rgba(255,255,255,0.4)', flexShrink: 0 }} />}
           <div>
             <h1 style={{ fontSize: 22, fontWeight: 900, marginBottom: 3 }}>{name}</h1>
             <p style={{ fontSize: 10.5, color: 'rgba(255,255,255,0.85)', marginBottom: 8 }}>{jobTitle}</p>
@@ -252,7 +252,7 @@ export function InkTemplate({ resume }) {
   return (
     <div style={{ background: '#fffef9', fontFamily: "'Georgia', serif", fontSize: 10.5, lineHeight: 1.65, padding: '32px 40px', minHeight: '297mm', color: '#1a1a1a' }}>
       <div style={{ display: 'flex', alignItems: 'flex-start', gap: 20, marginBottom: 20, paddingBottom: 16, borderBottom: '1px solid #ccc' }}>
-        {photo && <img src={photo} alt="" style={{ width: 72, height: 72, borderRadius: '50%', objectFit: 'cover', border: '1px solid #ccc', flexShrink: 0 }} />}
+        {photo && <img src={photo} alt="" style={{ width: 96, height: 96, borderRadius: '50%', objectFit: 'cover', border: '1px solid #ccc', flexShrink: 0 }} />}
         <div style={{ flex: 1 }}>
           <h1 style={{ fontSize: 28, fontWeight: 400, letterSpacing: '0.02em', marginBottom: 4 }}>{name}</h1>
           <p style={{ fontSize: 11, color: tc, fontStyle: 'italic', marginBottom: 8 }}>{jobTitle}</p>

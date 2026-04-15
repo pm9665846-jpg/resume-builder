@@ -64,7 +64,7 @@ export default function TimelineTemplate({ resume }) {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
               {photo && (
-                <img src={photo} alt="Profile" style={{ width: 64, height: 64, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}`, flexShrink: 0 }} />
+                <img src={photo} alt="Profile" style={{ width: 114, height: 114, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}`, flexShrink: 0 }} />
               )}
               <div>
                 <h1 style={{ fontSize: 28, fontWeight: 900, color: '#0f172a', letterSpacing: '-0.02em', marginBottom: 4 }}>{name}</h1>

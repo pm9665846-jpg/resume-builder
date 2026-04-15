@@ -52,13 +52,13 @@ export function BlossomTemplate({ resume }) {
       <div style={{ position: 'relative', zIndex: 1, padding: '30px 32px 24px', display: 'flex', alignItems: 'center', gap: 22 }}>
         {photo ? (
           <div style={{ position: 'relative', flexShrink: 0 }}>
-            <div style={{ width: 86, height: 86, borderRadius: '50%', background: `linear-gradient(135deg, ${tc}40, ${tc}15)`, padding: 3 }}>
+            <div style={{ width: 110, height: 110, borderRadius: '50%', background: `linear-gradient(135deg, ${tc}40, ${tc}15)`, padding: 3 }}>
               <img src={photo} alt="" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
             </div>
             <div style={{ position: 'absolute', bottom: 2, right: 2, width: 18, height: 18, borderRadius: '50%', background: tc, border: '2px solid white' }} />
           </div>
         ) : (
-          <div style={{ width: 86, height: 86, borderRadius: '50%', background: `linear-gradient(135deg, ${tc}30, ${tc}10)`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28, fontWeight: 900, color: tc, flexShrink: 0 }}>{name.charAt(0)}</div>
+          <div style={{ width: 110, height: 110, borderRadius: '50%', background: `linear-gradient(135deg, ${tc}30, ${tc}10)`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28, fontWeight: 900, color: tc, flexShrink: 0 }}>{name.charAt(0)}</div>
         )}
         <div style={{ flex: 1 }}>
           <h1 style={{ fontSize: 28, fontWeight: 900, color: '#1a0a0e', letterSpacing: '-0.01em', margin: '0 0 4px', lineHeight: 1.1 }}>{name}</h1>
@@ -175,7 +175,7 @@ export function MistTemplate({ resume }) {
       {/* Header card */}
       <div style={{ background: 'white', borderRadius: 18, padding: '22px 26px', marginBottom: 16, boxShadow: '0 4px 24px rgba(100,116,139,0.12)', border: '1px solid #e2e8f0', display: 'flex', alignItems: 'center', gap: 20 }}>
         {photo ? (
-          <img src={photo} alt="" style={{ width: 80, height: 80, borderRadius: 14, objectFit: 'cover', border: `2px solid ${tc}30`, flexShrink: 0 }} />
+          <img src={photo} alt="" style={{ width: 104, height: 104, borderRadius: 14, objectFit: 'cover', border: `2px solid ${tc}30`, flexShrink: 0 }} />
         ) : (
           <div style={{ width: 80, height: 80, borderRadius: 14, background: `${tc}15`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28, fontWeight: 900, color: tc, flexShrink: 0 }}>{name.charAt(0)}</div>
         )}
@@ -419,7 +419,7 @@ export function GoldenAgeTemplate({ resume }) {
           <div style={{ height: 1, width: 50, background: `${tc}60` }} />
         </div>
 
-        {photo && <img src={photo} alt="" style={{ width: 80, height: 80, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}50`, margin: '0 auto 14px', display: 'block', boxShadow: `0 4px 20px ${tc}25` }} />}
+        {photo && <img src={photo} alt="" style={{ width: 104, height: 104, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}50`, margin: '0 auto 14px', display: 'block', boxShadow: `0 4px 20px ${tc}25` }} />}
 
         <h1 style={{ fontSize: 30, fontWeight: 400, color: '#451a03', letterSpacing: '0.08em', margin: '0 0 6px', textTransform: 'uppercase' }}>{name}</h1>
         <p style={{ fontSize: 11, color: tc, fontStyle: 'italic', margin: '0 0 14px', letterSpacing: '0.04em' }}>{jobTitle}</p>
@@ -541,7 +541,7 @@ export function FrostTemplate({ resume }) {
         <div style={{ position: 'relative', padding: '26px 32px 22px', display: 'flex', alignItems: 'center', gap: 22 }}>
           {photo ? (
             <div style={{ position: 'relative', flexShrink: 0 }}>
-              <img src={photo} alt="" style={{ width: 80, height: 80, borderRadius: 12, objectFit: 'cover', border: `2px solid ${tc}30` }} />
+              <img src={photo} alt="" style={{ width: 104, height: 104, borderRadius: 12, objectFit: 'cover', border: `2px solid ${tc}30` }} />
               <div style={{ position: 'absolute', bottom: -3, right: -3, width: 20, height: 20, borderRadius: 5, background: tc, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <div style={{ width: 8, height: 8, borderRadius: 2, background: 'white' }} />
               </div>
@@ -711,7 +711,7 @@ export function VividTemplate({ resume }) {
           </div>
         </div>
         {photo && (
-          <img src={photo} alt="" style={{ width: 90, height: 90, objectFit: 'cover', border: '1px solid #ddd', flexShrink: 0, marginLeft: 16 }} />
+          <img src={photo} alt="" style={{ width: 114, height: 114, objectFit: 'cover', border: '1px solid #ddd', flexShrink: 0, marginLeft: 16 }} />
         )}
       </div>
 
@@ -1150,7 +1150,7 @@ export function TealCardTemplate({ resume }) {
         {/* Left: photo + name */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
           {photo ? (
-            <img src={photo} alt="" style={{ width: 72, height: 72, borderRadius: '50%', objectFit: 'cover', border: '3px solid rgba(255,255,255,0.5)', flexShrink: 0 }} />
+            <img src={photo} alt="" style={{ width: 96, height: 96, borderRadius: '50%', objectFit: 'cover', border: '3px solid rgba(255,255,255,0.5)', flexShrink: 0 }} />
           ) : (
             <div style={{ width: 72, height: 72, borderRadius: '50%', background: 'rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, fontWeight: 900, color: 'white', flexShrink: 0 }}>{name.charAt(0)}</div>
           )}
@@ -1318,7 +1318,7 @@ export function CrimsonSideTemplate({ resume }) {
           {/* Coral accent bar on far right */}
           <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: 8, background: tc }} />
           {photo ? (
-            <img src={photo} alt="" style={{ width: 90, height: 90, objectFit: 'cover', border: '3px solid white', boxShadow: '0 2px 12px rgba(0,0,0,0.15)' }} />
+            <img src={photo} alt="" style={{ width: 114, height: 114, objectFit: 'cover', border: '3px solid white', boxShadow: '0 2px 12px rgba(0,0,0,0.15)' }} />
           ) : (
             <div style={{ width: 90, height: 90, background: `${tc}30`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28, fontWeight: 900, color: tc }}>{name.charAt(0)}</div>
           )}
@@ -1560,7 +1560,7 @@ export function CleanListTemplate({ resume }) {
       <div style={{ display: 'flex', alignItems: 'flex-start', gap: 20, marginBottom: 14 }}>
         {/* Photo top-left */}
         {photo && (
-          <img src={photo} alt="" style={{ width: 90, height: 90, objectFit: 'cover', flexShrink: 0 }} />
+          <img src={photo} alt="" style={{ width: 114, height: 114, objectFit: 'cover', flexShrink: 0 }} />
         )}
         {/* Centered name + contact */}
         <div style={{ flex: 1, textAlign: 'center' }}>
@@ -1686,7 +1686,7 @@ export function SimpleDocTemplate({ resume }) {
       {/* ── HEADER ── */}
       <div style={{ display: 'flex', alignItems: 'flex-start', gap: 20, marginBottom: 18 }}>
         {photo && (
-          <img src={photo} alt="" style={{ width: 90, height: 90, objectFit: 'cover', flexShrink: 0 }} />
+          <img src={photo} alt="" style={{ width: 114, height: 114, objectFit: 'cover', flexShrink: 0 }} />
         )}
         <div style={{ flex: 1, textAlign: 'center', paddingTop: 6 }}>
           <h1 style={{ fontSize: 22, fontWeight: 700, color: '#111', margin: '0 0 5px' }}>{name}</h1>
@@ -2356,7 +2356,7 @@ export function RightNameTemplate({ resume }) {
       <div style={{ background: tc, padding: '16px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16 }}>
         {/* Photo left */}
         {photo ? (
-          <img src={photo} alt="" style={{ width: 90, height: 90, objectFit: 'cover', border: '2px solid rgba(255,255,255,0.3)', flexShrink: 0 }} />
+          <img src={photo} alt="" style={{ width: 114, height: 114, objectFit: 'cover', border: '2px solid rgba(255,255,255,0.3)', flexShrink: 0 }} />
         ) : (
           <div style={{ width: 90, height: 90, background: 'rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28, fontWeight: 900, color: 'white', flexShrink: 0 }}>{name.charAt(0)}</div>
         )}
@@ -2498,9 +2498,9 @@ export function BlackBoxTemplate({ resume }) {
       {/* ── BLACK HEADER ── */}
       <div style={{ background: tc, padding: '16px 24px', display: 'flex', alignItems: 'center', gap: 20 }}>
         {photo ? (
-          <img src={photo} alt="" style={{ width: 80, height: 80, borderRadius: '50%', objectFit: 'cover', border: '2px solid rgba(255,255,255,0.3)', flexShrink: 0 }} />
+          <img src={photo} alt="" style={{ width: 104, height: 104, borderRadius: '50%', objectFit: 'cover', border: '2px solid rgba(255,255,255,0.3)', flexShrink: 0 }} />
         ) : (
-          <div style={{ width: 80, height: 80, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26, fontWeight: 900, color: 'white', flexShrink: 0 }}>{name.charAt(0)}</div>
+          <div style={{ width: 104, height: 104, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26, fontWeight: 900, color: 'white', flexShrink: 0 }}>{name.charAt(0)}</div>
         )}
         <div style={{ flex: 1, textAlign: 'center' }}>
           <h1 style={{ fontSize: 20, fontWeight: 900, color: 'white', textTransform: 'uppercase', letterSpacing: '0.1em', margin: 0 }}>{name}</h1>
@@ -2637,7 +2637,7 @@ export function SplitCleanTemplate({ resume }) {
           {jobTitle && <p style={{ fontSize: 10, color: '#64748b', margin: 0, fontStyle: 'italic' }}>{jobTitle}</p>}
         </div>
         {photo && (
-          <img src={photo} alt="" style={{ width: 90, height: 90, objectFit: 'cover', border: '1px solid #ddd', flexShrink: 0 }} />
+          <img src={photo} alt="" style={{ width: 114, height: 114, objectFit: 'cover', border: '1px solid #ddd', flexShrink: 0 }} />
         )}
       </div>
 
@@ -2898,7 +2898,7 @@ export function AccentBarTemplate({ resume }) {
         <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
           {/* Photo left */}
           {photo ? (
-            <img src={photo} alt="" style={{ width: 90, height: 90, objectFit: 'cover', flexShrink: 0 }} />
+            <img src={photo} alt="" style={{ width: 114, height: 114, objectFit: 'cover', flexShrink: 0 }} />
           ) : (
             <div style={{ width: 90, height: 90, background: `${tc}15`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26, fontWeight: 900, color: tc, flexShrink: 0 }}>{name.charAt(0)}</div>
           )}
@@ -3115,7 +3115,7 @@ export function TopBandTemplate({ resume }) {
       {/* Top band */}
       <div style={{ background: `linear-gradient(135deg, ${tc} 0%, ${tc}cc 100%)`, padding: '24px 32px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', top: -20, right: -20, width: 100, height: 100, borderRadius: '50%', background: 'rgba(255,255,255,0.08)' }} />
-        {photo && <img src={photo} alt="" style={{ width: 72, height: 72, borderRadius: '50%', objectFit: 'cover', border: '3px solid rgba(255,255,255,0.4)', margin: '0 auto 12px', display: 'block' }} />}
+        {photo && <img src={photo} alt="" style={{ width: 96, height: 96, borderRadius: '50%', objectFit: 'cover', border: '3px solid rgba(255,255,255,0.4)', margin: '0 auto 12px', display: 'block' }} />}
         <h1 style={{ fontSize: 24, fontWeight: 900, color: 'white', margin: '0 0 4px', letterSpacing: '-0.01em' }}>{name}</h1>
         {jobTitle && <p style={{ fontSize: 10.5, color: 'rgba(255,255,255,0.85)', margin: '0 0 10px', fontWeight: 600 }}>{jobTitle}</p>}
         <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '3px 16px', fontSize: 9.5, color: 'rgba(255,255,255,0.8)' }}>
@@ -3354,7 +3354,7 @@ export function LabelRowTemplate({ resume }) {
           </div>
         </div>
         {/* Photo top-right */}
-        {photo && <img src={photo} alt="" style={{ width: 90, height: 90, objectFit: 'cover', border: '1px solid #ddd', flexShrink: 0 }} />}
+        {photo && <img src={photo} alt="" style={{ width: 114, height: 114, objectFit: 'cover', border: '1px solid #ddd', flexShrink: 0 }} />}
       </div>
 
       {/* Thin divider */}
@@ -3492,7 +3492,7 @@ export function VelvetRoseTemplate({ resume }) {
         {/* Photo with rose-gold ring */}
         {photo && (
           <div style={{ width: 88, height: 88, margin: '0 auto 16px', position: 'relative', display: 'inline-block' }}>
-            <div style={{ width: 88, height: 88, borderRadius: '50%', padding: 3, background: `linear-gradient(135deg, ${tc}, ${tc}60, ${tc}30)` }}>
+            <div style={{ width: 112, height: 112, borderRadius: '50%', padding: 3, background: `linear-gradient(135deg, ${tc}, ${tc}60, ${tc}30)` }}>
               <img src={photo} alt="" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover', display: 'block' }} />
             </div>
           </div>

@@ -10,9 +10,10 @@ import SkillsForm from '@/components/builder/SkillsForm'
 import ProjectsForm from '@/components/builder/ProjectsForm'
 import CertificationsForm from '@/components/builder/CertificationsForm'
 import LanguagesForm from '@/components/builder/LanguagesForm'
+import InterestsForm from '@/components/builder/InterestsForm'
 import TemplateSelector from '@/components/builder/TemplateSelector'
 import ResumePreview from '@/components/builder/ResumePreview'
-import { Save, Download, FileText, User, Briefcase, GraduationCap, Code2, Palette, Eye, EyeOff, Zap, CheckCircle, Award, Languages } from 'lucide-react'
+import { Save, Download, FileText, User, Briefcase, GraduationCap, Code2, Palette, Eye, EyeOff, Zap, CheckCircle, Award, Languages, Heart } from 'lucide-react'
 import { exportToPDF } from '@/lib/exportResume'
 
 const sections = [
@@ -23,6 +24,7 @@ const sections = [
   { id: 'projects',       label: 'Projects',   icon: Code2,         component: ProjectsForm },
   { id: 'certifications', label: 'Certs',      icon: Award,         component: CertificationsForm },
   { id: 'languages',      label: 'Languages',  icon: Languages,     component: LanguagesForm },
+  { id: 'interests',      label: 'Interests',  icon: Heart,         component: InterestsForm },
   { id: 'design',         label: 'Design',     icon: Palette,       component: TemplateSelector },
 ]
 
@@ -69,6 +71,7 @@ function BuilderContent() {
             certifications: resume.certifications,
             languages:      resume.languages,
             achievements:   resume.achievements,
+            interests:      resume.interests || [],
           },
         }
         if (!resume.id) {
@@ -126,6 +129,7 @@ function BuilderContent() {
           certifications: resume.certifications,
           languages:      resume.languages,
           achievements:   resume.achievements,
+          interests:      resume.interests || [],
         },
       }
 

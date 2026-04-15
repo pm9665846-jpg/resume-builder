@@ -40,7 +40,7 @@ function get(val, fallback) {
 }
 
 export default function ModernTemplate({ resume }) {
-  const { personalInfo = {}, experience = [], education = [], skills = [], projects = [], certifications = [], languages = [], themeColor = '#8b5cf6', fontFamily = "'Arial', 'Helvetica', sans-serif" } = resume
+  const { personalInfo = {}, experience = [], education = [], skills = [], projects = [], certifications = [], languages = [], interests = [], themeColor = '#8b5cf6', fontFamily = "'Arial', 'Helvetica', sans-serif" } = resume
   const tc = themeColor
   const ff = fontFamily
 
@@ -95,7 +95,7 @@ export default function ModernTemplate({ resume }) {
         flexWrap: 'wrap'
       }}>
         {photo && (
-          <img src={photo} alt="Profile" style={{ width: 72, height: 72, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}`, flexShrink: 0 }} />
+          <img src={photo} alt="Profile" style={{ width: 96, height: 96, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}`, flexShrink: 0 }} />
         )}
         <div style={{ flex: 1, minWidth: '180px' }}>
           <h1 style={{ fontSize: 26, fontWeight: 900, color: '#111', letterSpacing: '-0.01em', marginBottom: 3, wordBreak: 'break-word' }}>{name}</h1>
@@ -243,6 +243,19 @@ export default function ModernTemplate({ resume }) {
             })}
           </div>
         </Section>
+
+        {/* ── INTERESTS ── */}
+        {interests.length > 0 && (
+          <Section title="Interests" color={tc}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+              {interests.map(i => (
+                <div key={i.id} style={{ display: 'flex', alignItems: 'center', gap: 5, padding: '4px 12px', borderRadius: 999, background: `${tc}10`, border: `1px solid ${tc}25` }}>
+                  <span style={{ fontSize: 10, color: '#333', fontWeight: 500 }}>{i.name}</span>
+                </div>
+              ))}
+            </div>
+          </Section>
+        )}
 
       </div>
     </div>

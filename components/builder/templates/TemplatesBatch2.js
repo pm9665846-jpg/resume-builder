@@ -26,7 +26,7 @@ export function RetroTemplate({ resume }) {
   return (
     <div style={{ background: '#fdf6e3', fontFamily: "'Courier New', monospace", fontSize: 10, lineHeight: 1.6, padding: '30px 36px', minHeight: '297mm', color: '#3d2b1f' }}>
       <div style={{ textAlign: 'center', marginBottom: 20, paddingBottom: 16, borderBottom: '2px dashed #92400e' }}>
-        {photo && <img src={photo} alt="" style={{ width: 68, height: 68, borderRadius: '50%', objectFit: 'cover', border: '3px solid #92400e', margin: '0 auto 10px' }} />}
+        {photo && <img src={photo} alt="" style={{ width: 114, height: 114, borderRadius: '50%', objectFit: 'cover', border: '3px solid #92400e', margin: '0 auto 10px' }} />}
         <h1 style={{ fontSize: 26, fontWeight: 700, letterSpacing: '0.06em', marginBottom: 4 }}>{name}</h1>
         <p style={{ fontSize: 11, color: tc, letterSpacing: '0.1em', marginBottom: 8 }}>[ {jobTitle} ]</p>
         <p style={{ fontSize: 9, color: '#7c5c3e' }}>{[email, phone, location].filter(Boolean).join(' | ')}</p>
@@ -57,7 +57,7 @@ export function HexagonTemplate({ resume }) {
   return (
     <div style={{ background: 'white', fontFamily: 'Arial, sans-serif', fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm' }}>
       <div style={{ background: `linear-gradient(to right, #1e1b4b, ${tc})`, padding: '26px 30px 20px', color: 'white', display: 'flex', alignItems: 'center', gap: 20 }}>
-        {photo && <img src={photo} alt="" style={{ width: 72, height: 72, borderRadius: '50%', objectFit: 'cover', border: '3px solid rgba(255,255,255,0.4)', flexShrink: 0 }} />}
+        {photo && <img src={photo} alt="" style={{ width: 96, height: 96, borderRadius: '50%', objectFit: 'cover', border: '3px solid rgba(255,255,255,0.4)', flexShrink: 0 }} />}
         <div>
           <h1 style={{ fontSize: 26, fontWeight: 900, marginBottom: 4 }}>{name}</h1>
           <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.8)', fontWeight: 600, marginBottom: 10 }}>{jobTitle}</p>
@@ -146,7 +146,7 @@ export function FrostedTemplate({ resume }) {
   return (
     <div style={{ background: `linear-gradient(135deg, ${tc}15 0%, #f0f9ff 50%, ${tc}08 100%)`, fontFamily: 'Arial, sans-serif', fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm', padding: '24px 28px 40px' }}>
       <Card style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
-        {photo && <img src={photo} alt="" style={{ width: 72, height: 72, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}40`, flexShrink: 0 }} />}
+        {photo && <img src={photo} alt="" style={{ width: 96, height: 96, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}40`, flexShrink: 0 }} />}
         <div>
           <h1 style={{ fontSize: 24, fontWeight: 900, color: '#111', marginBottom: 3 }}>{name}</h1>
           <p style={{ fontSize: 11, color: tc, fontWeight: 700, marginBottom: 8 }}>{jobTitle}</p>
@@ -186,7 +186,7 @@ export function AccentBottomTemplate({ resume }) {
     <div style={{ background: 'white', fontFamily: 'Arial, sans-serif', fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 1, padding: '28px 32px 20px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 18, marginBottom: 20, paddingBottom: 16, borderBottom: `3px solid ${tc}` }}>
-          {photo && <img src={photo} alt="" style={{ width: 72, height: 72, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}`, flexShrink: 0 }} />}
+          {photo && <img src={photo} alt="" style={{ width: 96, height: 96, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}`, flexShrink: 0 }} />}
           <div>
             <h1 style={{ fontSize: 26, fontWeight: 900, color: '#111', marginBottom: 3 }}>{name}</h1>
             <p style={{ fontSize: 12, color: tc, fontWeight: 700, marginBottom: 8 }}>{jobTitle}</p>
@@ -235,7 +235,7 @@ export function DotMatrixTemplate({ resume }) {
   return (
     <div style={{ background: 'white', backgroundImage: 'radial-gradient(circle, #e5e7eb 1px, transparent 1px)', backgroundSize: '20px 20px', fontFamily: 'Arial, sans-serif', fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm', padding: '24px 28px 40px' }}>
       <div style={{ background: 'white', borderRadius: 12, padding: '20px 24px', marginBottom: 16, boxShadow: '0 2px 20px rgba(0,0,0,0.08)', display: 'flex', alignItems: 'center', gap: 18 }}>
-        {photo && <img src={photo} alt="" style={{ width: 72, height: 72, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}`, flexShrink: 0 }} />}
+        {photo && <img src={photo} alt="" style={{ width: 96, height: 96, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}`, flexShrink: 0 }} />}
         <div>
           <h1 style={{ fontSize: 24, fontWeight: 900, color: '#111', marginBottom: 3 }}>{name}</h1>
           <p style={{ fontSize: 11, color: tc, fontWeight: 700, marginBottom: 8 }}>{jobTitle}</p>

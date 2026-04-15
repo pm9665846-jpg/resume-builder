@@ -78,7 +78,7 @@ export function WatercolorTemplate({ resume }) {
     <div style={{ background: 'white', fontFamily: "'Georgia', serif", fontSize: 10.5, lineHeight: 1.6, minHeight: '297mm' }}>
       <div style={{ background: `radial-gradient(ellipse at 30% 50%, ${tc}30 0%, ${tc}10 40%, transparent 70%), radial-gradient(ellipse at 80% 20%, ${tc}20 0%, transparent 60%)`, padding: '30px 32px 24px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
-          {photo && <img src={photo} alt="" style={{ width: 76, height: 76, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}60`, flexShrink: 0 }} />}
+          {photo && <img src={photo} alt="" style={{ width: 100, height: 100, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}60`, flexShrink: 0 }} />}
           <div>
             <h1 style={{ fontSize: 28, fontWeight: 400, color: '#1a1a2e', letterSpacing: '0.04em', marginBottom: 4 }}>{name}</h1>
             <p style={{ fontSize: 12, color: tc, fontWeight: 600, fontStyle: 'italic', marginBottom: 10 }}>{jobTitle}</p>
@@ -127,7 +127,7 @@ export function NeonSidebarTemplate({ resume }) {
     <div style={{ background: 'white', fontFamily: 'Arial, sans-serif', fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm', display: 'flex' }}>
       <div style={{ width: '34%', background: '#0a0a0f', padding: '24px 16px 40px', color: 'white', flexShrink: 0 }}>
         <div style={{ marginBottom: 20 }}>
-          {photo && <img src={photo} alt="" style={{ width: 72, height: 72, borderRadius: '50%', objectFit: 'cover', border: `2px solid ${tc}`, boxShadow: `0 0 16px ${tc}60`, marginBottom: 12 }} />}
+          {photo && <img src={photo} alt="" style={{ width: 96, height: 96, borderRadius: '50%', objectFit: 'cover', border: `2px solid ${tc}`, boxShadow: `0 0 16px ${tc}60`, marginBottom: 12 }} />}
           <h1 style={{ fontSize: 15, fontWeight: 800, color: 'white', lineHeight: 1.2, marginBottom: 4 }}>{name}</h1>
           <p style={{ fontSize: 9.5, color: tc, fontWeight: 600, marginBottom: 12 }}>{jobTitle}</p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
@@ -164,7 +164,7 @@ export function MinimalistProTemplate({ resume }) {
     <div style={{ background: 'white', fontFamily: "'Helvetica Neue', Arial, sans-serif", fontSize: 10.5, lineHeight: 1.6, padding: '40px 48px', minHeight: '297mm', color: '#111' }}>
       <div style={{ marginBottom: 28 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginBottom: 12 }}>
-          {photo && <img src={photo} alt="" style={{ width: 68, height: 68, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} />}
+          {photo && <img src={photo} alt="" style={{ width: 114, height: 114, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} />}
           <div>
             <h1 style={{ fontSize: 30, fontWeight: 300, letterSpacing: '-0.02em', marginBottom: 4 }}>{name}</h1>
             <p style={{ fontSize: 12, color: '#666', fontWeight: 400, letterSpacing: '0.04em' }}>{jobTitle}</p>
@@ -201,7 +201,7 @@ export function ColorblockTemplate({ resume }) {
     <div style={{ background: 'white', fontFamily: 'Arial, sans-serif', fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm' }}>
       <div style={{ display: 'flex', minHeight: 140 }}>
         <div style={{ background: tc, width: '55%', padding: '24px 24px 20px', color: 'white', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-          {photo && <img src={photo} alt="" style={{ width: 64, height: 64, borderRadius: '50%', objectFit: 'cover', border: '3px solid rgba(255,255,255,0.4)', marginBottom: 10 }} />}
+          {photo && <img src={photo} alt="" style={{ width: 114, height: 114, borderRadius: '50%', objectFit: 'cover', border: '3px solid rgba(255,255,255,0.4)', marginBottom: 10 }} />}
           <h1 style={{ fontSize: 24, fontWeight: 900, lineHeight: 1.1, marginBottom: 4 }}>{name}</h1>
           <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.85)', fontWeight: 600 }}>{jobTitle}</p>
         </div>
@@ -245,7 +245,7 @@ export function ScandiTemplate({ resume }) {
   return (
     <div style={{ background: '#fafaf8', fontFamily: "'Helvetica Neue', Arial, sans-serif", fontSize: 10.5, lineHeight: 1.6, minHeight: '297mm', padding: '32px 36px 40px' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginBottom: 24, paddingBottom: 20, borderBottom: `1px solid #e5e5e0` }}>
-        {photo && <img src={photo} alt="" style={{ width: 72, height: 72, borderRadius: '50%', objectFit: 'cover', border: `2px solid ${tc}40`, flexShrink: 0 }} />}
+        {photo && <img src={photo} alt="" style={{ width: 96, height: 96, borderRadius: '50%', objectFit: 'cover', border: `2px solid ${tc}40`, flexShrink: 0 }} />}
         <div style={{ flex: 1 }}>
           <h1 style={{ fontSize: 26, fontWeight: 300, color: '#1a1a1a', letterSpacing: '-0.01em', marginBottom: 4 }}>{name}</h1>
           <p style={{ fontSize: 11, color: tc, fontWeight: 500, marginBottom: 8 }}>{jobTitle}</p>

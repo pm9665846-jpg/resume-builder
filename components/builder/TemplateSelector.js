@@ -113,6 +113,38 @@ const templateList = [
   { id: 'labelrow',      name: 'Label Row',       tag: 'Structured',  defaultColor: '#2d2db0' },
   { id: 'velvetrose',    name: 'Velvet Rose',     tag: 'Elegant',     defaultColor: '#c2847a' },
   { id: 'manuscript',    name: 'Manuscript',      tag: 'Unique',      defaultColor: '#5c7a6b' },
+  // TemplatesNew6
+  { id: 'zen',           name: 'Zen',             tag: 'Minimal',     defaultColor: '#8b5cf6' },
+  { id: 'charcoalside',  name: 'Charcoal Side',   tag: 'Dark',        defaultColor: '#8b5cf6' },
+  { id: 'cinema',        name: 'Cinema',          tag: 'Bold',        defaultColor: '#d4a017' },
+  { id: 'archive',       name: 'Archive',         tag: 'Editorial',   defaultColor: '#1a1a1a' },
+  { id: 'prisma',        name: 'Prisma',          tag: 'Modern',      defaultColor: '#8b5cf6' },
+  { id: 'north',         name: 'North',           tag: 'Scandi',      defaultColor: '#2563eb' },
+  { id: 'studio',        name: 'Studio',          tag: 'Creative',    defaultColor: '#e11d48' },
+  { id: 'legacy',        name: 'Legacy',          tag: 'Classic',     defaultColor: '#1e3a5f' },
+  { id: 'spectrum',      name: 'Spectrum',        tag: 'Colorful',    defaultColor: '#06b6d4' },
+  { id: 'monolith',      name: 'Monolith',        tag: 'Executive',   defaultColor: '#111827' },
+  // Custom elegant
+  { id: 'aurorapro',     name: 'Aurora Pro',      tag: 'Elegant',     defaultColor: '#a78bfa' },
+  { id: 'petal',         name: 'Petal',           tag: 'Soft',        defaultColor: '#7c9885' },
+  { id: 'foldio',        name: 'Foldio',          tag: 'Unique',      defaultColor: '#6366f1' },
+  { id: 'nightowl',      name: 'Night Owl',       tag: 'Dark',        defaultColor: '#38bdf8' },
+  { id: 'geometric',     name: 'Geometric',       tag: 'Modern',      defaultColor: '#8b5cf6' },
+  { id: 'waveflow',      name: 'Wave Flow',       tag: 'Unique',      defaultColor: '#0ea5e9' },
+  { id: 'tidal',         name: 'Tidal',           tag: 'Unique',      defaultColor: '#0d9488',  noColorChange: true },
+  { id: 'crest',         name: 'Crest',           tag: 'Waves',       defaultColor: '#7c3aed',  noColorChange: true },
+  { id: 'midwave',       name: 'Mid Wave',        tag: 'Waves',       defaultColor: '#0891b2' },
+  { id: 'tagstorm',      name: 'Tag Storm',       tag: 'Creative',    defaultColor: '#f59e0b',  noColorChange: true },
+  { id: 'carddeck',      name: 'Card Deck',       tag: 'Creative',    defaultColor: '#6366f1' },
+  { id: 'triwave',       name: 'Tri Wave',        tag: 'Waves',       defaultColor: '#0f766e' },
+  { id: 'ripple',        name: 'Ripple',          tag: 'Waves',       defaultColor: '#0891b2' },
+  { id: 'surge',         name: 'Surge',           tag: 'Waves',       defaultColor: '#1d4ed8' },
+  { id: 'ripplebg',     name: 'Ripple BG',       tag: 'Waves',       defaultColor: '#0891b2' },
+  { id: 'slash',        name: 'Slash',           tag: 'Unique',      defaultColor: '#7c3aed' },
+  { id: 'bubbleskill', name: 'Bubble Skill',    tag: 'Creative',    defaultColor: '#0891b2' },
+  { id: 'paratag', name: 'Para Tag', tag: 'Creative', defaultColor: '#dc2626' },
+  { id: 'accentbar2', name: 'Accent Bar 2', tag: 'Unique', defaultColor: '#0f766e' },
+  { id: 'runway',     name: 'Runway',      tag: 'Creative', defaultColor: '#be185d' },
 ]
 
 const sampleResume = {
@@ -197,6 +229,8 @@ export default function TemplateSelector() {
   const [fontOpen, setFontOpen] = useState(true)
 
   const activeFontLabel = fonts.find(f => f.value === resume.fontFamily)?.label || 'Arial'
+  const activeTemplate = templateList.find(t => t.id === resume.template)
+  const supportsColor = !activeTemplate?.noColorChange
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
@@ -254,6 +288,7 @@ export default function TemplateSelector() {
       </div>
 
       {/* Theme Color */}
+      {supportsColor && (
       <div style={{ flexShrink: 0, borderTop: '1px solid rgba(255,255,255,0.08)', background: '#050508', position: 'sticky', bottom: 0 }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 0', cursor: 'pointer' }} onClick={() => setColorOpen(o => !o)}>
           <p style={{ fontSize: '0.68rem', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.1em', userSelect: 'none' }}>
@@ -287,6 +322,16 @@ export default function TemplateSelector() {
           </div>
         )}
       </div>
+      )}
+
+      {/* No color change notice */}
+      {!supportsColor && (
+        <div style={{ flexShrink: 0, borderTop: '1px solid rgba(255,255,255,0.08)', background: '#050508', padding: '10px 0' }}>
+          <p style={{ fontSize: '0.68rem', color: '#475569', textAlign: 'center', margin: 0 }}>
+            🎨 This template uses a fixed color palette
+          </p>
+        </div>
+      )}
 
     </div>
   )

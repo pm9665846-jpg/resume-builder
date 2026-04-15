@@ -49,7 +49,7 @@ export function DecoTemplate({ resume }) {
           <div style={{ height: 1, width: 60, background: 'linear-gradient(to left, transparent, #f472b6)' }} />
         </div>
 
-        {photo && <img src={photo} alt="" style={{ width: 76, height: 76, borderRadius: '50%', objectFit: 'cover', border: '3px solid #f9a8d4', margin: '0 auto 14px', display: 'block', boxShadow: '0 4px 20px #fbcfe880' }} />}
+        {photo && <img src={photo} alt="" style={{ width: 100, height: 100, borderRadius: '50%', objectFit: 'cover', border: '3px solid #f9a8d4', margin: '0 auto 14px', display: 'block', boxShadow: '0 4px 20px #fbcfe880' }} />}
 
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 14, marginBottom: 6 }}>
           <div style={{ flex: 1, height: 1, background: 'linear-gradient(to right, transparent, #f9a8d4)' }} />
@@ -162,7 +162,7 @@ export function NeonGridTemplate({ resume }) {
 
       {/* Header card */}
       <div style={{ background: 'rgba(255,255,255,0.92)', border: `1.5px solid ${tcMid}`, borderRadius: 14, padding: '20px 24px', marginBottom: 14, display: 'flex', alignItems: 'center', gap: 18, boxShadow: `0 4px 24px ${tc}18` }}>
-        {photo && <img src={photo} alt="" style={{ width: 72, height: 72, borderRadius: '50%', objectFit: 'cover', border: `2px solid ${tc}`, flexShrink: 0 }} />}
+        {photo && <img src={photo} alt="" style={{ width: 96, height: 96, borderRadius: '50%', objectFit: 'cover', border: `2px solid ${tc}`, flexShrink: 0 }} />}
         <div style={{ flex: 1 }}>
           <h1 style={{ fontSize: 24, fontWeight: 900, color: '#0f172a', marginBottom: 3 }}>{name}</h1>
           <p style={{ fontSize: 11, color: tc, fontWeight: 700, marginBottom: 8, letterSpacing: '0.05em' }}>{jobTitle}</p>
@@ -268,7 +268,7 @@ export function LinenTemplate({ resume }) {
   return (
     <div style={{ background: '#fdf6e3', fontFamily: 'Georgia, serif', fontSize: 10.5, lineHeight: 1.65, padding: '32px 40px', minHeight: '297mm', color: '#3d2b1f' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginBottom: 20, paddingBottom: 16, borderBottom: `2px solid ${tc}40` }}>
-        {photo && <img src={photo} alt="" style={{ width: 72, height: 72, borderRadius: '50%', objectFit: 'cover', border: `2px solid ${tc}60`, flexShrink: 0 }} />}
+        {photo && <img src={photo} alt="" style={{ width: 96, height: 96, borderRadius: '50%', objectFit: 'cover', border: `2px solid ${tc}60`, flexShrink: 0 }} />}
         <div>
           <h1 style={{ fontSize: 26, fontWeight: 400, letterSpacing: '0.04em', marginBottom: 4 }}>{name}</h1>
           <p style={{ fontSize: 11, color: tc, fontStyle: 'italic', marginBottom: 8 }}>{jobTitle}</p>
@@ -312,7 +312,7 @@ export function PrismTemplate({ resume }) {
     <div style={{ background: 'white', fontFamily: 'Arial, sans-serif', fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm' }}>
       <div style={{ height: 6, background: 'linear-gradient(to right, #ef4444, #f97316, #eab308, #22c55e, #3b82f6, #8b5cf6, #ec4899)' }} />
       <div style={{ padding: '24px 32px 20px', borderBottom: `1px solid #e5e7eb`, display: 'flex', alignItems: 'center', gap: 18 }}>
-        {photo && <img src={photo} alt="" style={{ width: 72, height: 72, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}`, flexShrink: 0 }} />}
+        {photo && <img src={photo} alt="" style={{ width: 96, height: 96, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}`, flexShrink: 0 }} />}
         <div>
           <h1 style={{ fontSize: 26, fontWeight: 900, color: '#111', marginBottom: 3 }}>{name}</h1>
           <p style={{ fontSize: 12, color: tc, fontWeight: 700, marginBottom: 8 }}>{jobTitle}</p>
@@ -358,7 +358,7 @@ export function StackedTemplate({ resume }) {
   return (
     <div style={{ background: '#f8fafc', fontFamily: 'Arial, sans-serif', fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm' }}>
       <div style={{ background: tc, padding: '26px 32px 20px', color: 'white', display: 'flex', alignItems: 'center', gap: 20 }}>
-        {photo && <img src={photo} alt="" style={{ width: 72, height: 72, borderRadius: '50%', objectFit: 'cover', border: '3px solid rgba(255,255,255,0.4)', flexShrink: 0 }} />}
+        {photo && <img src={photo} alt="" style={{ width: 96, height: 96, borderRadius: '50%', objectFit: 'cover', border: '3px solid rgba(255,255,255,0.4)', flexShrink: 0 }} />}
         <div>
           <h1 style={{ fontSize: 26, fontWeight: 900, marginBottom: 3 }}>{name}</h1>
           <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.85)', fontWeight: 600, marginBottom: 8 }}>{jobTitle}</p>
@@ -392,7 +392,7 @@ export function NeonMinimalTemplate({ resume }) {
     <div style={{ background: '#fafafa', fontFamily: "'Helvetica Neue', Arial, sans-serif", fontSize: 10.5, lineHeight: 1.6, padding: '36px 44px', minHeight: '297mm' }}>
       <div style={{ marginBottom: 24 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 18, marginBottom: 10 }}>
-          {photo && <img src={photo} alt="" style={{ width: 68, height: 68, borderRadius: '50%', objectFit: 'cover', border: `2px solid ${tc}`, flexShrink: 0 }} />}
+          {photo && <img src={photo} alt="" style={{ width: 114, height: 114, borderRadius: '50%', objectFit: 'cover', border: `2px solid ${tc}`, flexShrink: 0 }} />}
           <div>
             <h1 style={{ fontSize: 28, fontWeight: 300, color: '#111', letterSpacing: '-0.01em', marginBottom: 4 }}>{name}</h1>
             <p style={{ fontSize: 12, color: tc, fontWeight: 600 }}>{jobTitle}</p>
@@ -430,7 +430,7 @@ export function CoralTemplate({ resume }) {
     <div style={{ background: 'white', fontFamily: 'Arial, sans-serif', fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm' }}>
       <div style={{ background: `linear-gradient(to bottom right, #fff1f2, #ffe4e6)`, padding: '26px 32px 20px', borderBottom: `3px solid ${tc}` }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
-          {photo && <img src={photo} alt="" style={{ width: 72, height: 72, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}`, flexShrink: 0 }} />}
+          {photo && <img src={photo} alt="" style={{ width: 96, height: 96, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}`, flexShrink: 0 }} />}
           <div>
             <h1 style={{ fontSize: 26, fontWeight: 900, color: '#1a1a2e', marginBottom: 3 }}>{name}</h1>
             <p style={{ fontSize: 12, color: tc, fontWeight: 700, marginBottom: 8 }}>{jobTitle}</p>
@@ -476,7 +476,7 @@ export function SageTemplate({ resume }) {
   return (
     <div style={{ background: '#f7fdf4', fontFamily: 'Georgia, serif', fontSize: 10.5, lineHeight: 1.65, minHeight: '297mm' }}>
       <div style={{ background: tc, padding: '26px 32px 20px', color: 'white', display: 'flex', alignItems: 'center', gap: 20 }}>
-        {photo && <img src={photo} alt="" style={{ width: 72, height: 72, borderRadius: '50%', objectFit: 'cover', border: '3px solid rgba(255,255,255,0.4)', flexShrink: 0 }} />}
+        {photo && <img src={photo} alt="" style={{ width: 96, height: 96, borderRadius: '50%', objectFit: 'cover', border: '3px solid rgba(255,255,255,0.4)', flexShrink: 0 }} />}
         <div>
           <h1 style={{ fontSize: 26, fontWeight: 700, marginBottom: 4 }}>{name}</h1>
           <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.85)', fontStyle: 'italic', marginBottom: 10 }}>{jobTitle}</p>

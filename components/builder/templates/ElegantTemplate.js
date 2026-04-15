@@ -62,7 +62,7 @@ export default function ElegantTemplate({ resume }) {
       {/* ── CENTERED HEADER ── */}
       <div style={{ textAlign: 'center', paddingBottom: 18, borderBottom: `1px solid ${tc}40`, marginBottom: 4 }}>
         {photo && (
-          <img src={photo} alt="Profile" style={{ width: 72, height: 72, borderRadius: '50%', objectFit: 'cover', border: `2px solid ${tc}`, margin: '0 auto 10px' }} />
+          <img src={photo} alt="Profile" style={{ width: 96, height: 96, borderRadius: '50%', objectFit: 'cover', border: `2px solid ${tc}`, margin: '0 auto 10px' }} />
         )}
         <h1 style={{ fontSize: 28, fontWeight: 400, letterSpacing: '0.1em', color: '#111', marginBottom: 5, textTransform: 'uppercase' }}>{name}</h1>
         <p style={{ fontSize: 11, color: tc, fontWeight: 700, letterSpacing: '0.08em', marginBottom: 10, textTransform: 'uppercase' }}>{jobTitle}</p>

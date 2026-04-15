@@ -435,7 +435,111 @@ curl -X POST http://localhost:3000/api/ai/generate \
 
 ---
 
-## 4. ADS APIs (Public)
+## 4. PROFILE APIs
+
+> All profile APIs require user session (login first).
+
+---
+
+### 4.1 Get Profile
+
+```bash
+curl -X GET http://localhost:3000/api/profile \
+  -b cookies.txt
+```
+
+**Success Response:**
+```json
+{
+  "success": true,
+  "user": {
+    "id": 1,
+    "name": "John Doe",
+    "email": "john@example.com",
+    "avatar": "/uploads/1720000000000-abc123.jpg",
+    "provider": "credentials",
+    "created_at": "2025-01-01T00:00:00.000Z"
+  }
+}
+```
+
+---
+
+### 4.2 Update Profile (Name / Avatar)
+
+```bash
+curl -X PUT http://localhost:3000/api/profile \
+  -H "Content-Type: application/json" \
+  -b cookies.txt \
+  -d '{
+    "name": "Jane Doe",
+    "avatar": "/uploads/1720000000000-abc123.jpg"
+  }'
+```
+
+> Both fields are optional — send only what you want to update.
+
+**Success Response:**
+```json
+{
+  "success": true,
+  "user": {
+    "id": 1,
+    "name": "Jane Doe",
+    "email": "john@example.com",
+    "avatar": "/uploads/1720000000000-abc123.jpg",
+    "provider": "credentials",
+    "created_at": "2025-01-01T00:00:00.000Z"
+  }
+}
+```
+
+---
+
+### 4.3 Change Password
+
+```bash
+curl -X PUT http://localhost:3000/api/profile/password \
+  -H "Content-Type: application/json" \
+  -b cookies.txt \
+  -d '{
+    "currentPassword": "OldPass@123",
+    "newPassword": "NewPass@123"
+  }'
+```
+
+**Success Response:**
+```json
+{ "success": true, "message": "Password updated successfully" }
+```
+
+**Error Responses:**
+```json
+{ "error": "Current password is incorrect" }
+{ "error": "New password must be at least 6 characters" }
+{ "error": "Password change not available for social login accounts" }
+```
+
+---
+
+### 4.4 Upload Image (Avatar / Resume Photo)
+
+```bash
+curl -X POST http://localhost:3000/api/upload \
+  -b cookies.txt \
+  -F "file=@/path/to/photo.jpg"
+```
+
+**Success Response:**
+```json
+{ "success": true, "fileName": "1720000000000-abc123.jpg" }
+```
+
+> File saved to `/public/uploads/`. Access via: `http://localhost:3000/uploads/<fileName>`
+
+---
+
+## 5. ADS APIs (Public)
 
 ---
 
@@ -511,7 +615,7 @@ curl -X POST http://localhost:3000/api/ads \
 
 ---
 
-## 5. ADMIN APIs
+## 6. ADMIN APIs
 
 > All admin APIs require admin session (login as admin first).
 
@@ -821,6 +925,10 @@ curl -X DELETE http://localhost:3000/api/admin/ads \
 | PUT | `/api/resumes/:id` | ✅ | Update resume |
 | DELETE | `/api/resumes/:id` | ✅ | Delete resume |
 | POST | `/api/ai/generate` | ❌ | AI text generation |
+| GET | `/api/profile` | ✅ | Get user profile |
+| PUT | `/api/profile` | ✅ | Update name / avatar |
+| PUT | `/api/profile/password` | ✅ | Change password |
+| POST | `/api/upload` | ✅ | Upload image file |
 | GET | `/api/ads` | ❌ | Get active ads |
 | POST | `/api/ads` | ❌ | Track click/impression |
 | POST | `/api/admin/login` | ❌ | Admin login |

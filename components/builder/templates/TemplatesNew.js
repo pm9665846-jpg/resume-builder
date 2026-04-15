@@ -46,8 +46,8 @@ export function AuroraTemplate({ resume }) {
       {/* Header */}
       <div style={{ position: 'relative', zIndex: 1, padding: '28px 32px 20px', display: 'flex', alignItems: 'center', gap: 20 }}>
         {photo
-          ? <img src={photo} alt="" style={{ width: 80, height: 80, borderRadius: '50%', objectFit: 'cover', border: '3px solid rgba(255,255,255,0.6)', flexShrink: 0 }} />
-          : <div style={{ width: 80, height: 80, borderRadius: '50%', background: 'rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28, fontWeight: 900, color: 'white', flexShrink: 0 }}>{name.charAt(0)}</div>
+          ? <img src={photo} alt="" style={{ width: 104, height: 104, borderRadius: '50%', objectFit: 'cover', border: '3px solid rgba(255,255,255,0.6)', flexShrink: 0 }} />
+          : <div style={{ width: 104, height: 104, borderRadius: '50%', background: 'rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28, fontWeight: 900, color: 'white', flexShrink: 0 }}>{name.charAt(0)}</div>
         }
         <div>
           <h1 style={{ fontSize: 28, fontWeight: 900, color: 'white', marginBottom: 3, letterSpacing: '-0.01em' }}>{name}</h1>
@@ -185,7 +185,7 @@ export function MagazineTemplate({ resume }) {
             <h1 style={{ fontSize: 38, fontWeight: 400, color: '#111', letterSpacing: '-0.02em', lineHeight: 1, marginBottom: 6 }}>{name}</h1>
             <p style={{ fontSize: 13, color: '#555', fontStyle: 'italic', fontWeight: 400 }}>{jobTitle}</p>
           </div>
-          {photo && <img src={photo} alt="" style={{ width: 90, height: 90, objectFit: 'cover', border: `3px solid ${tc}`, flexShrink: 0 }} />}
+          {photo && <img src={photo} alt="" style={{ width: 114, height: 114, objectFit: 'cover', border: `3px solid ${tc}`, flexShrink: 0 }} />}
         </div>
         <div style={{ display: 'flex', gap: 20, marginTop: 10, fontSize: 9.5, color: '#666', borderTop: '1px solid #eee', paddingTop: 8 }}>
           {[email, phone, location].filter(Boolean).map((v, i) => <span key={i}>{v}</span>)}
@@ -752,7 +752,7 @@ export function ClassicTableTemplate({ resume }) {
           </div>
         </div>
         {photo && (
-          <img src={photo} alt="" style={{ width: 90, height: 90, objectFit: 'cover', border: `2px solid ${tc}40`, flexShrink: 0 }} />
+          <img src={photo} alt="" style={{ width: 114, height: 114, objectFit: 'cover', border: `2px solid ${tc}40`, flexShrink: 0 }} />
         )}
       </div>
 

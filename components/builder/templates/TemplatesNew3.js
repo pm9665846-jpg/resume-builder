@@ -123,7 +123,7 @@ export function GlassProTemplate({ resume }) {
       {/* Header */}
       <div style={{ position: 'relative', zIndex: 1, background: 'white', padding: '26px 30px 20px', borderBottom: `2px solid ${tc}25`, display: 'flex', alignItems: 'center', gap: 20, boxShadow: `0 2px 16px ${tc}10` }}>
         {photo
-          ? <img src={photo} alt="" style={{ width: 76, height: 76, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}40`, flexShrink: 0 }} />
+          ? <img src={photo} alt="" style={{ width: 100, height: 100, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}40`, flexShrink: 0 }} />
           : <div style={{ width: 76, height: 76, borderRadius: '50%', background: `${tc}15`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26, fontWeight: 900, color: tc, flexShrink: 0 }}>{name.charAt(0)}</div>
         }
         <div style={{ flex: 1 }}>
@@ -216,7 +216,7 @@ export function NordicTemplate({ resume }) {
     <div style={{ background: 'white', fontFamily: "'Helvetica Neue',Arial,sans-serif", fontSize: 10.5, lineHeight: 1.6, minHeight: '297mm', padding: '38px 42px' }}>
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 28, paddingBottom: 22, borderBottom: '1px solid #e5e7eb' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
-          {photo && <img src={photo} alt="" style={{ width: 68, height: 68, borderRadius: '50%', objectFit: 'cover', border: '2px solid ' + tc + '30', flexShrink: 0 }} />}
+          {photo && <img src={photo} alt="" style={{ width: 114, height: 114, borderRadius: '50%', objectFit: 'cover', border: '2px solid ' + tc + '30', flexShrink: 0 }} />}
           <div>
             <h1 style={{ fontSize: 28, fontWeight: 300, color: '#111', letterSpacing: '-0.02em', margin: '0 0 3px' }}>{name}</h1>
             <p style={{ fontSize: 11, color: tc, fontWeight: 500, margin: 0, letterSpacing: '0.04em' }}>{jobTitle}</p>
@@ -362,8 +362,8 @@ export function SpotlightTemplate({ resume }) {
       <div style={{ textAlign: 'center', padding: '30px 30px 22px', background: 'white', borderBottom: `2px solid ${tc}30`, position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: 300, height: 160, background: `radial-gradient(ellipse, ${tc}12 0%, transparent 70%)`, pointerEvents: 'none' }} />
         {photo
-          ? <img src={photo} alt="" style={{ width: 80, height: 80, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}50`, margin: '0 auto 12px', display: 'block', boxShadow: `0 4px 20px ${tc}20` }} />
-          : <div style={{ width: 80, height: 80, borderRadius: '50%', background: `${tc}15`, border: `3px solid ${tc}40`, margin: '0 auto 12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28, fontWeight: 900, color: tc }}>{name.charAt(0)}</div>
+          ? <img src={photo} alt="" style={{ width: 104, height: 104, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}50`, margin: '0 auto 12px', display: 'block', boxShadow: `0 4px 20px ${tc}20` }} />
+          : <div style={{ width: 104, height: 104, borderRadius: '50%', background: `${tc}15`, border: `3px solid ${tc}40`, margin: '0 auto 12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28, fontWeight: 900, color: tc }}>{name.charAt(0)}</div>
         }
         <h1 style={{ fontSize: 26, fontWeight: 900, color: '#134e4a', margin: '0 0 5px' }}>{name}</h1>
         <p style={{ fontSize: 11, color: tc, fontWeight: 700, margin: '0 0 12px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>{jobTitle}</p>
@@ -451,7 +451,7 @@ export function TimelineProTemplate({ resume }) {
       <div style={{ background: 'linear-gradient(to right,' + tc + ',' + tc + 'cc)', padding: '24px 30px 20px', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', right: -15, top: -15, width: 140, height: 140, borderRadius: '50%', background: 'rgba(255,255,255,0.07)' }} />
         <div style={{ display: 'flex', alignItems: 'center', gap: 18, position: 'relative' }}>
-          {photo ? <img src={photo} alt="" style={{ width: 72, height: 72, borderRadius: '50%', objectFit: 'cover', border: '3px solid rgba(255,255,255,0.4)', flexShrink: 0 }} /> : <div style={{ width: 72, height: 72, borderRadius: '50%', background: 'rgba(255,255,255,0.18)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, fontWeight: 900, color: 'white', flexShrink: 0 }}>{name.charAt(0)}</div>}
+          {photo ? <img src={photo} alt="" style={{ width: 96, height: 96, borderRadius: '50%', objectFit: 'cover', border: '3px solid rgba(255,255,255,0.4)', flexShrink: 0 }} /> : <div style={{ width: 72, height: 72, borderRadius: '50%', background: 'rgba(255,255,255,0.18)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, fontWeight: 900, color: 'white', flexShrink: 0 }}>{name.charAt(0)}</div>}
           <div>
             <h1 style={{ fontSize: 24, fontWeight: 900, color: 'white', margin: '0 0 2px' }}>{name}</h1>
             <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.85)', fontWeight: 600, margin: '0 0 8px' }}>{jobTitle}</p>

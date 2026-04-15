@@ -31,7 +31,7 @@ export function DuotoneTemplate({ resume }) {
     <div style={{ background: 'white', fontFamily: 'Arial,sans-serif', fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm', display: 'flex' }}>
       {/* Dark left panel */}
       <div style={{ width: '38%', background: '#1a1a2e', padding: '28px 18px 40px', display: 'flex', flexDirection: 'column', gap: 20, flexShrink: 0 }}>
-        {photo ? <img src={photo} alt="" style={{ width: 80, height: 80, borderRadius: '50%', objectFit: 'cover', border: '3px solid ' + tc, margin: '0 auto 4px' }} /> : <div style={{ width: 80, height: 80, borderRadius: '50%', background: tc + '30', border: '3px solid ' + tc, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26, fontWeight: 900, color: tc, margin: '0 auto 4px' }}>{name.charAt(0)}</div>}
+        {photo ? <img src={photo} alt="" style={{ width: 104, height: 104, borderRadius: '50%', objectFit: 'cover', border: '3px solid ' + tc, margin: '0 auto 4px' }} /> : <div style={{ width: 104, height: 104, borderRadius: '50%', background: tc + '30', border: '3px solid ' + tc, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26, fontWeight: 900, color: tc, margin: '0 auto 4px' }}>{name.charAt(0)}</div>}
         <div style={{ textAlign: 'center' }}>
           <h1 style={{ fontSize: 16, fontWeight: 900, color: 'white', margin: '0 0 4px', lineHeight: 1.2 }}>{name}</h1>
           <p style={{ fontSize: 9.5, color: tc, fontWeight: 700, margin: '0 0 12px', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{jobTitle}</p>
@@ -497,8 +497,8 @@ export function GradientFlowTemplate({ resume }) {
       {/* Header */}
       <div style={{ position: 'relative', zIndex: 1, background: `linear-gradient(135deg, ${tc}18 0%, ${tc}08 100%)`, padding: '28px 30px 22px', borderBottom: `1px solid ${tc}20`, display: 'flex', alignItems: 'center', gap: 20 }}>
         {photo
-          ? <img src={photo} alt="" style={{ width: 80, height: 80, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}40`, flexShrink: 0, boxShadow: `0 4px 16px ${tc}20` }} />
-          : <div style={{ width: 80, height: 80, borderRadius: '50%', background: `${tc}15`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26, fontWeight: 900, color: tc, flexShrink: 0 }}>{name.charAt(0)}</div>
+          ? <img src={photo} alt="" style={{ width: 104, height: 104, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}40`, flexShrink: 0, boxShadow: `0 4px 16px ${tc}20` }} />
+          : <div style={{ width: 104, height: 104, borderRadius: '50%', background: `${tc}15`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26, fontWeight: 900, color: tc, flexShrink: 0 }}>{name.charAt(0)}</div>
         }
         <div>
           <h1 style={{ fontSize: 26, fontWeight: 900, color: '#1e1b4b', margin: '0 0 3px' }}>{name}</h1>
@@ -608,7 +608,7 @@ export function SidebarAccentTemplate({ resume }) {
       </div>
       {/* Right colored sidebar */}
       <div style={{ width: '30%', background: tc, padding: '28px 16px 40px', color: 'white', flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 18 }}>
-        {photo ? <img src={photo} alt="" style={{ width: 72, height: 72, borderRadius: '50%', objectFit: 'cover', border: '3px solid rgba(255,255,255,0.35)', margin: '0 auto 4px' }} /> : <div style={{ width: 72, height: 72, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, fontWeight: 900, color: 'white', margin: '0 auto 4px' }}>{name.charAt(0)}</div>}
+        {photo ? <img src={photo} alt="" style={{ width: 96, height: 96, borderRadius: '50%', objectFit: 'cover', border: '3px solid rgba(255,255,255,0.35)', margin: '0 auto 4px' }} /> : <div style={{ width: 72, height: 72, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, fontWeight: 900, color: 'white', margin: '0 auto 4px' }}>{name.charAt(0)}</div>}
         <div>
           <p style={{ fontSize: 8, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.18em', color: 'rgba(255,255,255,0.6)', marginBottom: 8 }}>Skills</p>
           {skl.map(s => <div key={s.id} style={{ marginBottom: 6 }}><div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 2 }}><span style={{ fontSize: 9, color: 'rgba(255,255,255,0.9)' }}>{s.name}</span><span style={{ fontSize: 7.5, color: 'rgba(255,255,255,0.5)' }}>{s.level}%</span></div><div style={{ height: 3, background: 'rgba(255,255,255,0.15)', borderRadius: 2 }}><div style={{ height: 3, background: 'rgba(255,255,255,0.8)', borderRadius: 2, width: s.level + '%' }} /></div></div>)}
@@ -691,7 +691,7 @@ export function CleanCorporateTemplate({ resume }) {
       {/* Clean top bar */}
       <div style={{ height: 4, background: tc }} />
       <div style={{ padding: '22px 32px 18px', borderBottom: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 20 }}>
-        {photo && <img src={photo} alt="" style={{ width: 68, height: 68, borderRadius: '50%', objectFit: 'cover', border: '2px solid ' + tc + '30', flexShrink: 0 }} />}
+        {photo && <img src={photo} alt="" style={{ width: 114, height: 114, borderRadius: '50%', objectFit: 'cover', border: '2px solid ' + tc + '30', flexShrink: 0 }} />}
         <div style={{ flex: 1 }}>
           <h1 style={{ fontSize: 24, fontWeight: 900, color: '#111', margin: '0 0 2px', letterSpacing: '-0.01em' }}>{name}</h1>
           <p style={{ fontSize: 11, color: tc, fontWeight: 700, margin: '0 0 8px', textTransform: 'uppercase', letterSpacing: '0.04em' }}>{jobTitle}</p>

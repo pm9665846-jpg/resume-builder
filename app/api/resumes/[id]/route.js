@@ -38,6 +38,7 @@ export async function GET(req, context) {
           certifications: data.certifications || [],
           languages:      data.languages      || [],
           achievements:   data.achievements   || [],
+          interests:      data.interests      || [],
         },
       },
     })
@@ -81,6 +82,7 @@ export async function PUT(req, context) {
       certifications: incomingData.certifications ?? existingData.certifications,
       languages:      incomingData.languages      ?? existingData.languages,
       achievements:   incomingData.achievements   ?? existingData.achievements,
+      interests:      incomingData.interests      ?? existingData.interests,
     })
 
     await query(

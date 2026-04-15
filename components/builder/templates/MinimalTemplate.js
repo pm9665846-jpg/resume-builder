@@ -65,7 +65,7 @@ export default function MinimalTemplate({ resume }) {
       {/* ── HEADER ── */}
       <div style={{ textAlign: 'center', marginBottom: 18, paddingBottom: 14 }}>
         {photo && (
-          <img src={photo} alt="Profile" style={{ width: 72, height: 72, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}`, margin: '0 auto 10px' }} />
+          <img src={photo} alt="Profile" style={{ width: 96, height: 96, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${tc}`, margin: '0 auto 10px' }} />
         )}
         <h1 style={{ fontSize: 26, fontWeight: 300, letterSpacing: '0.06em', color: '#111', marginBottom: 5 }}>{name}</h1>
         <p style={{ fontSize: 11, color: tc, fontWeight: 600, letterSpacing: '0.06em', marginBottom: 10 }}>{jobTitle}</p>

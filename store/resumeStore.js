@@ -26,6 +26,7 @@ const defaultResume = {
   certifications: [],
   languages: [],
   achievements: [],
+  interests: [],
 }
 
 export const useResumeStore = create((set) => ({
@@ -170,6 +171,18 @@ export const useResumeStore = create((set) => ({
   removeAchievement: (id) =>
     set((state) => ({
       resume: { ...state.resume, achievements: state.resume.achievements.filter(a => a.id !== id) },
+      isDirty: true,
+    })),
+
+  // Interests
+  addInterest: (name) =>
+    set((state) => ({
+      resume: { ...state.resume, interests: [...(state.resume.interests || []), { id: generateId(), name }] },
+      isDirty: true,
+    })),
+  removeInterest: (id) =>
+    set((state) => ({
+      resume: { ...state.resume, interests: (state.resume.interests || []).filter(i => i.id !== id) },
       isDirty: true,
     })),
 

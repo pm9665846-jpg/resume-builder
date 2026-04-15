@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useSession, signOut } from 'next-auth/react'
-import { LayoutDashboard, FileText, Plus, Settings, LogOut, Zap, User, Sparkles, Download } from 'lucide-react'
+import { LayoutDashboard, FileText, Plus, LogOut, Zap, User, Sparkles, Download } from 'lucide-react'
 
 const navItems = [
   { icon: LayoutDashboard, label: 'Dashboard', href: '/dashboard' },
@@ -12,7 +12,6 @@ const navItems = [
   { icon: Sparkles, label: 'AI Suggestions', href: '/ai-suggestions' },
   { icon: Download, label: 'Export All', href: '/dashboard/export' },
   { icon: User, label: 'Profile', href: '/dashboard/profile' },
-  { icon: Settings, label: 'Settings', href: '/dashboard/settings' },
 ]
 
 export default function Sidebar() {
