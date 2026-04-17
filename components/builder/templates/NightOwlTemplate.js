@@ -139,7 +139,7 @@ export default function NightOwlTemplate({ resume }) {
             <OwlSH tc={tc}>Interests</OwlSH>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
               {intr.map(i => (
-                <span style={{ fontSize: 8, padding: '3px 9px', borderRadius: 20, background: `${tc}10`, color: '#555', border: `1px solid ${tc}20` }}>{i.name}</span>
+                <span key={i.id} style={{ fontSize: 8, padding: '3px 9px', borderRadius: 20, background: `${tc}10`, color: '#555', border: `1px solid ${tc}20` }}>{i.name}</span>
               ))}
             </div>
           </>

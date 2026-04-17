@@ -59,7 +59,7 @@ export default function PersonalInfoForm() {
         <div
           onClick={() => fileRef.current?.click()}
           style={{
-            width: 80, height: 80, borderRadius: '50%', flexShrink: 0, cursor: 'pointer',
+            width: 130, height: 130, borderRadius: '50%', flexShrink: 0, cursor: 'pointer',
             background: personalInfo.photo ? 'transparent' : 'rgba(139,92,246,0.1)',
             border: '2px dashed rgba(139,92,246,0.4)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',

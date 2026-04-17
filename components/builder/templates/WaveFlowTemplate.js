@@ -83,7 +83,7 @@ export default function WaveFlowTemplate({ resume }) {
       <div style={{ position: 'relative', background: 'linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #8b5cf6 100%)', paddingBottom: 50, zIndex: 1 }}>
         <div style={{ padding: '28px 32px 0 32px', display: 'flex', alignItems: 'flex-start', gap: 20 }}>
           {photo && (
-            <img src={photo} alt={name} style={{ width: 72, height: 72, borderRadius: '50%', border: '3px solid rgba(255,255,255,0.9)', objectFit: 'cover', boxShadow: '0 4px 16px rgba(0,0,0,0.25)', flexShrink: 0 }} />
+            <img src={photo} alt={name} style={{ width: 120, height: 120, borderRadius: '50%', border: '3px solid rgba(255,255,255,0.9)', objectFit: 'cover', boxShadow: '0 4px 16px rgba(0,0,0,0.25)', flexShrink: 0 }} />
           )}
           <div style={{ flex: 1 }}>
             <h1 style={{ fontSize: 26, fontWeight: 900, color: '#ffffff', margin: '0 0 3px 0', letterSpacing: '-0.02em', textShadow: '0 2px 8px rgba(0,0,0,0.2)' }}>{name}</h1>

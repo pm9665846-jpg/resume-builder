@@ -56,6 +56,28 @@ import BubbleSkillTemplate from './templates/BubbleSkillTemplate'
 import ParaTagTemplate from './templates/ParaTagTemplate'
 import AccentBarTemplate2 from './templates/AccentBarTemplate2'
 import RunwayTemplate from './templates/RunwayTemplate'
+import HoneycombTemplate from './templates/HoneycombTemplate'
+import ConstellationTemplate from './templates/ConstellationTemplate'
+import PaperFoldTemplate from './templates/PaperFoldTemplate'
+import NeonOutlineTemplate from './templates/NeonOutlineTemplate'
+import LuminaryTemplate from './templates/LuminaryTemplate'
+import EditorialTemplate from './templates/EditorialTemplate'
+import GoldenTemplate from './templates/GoldenTemplate'
+import MosaicProTemplate from './templates/MosaicProTemplate'
+import PrismProTemplate from './templates/PrismProTemplate'
+import CornerAccentTemplate from './templates/CornerAccentTemplate'
+import StackedBandsTemplate from './templates/StackedBandsTemplate'
+import FrameTemplate from './templates/FrameTemplate'
+import StripeBoldTemplate from './templates/StripeBoldTemplate'
+import MyTemplate from './templates/MyTemplate'
+import CleanProTemplate from './templates/CleanProTemplate'
+import Tempbar2 from './templates/tempbar2';
+import LuxuryGoldTemplate from './templates/luxuryGold';
+import MinimalEleganceTemplate from './templates/minimalElegance';
+import SoftAuroraTemplate from './templates/softAurora';
+import AquaFlowTemplate from './templates/aquaFlow';
+import ClassicLuxeTemplate from './templates/classicLuxe';
+import ModernEdgeTemplate from './templates/modernEdge';
 
 export const templateMap = {
   modern: ModernTemplate,
@@ -249,7 +271,29 @@ export const templateMap = {
   paratag: ParaTagTemplate,
   accentbar2: AccentBarTemplate2,
   runway: RunwayTemplate,
-}
+  honeycomb: HoneycombTemplate,
+  constellation: ConstellationTemplate,
+  paperfold: PaperFoldTemplate,
+  neonoutline: NeonOutlineTemplate,
+  luminary: LuminaryTemplate,
+  editorial: EditorialTemplate,
+  golden: GoldenTemplate,
+  mosaicpro: MosaicProTemplate,
+  prismpro: PrismProTemplate,
+  corneraccent: CornerAccentTemplate,
+  stackedbands: StackedBandsTemplate,
+  frame: FrameTemplate,
+  stripebold: StripeBoldTemplate,
+  mytemplate: MyTemplate,
+  cleanpro: CleanProTemplate,
+   tempbar2: Tempbar2,
+  luxurygold: LuxuryGoldTemplate, 
+  minimalelegance: MinimalEleganceTemplate,
+   softaurora: SoftAuroraTemplate,
+     aquaflow: AquaFlowTemplate,
+       classicluxe: ClassicLuxeTemplate,
+         modernedge: ModernEdgeTemplate,
+ }
 
 export default function ResumePreview() {
   const { resume } = useResumeStore()
