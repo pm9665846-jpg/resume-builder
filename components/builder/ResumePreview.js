@@ -78,6 +78,11 @@ import SoftAuroraTemplate from './templates/softAurora';
 import AquaFlowTemplate from './templates/aquaFlow';
 import ClassicLuxeTemplate from './templates/classicLuxe';
 import ModernEdgeTemplate from './templates/modernEdge';
+import TimelineFlowTemplate from './templates/timelineFlow';
+import GalacticAuroraTemplate from './templates/galacticAurora';
+import CodeCanvasTemplate from './templates/codeCanvas';
+import CrystalClearTemplate from './templates/crystalClear';
+import PearlEleganceTemplate from './templates/pearlElegance';
 
 export const templateMap = {
   modern: ModernTemplate,
@@ -293,6 +298,11 @@ export const templateMap = {
      aquaflow: AquaFlowTemplate,
        classicluxe: ClassicLuxeTemplate,
          modernedge: ModernEdgeTemplate,
+           timelineflow: TimelineFlowTemplate,
+             galacticaurora: GalacticAuroraTemplate,
+               codecanvas: CodeCanvasTemplate,
+                crystalclear: CrystalClearTemplate,
+                  pearlelegance: PearlEleganceTemplate,
  }
 
 export default function ResumePreview() {

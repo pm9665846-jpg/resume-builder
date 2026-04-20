@@ -167,6 +167,11 @@ const templateList = [
             { id: 'aquaflow', name: 'Aqua Flow', tag: 'Liquid', defaultColor: '#00b4d8' },
              { id: 'classicluxe', name: 'Classic Luxe', tag: 'Professional', defaultColor: '#8b7355' },
                { id: 'modernedge', name: 'Modern Edge', tag: 'Bold', defaultColor: '#6366f1' },
+                { id: 'timelineflow', name: 'Timeline Flow', tag: 'Unique', defaultColor: '#ec4899' },
+                 { id: 'galacticaurora', name: 'Galactic Aurora', tag: 'Cosmic', defaultColor: '#8b5cf6' },
+                   { id: 'codecanvas', name: 'Code Canvas', tag: 'Developer', defaultColor: '#3b82f6' },
+                    { id: 'crystalclear', name: 'Crystal Clear', tag: 'Clean', defaultColor: '#0ea5e9' },
+                    { id: 'pearlelegance', name: 'Pearl Elegance', tag: 'Luxury', defaultColor: '#e8d5b7' },
 ]
 
 const sampleResume = {
