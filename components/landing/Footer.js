@@ -3,9 +3,9 @@ import Link from 'next/link'
 import { Zap } from 'lucide-react'
 
 const footerLinks = [
-  { title: 'Product', links: ['Features', 'Templates', 'Pricing', 'Changelog'] },
-  { title: 'Company', links: ['About', 'Blog', 'Careers', 'Press'] },
-  { title: 'Legal',   links: ['Privacy', 'Terms', 'Cookies', 'Security'] },
+  { title: 'Product', links: ['Features', 'Templates'], hrefs: ['#features', '#templates'] },
+  { title: 'Company', links: ['About'], hrefs: ['/about'] },
+  { title: 'Legal',   links: ['Privacy', 'Terms'], hrefs: ['/privacy-policy', '/terms'] },
 ]
 
 export default function Footer() {
@@ -39,9 +39,9 @@ export default function Footer() {
             <div key={col.title}>
               <h4 style={{ color: 'var(--text)', fontWeight: 600, fontSize: '0.875rem', marginBottom: 16 }}>{col.title}</h4>
               <ul style={{ display: 'flex', flexDirection: 'column', gap: 10, listStyle: 'none' }}>
-                {col.links.map(link => (
+                {col.links.map((link, i) => (
                   <li key={link}>
-                    <Link href="#"
+                    <Link href={col.hrefs?.[i] || '#'}
                       style={{ color: 'var(--text3)', fontSize: '0.875rem', textDecoration: 'none', transition: 'color 0.2s' }}
                       onMouseEnter={e => e.currentTarget.style.color = 'var(--text)'}
                       onMouseLeave={e => e.currentTarget.style.color = 'var(--text3)'}
