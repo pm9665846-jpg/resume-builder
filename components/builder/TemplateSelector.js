@@ -1,8 +1,17 @@
 ﻿'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useResumeStore } from '@/store/resumeStore'
 import { Check, X, RotateCcw } from 'lucide-react'
-import { templateMap } from './ResumePreview'
+
+// templateMap is loaded lazily to avoid crashing mobile browsers
+// It's only needed for TemplateThumbnail rendering
+let _templateMap = null
+async function getTemplateMap() {
+  if (_templateMap) return _templateMap
+  const mod = await import('./ResumePreview')
+  _templateMap = mod.templateMap
+  return _templateMap
+}
 
 const templateList = [
   { id: 'modern',        name: 'Modern',          tag: 'Popular',     defaultColor: '#8b5cf6' },
@@ -200,8 +209,13 @@ const sampleResume = {
 }
 
 function TemplateThumbnail({ template, themeColor, active }) {
-  const Component = templateMap[template.id]
-  if (!Component) return null
+  const [Component, setComponent] = useState(null)
+
+  useEffect(() => {
+    getTemplateMap().then(map => {
+      setComponent(() => map[template.id] || null)
+    })
+  }, [template.id])
 
   const color = themeColor || template.defaultColor
   const resumeData = { ...sampleResume, themeColor: color, template: template.id }
@@ -219,9 +233,15 @@ function TemplateThumbnail({ template, themeColor, active }) {
       boxShadow: active ? '0 0 16px rgba(139,92,246,0.5)' : 'none',
       transition: 'all 0.2s', position: 'relative', background: 'white', cursor: 'pointer',
     }}>
-      <div style={{ width: RENDER_W, height: PREVIEW_H / scale, transform: `scale(${scale})`, transformOrigin: 'top left', pointerEvents: 'none', userSelect: 'none' }}>
-        <Component resume={resumeData} />
-      </div>
+      {Component ? (
+        <div style={{ width: RENDER_W, height: PREVIEW_H / scale, transform: `scale(${scale})`, transformOrigin: 'top left', pointerEvents: 'none', userSelect: 'none' }}>
+          <Component resume={resumeData} />
+        </div>
+      ) : (
+        <div style={{ width: '100%', height: '100%', background: `${color}15`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={{ width: 20, height: 20, border: `2px solid ${color}`, borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
+        </div>
+      )}
       {active && (
         <div style={{ position: 'absolute', top: 4, right: 4, width: 16, height: 16, borderRadius: '50%', background: '#8b5cf6', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <Check size={9} color="white" />

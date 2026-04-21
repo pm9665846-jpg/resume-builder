@@ -10,12 +10,20 @@ import SkillsForm from '@/components/builder/SkillsForm'
 import ProjectsForm from '@/components/builder/ProjectsForm'
 import CertificationsForm from '@/components/builder/CertificationsForm'
 import LanguagesForm from '@/components/builder/LanguagesForm'
-import TemplateSelector from '@/components/builder/TemplateSelector'
-import ResumePreview from '@/components/builder/ResumePreview'
+import dynamic from 'next/dynamic'
 import InterestsForm from '@/components/builder/InterestsForm'
 import { Save, Download, FileText, User, Briefcase, GraduationCap, Code2, Palette, Eye, EyeOff, Zap, CheckCircle, Award, Languages, ArrowLeft, Heart } from 'lucide-react'
 import { exportToPDF } from '@/lib/exportResume'
 import Link from 'next/link'
+
+const TemplateSelector = dynamic(() => import('@/components/builder/TemplateSelector'), {
+  ssr: false,
+  loading: () => <div style={{ color: 'var(--text3)', fontSize: '0.85rem', padding: 20 }}>Loading templates...</div>,
+})
+const ResumePreview = dynamic(() => import('@/components/builder/ResumePreview'), {
+  ssr: false,
+  loading: () => <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'var(--text3)', fontSize: '0.85rem' }}>Loading preview...</div>,
+})
 
 const sections = [
   { id: 'personal',       label: 'Personal',   icon: User,          component: PersonalInfoForm },

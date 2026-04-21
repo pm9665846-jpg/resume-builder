@@ -11,19 +11,18 @@ import ProjectsForm from '@/components/builder/ProjectsForm'
 import CertificationsForm from '@/components/builder/CertificationsForm'
 import LanguagesForm from '@/components/builder/LanguagesForm'
 import InterestsForm from '@/components/builder/InterestsForm'
-import TemplateSelector from '@/components/builder/TemplateSelector'
 import dynamic from 'next/dynamic'
 import { Save, Download, FileText, User, Briefcase, GraduationCap, Code2, Palette, Eye, EyeOff, Zap, CheckCircle, Award, Languages, Heart } from 'lucide-react'
 import { exportToPDF } from '@/lib/exportResume'
 
-// Lazy load ResumePreview — contains 200+ templates, too heavy for mobile initial load
+// Lazy load heavy components — contain 200+ templates
+const TemplateSelector = dynamic(() => import('@/components/builder/TemplateSelector'), {
+  ssr: false,
+  loading: () => <div style={{ color: 'var(--text3)', fontSize: '0.85rem', padding: 20 }}>Loading templates...</div>,
+})
 const ResumePreview = dynamic(() => import('@/components/builder/ResumePreview'), {
   ssr: false,
-  loading: () => (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'var(--text3)', fontSize: '0.85rem' }}>
-      Loading preview...
-    </div>
-  ),
+  loading: () => <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'var(--text3)', fontSize: '0.85rem' }}>Loading preview...</div>,
 })
 
 const sections = [
