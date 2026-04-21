@@ -220,8 +220,8 @@ function TemplateThumbnail({ template, themeColor, active }) {
   const color = themeColor || template.defaultColor
   const resumeData = { ...sampleResume, themeColor: color, template: template.id }
 
-  const PREVIEW_W = 116
-  const PREVIEW_H = 155
+  const PREVIEW_W = 100
+  const PREVIEW_H = 134
   const RENDER_W = 794
   const scale = PREVIEW_W / RENDER_W
 
@@ -229,9 +229,10 @@ function TemplateThumbnail({ template, themeColor, active }) {
     <div style={{
       width: PREVIEW_W, height: PREVIEW_H,
       borderRadius: 8, overflow: 'hidden',
-      border: active ? '2px solid #8b5cf6' : '2px solid rgba(255,255,255,0.08)',
+      border: active ? '2px solid #8b5cf6' : '2px solid var(--border)',
       boxShadow: active ? '0 0 16px rgba(139,92,246,0.5)' : 'none',
       transition: 'all 0.2s', position: 'relative', background: 'white', cursor: 'pointer',
+      flexShrink: 0,
     }}>
       {Component ? (
         <div style={{ width: RENDER_W, height: PREVIEW_H / scale, transform: `scale(${scale})`, transformOrigin: 'top left', pointerEvents: 'none', userSelect: 'none' }}>
@@ -287,7 +288,7 @@ export default function TemplateSelector() {
         <p style={{ fontSize: '0.68rem', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 10 }}>
           Template — <span style={{ color: '#a78bfa' }}>{templateList.find(t => t.id === resume.template)?.name || 'Modern'}</span>
         </p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr))', gap: 10 }}>
           {templateList.map(t => {
             const active = resume.template === t.id
             return (
