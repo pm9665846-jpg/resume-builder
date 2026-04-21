@@ -15,10 +15,8 @@ export default function Footer() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(160px,1fr))', gap: 40, marginBottom: 48 }}>
           {/* Brand */}
           <div style={{ gridColumn: 'span 2', minWidth: 200 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
-              <div style={{ width: 32, height: 32, borderRadius: 8, background: 'linear-gradient(135deg,#8b5cf6,#3b82f6)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Zap size={16} color="white" />
-              </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 0, marginBottom: 16 }}>
+              <img src="/logo.png" alt="Resume Maker" style={{ width: 32, height: 32, objectFit: 'contain' }} />
               <span className="gradient-text" style={{ fontWeight: 700, fontSize: '1.1rem' }}>Resume Maker</span>
             </div>
             <p style={{ color: 'var(--text3)', fontSize: '0.875rem', lineHeight: 1.7, maxWidth: 260 }}>
@@ -45,8 +43,7 @@ export default function Footer() {
                       style={{ color: 'var(--text3)', fontSize: '0.875rem', textDecoration: 'none', transition: 'color 0.2s' }}
                       onMouseEnter={e => e.currentTarget.style.color = 'var(--text)'}
                       onMouseLeave={e => e.currentTarget.style.color = 'var(--text3)'}
-                    >{link}</Link>
-                  </li>
+                    >{link}</Link>                  </li>
                 ))}
               </ul>
             </div>

@@ -45,7 +45,7 @@ export default function Hero() {
         <div style={{ position: 'absolute', top: '60%', right: '10%', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%)' }} />
       </div>
 
-      {/* Content */}
+      
       <motion.div
         variants={container}
         initial="hidden"
@@ -134,7 +134,7 @@ export default function Hero() {
           color: 'var(--text3)', fontSize: '0.875rem',
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <div style={{ display: 'flex' }}>
+            {/* <div style={{ display: 'flex' }}>
               {['#8b5cf6', '#3b82f6', '#06b6d4', '#ec4899'].map((bg, i) => (
                 <div key={i} style={{
                   width: 28, height: 28, borderRadius: '50%', background: bg,
@@ -145,13 +145,13 @@ export default function Hero() {
                   {String.fromCharCode(65 + i)}
                 </div>
               ))}
-            </div>
-            <span>50,000+ resumes created</span>
+            </div> */}
+            {/* <span>50,000+ resumes created</span> */}
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+          {/* <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
             {[...Array(5)].map((_, i) => <Star key={i} size={14} color="#facc15" fill="#facc15" />)}
             <span style={{ marginLeft: 4 }}>4.9/5 rating</span>
-          </div>
+          </div> */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
             <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#4ade80', display: 'inline-block' }} />
             No credit card required

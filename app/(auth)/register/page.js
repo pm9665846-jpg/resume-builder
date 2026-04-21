@@ -227,8 +227,8 @@ function RegisterForm() {
 
               <p style={{ fontSize: '0.75rem', color: '#64748b' }}>
                 By signing up, you agree to our{' '}
-                <Link href="#" style={{ color: '#a78bfa', textDecoration: 'none' }}>Terms</Link> &{' '}
-                <Link href="#" style={{ color: '#a78bfa', textDecoration: 'none' }}>Privacy Policy</Link>.
+                <Link href="/terms" style={{ color: '#a78bfa', textDecoration: 'none' }}>Terms</Link> &{' '}
+                <Link href="/privacy-policy" style={{ color: '#a78bfa', textDecoration: 'none' }}>Privacy Policy</Link>.
               </p>
 
               <button type="submit" disabled={loading} style={{

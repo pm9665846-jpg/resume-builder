@@ -3,7 +3,8 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useSession, signOut } from 'next-auth/react'
-import { LayoutDashboard, FileText, Plus, LogOut, Zap, User, Sparkles, Download } from 'lucide-react'
+import { LayoutDashboard, FileText, Plus, LogOut, User, Sparkles, Download, Sun, Moon } from 'lucide-react'
+import { useTheme } from '@/components/providers/ThemeProvider'
 
 const navItems = [
   { icon: LayoutDashboard, label: 'Dashboard',      href: '/dashboard' },
@@ -18,6 +19,7 @@ export default function Sidebar() {
   const pathname = usePathname()
   const router = useRouter()
   const { data: session } = useSession()
+  const { theme, toggle } = useTheme()
 
   const user = session?.user
   const initials = user?.name ? user.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2) : 'U'
@@ -30,10 +32,8 @@ export default function Sidebar() {
   return (
     <aside className="dashboard-sidebar">
       {/* Logo */}
-      <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '0 8px', marginBottom: 40, textDecoration: 'none' }}>
-        <div style={{ width: 36, height: 36, borderRadius: 10, flexShrink: 0, background: 'linear-gradient(135deg, #8b5cf6, #3b82f6)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <Zap size={18} color="white" />
-        </div>
+      <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 0, padding: '0 8px', marginBottom: 40, textDecoration: 'none' }}>
+        <img src="/logo.png" alt="Resume Maker" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
         <span className="gradient-text" style={{ fontWeight: 700, fontSize: '1.1rem' }}>Resume Maker</span>
       </Link>
 
@@ -54,8 +54,8 @@ export default function Sidebar() {
                   border: active ? '1px solid rgba(139,92,246,0.3)' : '1px solid transparent',
                   transition: 'all 0.2s', cursor: 'pointer',
                 }}
-                onMouseEnter={e => { if (!active) { e.currentTarget.style.color = 'white'; e.currentTarget.style.background = 'rgba(255,255,255,0.05)' } }}
-                onMouseLeave={e => { if (!active) { e.currentTarget.style.color = '#94a3b8'; e.currentTarget.style.background = 'transparent' } }}
+                onMouseEnter={e => { if (!active) { e.currentTarget.style.color = 'var(--text)'; e.currentTarget.style.background = 'var(--hover-bg)' } }}
+                onMouseLeave={e => { if (!active) { e.currentTarget.style.color = 'var(--text2)'; e.currentTarget.style.background = 'transparent' } }}
               >
                 <item.icon size={18} />
                 {item.label}
@@ -86,6 +86,17 @@ export default function Sidebar() {
           </div>
         </div>
 
+        {/* Theme toggle */}
+        <button
+          onClick={toggle}
+          style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 12px', borderRadius: 12, width: '100%', background: 'none', border: 'none', cursor: 'pointer', color: '#64748b', fontSize: '0.875rem', transition: 'all 0.2s', marginBottom: 4 }}
+          onMouseEnter={e => { e.currentTarget.style.color = 'var(--text)'; e.currentTarget.style.background = 'var(--hover-bg)' }}
+          onMouseLeave={e => { e.currentTarget.style.color = '#64748b'; e.currentTarget.style.background = 'transparent' }}
+        >
+          {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+          {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+        </button>
+
         <button
           onClick={handleSignOut}
           style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 12px', borderRadius: 12, width: '100%', background: 'none', border: 'none', cursor: 'pointer', color: '#64748b', fontSize: '0.875rem', transition: 'all 0.2s' }}
@@ -93,8 +104,7 @@ export default function Sidebar() {
           onMouseLeave={e => { e.currentTarget.style.color = '#64748b'; e.currentTarget.style.background = 'transparent' }}
         >
           <LogOut size={16} /> Sign Out
-        </button>
-      </div>
+        </button>      </div>
     </aside>
   )
 }

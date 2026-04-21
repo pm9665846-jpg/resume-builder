@@ -1,5 +1,6 @@
 import './globals.css'
 import AuthSessionProvider from '@/components/providers/SessionProvider'
+import { ThemeProvider } from '@/components/providers/ThemeProvider'
 
 export const metadata = {
   title: 'Resume Maker — Build Your Dream Resume',
@@ -16,9 +17,9 @@ export default function RootLayout({ children }) {
       </head>
       <body style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
         <AuthSessionProvider>
-          {/* <ThemeProvider> */}
+          <ThemeProvider>
             {children}
-          {/* </ThemeProvider> */}
+          </ThemeProvider>
         </AuthSessionProvider>
       </body>
     </html>

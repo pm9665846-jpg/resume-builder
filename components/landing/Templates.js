@@ -68,10 +68,10 @@ function TemplateThumbnail({ template, active, onClick }) {
       style={{
         width: CARD_W, height: CARD_H, borderRadius: 14, overflow: 'hidden', cursor: 'pointer',
         position: 'relative', background: 'white', flexShrink: 0,
-        border: active ? `2px solid ${template.color}` : '2px solid rgba(255,255,255,0.07)',
+        border: active ? `2px solid ${template.color}` : '2px solid var(--border)',
         boxShadow: active
-          ? `0 0 0 4px ${template.color}22, 0 20px 50px rgba(0,0,0,0.5), 0 0 30px ${template.color}30`
-          : '0 8px 30px rgba(0,0,0,0.35)',
+          ? `0 0 0 4px ${template.color}22, 0 20px 50px rgba(0,0,0,0.3), 0 0 30px ${template.color}30`
+          : '0 4px 20px rgba(0,0,0,0.15)',
         transition: 'border-color 0.3s, box-shadow 0.3s',
       }}
     >
@@ -130,7 +130,7 @@ export default function Templates() {
   const activeTemplate = templates[active]
 
   return (
-    <section id="templates" style={{ width: '100%', padding: '100px 0', background: '#050508', position: 'relative', overflow: 'hidden' }}>
+    <section id="templates" style={{ width: '100%', padding: '100px 0', background: 'var(--bg)', position: 'relative', overflow: 'hidden' }}>
 
       {/* Ambient background glow */}
       <div style={{ position: 'absolute', top: '20%', left: '50%', transform: 'translateX(-50%)', width: 800, height: 400, background: 'radial-gradient(ellipse, rgba(139,92,246,0.07) 0%, transparent 70%)', pointerEvents: 'none' }} />
@@ -157,13 +157,13 @@ export default function Templates() {
           </motion.div>
 
           <h2 style={{ fontSize: 'clamp(2.2rem, 5vw, 3.8rem)', fontWeight: 900, lineHeight: 1.08, marginBottom: 18, letterSpacing: '-0.02em' }}>
-            <span style={{ color: 'white' }}>Templates that </span>
+            <span style={{ color: 'var(--text)' }}>Templates that </span>
             <span style={{ background: 'linear-gradient(135deg, #ec4899, #8b5cf6, #3b82f6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
               stand out
             </span>
           </h2>
 
-          <p style={{ color: '#64748b', fontSize: '1.05rem', maxWidth: 480, margin: '0 auto', lineHeight: 1.7 }}>
+          <p style={{ color: 'var(--text3)', fontSize: '1.05rem', maxWidth: 480, margin: '0 auto', lineHeight: 1.7 }}>
             Every template is crafted to pass ATS systems and impress hiring managers.
           </p>
         </motion.div>
@@ -182,14 +182,14 @@ export default function Templates() {
 
               {/* Label */}
               <div style={{ textAlign: 'center' }}>
-                <p style={{ color: active === i ? 'white' : '#94a3b8', fontWeight: 600, fontSize: '0.9rem', marginBottom: 5, transition: 'color 0.2s' }}>
+                <p style={{ color: active === i ? 'var(--text)' : 'var(--text2)', fontWeight: 600, fontSize: '0.9rem', marginBottom: 5, transition: 'color 0.2s' }}>
                   {t.name}
                 </p>
                 <span style={{
                   display: 'inline-block', fontSize: '0.65rem', fontWeight: 700, padding: '3px 10px', borderRadius: 999,
-                  background: active === i ? `${t.color}20` : 'rgba(255,255,255,0.04)',
-                  color: active === i ? t.color : '#475569',
-                  border: `1px solid ${active === i ? t.color + '40' : 'rgba(255,255,255,0.06)'}`,
+                  background: active === i ? `${t.color}20` : 'var(--card)',
+                  color: active === i ? t.color : 'var(--text3)',
+                  border: `1px solid ${active === i ? t.color + '40' : 'var(--border)'}`,
                   transition: 'all 0.3s', letterSpacing: '0.04em', textTransform: 'uppercase',
                 }}>
                   {t.tag}
@@ -215,7 +215,7 @@ export default function Templates() {
             {/* Selected info */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 24 }}>
               <div style={{ width: 10, height: 10, borderRadius: '50%', background: activeTemplate.color, boxShadow: `0 0 10px ${activeTemplate.color}` }} />
-              <span style={{ color: '#64748b', fontSize: '0.875rem' }}>
+              <span style={{ color: 'var(--text3)', fontSize: '0.875rem' }}>
                 Selected: <span style={{ color: activeTemplate.color, fontWeight: 700 }}>{activeTemplate.name}</span>
               </span>
               <span style={{ fontSize: '0.7rem', padding: '2px 8px', borderRadius: 999, background: `${activeTemplate.color}15`, color: activeTemplate.color, border: `1px solid ${activeTemplate.color}30`, fontWeight: 600 }}>
@@ -242,7 +242,7 @@ export default function Templates() {
               <ArrowRight size={18} />
             </motion.button>
 
-            <p style={{ color: '#334155', fontSize: '0.78rem', marginTop: 14, letterSpacing: '0.02em' }}>
+            <p style={{ color: 'var(--text3)', fontSize: '0.78rem', marginTop: 14, letterSpacing: '0.02em' }}>
               Free to start · No credit card required
             </p>
           </motion.div>
