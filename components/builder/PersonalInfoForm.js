@@ -1,4 +1,5 @@
 'use client'
+import { useRef } from 'react'
 import { useResumeStore } from '@/store/resumeStore'
 import AIAssistButton from '@/components/ui/AIAssistButton'
 import { User, Mail, Phone, MapPin, Globe, Link2, Briefcase, GitBranch, Camera, X } from 'lucide-react'
@@ -33,6 +34,7 @@ export default function PersonalInfoForm() {
   const { resume, updatePersonalInfo } = useResumeStore()
   const { personalInfo } = resume
   const u = (field) => (e) => updatePersonalInfo(field, e.target.value)
+  const fileRef = useRef(null)
 
   async function handlePhoto(e) {
     const file = e.target.files?.[0]
