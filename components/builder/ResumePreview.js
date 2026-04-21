@@ -325,18 +325,22 @@ export default function ResumePreview() {
         const scale = containerW / RESUME_W
         el.style.transform = `scale(${scale})`
         el.style.transformOrigin = 'top left'
-        wrapper.style.height = `${1123 * scale}px`
+        // Set wrapper height to match scaled content height
+        const scaledH = el.scrollHeight * scale
+        wrapper.style.height = `${scaledH}px`
       } else {
         el.style.transform = 'scale(1)'
+        el.style.transformOrigin = 'top left'
         wrapper.style.height = 'auto'
       }
     }
 
-    applyScale()
+    // Small delay to let DOM render first
+    const t = setTimeout(applyScale, 50)
     const observer = new ResizeObserver(applyScale)
     if (wrapperRef.current) observer.observe(wrapperRef.current)
-    return () => observer.disconnect()
-  }, [resume.template])
+    return () => { clearTimeout(t); observer.disconnect() }
+  }, [resume.template, resume])
 
   // Convert stored fileName to full URL for display
   const resolvedResume = {
@@ -363,13 +367,11 @@ export default function ResumePreview() {
       overflowX: 'hidden',
       background: '#d1d5db',
       borderRadius: 12,
-      padding: 12,
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'flex-start',
+      padding: 8,
+      boxSizing: 'border-box',
     }}>
-      {/* Wrapper — measures available width */}
-      <div ref={wrapperRef} style={{ width: '100%', maxWidth: RESUME_W, position: 'relative' }}>
+      {/* Wrapper — measures available width, height adjusts to scaled content */}
+      <div ref={wrapperRef} style={{ width: '100%', maxWidth: RESUME_W, margin: '0 auto', position: 'relative', overflow: 'hidden' }}>
         <div
           ref={resumeRef}
           id="resume-preview"
