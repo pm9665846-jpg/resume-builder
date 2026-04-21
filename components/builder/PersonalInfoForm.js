@@ -1,5 +1,4 @@
 'use client'
-import { useRef } from 'react'
 import { useResumeStore } from '@/store/resumeStore'
 import AIAssistButton from '@/components/ui/AIAssistButton'
 import { User, Mail, Phone, MapPin, Globe, Link2, Briefcase, GitBranch, Camera, X } from 'lucide-react'
@@ -34,7 +33,6 @@ export default function PersonalInfoForm() {
   const { resume, updatePersonalInfo } = useResumeStore()
   const { personalInfo } = resume
   const u = (field) => (e) => updatePersonalInfo(field, e.target.value)
-  const fileRef = useRef(null)
 
   async function handlePhoto(e) {
     const file = e.target.files?.[0]
@@ -43,11 +41,14 @@ export default function PersonalInfoForm() {
     const formData = new FormData()
     formData.append('file', file)
 
-    const res = await fetch('/api/upload', { method: 'POST', body: formData })
-    const data = await res.json()
-
-    if (data.fileName) {
-      updatePersonalInfo('photo', data.fileName)
+    try {
+      const res = await fetch('/api/upload', { method: 'POST', body: formData })
+      const data = await res.json()
+      if (data.fileName) {
+        updatePersonalInfo('photo', data.fileName)
+      }
+    } catch (err) {
+      console.error('Upload failed:', err)
     }
   }
 
@@ -55,11 +56,20 @@ export default function PersonalInfoForm() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
 
       {/* Photo Upload */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
+        {/* Hidden file input — must be in DOM, not display:none for mobile */}
+        <input
+          ref={fileRef}
+          type="file"
+          accept="image/*"
+          capture="environment"
+          onChange={handlePhoto}
+          style={{ position: 'absolute', width: 1, height: 1, opacity: 0, pointerEvents: 'none' }}
+        />
         <div
           onClick={() => fileRef.current?.click()}
           style={{
-            width: 130, height: 130, borderRadius: '50%', flexShrink: 0, cursor: 'pointer',
+            width: 90, height: 90, borderRadius: '50%', flexShrink: 0, cursor: 'pointer',
             background: personalInfo.photo ? 'transparent' : 'rgba(139,92,246,0.1)',
             border: '2px dashed rgba(139,92,246,0.4)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -69,29 +79,41 @@ export default function PersonalInfoForm() {
           onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(139,92,246,0.4)'}
         >
           {personalInfo.photo ? (
-            <img src={personalInfo.photo.startsWith('http') || personalInfo.photo.startsWith('data:') || personalInfo.photo.startsWith('/') ? personalInfo.photo : `/uploads/${personalInfo.photo}`} alt="Profile" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <img
+              src={personalInfo.photo.startsWith('http') || personalInfo.photo.startsWith('data:') || personalInfo.photo.startsWith('/') ? personalInfo.photo : `/uploads/${personalInfo.photo}`}
+              alt="Profile"
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
           ) : (
             <Camera size={22} color="#7c3aed" />
           )}
         </div>
         <div>
-          <p style={{ fontSize: '0.8rem', fontWeight: 600, color: '#e2e8f0', marginBottom: 4 }}>Profile Photo</p>
-          <p style={{ fontSize: '0.72rem', color: '#64748b', marginBottom: 8 }}>JPG, PNG — shows on resume</p>
-          <div style={{ display: 'flex', gap: 8 }}>
-            <button
-              onClick={() => fileRef.current?.click()}
+          <p style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text)', marginBottom: 4 }}>Profile Photo</p>
+          <p style={{ fontSize: '0.72rem', color: 'var(--text3)', marginBottom: 8 }}>JPG, PNG — shows on resume</p>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            <label
+              htmlFor="photo-upload-input"
               style={{
-                fontSize: '0.72rem', padding: '5px 12px', borderRadius: 7, cursor: 'pointer',
+                fontSize: '0.72rem', padding: '6px 14px', borderRadius: 7, cursor: 'pointer',
                 background: 'rgba(139,92,246,0.2)', border: '1px solid rgba(139,92,246,0.4)', color: '#a78bfa',
+                display: 'inline-block',
               }}
             >
               {personalInfo.photo ? 'Change' : 'Upload'}
-            </button>
+            </label>
+            <input
+              id="photo-upload-input"
+              type="file"
+              accept="image/*"
+              onChange={handlePhoto}
+              style={{ display: 'none' }}
+            />
             {personalInfo.photo && (
               <button
                 onClick={() => updatePersonalInfo('photo', '')}
                 style={{
-                  fontSize: '0.72rem', padding: '5px 10px', borderRadius: 7, cursor: 'pointer',
+                  fontSize: '0.72rem', padding: '6px 10px', borderRadius: 7, cursor: 'pointer',
                   background: 'rgba(248,113,113,0.1)', border: '1px solid rgba(248,113,113,0.3)', color: '#f87171',
                   display: 'flex', alignItems: 'center', gap: 4,
                 }}
@@ -100,7 +122,6 @@ export default function PersonalInfoForm() {
               </button>
             )}
           </div>
-          <input ref={fileRef} type="file" accept="image/*" onChange={handlePhoto} style={{ display: 'none' }} />
         </div>
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>

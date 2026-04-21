@@ -94,7 +94,7 @@ export default function DashboardPage() {
         </motion.div>
 
         {/* Main content */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: 24 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 24 }}>
 
           {/* Recent Resumes */}
           <motion.div variants={item}>
