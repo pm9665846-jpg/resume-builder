@@ -72,49 +72,56 @@ export default function PersonalInfoForm() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
 
       {/* ── Photo Upload ── */}
-      {/* Single hidden input — label triggers it on all devices */}
-      <input
-        ref={fileInputRef}
-        id="photo-file-input"
-        type="file"
-        accept="image/*"
-        onChange={handlePhoto}
-        style={{ display: 'none' }}
-      />
-
       <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
-        {/* Avatar circle — clicking opens file picker */}
-        <label
-          htmlFor="photo-file-input"
+        {/* Avatar circle */}
+        <div
           style={{
-            width: 80, height: 80, borderRadius: '50%', flexShrink: 0, cursor: 'pointer',
+            width: 80, height: 80, borderRadius: '50%', flexShrink: 0,
             background: photoSrc ? 'transparent' : 'rgba(139,92,246,0.1)',
             border: '2px dashed rgba(139,92,246,0.4)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            overflow: 'hidden',
+            overflow: 'hidden', position: 'relative', cursor: 'pointer',
           }}
+          onClick={() => fileInputRef.current?.click()}
         >
           {photoSrc ? (
             <img src={photoSrc} alt="Profile" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           ) : (
             <Camera size={22} color="#7c3aed" />
           )}
-        </label>
+        </div>
 
         <div>
           <p style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text)', marginBottom: 4 }}>Profile Photo</p>
           <p style={{ fontSize: '0.72rem', color: 'var(--text3)', marginBottom: 8 }}>JPG, PNG — shows on resume</p>
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-            <label
-              htmlFor="photo-file-input"
-              style={{
-                fontSize: '0.75rem', padding: '7px 16px', borderRadius: 8, cursor: 'pointer',
-                background: 'rgba(139,92,246,0.2)', border: '1px solid rgba(139,92,246,0.4)',
-                color: '#a78bfa', display: 'inline-block', fontWeight: 600,
-              }}
-            >
-              {photoSrc ? 'Change Photo' : 'Upload Photo'}
-            </label>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
+            {/* Visible file input button — works on all mobile browsers */}
+            <div style={{ position: 'relative', overflow: 'hidden', display: 'inline-block' }}>
+              <button
+                type="button"
+                style={{
+                  fontSize: '0.75rem', padding: '7px 16px', borderRadius: 8,
+                  background: 'rgba(139,92,246,0.2)', border: '1px solid rgba(139,92,246,0.4)',
+                  color: '#a78bfa', fontWeight: 600, cursor: 'pointer', pointerEvents: 'none',
+                }}
+              >
+                {photoSrc ? 'Change Photo' : 'Upload Photo'}
+              </button>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handlePhoto}
+                style={{
+                  position: 'absolute',
+                  top: 0, left: 0,
+                  width: '100%', height: '100%',
+                  opacity: 0,
+                  cursor: 'pointer',
+                  fontSize: '100px', // large font makes click area bigger on mobile
+                }}
+              />
+            </div>
             {photoSrc && (
               <button
                 type="button"
