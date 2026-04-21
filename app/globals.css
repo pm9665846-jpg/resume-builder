@@ -313,13 +313,39 @@ body {
 }
 
 /* ============================================================
-   RESPONSIVE
+   MOBILE RESPONSIVE — Dashboard & Builder
    ============================================================ */
 @media (max-width: 768px) {
-  .dashboard-sidebar { transform: translateX(-100%); transition: transform 0.3s ease; }
-  .dashboard-main    { margin-left: 0; width: 100%; }
-  .navbar-inner      { padding: 0 1rem; }
-  .hero-content      { padding: 0 1rem; }
+  /* Desktop sidebar hidden on mobile */
+  .dashboard-sidebar {
+    display: none !important;
+  }
+  /* Mobile top bar shown */
+  .mobile-topbar {
+    display: flex !important;
+  }
+  /* Dashboard main full width with top padding for topbar */
+  .dashboard-main {
+    margin-left: 0 !important;
+    width: 100% !important;
+    padding-top: 56px;
+  }
+  /* Register page — hide template preview panel on mobile */
+  .hidden.md\:flex {
+    display: none !important;
+  }
+  .navbar-inner { padding: 0 1rem; }
+  .hero-content  { padding: 0 1rem; }
+}
+
+/* Desktop — show md:flex elements */
+@media (min-width: 769px) {
+  .hidden.md\:flex {
+    display: flex !important;
+  }
+  .md\:hidden {
+    display: none !important;
+  }
 }
 
 /* ============================================================

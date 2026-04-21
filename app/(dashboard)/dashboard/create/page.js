@@ -41,9 +41,17 @@ function BuilderContent() {
   const { resume, isDirty, isSaving, lastSaved, setIsSaving, setLastSaved, resetResume, updateTemplate, updateThemeColor } = useResumeStore()
   const setResumeId = useResumeStore(s => s.setResumeId)
   const [activeSection, setActiveSection] = useState('personal')
-  const [showPreview, setShowPreview] = useState(true)
+  const [showPreview, setShowPreview] = useState(false) // default hidden on mobile
   const [exportLoading, setExportLoading] = useState(false)
   const [saveSuccess, setSaveSuccess] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
 
   // Initialize with the template from URL
   useEffect(() => {
