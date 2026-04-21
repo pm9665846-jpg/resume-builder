@@ -1,5 +1,6 @@
 'use client'
 import { useResumeStore } from '@/store/resumeStore'
+import { useEffect, useRef } from 'react'
 
 // Convert stored fileName to displayable URL
 function resolvePhotoUrl(photo) {
@@ -308,6 +309,34 @@ export const templateMap = {
 export default function ResumePreview() {
   const { resume } = useResumeStore()
   const Template = templateMap[resume.template] || ModernTemplate
+  const resumeRef = useRef(null)
+  const wrapperRef = useRef(null)
+
+  const RESUME_W = 794
+
+  // Scale resume to fit container on mobile
+  useEffect(() => {
+    function applyScale() {
+      const el = resumeRef.current
+      const wrapper = wrapperRef.current
+      if (!el || !wrapper) return
+      const containerW = wrapper.offsetWidth
+      if (containerW > 0 && containerW < RESUME_W) {
+        const scale = containerW / RESUME_W
+        el.style.transform = `scale(${scale})`
+        el.style.transformOrigin = 'top left'
+        wrapper.style.height = `${1123 * scale}px`
+      } else {
+        el.style.transform = 'scale(1)'
+        wrapper.style.height = 'auto'
+      }
+    }
+
+    applyScale()
+    const observer = new ResizeObserver(applyScale)
+    if (wrapperRef.current) observer.observe(wrapperRef.current)
+    return () => observer.disconnect()
+  }, [resume.template])
 
   // Convert stored fileName to full URL for display
   const resolvedResume = {
@@ -331,29 +360,32 @@ export default function ResumePreview() {
       width: '100%',
       height: '100%',
       overflowY: 'auto',
-      overflowX: 'auto',
+      overflowX: 'hidden',
       background: '#d1d5db',
       borderRadius: 12,
-      padding: 20,
+      padding: 12,
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'flex-start',
     }}>
-      <div
-        id="resume-preview"
-        style={{
-          background: 'white',
-          boxShadow: '0 4px 40px rgba(0,0,0,0.35)',
-          borderRadius: 2,
-          width: '794px',
-          minHeight: '1123px',
-          flexShrink: 0,
-          fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif",
-          WebkitFontSmoothing: 'antialiased',
-          MozOsxFontSmoothing: 'grayscale',
-        }}
-      >
-        <Template resume={resolvedResume} />
+      {/* Wrapper — measures available width */}
+      <div ref={wrapperRef} style={{ width: '100%', maxWidth: RESUME_W, position: 'relative' }}>
+        <div
+          ref={resumeRef}
+          id="resume-preview"
+          style={{
+            background: 'white',
+            boxShadow: '0 4px 40px rgba(0,0,0,0.35)',
+            borderRadius: 2,
+            width: `${RESUME_W}px`,
+            minHeight: '1123px',
+            fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif",
+            WebkitFontSmoothing: 'antialiased',
+            MozOsxFontSmoothing: 'grayscale',
+          }}
+        >
+          <Template resume={resolvedResume} />
+        </div>
       </div>
     </div>
   )
