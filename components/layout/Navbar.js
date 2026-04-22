@@ -68,12 +68,17 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile toggle */}
-        <button onClick={() => setOpen(!open)} className="md:hidden"
-          style={{ color: 'var(--text2)', background: 'none', border: 'none', cursor: 'pointer', padding: 4 }}
-        >
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        {/* Mobile: theme toggle + hamburger */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }} className="md:hidden">
+          <button onClick={toggle} className="theme-toggle" title="Toggle theme" style={{ width: 34, height: 34 }}>
+            {theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />}
+          </button>
+          <button onClick={() => setOpen(!open)}
+            style={{ color: 'var(--text2)', background: 'none', border: 'none', cursor: 'pointer', padding: 4 }}
+          >
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}

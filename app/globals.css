@@ -346,6 +346,10 @@ body {
   .md\:hidden {
     display: none !important;
   }
+  /* Template grid — 4 columns on desktop */
+  .template-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
+  }
 }
 
 /* ============================================================

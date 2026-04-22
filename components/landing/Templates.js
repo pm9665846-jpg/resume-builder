@@ -115,9 +115,117 @@ function TemplateThumbnail({ template, active, onClick }) {
 
 export default function Templates() {
   const [active, setActive] = useState(0)
+  const [showAll, setShowAll] = useState(false)
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
   const router = useRouter()
+
+  function handleUseTemplate(templateId) {
+    if (typeof window !== 'undefined') {
+      sessionStorage.setItem('selectedTemplate', templateId)
+      sessionStorage.setItem('selectedTemplateColor', templates.find(t => t.id === templateId)?.color || '#8b5cf6')
+    }
+    router.push(`/register?template=${templateId}`)
+  }
+
+  const activeTemplate = templates[active]
+  // Mobile: show 4 (2x2), desktop: show all or all
+  const visibleTemplates = showAll ? templates : templates.slice(0, 4)
+
+  return (
+    <section id="templates" style={{ width: '100%', padding: '100px 0', background: 'var(--bg)', position: 'relative', overflow: 'hidden' }}>
+
+      <div style={{ position: 'absolute', top: '20%', left: '50%', transform: 'translateX(-50%)', width: 800, height: 400, background: 'radial-gradient(ellipse, rgba(139,92,246,0.07) 0%, transparent 70%)', pointerEvents: 'none' }} />
+
+      <div style={{ width: '100%', maxWidth: 1280, margin: '0 auto', padding: '0 24px' }}>
+
+        {/* Header */}
+        <motion.div ref={ref} initial={{ opacity: 0, y: 32 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} style={{ textAlign: 'center', marginBottom: 48 }}>
+          <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={inView ? { opacity: 1, scale: 1 } : {}} transition={{ delay: 0.1 }}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 7, marginBottom: 20, padding: '7px 18px', borderRadius: 999, background: 'rgba(139,92,246,0.1)', border: '1px solid rgba(139,92,246,0.25)' }}>
+            <Sparkles size={13} color="#a78bfa" />
+            <span style={{ fontSize: '0.78rem', fontWeight: 600, color: '#a78bfa', letterSpacing: '0.04em' }}>12 Professional Templates</span>
+          </motion.div>
+          <h2 style={{ fontSize: 'clamp(2.2rem, 5vw, 3.8rem)', fontWeight: 900, lineHeight: 1.08, marginBottom: 18, letterSpacing: '-0.02em' }}>
+            <span style={{ color: 'var(--text)' }}>Templates that </span>
+            <span style={{ background: 'linear-gradient(135deg, #ec4899, #8b5cf6, #3b82f6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>stand out</span>
+          </h2>
+          <p style={{ color: 'var(--text3)', fontSize: '1.05rem', maxWidth: 480, margin: '0 auto', lineHeight: 1.7 }}>
+            Every template is crafted to pass ATS systems and impress hiring managers.
+          </p>
+        </motion.div>
+
+        {/* Template grid — 2 cols on mobile, auto on desktop */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(2, 1fr)',
+          gap: 16,
+          marginBottom: 32,
+          justifyItems: 'center',
+        }}
+          className="template-grid"
+        >
+          {visibleTemplates.map((t, i) => (
+            <motion.div key={t.id}
+              initial={{ opacity: 0, y: 40 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.05 + i * 0.06, duration: 0.6 }}
+              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, width: '100%', maxWidth: 200 }}
+            >
+              <TemplateThumbnail template={t} active={active === i} onClick={() => setActive(i)} />
+              <div style={{ textAlign: 'center' }}>
+                <p style={{ color: active === i ? 'var(--text)' : 'var(--text2)', fontWeight: 600, fontSize: '0.85rem', marginBottom: 4, transition: 'color 0.2s' }}>{t.name}</p>
+                <span style={{ display: 'inline-block', fontSize: '0.62rem', fontWeight: 700, padding: '2px 8px', borderRadius: 999, background: active === i ? `${t.color}20` : 'var(--card)', color: active === i ? t.color : 'var(--text3)', border: `1px solid ${active === i ? t.color + '40' : 'var(--border)'}`, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                  {t.tag}
+                </span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* View All / Show Less button */}
+        <div style={{ textAlign: 'center', marginBottom: 48 }}>
+          <button
+            onClick={() => setShowAll(s => !s)}
+            style={{
+              display: 'inline-flex', alignItems: 'center', gap: 8,
+              padding: '10px 28px', borderRadius: 12,
+              background: 'var(--card)', border: '1px solid var(--border)',
+              color: 'var(--text2)', fontSize: '0.875rem', fontWeight: 600,
+              cursor: 'pointer', transition: 'all 0.2s',
+            }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(139,92,246,0.4)'; e.currentTarget.style.color = '#a78bfa' }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text2)' }}
+          >
+            {showAll ? 'Show Less ↑' : `View All ${templates.length} Templates →`}
+          </button>
+        </div>
+
+        {/* CTA panel */}
+        <AnimatePresence mode="wait">
+          <motion.div key={active} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.3 }}
+            style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div style={{ width: 1, height: 40, background: `linear-gradient(to bottom, transparent, ${activeTemplate.color}60, transparent)`, marginBottom: 24 }} />
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20, flexWrap: 'wrap', justifyContent: 'center' }}>
+              <div style={{ width: 10, height: 10, borderRadius: '50%', background: activeTemplate.color, boxShadow: `0 0 10px ${activeTemplate.color}` }} />
+              <span style={{ color: 'var(--text3)', fontSize: '0.875rem' }}>
+                Selected: <span style={{ color: activeTemplate.color, fontWeight: 700 }}>{activeTemplate.name}</span>
+              </span>
+            </div>
+            <motion.button whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.97 }}
+              onClick={() => handleUseTemplate(activeTemplate.id)}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 10, padding: '14px 36px', borderRadius: 14, background: `linear-gradient(135deg, ${activeTemplate.color}, ${activeTemplate.color}99)`, color: 'white', fontWeight: 700, fontSize: '1rem', border: 'none', cursor: 'pointer', boxShadow: `0 0 40px ${activeTemplate.color}40` }}
+            >
+              Use {activeTemplate.name} Template <ArrowRight size={18} />
+            </motion.button>
+            <p style={{ color: 'var(--text3)', fontSize: '0.78rem', marginTop: 12 }}>Free to start · No credit card required</p>
+          </motion.div>
+        </AnimatePresence>
+
+      </div>
+    </section>
+  )
+}
 
   function handleUseTemplate(templateId) {
     if (typeof window !== 'undefined') {
