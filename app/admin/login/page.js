@@ -64,9 +64,13 @@ export default function AdminLoginPage() {
                 <input
                   type="email"
                   value={form.email}
-                  onChange={e => setForm(p => ({ ...p, email: e.target.value }))}
+                  onChange={e => setForm(p => ({ ...p, email: e.target.value.trim() }))}
                   placeholder="admin@resumeai.com"
                   required
+                  autoCapitalize="none"
+                  autoCorrect="off"
+                  autoComplete="email"
+                  spellCheck="false"
                   style={{ width: '100%', paddingLeft: 36, paddingRight: 14, paddingTop: 11, paddingBottom: 11, borderRadius: 10, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', color: '#f1f5f9', fontSize: '0.875rem', outline: 'none', boxSizing: 'border-box' }}
                   onFocus={e => e.target.style.borderColor = 'rgba(239,68,68,0.5)'}
                   onBlur={e => e.target.style.borderColor = 'rgba(255,255,255,0.08)'}
@@ -85,6 +89,9 @@ export default function AdminLoginPage() {
                   onChange={e => setForm(p => ({ ...p, password: e.target.value }))}
                   placeholder="••••••••"
                   required
+                  autoCapitalize="none"
+                  autoCorrect="off"
+                  autoComplete="current-password"
                   style={{ width: '100%', paddingLeft: 36, paddingRight: 14, paddingTop: 11, paddingBottom: 11, borderRadius: 10, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', color: '#f1f5f9', fontSize: '0.875rem', outline: 'none', boxSizing: 'border-box' }}
                   onFocus={e => e.target.style.borderColor = 'rgba(239,68,68,0.5)'}
                   onBlur={e => e.target.style.borderColor = 'rgba(255,255,255,0.08)'}

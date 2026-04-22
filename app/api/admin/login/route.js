@@ -12,12 +12,14 @@ export async function POST(req) {
     }
 
     const users = await query('SELECT * FROM users WHERE email = ? AND role = ?', [email.toLowerCase().trim(), 'admin'])
+    console.log('[Admin Login] email:', email.toLowerCase().trim(), '| found:', users.length)
     if (users.length === 0) {
       return NextResponse.json({ error: 'Invalid credentials or not an admin' }, { status: 401 })
     }
 
     const user = users[0]
     const valid = await bcrypt.compare(password, user.password)
+    console.log('[Admin Login] password valid:', valid)
     if (!valid) {
       return NextResponse.json({ error: 'Invalid credentials or not an admin' }, { status: 401 })
     }
