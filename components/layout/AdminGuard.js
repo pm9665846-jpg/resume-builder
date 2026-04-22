@@ -1,26 +1,32 @@
 'use client'
-import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+import { useRouter, usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 export default function AdminGuard({ children }) {
-  const { data: session, status } = useSession()
   const router = useRouter()
+  const pathname = usePathname()
+  const [ok, setOk] = useState(false)
 
   useEffect(() => {
-    if (status === 'unauthenticated') router.replace('/login')
-    else if (status === 'authenticated' && session?.user?.role !== 'admin') {
-      router.replace('/dashboard')
-    }
-  }, [status, session, router])
+    // Skip guard on login page itself
+    if (pathname === '/admin/login') { setOk(true); return }
 
-  if (status === 'loading') return (
+    fetch('/api/admin/me', { credentials: 'include' })
+      .then(r => {
+        if (r.ok) {
+          setOk(true)
+        } else {
+          router.replace('/admin/login')
+        }
+      })
+      .catch(() => router.replace('/admin/login'))
+  }, [pathname, router])
+
+  if (!ok) return (
     <div style={{ minHeight: '100vh', background: '#050508', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <div style={{ width: 32, height: 32, border: '3px solid rgba(239,68,68,0.2)', borderTopColor: '#ef4444', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
     </div>
   )
-  if (status === 'unauthenticated') return null
-  if (session?.user?.role !== 'admin') return null
 
   return children
 }

@@ -2,9 +2,8 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Users, FileText, TrendingUp, Layout, Clock, UserCheck, AlertCircle } from 'lucide-react'
-import { templateMap } from '@/components/builder/ResumePreview'
 
-const TOTAL_TEMPLATES = Object.keys(templateMap).length
+const TOTAL_TEMPLATES = 200 // approximate count
 
 const container = { hidden: {}, show: { transition: { staggerChildren: 0.07 } } }
 const item = { hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0, transition: { duration: 0.35 } } }

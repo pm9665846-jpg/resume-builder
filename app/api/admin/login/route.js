@@ -25,7 +25,8 @@ export async function POST(req) {
     const cookieStore = await cookies()
     cookieStore.set('admin_session', JSON.stringify({ id: user.id, name: user.name, email: user.email, role: 'admin' }), {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      secure: false, // false for local network access
+      sameSite: 'lax',
       maxAge: 60 * 60 * 8, // 8 hours
       path: '/',
     })
