@@ -98,12 +98,6 @@ export default function Navbar() {
               </Link>
             ))}
             <div style={{ borderTop: '1px solid var(--border3)', paddingTop: 12, display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {/* Mobile theme toggle */}
-              <button onClick={toggle}
-                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '10px', borderRadius: 10, color: 'var(--text2)', border: '1px solid var(--border)', background: 'var(--card)', cursor: 'pointer', fontSize: '0.875rem' }}
-              >
-                {theme === 'dark' ? <><Sun size={14} /> Light Mode</> : <><Moon size={14} /> Dark Mode</>}
-              </button>
               <Link href="/login"
                 style={{ textAlign: 'center', padding: '10px', borderRadius: 10, color: 'var(--text2)', border: '1px solid var(--border)', textDecoration: 'none', fontSize: '0.875rem' }}
               >Sign In</Link>

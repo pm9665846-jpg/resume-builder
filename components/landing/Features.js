@@ -1,23 +1,31 @@
 'use client'
 import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
-import { Wand2, Layout, Download, Eye, Palette, Shield, Zap, Globe } from 'lucide-react'
+import { useRef, useEffect, useState } from 'react'
+import { Wand2, Layout, Download, Eye, Palette, Shield, Zap, Globe, Star, Code, Lock, Heart, Award, Briefcase, FileText, Settings, Users, CheckCircle } from 'lucide-react'
 
-const features = [
-  { icon: Wand2,    title: 'AI-Powered Writing',  desc: 'Smart suggestions that tailor your resume to any job description automatically.', color: '#8b5cf6' },
-  { icon: Layout,   title: 'Premium Templates',   desc: '20+ professionally designed templates crafted by top designers.',               color: '#3b82f6' },
-  { icon: Eye,      title: 'Live Preview',         desc: 'See every change in real-time with our split-screen editor.',                  color: '#06b6d4' },
-  { icon: Download, title: 'One-Click Export',     desc: 'Export to PDF or DOCX with perfect formatting, every time.',                  color: '#ec4899' },
-  { icon: Palette,  title: 'Theme Customizer',     desc: 'Personalize colors, fonts, and layouts to match your style.',                 color: '#f59e0b' },
-  { icon: Shield,   title: 'ATS Optimized',        desc: 'Beat applicant tracking systems with our smart formatting engine.',           color: '#10b981' },
-  { icon: Zap,      title: 'Auto Save',            desc: 'Never lose your work. Every keystroke is saved automatically.',               color: '#8b5cf6' },
-  { icon: Globe,    title: 'Drag & Drop',          desc: 'Reorder sections effortlessly with intuitive drag and drop.',                 color: '#3b82f6' },
+// Icon map — admin panel mein yeh names use karo
+const ICON_MAP = {
+  Wand2, Layout, Download, Eye, Palette, Shield, Zap, Globe,
+  Star, Code, Lock, Heart, Award, Briefcase, FileText, Settings, Users, CheckCircle,
+}
+
+// Fallback static features (shown if API fails)
+const FALLBACK_FEATURES = [
+  { icon: 'Wand2',    title: 'AI-Powered Writing',  description: 'Smart suggestions that tailor your resume to any job description automatically.', color: '#8b5cf6' },
+  { icon: 'Layout',   title: 'Premium Templates',   description: '200+ professionally designed templates crafted by top designers.',               color: '#3b82f6' },
+  { icon: 'Eye',      title: 'Live Preview',         description: 'See every change in real-time with our split-screen editor.',                  color: '#06b6d4' },
+  { icon: 'Download', title: 'One-Click Export',     description: 'Export to PDF or DOCX with perfect formatting, every time.',                  color: '#ec4899' },
+  { icon: 'Palette',  title: 'Theme Customizer',     description: 'Personalize colors, fonts, and layouts to match your style.',                 color: '#f59e0b' },
+  { icon: 'Shield',   title: 'ATS Optimized',        description: 'Beat applicant tracking systems with our smart formatting engine.',           color: '#10b981' },
+  { icon: 'Zap',      title: 'Auto Save',            description: 'Never lose your work. Every keystroke is saved automatically.',               color: '#8b5cf6' },
+  { icon: 'Globe',    title: 'Drag & Drop',          description: 'Reorder sections effortlessly with intuitive drag and drop.',                 color: '#3b82f6' },
 ]
 
 function FeatureCard({ feature, index }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-40px' })
-  const Icon = feature.icon
+  const Icon = ICON_MAP[feature.icon] || Zap
+
   return (
     <motion.div ref={ref}
       initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -31,7 +39,7 @@ function FeatureCard({ feature, index }) {
         <Icon size={22} color={feature.color} />
       </div>
       <h3 style={{ color: 'var(--text)', fontWeight: 600, fontSize: '1rem' }}>{feature.title}</h3>
-      <p style={{ color: 'var(--text2)', fontSize: '0.875rem', lineHeight: 1.6 }}>{feature.desc}</p>
+      <p style={{ color: 'var(--text2)', fontSize: '0.875rem', lineHeight: 1.6 }}>{feature.description || feature.desc}</p>
     </motion.div>
   )
 }
@@ -39,6 +47,19 @@ function FeatureCard({ feature, index }) {
 export default function Features() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true })
+  const [features, setFeatures] = useState(FALLBACK_FEATURES)
+
+  useEffect(() => {
+    fetch('/api/features')
+      .then(r => r.json())
+      .then(data => {
+        if (data.success && data.features?.length > 0) {
+          setFeatures(data.features)
+        }
+      })
+      .catch(() => {}) // keep fallback on error
+  }, [])
+
   return (
     <section id="features" style={{ width: '100%', padding: '80px 0', background: 'var(--section-bg)' }}>
       <div style={{ width: '100%', maxWidth: 1280, margin: '0 auto', padding: '0 24px' }}>
@@ -54,7 +75,7 @@ export default function Features() {
           </p>
         </motion.div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(260px,1fr))', gap: 20 }}>
-          {features.map((f, i) => <FeatureCard key={f.title} feature={f} index={i} />)}
+          {features.map((f, i) => <FeatureCard key={f.id || f.title} feature={f} index={i} />)}
         </div>
       </div>
     </section>

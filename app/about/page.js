@@ -1,182 +1,87 @@
 'use client'
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { ArrowLeft, Zap, Target, Heart, Users, Sparkles, FileText, Download, Shield, ArrowRight } from 'lucide-react'
+import { ArrowLeft, Zap, ArrowRight } from 'lucide-react'
 
-const container = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } }
-const item = { hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0, transition: { duration: 0.4 } } }
-
-const stats = [
-  { value: '50,000+', label: 'Resumes Created' },
-  { value: '200+',    label: 'Templates Available' },
-  { value: '4.9/5',   label: 'User Rating' },
-  { value: '98%',     label: 'ATS Pass Rate' },
-]
-
-const values = [
-  { icon: Target,   color: '#8b5cf6', title: 'Built for Results',    desc: 'Every feature is designed with one goal — helping you land your dream job faster. No fluff, just tools that work.' },
-  { icon: Heart,    color: '#ec4899', title: 'User First',           desc: 'We listen to our users. Every update, every template, every feature comes from real feedback from real job seekers.' },
-  { icon: Shield,   color: '#3b82f6', title: 'Privacy by Design',    desc: 'Your resume data is yours. We never sell your information, never share it with third parties, and always keep it secure.' },
-  { icon: Sparkles, color: '#f59e0b', title: 'Always Improving',     desc: 'We ship updates regularly. New templates, smarter AI suggestions, and better export quality — every single week.' },
-]
-
-const features = [
-  { icon: FileText,  color: '#8b5cf6', title: '200+ Templates',      desc: 'From minimal to creative, ATS-friendly to executive — a template for every industry and style.' },
-  { icon: Sparkles,  color: '#3b82f6', title: 'AI Suggestions',      desc: 'Smart writing assistance that helps you phrase your experience in the most impactful way.' },
-  { icon: Download,  color: '#06b6d4', title: 'One-Click PDF Export', desc: 'Perfect formatting every time. Download your resume as a pixel-perfect PDF instantly.' },
-  { icon: Users,     color: '#10b981', title: 'Live Preview',        desc: 'See every change in real-time. What you see is exactly what gets exported.' },
-]
-
-const team = [
-  { initials: 'RB', name: 'Resume Builder Team', role: 'Builders & Designers', color: '#8b5cf6' },
-]
+function renderContent(content) {
+  if (!content) return null
+  return content.split('\n').map((line, i) => {
+    if (line.startsWith('## ')) {
+      return <h2 key={i} style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--text)', marginTop: 28, marginBottom: 10, paddingBottom: 8, borderBottom: '1px solid var(--border)' }}>{line.slice(3)}</h2>
+    }
+    if (line.startsWith('**') && line.endsWith('**')) {
+      return <p key={i} style={{ fontSize: '0.875rem', fontWeight: 700, color: '#a78bfa', marginBottom: 4 }}>{line.slice(2, -2)}</p>
+    }
+    if (line.trim() === '') return <div key={i} style={{ height: 8 }} />
+    return <p key={i} style={{ fontSize: '0.875rem', color: 'var(--text2)', lineHeight: 1.75, margin: '0 0 6px', paddingLeft: line.startsWith('- ') ? 16 : 0 }}>{line.startsWith('- ') ? '• ' + line.slice(2) : line}</p>
+  })
+}
 
 export default function AboutPage() {
-  return (
-    <div style={{ padding: '40px 32px', maxWidth: 960, margin: '0 auto' }}>
-      <motion.div variants={container} initial="hidden" animate="show">
+  const [page, setPage] = useState(null)
+  const [loading, setLoading] = useState(true)
 
-        {/* Back */}
-        <motion.div variants={item} style={{ marginBottom: 28 }}>
-          <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: '#64748b', textDecoration: 'none', fontSize: '0.85rem', transition: 'color 0.2s' }}
-            onMouseEnter={e => e.currentTarget.style.color = '#a78bfa'}
-            onMouseLeave={e => e.currentTarget.style.color = '#64748b'}
-          >
-            <ArrowLeft size={14} /> Back to Home
-          </Link>
-        </motion.div>
+  useEffect(() => {
+    fetch('/api/pages/about')
+      .then(r => r.json())
+      .then(data => { if (data.success) setPage(data.page) })
+      .finally(() => setLoading(false))
+  }, [])
+
+  return (
+    <div style={{ padding: '40px 32px', maxWidth: 860, margin: '0 auto' }}>
+      <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
+
+        <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: 'var(--text3)', textDecoration: 'none', fontSize: '0.85rem', marginBottom: 28 }}
+          onMouseEnter={e => e.currentTarget.style.color = '#a78bfa'}
+          onMouseLeave={e => e.currentTarget.style.color = 'var(--text3)'}
+        >
+          <ArrowLeft size={14} /> Back to Home
+        </Link>
 
         {/* Hero */}
-        <motion.div variants={item} style={{ marginBottom: 52, textAlign: 'center' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 72, height: 72, borderRadius: 20, background: 'linear-gradient(135deg, rgba(139,92,246,0.2), rgba(59,130,246,0.2))', border: '1px solid rgba(139,92,246,0.3)', marginBottom: 20 }}>
-            <Zap size={32} color="#a78bfa" />
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: 20, marginBottom: 32, flexWrap: 'wrap' }}>
+          <div style={{ width: 56, height: 56, borderRadius: 16, flexShrink: 0, background: 'linear-gradient(135deg, rgba(139,92,246,0.2), rgba(59,130,246,0.2))', border: '1px solid rgba(139,92,246,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Zap size={26} color="#a78bfa" />
           </div>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: 'rgba(139,92,246,0.1)', border: '1px solid rgba(139,92,246,0.25)', borderRadius: 999, padding: '4px 14px', fontSize: '0.7rem', color: '#a78bfa', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 16, display: 'flex', justifyContent: 'center', width: 'fit-content', margin: '0 auto 16px' }}>
-            Our Story
-          </div>
-          <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 900, color: 'var(--text)', lineHeight: 1.1, marginBottom: 20, letterSpacing: '-0.02em' }}>
-            We help people tell their{' '}
-            <span style={{ background: 'linear-gradient(135deg, #8b5cf6, #3b82f6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-              professional story
-            </span>
-          </h1>
-          <p style={{ fontSize: '1rem', color: 'var(--text2)', lineHeight: 1.8, maxWidth: 600, margin: '0 auto 32px' }}>
-            Resume Builder was created with a simple belief — everyone deserves a great resume, regardless of their design skills or budget. We built the tool we wished existed when we were job hunting.
-          </p>
-          <Link href="/register"
-            style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '12px 28px', borderRadius: 12, background: 'linear-gradient(135deg, #8b5cf6, #3b82f6)', color: 'white', fontWeight: 700, fontSize: '0.9rem', textDecoration: 'none' }}
-          >
-            Start Building Free <ArrowRight size={16} />
-          </Link>
-        </motion.div>
-
-        {/* Stats */}
-        <motion.div variants={item} style={{ marginBottom: 52 }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 16 }}>
-            {stats.map((s) => (
-              <div key={s.label}
-                style={{ background: 'var(--card)', border: '1px solid var(--border)', borderRadius: 16, padding: '24px 20px', textAlign: 'center', transition: 'border-color 0.3s, transform 0.2s' }}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(139,92,246,0.4)'; e.currentTarget.style.transform = 'translateY(-3px)' }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.transform = 'translateY(0)' }}
-              >
-                <p style={{ fontSize: '2.2rem', fontWeight: 900, background: 'linear-gradient(135deg, #8b5cf6, #3b82f6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', lineHeight: 1, marginBottom: 8 }}>
-                  {s.value}
-                </p>
-                <p style={{ fontSize: '0.8rem', color: 'var(--text3)', fontWeight: 500 }}>{s.label}</p>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Mission */}
-        <motion.div variants={item} style={{ marginBottom: 52 }}>
-          <div style={{ background: 'linear-gradient(135deg, rgba(139,92,246,0.08), rgba(59,130,246,0.05))', border: '1px solid rgba(139,92,246,0.2)', borderRadius: 20, padding: '36px 32px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-              <div style={{ width: 36, height: 36, borderRadius: 10, background: 'rgba(139,92,246,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Target size={18} color="#a78bfa" />
-              </div>
-              <h2 style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--text)', margin: 0 }}>Our Mission</h2>
+          <div>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: 'rgba(139,92,246,0.1)', border: '1px solid rgba(139,92,246,0.25)', borderRadius: 999, padding: '3px 12px', fontSize: '0.68rem', color: '#a78bfa', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 10 }}>
+              Our Story
             </div>
-            <p style={{ fontSize: '1rem', color: 'var(--text2)', lineHeight: 1.85, margin: 0, maxWidth: 700 }}>
-              To democratize professional resume creation. We believe a polished, well-designed resume should not require expensive designers or complicated software. Our mission is to give every job seeker — from fresh graduates to senior executives — the tools to present themselves confidently and professionally.
-            </p>
+            <h1 style={{ fontSize: 'clamp(1.6rem, 4vw, 2.2rem)', fontWeight: 900, color: 'var(--text)', lineHeight: 1.1, marginBottom: 6 }}>
+              {loading ? 'About Us' : (page?.title || 'About Us')}
+            </h1>
           </div>
-        </motion.div>
+        </div>
 
-        {/* Values */}
-        <motion.div variants={item} style={{ marginBottom: 52 }}>
-          <h2 style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--text)', marginBottom: 20 }}>What We Stand For</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 16 }}>
-            {values.map((v) => {
-              const Icon = v.icon
-              return (
-                <div key={v.title}
-                  style={{ background: 'var(--card)', border: '1px solid var(--border)', borderRadius: 16, padding: '22px 20px', transition: 'border-color 0.3s, transform 0.2s' }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = v.color + '40'; e.currentTarget.style.transform = 'translateY(-2px)' }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.transform = 'translateY(0)' }}
-                >
-                  <div style={{ width: 42, height: 42, borderRadius: 12, background: v.color + '18', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14 }}>
-                    <Icon size={20} color={v.color} />
-                  </div>
-                  <h3 style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text)', marginBottom: 8 }}>{v.title}</h3>
-                  <p style={{ fontSize: '0.82rem', color: 'var(--text3)', lineHeight: 1.7, margin: 0 }}>{v.desc}</p>
-                </div>
-              )
-            })}
-          </div>
-        </motion.div>
-
-        {/* Features */}
-        <motion.div variants={item} style={{ marginBottom: 52 }}>
-          <h2 style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--text)', marginBottom: 20 }}>What We Built</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 16 }}>
-            {features.map((f) => {
-              const Icon = f.icon
-              return (
-                <div key={f.title}
-                  style={{ background: 'var(--card)', border: '1px solid var(--border)', borderRadius: 16, padding: '22px 20px', transition: 'border-color 0.3s' }}
-                  onMouseEnter={e => e.currentTarget.style.borderColor = f.color + '40'}
-                  onMouseLeave={e => e.currentTarget.style.borderColor = 'var(--border)'}
-                >
-                  <div style={{ width: 42, height: 42, borderRadius: 12, background: f.color + '18', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14 }}>
-                    <Icon size={20} color={f.color} />
-                  </div>
-                  <h3 style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text)', marginBottom: 8 }}>{f.title}</h3>
-                  <p style={{ fontSize: '0.82rem', color: 'var(--text3)', lineHeight: 1.7, margin: 0 }}>{f.desc}</p>
-                </div>
-              )
-            })}
-          </div>
-        </motion.div>
+        {/* Content */}
+        <div style={{ background: 'var(--card)', border: '1px solid var(--border)', borderRadius: 16, padding: '28px 32px', marginBottom: 24 }}>
+          {loading ? (
+            <div style={{ color: 'var(--text3)', textAlign: 'center', padding: 40 }}>Loading...</div>
+          ) : page ? (
+            <div>{renderContent(page.content)}</div>
+          ) : (
+            <p style={{ color: 'var(--text3)' }}>Content not available.</p>
+          )}
+        </div>
 
         {/* CTA */}
-        <motion.div variants={item}>
-          <div style={{ background: 'linear-gradient(135deg, rgba(139,92,246,0.08), rgba(59,130,246,0.06))', border: '1px solid rgba(139,92,246,0.2)', borderRadius: 20, padding: '36px 32px', textAlign: 'center' }}>
-            <h2 style={{ fontSize: '1.5rem', fontWeight: 900, color: 'var(--text)', marginBottom: 12 }}>
-              Ready to build your resume?
-            </h2>
-            <p style={{ color: 'var(--text3)', fontSize: '0.9rem', marginBottom: 24, maxWidth: 400, margin: '0 auto 24px' }}>
-              Join 50,000+ professionals who have already built their resumes with us.
-            </p>
-            <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link href="/register"
-                style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '11px 26px', borderRadius: 12, background: 'linear-gradient(135deg, #8b5cf6, #3b82f6)', color: 'white', fontWeight: 700, fontSize: '0.875rem', textDecoration: 'none' }}
-              >
-                <Zap size={15} /> Get Started Free
-              </Link>
-              <Link href="/privacy-policy"
-                style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '11px 26px', borderRadius: 12, background: 'var(--card)', border: '1px solid var(--border)', color: 'var(--text2)', fontWeight: 600, fontSize: '0.875rem', textDecoration: 'none' }}
-              >
-                Privacy Policy
-              </Link>
-              <Link href="/terms"
-                style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '11px 26px', borderRadius: 12, background: 'var(--card)', border: '1px solid var(--border)', color: 'var(--text2)', fontWeight: 600, fontSize: '0.875rem', textDecoration: 'none' }}
-              >
-                Terms & Conditions
-              </Link>
-            </div>
+        <div style={{ background: 'linear-gradient(135deg, rgba(139,92,246,0.08), rgba(59,130,246,0.06))', border: '1px solid rgba(139,92,246,0.2)', borderRadius: 16, padding: '24px 28px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
+          <div>
+            <p style={{ fontWeight: 700, color: 'var(--text)', fontSize: '1rem', marginBottom: 4 }}>Ready to build your resume?</p>
+            <p style={{ color: 'var(--text3)', fontSize: '0.85rem' }}>Join thousands of professionals who trust Resume Builder.</p>
           </div>
-        </motion.div>
+          <Link href="/register" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 22px', borderRadius: 10, background: 'linear-gradient(135deg, #8b5cf6, #3b82f6)', color: 'white', fontWeight: 600, fontSize: '0.875rem', textDecoration: 'none' }}>
+            Get Started Free <ArrowRight size={15} />
+          </Link>
+        </div>
+
+        <div style={{ marginTop: 20, display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+          <Link href="/" style={{ fontSize: '0.82rem', color: 'var(--text3)', textDecoration: 'none' }}>← Home</Link>
+          <Link href="/privacy-policy" style={{ fontSize: '0.82rem', color: 'var(--text3)', textDecoration: 'none' }}>Privacy Policy</Link>
+          <Link href="/terms" style={{ fontSize: '0.82rem', color: 'var(--text3)', textDecoration: 'none' }}>Terms</Link>
+        </div>
 
       </motion.div>
     </div>
