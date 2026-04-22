@@ -353,6 +353,27 @@ body {
 }
 
 /* ============================================================
+   ADMIN PANEL MOBILE
+   ============================================================ */
+@media (max-width: 768px) {
+  .admin-sidebar-desktop {
+    display: none !important;
+  }
+  .admin-mobile-topbar {
+    display: flex !important;
+  }
+  .admin-main {
+    padding-top: 56px;
+  }
+}
+
+@media (min-width: 769px) {
+  .admin-mobile-topbar {
+    display: none !important;
+  }
+}
+
+/* ============================================================
    ANIMATIONS
    ============================================================ */
 @keyframes float {

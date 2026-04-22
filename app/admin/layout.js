@@ -6,7 +6,7 @@ export default function AdminLayout({ children }) {
     <AdminGuard>
       <div style={{ display: 'flex', minHeight: '100vh', background: '#050508' }}>
         <AdminSidebar />
-        <main style={{ flex: 1, overflowY: 'auto' }}>
+        <main style={{ flex: 1, overflowY: 'auto' }} className="admin-main">
           {children}
         </main>
       </div>
