@@ -125,13 +125,12 @@ export default function EditResumePage() {
   const ActiveComponent = sections.find(s => s.id === activeSection)?.component
 
   async function handleExportPDF() {
-    // On mobile, if preview is not shown, open it first then export
     if (isMobile && !showPreview) {
       setShowPreview(true)
       setExportLoading(true)
       await new Promise(r => setTimeout(r, 800))
       try {
-        await exportToPDF('resume-preview')
+        await exportToPDF('resume-preview', resume.id)
       } catch (e) {
         console.error('PDF export failed:', e)
       } finally {
