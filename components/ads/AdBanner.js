@@ -76,47 +76,47 @@ export default function AdBanner({ position = 'top', variant = 'banner' }) {
         )}
 
         {/* Content row */}
-        <div style={{ padding: '16px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16 }}>
+        <div style={{ padding: '14px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' }}>
           {/* glow */}
           <div style={{ position: 'absolute', right: 60, top: '50%', transform: 'translateY(-50%)', width: 200, height: 80, borderRadius: '50%', background: `radial-gradient(ellipse, ${accent}18 0%, transparent 70%)`, pointerEvents: 'none' }} />
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, flex: 1, minWidth: 0 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, flex: 1, minWidth: 0 }}>
             {!ad.image_url && (
-              <div style={{ width: 42, height: 42, borderRadius: 12, background: `${accent}20`, border: `1px solid ${accent}30`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                <Sparkles size={18} color={accent} />
+              <div style={{ width: 38, height: 38, borderRadius: 10, background: `${accent}20`, border: `1px solid ${accent}30`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <Sparkles size={16} color={accent} />
               </div>
             )}
             <div style={{ minWidth: 0 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 3 }}>
-                <span style={{ fontSize: '0.58rem', fontWeight: 800, color: accent, background: `${accent}18`, border: `1px solid ${accent}30`, padding: '1px 6px', borderRadius: 3, letterSpacing: '0.1em', textTransform: 'uppercase', flexShrink: 0 }}>Sponsored</span>
-                <p style={{ color: textColor, fontWeight: 700, fontSize: '0.95rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{ad.title}</p>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 2, flexWrap: 'wrap' }}>
+                <span style={{ fontSize: '0.55rem', fontWeight: 800, color: accent, background: `${accent}18`, border: `1px solid ${accent}30`, padding: '1px 6px', borderRadius: 3, letterSpacing: '0.1em', textTransform: 'uppercase', flexShrink: 0 }}>Sponsored</span>
+                <p style={{ color: textColor, fontWeight: 700, fontSize: '0.875rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{ad.title}</p>
               </div>
-              {ad.description && <p style={{ color: `${textColor}70`, fontSize: '0.8rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{ad.description}</p>}
+              {ad.description && <p style={{ color: `${textColor}70`, fontSize: '0.78rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{ad.description}</p>}
             </div>
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
             {ad.link_url && (
               <button onClick={handleClick} style={{
-                display: 'flex', alignItems: 'center', gap: 7,
-                padding: '9px 20px', borderRadius: 10, border: 'none',
+                display: 'flex', alignItems: 'center', gap: 6,
+                padding: '7px 14px', borderRadius: 8, border: 'none',
                 background: `linear-gradient(135deg, ${accent}, ${accent}bb)`,
-                color: '#fff', fontWeight: 700, fontSize: '0.85rem',
+                color: '#fff', fontWeight: 700, fontSize: '0.78rem',
                 cursor: 'pointer', whiteSpace: 'nowrap',
-                boxShadow: `0 4px 18px ${accent}40`,
-                transition: 'transform 0.15s, box-shadow 0.15s',
+                boxShadow: `0 3px 12px ${accent}40`,
+                transition: 'transform 0.15s',
               }}
-                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = `0 6px 24px ${accent}55` }}
-                onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = `0 4px 18px ${accent}40` }}
+                onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-1px)'}
+                onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
               >
-                <ExternalLink size={14} /> {ad.link_text || 'Learn More'}
+                <ExternalLink size={12} /> {ad.link_text || 'Learn More'}
               </button>
             )}
-            <button onClick={handleDismiss} style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer', color: `${textColor}50`, padding: '8px', borderRadius: 8, display: 'flex', alignItems: 'center', transition: 'all 0.15s' }}
+            <button onClick={handleDismiss} style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer', color: `${textColor}50`, padding: '7px', borderRadius: 7, display: 'flex', alignItems: 'center', transition: 'all 0.15s' }}
               onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.12)'; e.currentTarget.style.color = textColor }}
               onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.color = `${textColor}50` }}
             >
-              <X size={14} />
+              <X size={13} />
             </button>
           </div>
         </div>
