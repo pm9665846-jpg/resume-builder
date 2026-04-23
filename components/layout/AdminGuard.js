@@ -5,28 +5,50 @@ import { useEffect, useState } from 'react'
 export default function AdminGuard({ children }) {
   const router = useRouter()
   const pathname = usePathname()
-  const [ok, setOk] = useState(false)
+  const [status, setStatus] = useState('checking') // 'checking' | 'ok' | 'denied'
 
   useEffect(() => {
-    // Skip guard on login page itself
-    if (pathname === '/admin/login') { setOk(true); return }
+    // Login page — no guard needed
+    if (pathname === '/admin/login') {
+      setStatus('ok')
+      return
+    }
 
+    // Check admin session via cookie
     fetch('/api/admin/me', { credentials: 'include' })
       .then(r => {
         if (r.ok) {
-          setOk(true)
+          setStatus('ok')
         } else {
-          router.replace('/admin/login')
+          setStatus('denied')
+          window.location.href = '/admin/login'
         }
       })
-      .catch(() => router.replace('/admin/login'))
-  }, [pathname, router])
+      .catch(() => {
+        setStatus('denied')
+        window.location.href = '/admin/login'
+      })
+  }, [pathname])
 
-  if (!ok) return (
-    <div style={{ minHeight: '100vh', background: '#050508', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <div style={{ width: 32, height: 32, border: '3px solid rgba(239,68,68,0.2)', borderTopColor: '#ef4444', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
-    </div>
-  )
+  // Show spinner while checking (except on login page)
+  if (status === 'checking' && pathname !== '/admin/login') {
+    return (
+      <div style={{
+        minHeight: '100vh', background: '#050508',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+      }}>
+        <div style={{
+          width: 36, height: 36,
+          border: '3px solid rgba(239,68,68,0.15)',
+          borderTopColor: '#ef4444',
+          borderRadius: '50%',
+          animation: 'spin 0.8s linear infinite',
+        }} />
+      </div>
+    )
+  }
 
-  return children
+  if (status === 'denied') return null
+
+  return <>{children}</>
 }

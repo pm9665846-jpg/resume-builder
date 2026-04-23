@@ -3,7 +3,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useSession, signOut } from 'next-auth/react'
-import { LayoutDashboard, Users, LogOut, Shield, Zap, Megaphone, FileText, Star, Menu, X } from 'lucide-react'
+import { LayoutDashboard, Users, LogOut, Shield, Zap, Megaphone, FileText, Star, Menu, X, Settings } from 'lucide-react'
 
 const navItems = [
   { icon: LayoutDashboard, label: 'Overview',       href: '/admin' },
@@ -11,6 +11,7 @@ const navItems = [
   { icon: Megaphone,       label: 'Advertisements', href: '/admin/ads' },
   { icon: FileText,        label: 'Pages',          href: '/admin/pages' },
   { icon: Star,            label: 'Features',       href: '/admin/features' },
+  { icon: Settings,        label: 'Settings',       href: '/admin/settings' },
 ]
 
 function SidebarContent({ pathname, adminName, onLogout, onClose }) {
