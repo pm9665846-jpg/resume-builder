@@ -47,6 +47,14 @@ export default function EditResumePage() {
   const [saveSuccess, setSaveSuccess] = useState(false)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
 
   // Load resume data
   useEffect(() => {
@@ -117,9 +125,24 @@ export default function EditResumePage() {
   const ActiveComponent = sections.find(s => s.id === activeSection)?.component
 
   async function handleExportPDF() {
+    // On mobile, if preview is not shown, open it first then export
+    if (isMobile && !showPreview) {
+      setShowPreview(true)
+      setExportLoading(true)
+      await new Promise(r => setTimeout(r, 800))
+      try {
+        await exportToPDF('resume-preview')
+      } catch (e) {
+        console.error('PDF export failed:', e)
+      } finally {
+        setExportLoading(false)
+        setShowPreview(false)
+      }
+      return
+    }
+
     setExportLoading(true)
     try {
-      // Small delay to let the loading state render first
       await new Promise(r => setTimeout(r, 100))
       await exportToPDF('resume-preview')
     } catch (e) {
