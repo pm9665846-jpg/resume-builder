@@ -39,6 +39,13 @@ export async function GET(req, context) {
           languages:      data.languages      || [],
           achievements:   data.achievements   || [],
           interests:      data.interests      || [],
+          // Extended optional sections
+          achievementsList:        data.achievementsList        || [],
+          activities:              data.activities              || [],
+          publications:            data.publications            || [],
+          references:              data.references              || [],
+          additionalInfo:          data.additionalInfo          || '',
+          enabledOptionalSections: data.enabledOptionalSections || [],
         },
       },
     })
@@ -83,6 +90,13 @@ export async function PUT(req, context) {
       languages:      incomingData.languages      ?? existingData.languages,
       achievements:   incomingData.achievements   ?? existingData.achievements,
       interests:      incomingData.interests      ?? existingData.interests,
+      // Extended optional sections
+      achievementsList:        incomingData.achievementsList        ?? existingData.achievementsList,
+      activities:              incomingData.activities              ?? existingData.activities,
+      publications:            incomingData.publications            ?? existingData.publications,
+      references:              incomingData.references              ?? existingData.references,
+      additionalInfo:          incomingData.additionalInfo          ?? existingData.additionalInfo,
+      enabledOptionalSections: incomingData.enabledOptionalSections ?? existingData.enabledOptionalSections,
     })
 
     await query(
