@@ -41,6 +41,7 @@ export default function EditResumePage() {
   const params = useParams()
   const router = useRouter()
   const { resume, setResume, isDirty, isSaving, lastSaved, setIsSaving, setLastSaved } = useResumeStore()
+  const setIsDirty = useResumeStore(s => s.setIsDirty)
   const [activeSection, setActiveSection] = useState('personal')
   const [showPreview, setShowPreview] = useState(true)
   const [exportLoading, setExportLoading] = useState(false)
@@ -117,6 +118,7 @@ export default function EditResumePage() {
           }),
         })
         setLastSaved(new Date())
+        setIsDirty(false)
       } catch (e) { console.error(e) } finally { setIsSaving(false) }
     }, 2000)
     return () => clearTimeout(timer)
@@ -177,6 +179,7 @@ export default function EditResumePage() {
         body: JSON.stringify(payload),
       })
       setLastSaved(new Date())
+      setIsDirty(false)
       setSaveSuccess(true)
       setTimeout(() => setSaveSuccess(false), 2500)
     } catch (err) { console.error(err) } finally { setIsSaving(false) }

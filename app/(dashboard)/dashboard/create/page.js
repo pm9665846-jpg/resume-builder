@@ -49,6 +49,7 @@ function BuilderContent() {
 
   const { resume, isDirty, isSaving, lastSaved, setIsSaving, setLastSaved, resetResume, updateTemplate, updateThemeColor } = useResumeStore()
   const setResumeId = useResumeStore(s => s.setResumeId)
+  const setIsDirty = useResumeStore(s => s.setIsDirty)
   const [activeSection, setActiveSection] = useState('personal')
   const [showPreview, setShowPreview] = useState(false)
   const [exportLoading, setExportLoading] = useState(false)
@@ -109,6 +110,7 @@ function BuilderContent() {
           })
         }
         setLastSaved(new Date())
+        setIsDirty(false)
       } catch (e) { console.error(e) } finally {
         setIsSaving(false)
       }
@@ -183,6 +185,7 @@ function BuilderContent() {
       }
 
       setLastSaved(new Date())
+      setIsDirty(false)
       setSaveSuccess(true)
       setTimeout(() => setSaveSuccess(false), 2500)
     } catch (err) {

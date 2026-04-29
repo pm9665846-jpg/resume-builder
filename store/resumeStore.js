@@ -37,6 +37,7 @@ export const useResumeStore = create((set) => ({
 
   setResume: (resume) => set({ resume, isDirty: false }),
   setResumeId: (id) => set((state) => ({ resume: { ...state.resume, id } })),
+  setIsDirty: (isDirty) => set({ isDirty }),
 
   updatePersonalInfo: (field, value) =>
     set((state) => ({
