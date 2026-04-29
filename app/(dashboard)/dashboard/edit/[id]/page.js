@@ -134,6 +134,7 @@ export default function EditResumePage() {
               publications:     resume.publications     || [],
               references:       resume.references       || [],
               additionalInfo:   resume.additionalInfo   || '',
+              enabledOptionalSections: resume.enabledOptionalSections || [],
             },
           }),
         })
@@ -196,6 +197,7 @@ export default function EditResumePage() {
           publications:     resume.publications     || [],
           references:       resume.references       || [],
           additionalInfo:   resume.additionalInfo   || '',
+          enabledOptionalSections: resume.enabledOptionalSections || [],
         },
       }
       await fetch(`/api/resumes/${resume.id}`, {

@@ -105,6 +105,7 @@ function BuilderContent() {
             publications:     resume.publications     || [],
             references:       resume.references       || [],
             additionalInfo:   resume.additionalInfo   || '',
+            enabledOptionalSections: resume.enabledOptionalSections || [],
           },
         }
         if (!resume.id) {
@@ -183,6 +184,7 @@ function BuilderContent() {
           publications:     resume.publications     || [],
           references:       resume.references       || [],
           additionalInfo:   resume.additionalInfo   || '',
+          enabledOptionalSections: resume.enabledOptionalSections || [],
         },
       }
 
