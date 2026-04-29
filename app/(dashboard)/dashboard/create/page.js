@@ -11,8 +11,13 @@ import ProjectsForm from '@/components/builder/ProjectsForm'
 import CertificationsForm from '@/components/builder/CertificationsForm'
 import LanguagesForm from '@/components/builder/LanguagesForm'
 import InterestsForm from '@/components/builder/InterestsForm'
+import AchievementsForm from '@/components/builder/AchievementsForm'
+import ActivitiesForm from '@/components/builder/ActivitiesForm'
+import PublicationsForm from '@/components/builder/PublicationsForm'
+import ReferencesForm from '@/components/builder/ReferencesForm'
+import AdditionalInfoForm from '@/components/builder/AdditionalInfoForm'
 import dynamic from 'next/dynamic'
-import { Save, Download, FileText, User, Briefcase, GraduationCap, Code2, Palette, Eye, EyeOff, Zap, CheckCircle, Award, Languages, Heart } from 'lucide-react'
+import { Save, Download, FileText, User, Briefcase, GraduationCap, Code2, Palette, Eye, EyeOff, Zap, CheckCircle, Award, Languages, Heart, Trophy, Activity, BookOpen, Users, Info } from 'lucide-react'
 import { exportToPDF } from '@/lib/exportResume'
 
 // Lazy load heavy components — contain 200+ templates
@@ -26,15 +31,20 @@ const ResumePreview = dynamic(() => import('@/components/builder/ResumePreview')
 })
 
 const sections = [
-  { id: 'personal',       label: 'Personal',   icon: User,          component: PersonalInfoForm },
-  { id: 'experience',     label: 'Experience', icon: Briefcase,     component: ExperienceForm },
-  { id: 'education',      label: 'Education',  icon: GraduationCap, component: EducationForm },
-  { id: 'skills',         label: 'Skills',     icon: Zap,           component: SkillsForm },
-  { id: 'projects',       label: 'Projects',   icon: Code2,         component: ProjectsForm },
-  { id: 'certifications', label: 'Certs',      icon: Award,         component: CertificationsForm },
-  { id: 'languages',      label: 'Languages',  icon: Languages,     component: LanguagesForm },
-  { id: 'interests',      label: 'Interests',  icon: Heart,         component: InterestsForm },
-  { id: 'design',         label: 'Design',     icon: Palette,       component: TemplateSelector },
+  { id: 'personal',       label: 'Personal',      icon: User,          component: PersonalInfoForm },
+  { id: 'experience',     label: 'Experience',    icon: Briefcase,     component: ExperienceForm },
+  { id: 'education',      label: 'Education',     icon: GraduationCap, component: EducationForm },
+  { id: 'skills',         label: 'Skills',        icon: Zap,           component: SkillsForm },
+  { id: 'projects',       label: 'Projects',      icon: Code2,         component: ProjectsForm },
+  { id: 'certifications', label: 'Certs',         icon: Award,         component: CertificationsForm },
+  { id: 'languages',      label: 'Languages',     icon: Languages,     component: LanguagesForm },
+  { id: 'interests',      label: 'Interests',     icon: Heart,         component: InterestsForm },
+  { id: 'achievements',   label: 'Achievements',  icon: Trophy,        component: AchievementsForm },
+  { id: 'activities',     label: 'Activities',    icon: Activity,      component: ActivitiesForm },
+  { id: 'publications',   label: 'Publications',  icon: BookOpen,      component: PublicationsForm },
+  { id: 'references',     label: 'References',    icon: Users,         component: ReferencesForm },
+  { id: 'additional',     label: 'Additional',    icon: Info,          component: AdditionalInfoForm },
+  { id: 'design',         label: 'Design',        icon: Palette,       component: TemplateSelector },
 ]
 
 const templateColors = {
@@ -90,6 +100,11 @@ function BuilderContent() {
             languages:      resume.languages,
             achievements:   resume.achievements,
             interests:      resume.interests || [],
+            achievementsList: resume.achievementsList || [],
+            activities:       resume.activities       || [],
+            publications:     resume.publications     || [],
+            references:       resume.references       || [],
+            additionalInfo:   resume.additionalInfo   || '',
           },
         }
         if (!resume.id) {
@@ -162,7 +177,12 @@ function BuilderContent() {
           certifications: resume.certifications,
           languages:      resume.languages,
           achievements:   resume.achievements,
-          interests:      resume.interests || [],
+          interests:      resume.interests      || [],
+          achievementsList: resume.achievementsList || [],
+          activities:       resume.activities       || [],
+          publications:     resume.publications     || [],
+          references:       resume.references       || [],
+          additionalInfo:   resume.additionalInfo   || '',
         },
       }
 

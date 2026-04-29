@@ -40,7 +40,13 @@ function get(val, fallback) {
 }
 
 export default function ModernTemplate({ resume }) {
-  const { personalInfo = {}, experience = [], education = [], skills = [], projects = [], certifications = [], languages = [], interests = [], themeColor = '#8b5cf6', fontFamily = "'Arial', 'Helvetica', sans-serif" } = resume
+  const {
+    personalInfo = {}, experience = [], education = [], skills = [],
+    projects = [], certifications = [], languages = [], interests = [],
+    achievementsList = [], activities = [], publications = [],
+    references = [], additionalInfo = '',
+    themeColor = '#8b5cf6', fontFamily = "'Arial', 'Helvetica', sans-serif"
+  } = resume
   const tc = themeColor
   const ff = fontFamily
 
@@ -254,6 +260,68 @@ export default function ModernTemplate({ resume }) {
                 </div>
               ))}
             </div>
+          </Section>
+        )}
+
+        {/* ── ACHIEVEMENTS ── */}
+        {achievementsList?.length > 0 && (
+          <Section title="Achievements" color={tc}>
+            {achievementsList.map((a, i) => (
+              <div key={a.id || i} style={{ marginBottom: i < achievementsList.length - 1 ? 10 : 0, paddingLeft: 12, borderLeft: `2px solid ${tc}40` }}>
+                <p style={{ fontWeight: 700, fontSize: 10.5, color: '#111', margin: '0 0 2px 0' }}>{a.title}</p>
+                {a.description && <p style={{ color: '#555', fontSize: 10, lineHeight: 1.6, margin: 0 }}>{a.description}</p>}
+              </div>
+            ))}
+          </Section>
+        )}
+
+        {/* ── ACTIVITIES ── */}
+        {activities?.length > 0 && (
+          <Section title="Activities" color={tc}>
+            {activities.map((a, i) => (
+              <div key={a.id || i} style={{ marginBottom: i < activities.length - 1 ? 10 : 0, paddingLeft: 12, borderLeft: `2px solid ${tc}40` }}>
+                <p style={{ fontWeight: 700, fontSize: 10.5, color: '#111', margin: '0 0 2px 0' }}>{a.title}</p>
+                {a.description && <p style={{ color: '#555', fontSize: 10, lineHeight: 1.6, margin: 0 }}>{a.description}</p>}
+              </div>
+            ))}
+          </Section>
+        )}
+
+        {/* ── PUBLICATIONS ── */}
+        {publications?.length > 0 && (
+          <Section title="Publications" color={tc}>
+            {publications.map((p, i) => (
+              <div key={p.id || i} style={{ marginBottom: i < publications.length - 1 ? 10 : 0, padding: '8px 10px', background: `${tc}06`, border: `1px solid ${tc}18`, borderRadius: 6 }}>
+                <p style={{ fontWeight: 700, fontSize: 10.5, color: '#111', margin: '0 0 3px 0' }}>{p.title}</p>
+                {p.description && <p style={{ color: '#555', fontSize: 9.5, lineHeight: 1.6, margin: 0 }}>{p.description}</p>}
+              </div>
+            ))}
+          </Section>
+        )}
+
+        {/* ── REFERENCES ── */}
+        {references?.length > 0 && (
+          <Section title="References" color={tc}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 10 }}>
+              {references.map((r, i) => (
+                <div key={r.id || i} style={{ padding: '10px 12px', background: '#fafafa', border: '1px solid #eee', borderRadius: 6 }}>
+                  <p style={{ fontWeight: 800, fontSize: 10.5, color: '#111', margin: '0 0 2px 0' }}>{r.refereeName}</p>
+                  {r.jobTitle && <p style={{ color: tc, fontSize: 9.5, fontWeight: 600, margin: '0 0 1px 0' }}>{r.jobTitle}</p>}
+                  {r.company && <p style={{ color: '#666', fontSize: 9.5, margin: '0 0 4px 0' }}>{r.company}</p>}
+                  {r.email && <p style={{ color: '#555', fontSize: 9, margin: '0 0 1px 0' }}>✉ {r.email}</p>}
+                  {r.phone && <p style={{ color: '#555', fontSize: 9, margin: 0 }}>📞 {r.phone}</p>}
+                </div>
+              ))}
+            </div>
+          </Section>
+        )}
+
+        {/* ── ADDITIONAL INFO ── */}
+        {additionalInfo && (
+          <Section title="Additional Information" color={tc}>
+            <p style={{ color: '#444', fontSize: 10, lineHeight: 1.7, margin: 0, padding: '8px 12px', background: `${tc}06`, borderRadius: 6, borderLeft: `3px solid ${tc}` }}>
+              {additionalInfo}
+            </p>
           </Section>
         )}
 

@@ -8,16 +8,9 @@ const defaultResume = {
   themeColor: '#8b5cf6',
   fontFamily: 'Arial',
   personalInfo: {
-    name: '',
-    jobTitle: '',
-    email: '',
-    phone: '',
-    location: '',
-    website: '',
-    linkedin: '',
-    github: '',
-    summary: '',
-    photo: '',
+    name: '', jobTitle: '', email: '', phone: '',
+    location: '', website: '', linkedin: '', github: '',
+    summary: '', photo: '',
   },
   experience: [],
   education: [],
@@ -27,6 +20,12 @@ const defaultResume = {
   languages: [],
   achievements: [],
   interests: [],
+  // Extended sections
+  achievementsList: [],
+  activities: [],
+  publications: [],
+  references: [],
+  additionalInfo: '',
 }
 
 export const useResumeStore = create((set) => ({
@@ -184,6 +183,81 @@ export const useResumeStore = create((set) => ({
   removeInterest: (id) =>
     set((state) => ({
       resume: { ...state.resume, interests: (state.resume.interests || []).filter(i => i.id !== id) },
+      isDirty: true,
+    })),
+
+  // Achievements List
+  addAchievementItem: () =>
+    set((state) => ({
+      resume: { ...state.resume, achievementsList: [...(state.resume.achievementsList || []), { id: generateId(), title: '', description: '' }] },
+      isDirty: true,
+    })),
+  updateAchievementItem: (id, field, value) =>
+    set((state) => ({
+      resume: { ...state.resume, achievementsList: (state.resume.achievementsList || []).map(a => a.id === id ? { ...a, [field]: value } : a) },
+      isDirty: true,
+    })),
+  removeAchievementItem: (id) =>
+    set((state) => ({
+      resume: { ...state.resume, achievementsList: (state.resume.achievementsList || []).filter(a => a.id !== id) },
+      isDirty: true,
+    })),
+
+  // Activities
+  addActivity: () =>
+    set((state) => ({
+      resume: { ...state.resume, activities: [...(state.resume.activities || []), { id: generateId(), title: '', description: '' }] },
+      isDirty: true,
+    })),
+  updateActivity: (id, field, value) =>
+    set((state) => ({
+      resume: { ...state.resume, activities: (state.resume.activities || []).map(a => a.id === id ? { ...a, [field]: value } : a) },
+      isDirty: true,
+    })),
+  removeActivity: (id) =>
+    set((state) => ({
+      resume: { ...state.resume, activities: (state.resume.activities || []).filter(a => a.id !== id) },
+      isDirty: true,
+    })),
+
+  // Publications
+  addPublication: () =>
+    set((state) => ({
+      resume: { ...state.resume, publications: [...(state.resume.publications || []), { id: generateId(), title: '', description: '' }] },
+      isDirty: true,
+    })),
+  updatePublication: (id, field, value) =>
+    set((state) => ({
+      resume: { ...state.resume, publications: (state.resume.publications || []).map(p => p.id === id ? { ...p, [field]: value } : p) },
+      isDirty: true,
+    })),
+  removePublication: (id) =>
+    set((state) => ({
+      resume: { ...state.resume, publications: (state.resume.publications || []).filter(p => p.id !== id) },
+      isDirty: true,
+    })),
+
+  // References
+  addReference: () =>
+    set((state) => ({
+      resume: { ...state.resume, references: [...(state.resume.references || []), { id: generateId(), refereeName: '', jobTitle: '', company: '', email: '', phone: '' }] },
+      isDirty: true,
+    })),
+  updateReference: (id, field, value) =>
+    set((state) => ({
+      resume: { ...state.resume, references: (state.resume.references || []).map(r => r.id === id ? { ...r, [field]: value } : r) },
+      isDirty: true,
+    })),
+  removeReference: (id) =>
+    set((state) => ({
+      resume: { ...state.resume, references: (state.resume.references || []).filter(r => r.id !== id) },
+      isDirty: true,
+    })),
+
+  // Additional Info
+  updateAdditionalInfo: (value) =>
+    set((state) => ({
+      resume: { ...state.resume, additionalInfo: value },
       isDirty: true,
     })),
 

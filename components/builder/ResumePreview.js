@@ -346,6 +346,11 @@ export default function ResumePreview() {
   const resolvedResume = {
     ...resume,
     interests: resume.interests || [],
+    achievementsList: resume.achievementsList || [],
+    activities:       resume.activities       || [],
+    publications:     resume.publications     || [],
+    references:       resume.references       || [],
+    additionalInfo:   resume.additionalInfo   || '',
     data: {
       ...resume.data,
       personalInfo: {

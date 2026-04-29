@@ -12,7 +12,12 @@ import CertificationsForm from '@/components/builder/CertificationsForm'
 import LanguagesForm from '@/components/builder/LanguagesForm'
 import dynamic from 'next/dynamic'
 import InterestsForm from '@/components/builder/InterestsForm'
-import { Save, Download, FileText, User, Briefcase, GraduationCap, Code2, Palette, Eye, EyeOff, Zap, CheckCircle, Award, Languages, ArrowLeft, Heart } from 'lucide-react'
+import AchievementsForm from '@/components/builder/AchievementsForm'
+import ActivitiesForm from '@/components/builder/ActivitiesForm'
+import PublicationsForm from '@/components/builder/PublicationsForm'
+import ReferencesForm from '@/components/builder/ReferencesForm'
+import AdditionalInfoForm from '@/components/builder/AdditionalInfoForm'
+import { Save, Download, FileText, User, Briefcase, GraduationCap, Code2, Palette, Eye, EyeOff, Zap, CheckCircle, Award, Languages, ArrowLeft, Heart, Trophy, Activity, BookOpen, Users, Info } from 'lucide-react'
 import { exportToPDF } from '@/lib/exportResume'
 import Link from 'next/link'
 
@@ -26,15 +31,20 @@ const ResumePreview = dynamic(() => import('@/components/builder/ResumePreview')
 })
 
 const sections = [
-  { id: 'personal',       label: 'Personal',   icon: User,          component: PersonalInfoForm },
-  { id: 'experience',     label: 'Experience', icon: Briefcase,     component: ExperienceForm },
-  { id: 'education',      label: 'Education',  icon: GraduationCap, component: EducationForm },
-  { id: 'skills',         label: 'Skills',     icon: Zap,           component: SkillsForm },
-  { id: 'projects',       label: 'Projects',   icon: Code2,         component: ProjectsForm },
-  { id: 'certifications', label: 'Certs',      icon: Award,         component: CertificationsForm },
-  { id: 'languages',      label: 'Languages',  icon: Languages,     component: LanguagesForm },
-  { id: 'interests',      label: 'Interests',  icon: Heart,         component: InterestsForm },
-  { id: 'design',         label: 'Design',     icon: Palette,       component: TemplateSelector },
+  { id: 'personal',       label: 'Personal',      icon: User,          component: PersonalInfoForm },
+  { id: 'experience',     label: 'Experience',    icon: Briefcase,     component: ExperienceForm },
+  { id: 'education',      label: 'Education',     icon: GraduationCap, component: EducationForm },
+  { id: 'skills',         label: 'Skills',        icon: Zap,           component: SkillsForm },
+  { id: 'projects',       label: 'Projects',      icon: Code2,         component: ProjectsForm },
+  { id: 'certifications', label: 'Certs',         icon: Award,         component: CertificationsForm },
+  { id: 'languages',      label: 'Languages',     icon: Languages,     component: LanguagesForm },
+  { id: 'interests',      label: 'Interests',     icon: Heart,         component: InterestsForm },
+  { id: 'achievements',   label: 'Achievements',  icon: Trophy,        component: AchievementsForm },
+  { id: 'activities',     label: 'Activities',    icon: Activity,      component: ActivitiesForm },
+  { id: 'publications',   label: 'Publications',  icon: BookOpen,      component: PublicationsForm },
+  { id: 'references',     label: 'References',    icon: Users,         component: ReferencesForm },
+  { id: 'additional',     label: 'Additional',    icon: Info,          component: AdditionalInfoForm },
+  { id: 'design',         label: 'Design',        icon: Palette,       component: TemplateSelector },
 ]
 
 export default function EditResumePage() {
@@ -80,6 +90,11 @@ export default function EditResumePage() {
           languages:      r.data?.languages      || [],
           achievements:   r.data?.achievements   || [],
           interests:      r.data?.interests      || [],
+          achievementsList: r.data?.achievementsList || [],
+          activities:       r.data?.activities       || [],
+          publications:     r.data?.publications     || [],
+          references:       r.data?.references       || [],
+          additionalInfo:   r.data?.additionalInfo   || '',
         })
         setLoading(false)
       } catch {
@@ -113,7 +128,12 @@ export default function EditResumePage() {
               certifications: resume.certifications,
               languages:      resume.languages,
               achievements:   resume.achievements,
-              interests:      resume.interests || [],
+              interests:      resume.interests      || [],
+              achievementsList: resume.achievementsList || [],
+              activities:       resume.activities       || [],
+              publications:     resume.publications     || [],
+              references:       resume.references       || [],
+              additionalInfo:   resume.additionalInfo   || '',
             },
           }),
         })
@@ -170,7 +190,12 @@ export default function EditResumePage() {
           certifications: resume.certifications,
           languages:      resume.languages,
           achievements:   resume.achievements,
-          interests:      resume.interests || [],
+          interests:      resume.interests      || [],
+          achievementsList: resume.achievementsList || [],
+          activities:       resume.activities       || [],
+          publications:     resume.publications     || [],
+          references:       resume.references       || [],
+          additionalInfo:   resume.additionalInfo   || '',
         },
       }
       await fetch(`/api/resumes/${resume.id}`, {
