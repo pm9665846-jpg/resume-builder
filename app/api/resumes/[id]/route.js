@@ -37,8 +37,7 @@ export async function GET(req, context) {
           projects:       data.projects       || [],
           certifications: data.certifications || [],
           languages:      data.languages      || [],
-          achievements:   data.achievements   || [],
-          interests:      data.interests      || [],
+          achievements:   data.achievements   || [],          interests:      data.interests      || [],
           // Extended optional sections
           achievementsList:        data.achievementsList        || [],
           activities:              data.activities              || [],
