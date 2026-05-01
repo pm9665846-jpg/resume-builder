@@ -60,14 +60,14 @@ export default function Hero() {
           zIndex: 10,
         }}
       >
-        {/* Badge - Fixed for mobile */}
+        {/* Badge - Moved down for mobile */}
         <motion.div 
           variants={item} 
           style={{ 
             display: 'flex', 
             justifyContent: 'center', 
             marginBottom: 32,
-            paddingTop: 20,
+            paddingTop: 40,
           }}
         >
           <div
@@ -75,26 +75,30 @@ export default function Hero() {
               display: 'inline-flex',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '6px',
+              gap: '8px',
               borderRadius: '999px',
-              padding: '6px 14px',
-              fontSize: '0.72rem',
+              padding: '8px 18px',
+              fontSize: 'clamp(0.7rem, 3.5vw, 0.75rem)',
               fontWeight: 500,
               color: '#a78bfa',
               background: 'rgba(139, 92, 246, 0.1)',
               border: '1px solid rgba(139, 92, 246, 0.2)',
               backdropFilter: 'blur(4px)',
+              maxWidth: '90%',
             }}
           >
-            <Sparkles size={11} color="#a78bfa" style={{ flexShrink: 0 }} />
+            <Sparkles size={12} color="#a78bfa" style={{ flexShrink: 0 }} />
             <span style={{
-              whiteSpace: 'nowrap',
+              whiteSpace: 'normal',
+              wordBreak: 'keep-all',
+              display: 'inline-block',
+              lineHeight: 1.3,
             }}>
               AI-Powered Resume Builder — Now in Beta
             </span>
             <span style={{
-              width: 6,
-              height: 6,
+              width: 7,
+              height: 7,
               borderRadius: '50%',
               background: '#4ade80',
               display: 'inline-block',
@@ -230,11 +234,16 @@ export default function Hero() {
           50% { opacity: 0.5; transform: scale(1.2); }
         }
         
-        /* Mobile styles - only padding adjust kiya, text wrap nahi hoga */
+        /* Mobile responsive styles - push badge further down */
+        @media (max-width: 768px) {
+          .badge-container {
+            padding-top: 80px !important;
+          }
+        }
+        
         @media (max-width: 550px) {
-          /* Badge ko thoda neeche kiya */
-          .motion-div {
-            margin-bottom: 50px !important;
+          .badge-container {
+            padding-top: 100px !important;
           }
         }
       `}</style>
