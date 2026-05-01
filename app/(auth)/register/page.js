@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useState, Suspense, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { signIn, useSession } from 'next-auth/react'
-import { Zap, Mail, Lock, User, ArrowRight, Check } from 'lucide-react'
+import { Zap, Mail, Lock, User, ArrowRight, Check, Eye, EyeOff } from 'lucide-react'
 
 // Template preview map for the sidebar
 const templateNames = {
@@ -27,6 +27,7 @@ function RegisterForm() {
   const [form, setForm] = useState({ name: '', email: '', password: '' })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
   const selectedTemplate = templateParam
 
   // Redirect to dashboard if already logged in
@@ -147,7 +148,7 @@ function RegisterForm() {
               <div style={{ width: 38, height: 38, borderRadius: 10, background: 'linear-gradient(135deg, #8b5cf6, #3b82f6)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <Zap size={18} color="white" />
               </div>
-              <span className="gradient-text" style={{ fontWeight: 700, fontSize: '1.2rem' }}>Resume Maker</span>
+              <span className="gradient-text" style={{ fontWeight: 700, fontSize: '1.2rem' }}>Fresh CV</span>
             </Link>
             <h1 style={{ fontSize: '1.75rem', fontWeight: 900, color: 'var(--text)', marginBottom: 6 }}>Create your account</h1>
             <p style={{ color: 'var(--text2)', fontSize: '0.875rem' }}>
@@ -205,12 +206,19 @@ function RegisterForm() {
                   <div style={{ position: 'relative' }}>
                     <Icon size={14} color="#64748b" style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} />
                     <input
-                      type={type} placeholder={placeholder}
+                      type={key === 'password' ? (showPassword ? 'text' : 'password') : type}
+                      placeholder={placeholder}
                       value={form[key]} onChange={e => setForm({ ...form, [key]: e.target.value })}
                       required minLength={key === 'password' ? 8 : undefined}
                       className="input-glass"
-                      style={{ paddingLeft: 36, paddingRight: 14, paddingTop: 11, paddingBottom: 11, borderRadius: 10, fontSize: '0.875rem' }}
+                      style={{ paddingLeft: 36, paddingRight: key === 'password' ? 40 : 14, paddingTop: 11, paddingBottom: 11, borderRadius: 10, fontSize: '0.875rem' }}
                     />
+                    {key === 'password' && (
+                      <button type="button" onClick={() => setShowPassword(s => !s)}
+                        style={{ position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text3)', padding: 0, display: 'flex', alignItems: 'center' }}>
+                        {showPassword ? <EyeOff size={15} /> : <Eye size={15} />}
+                      </button>
+                    )}
                   </div>
                   {key === 'password' && form.password && (
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 6 }}>

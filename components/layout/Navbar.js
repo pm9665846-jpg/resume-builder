@@ -2,8 +2,9 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Link from 'next/link'
 import { useState } from 'react'
-import { Menu, X, Sun, Moon } from 'lucide-react'
+import { Menu, X, Sun, Moon, LayoutDashboard } from 'lucide-react'
 import { useTheme } from '@/components/providers/ThemeProvider'
+import { useSession } from 'next-auth/react'
 
 const navLinks = [
   { label: 'Features',  href: '#features' },
@@ -15,6 +16,8 @@ export default function Navbar() {
   const { scrollY } = useScroll()
   const bgOpacity = useTransform(scrollY, [0, 80], [0, 1])
   const { theme, toggle } = useTheme()
+  const { data: session, status } = useSession()
+  const isLoggedIn = status === 'authenticated'
 
   return (
     <header className="navbar">
@@ -29,8 +32,8 @@ export default function Navbar() {
       <div className="navbar-inner" style={{ position: 'relative', zIndex: 1 }}>
         {/* Logo */}
         <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 0, textDecoration: 'none' }}>
-          <img src="/logo.png" alt="Resume Maker" style={{ width: 80, height: 100, objectFit: 'contain', flexShrink: 0 }} />
-          <span className="gradient-text" style={{ fontWeight: 700, fontSize: '1.125rem' }}>Resume Maker</span>
+          <img src="/logo.png" alt="Fresh CV" style={{ width: 80, height: 100, objectFit: 'contain', flexShrink: 0 }} />
+          <span className="gradient-text" style={{ fontWeight: 700, fontSize: '1.125rem' }}>Fresh CV</span>
         </Link>
 
         {/* Desktop Nav Links */}
@@ -52,20 +55,35 @@ export default function Navbar() {
           <button onClick={toggle} className="theme-toggle" title={theme === 'dark' ? 'Switch to Light' : 'Switch to Dark'}>
             {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
           </button>
-          <Link href="/login"
-            style={{ fontSize: '0.875rem', color: 'var(--text2)', textDecoration: 'none', padding: '8px 16px', borderRadius: 10, transition: 'all 0.2s' }}
-            onMouseEnter={e => { e.currentTarget.style.color = 'var(--text)'; e.currentTarget.style.background = 'var(--hover-bg)' }}
-            onMouseLeave={e => { e.currentTarget.style.color = 'var(--text2)'; e.currentTarget.style.background = 'transparent' }}
-          >
-            Sign In
-          </Link>
-          <Link href="/register"
-            style={{ fontSize: '0.875rem', fontWeight: 600, color: 'white', textDecoration: 'none', padding: '8px 20px', borderRadius: 10, background: 'linear-gradient(135deg, #8b5cf6, #3b82f6)', transition: 'all 0.2s' }}
-            onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-1px)'}
-            onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
-          >
-            Get Started Free
-          </Link>
+
+          {isLoggedIn ? (
+            /* Logged-in: show Dashboard button */
+            <Link href="/dashboard"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: '0.875rem', fontWeight: 600, color: 'white', textDecoration: 'none', padding: '8px 20px', borderRadius: 10, background: 'linear-gradient(135deg, #7C3AED, #3B82F6)', transition: 'all 0.2s' }}
+              onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-1px)'}
+              onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
+            >
+              <LayoutDashboard size={15} /> Dashboard
+            </Link>
+          ) : (
+            /* Not logged-in: show Sign In + Get Started */
+            <>
+              <Link href="/login"
+                style={{ fontSize: '0.875rem', color: 'var(--text2)', textDecoration: 'none', padding: '8px 16px', borderRadius: 10, transition: 'all 0.2s' }}
+                onMouseEnter={e => { e.currentTarget.style.color = 'var(--text)'; e.currentTarget.style.background = 'var(--hover-bg)' }}
+                onMouseLeave={e => { e.currentTarget.style.color = 'var(--text2)'; e.currentTarget.style.background = 'transparent' }}
+              >
+                Sign In
+              </Link>
+              <Link href="/register"
+                style={{ fontSize: '0.875rem', fontWeight: 600, color: 'white', textDecoration: 'none', padding: '8px 20px', borderRadius: 10, background: 'linear-gradient(135deg, #7C3AED, #3B82F6)', transition: 'all 0.2s' }}
+                onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-1px)'}
+                onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
+              >
+                Get Started Free
+              </Link>
+            </>
+          )}
         </div>
 
         {/* Mobile: theme toggle + hamburger */}
@@ -98,12 +116,21 @@ export default function Navbar() {
               </Link>
             ))}
             <div style={{ borderTop: '1px solid var(--border3)', paddingTop: 12, display: 'flex', flexDirection: 'column', gap: 8 }}>
-              <Link href="/login"
-                style={{ textAlign: 'center', padding: '10px', borderRadius: 10, color: 'var(--text2)', border: '1px solid var(--border)', textDecoration: 'none', fontSize: '0.875rem' }}
-              >Sign In</Link>
-              <Link href="/register"
-                style={{ textAlign: 'center', padding: '10px', borderRadius: 10, color: 'white', background: 'linear-gradient(135deg, #8b5cf6, #3b82f6)', textDecoration: 'none', fontSize: '0.875rem', fontWeight: 600 }}
-              >Get Started Free</Link>
+              {isLoggedIn ? (
+                <Link href="/dashboard" onClick={() => setOpen(false)}
+                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, textAlign: 'center', padding: '10px', borderRadius: 10, color: 'white', background: 'linear-gradient(135deg, #7C3AED, #3B82F6)', textDecoration: 'none', fontSize: '0.875rem', fontWeight: 600 }}>
+                  <LayoutDashboard size={15} /> Go to Dashboard
+                </Link>
+              ) : (
+                <>
+                  <Link href="/login" onClick={() => setOpen(false)}
+                    style={{ textAlign: 'center', padding: '10px', borderRadius: 10, color: 'var(--text2)', border: '1px solid var(--border)', textDecoration: 'none', fontSize: '0.875rem' }}
+                  >Sign In</Link>
+                  <Link href="/register" onClick={() => setOpen(false)}
+                    style={{ textAlign: 'center', padding: '10px', borderRadius: 10, color: 'white', background: 'linear-gradient(135deg, #7C3AED, #3B82F6)', textDecoration: 'none', fontSize: '0.875rem', fontWeight: 600 }}
+                  >Get Started Free</Link>
+                </>
+              )}
             </div>
           </div>
         </div>

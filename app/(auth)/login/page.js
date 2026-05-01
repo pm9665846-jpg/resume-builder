@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useState, Suspense, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { signIn, useSession, getProviders } from 'next-auth/react'
-import { Zap, Mail, Lock, ArrowRight, Eye, EyeOff, AlertCircle } from 'lucide-react'
+import { Mail, Lock, ArrowRight, Eye, EyeOff, AlertCircle } from 'lucide-react'
 
 function LoginForm() {
   const router = useRouter()
@@ -18,6 +18,7 @@ function LoginForm() {
   const [loading, setLoading] = useState(false)
   const [googleLoading, setGoogleLoading] = useState(false)
   const [googleAvailable, setGoogleAvailable] = useState(false)
+  const [googleChecked, setGoogleChecked] = useState(false)
   const [error, setError] = useState(
     errorParam === 'OAuthAccountNotLinked'
       ? 'This email is already registered. Please sign in with email & password.'
@@ -39,6 +40,9 @@ function LoginForm() {
   useEffect(() => {
     getProviders().then(providers => {
       setGoogleAvailable(!!providers?.google)
+      setGoogleChecked(true)
+    }).catch(() => {
+      setGoogleChecked(true)
     })
   }, [])
 
@@ -105,11 +109,9 @@ function LoginForm() {
       >
         {/* Logo */}
         <div style={{ textAlign: 'center', marginBottom: 28 }}>
-          <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, textDecoration: 'none', marginBottom: 20 }}>
-            <div style={{ width: 38, height: 38, borderRadius: 10, background: 'linear-gradient(135deg, #8b5cf6, #3b82f6)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Zap size={18} color="white" />
-            </div>
-            <span className="gradient-text" style={{ fontWeight: 700, fontSize: '1.2rem' }}>Resume Maker</span>
+          <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 0, textDecoration: 'none', marginBottom: 20 }}>
+            <img src="/logo.png" alt="Fresh CV" style={{ width: 48, height: 48, objectFit: 'contain' }} />
+            <span className="gradient-text" style={{ fontWeight: 700, fontSize: '1.4rem' }}>Fresh CV</span>
           </Link>
           <h1 style={{ fontSize: '1.75rem', fontWeight: 900, color: 'var(--text)', marginBottom: 6 }}>Welcome back</h1>
           <p style={{ color: 'var(--text2)', fontSize: '0.875rem' }}>Sign in to continue building your career</p>
@@ -128,6 +130,13 @@ function LoginForm() {
           )}
 
           {/* Google Sign In */}
+          {!googleChecked ? (
+            /* Loading skeleton while checking providers */
+            <div style={{ width: '100%', height: 46, borderRadius: 12, background: 'var(--card)', border: '1px solid var(--border)', marginBottom: 20, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
+              <div style={{ width: 18, height: 18, borderRadius: '50%', background: 'var(--border2)', animation: 'pulse 1.5s infinite' }} />
+              <div style={{ width: 140, height: 14, borderRadius: 6, background: 'var(--border2)', animation: 'pulse 1.5s infinite' }} />
+            </div>
+          ) : (
           <button
             onClick={handleGoogleLogin}
             disabled={googleLoading}
@@ -140,7 +149,6 @@ function LoginForm() {
               fontWeight: 600, fontSize: '0.9rem',
               cursor: googleLoading ? 'not-allowed' : 'pointer',
               opacity: googleLoading ? 0.7 : 1, transition: 'all 0.2s',
-              position: 'relative',
             }}
             onMouseEnter={e => { if (!googleLoading && googleAvailable) e.currentTarget.style.background = '#f9fafb' }}
             onMouseLeave={e => { if (googleAvailable) e.currentTarget.style.background = 'white' }}
@@ -157,6 +165,7 @@ function LoginForm() {
             )}
             {googleLoading ? 'Signing in...' : googleAvailable ? 'Continue with Google' : 'Continue with Google (Setup Required)'}
           </button>
+          )}
 
           {/* Google setup hint */}
           {!googleAvailable && (
@@ -209,7 +218,7 @@ function LoginForm() {
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
               padding: '13px', borderRadius: 12, border: 'none',
               cursor: loading ? 'not-allowed' : 'pointer',
-              background: 'linear-gradient(135deg, #8b5cf6, #3b82f6)',
+              background: 'linear-gradient(135deg, #7C3AED, #3B82F6)',
               color: 'white', fontWeight: 700, fontSize: '0.95rem',
               opacity: loading ? 0.7 : 1, transition: 'all 0.2s',
             }}>

@@ -3,74 +3,113 @@
 
 /* ============================================================
    THEME VARIABLES — dark (default) + light
+   Based on Fresh CV color system
    ============================================================ */
 :root,
 [data-theme="dark"] {
-  --bg:            #050508;
-  --bg2:           #0a0a12;
-  --bg3:           #0f0f1a;
-  --card:          rgba(255,255,255,0.04);
-  --card2:         rgba(255,255,255,0.06);
-  --card3:         rgba(255,255,255,0.08);
+  /* Backgrounds */
+  --bg:            #0B0F1A;
+  --bg2:           #0f1420;
+  --bg3:           #111827;
+
+  /* Cards */
+  --card:          rgba(31,41,55,0.6);
+  --card2:         rgba(31,41,55,0.8);
+  --card3:         rgba(31,41,55,1);
+
+  /* Borders */
   --border:        rgba(255,255,255,0.08);
   --border2:       rgba(255,255,255,0.12);
   --border3:       rgba(255,255,255,0.06);
-  --text:          #f8fafc;
+
+  /* Text */
+  --text:          #F8FAFC;
   --text2:         #94a3b8;
   --text3:         #64748b;
   --text4:         #475569;
-  --input-bg:      rgba(255,255,255,0.04);
+
+  /* Inputs */
+  --input-bg:      rgba(31,41,55,0.6);
   --input-border:  rgba(255,255,255,0.08);
-  --input-focus:   rgba(255,255,255,0.06);
-  --scrollbar:     #0a0a12;
+  --input-focus:   rgba(124,58,237,0.1);
+
+  /* Misc */
+  --scrollbar:     #111827;
   --modal-bg:      rgba(0,0,0,0.75);
-  --modal-card:    #0f0f1a;
-  --sidebar-bg:    rgba(5,5,8,0.97);
-  --navbar-bg:     rgba(5,5,8,0.97);
-  --section-bg:    #050508;
-  --pricing-bg:    #050508;
-  --footer-bg:     #050508;
-  --hero-bg:       #050508;
-  --dash-bg:       #050508;
-  --tag-bg:        rgba(255,255,255,0.04);
-  --tag-border:    rgba(255,255,255,0.08);
-  --hover-bg:      rgba(255,255,255,0.05);
-  --delete-modal:  #0f0f1a;
+  --modal-card:    #111827;
+  --sidebar-bg:    rgba(11,15,26,0.97);
+  --navbar-bg:     rgba(11,15,26,0.97);
+  --section-bg:    #0B0F1A;
+  --pricing-bg:    #0B0F1A;
+  --footer-bg:     #0B0F1A;
+  --hero-bg:       #0B0F1A;
+  --dash-bg:       #0B0F1A;
+  --tag-bg:        rgba(124,58,237,0.12);
+  --tag-border:    rgba(124,58,237,0.25);
+  --hover-bg:      rgba(124,58,237,0.08);
+  --delete-modal:  #111827;
   --delete-border: rgba(255,255,255,0.1);
+
+  /* Brand colors */
+  --primary:       #7C3AED;
+  --primary-light: #6D28D9;
+  --accent:        #3B82F6;
+  --accent-light:  #2563EB;
+  --success:       #10B981;
+  --danger:        #EF4444;
 }
 
 [data-theme="light"] {
-  --bg:            #f8fafc;
-  --bg2:           #f1f5f9;
-  --bg3:           #ffffff;
-  --card:          rgba(0,0,0,0.03);
-  --card2:         rgba(0,0,0,0.05);
-  --card3:         rgba(0,0,0,0.07);
+  /* Backgrounds */
+  --bg:            #F8FAFC;
+  --bg2:           #F1F5F9;
+  --bg3:           #FFFFFF;
+
+  /* Cards */
+  --card:          rgba(255,255,255,0.9);
+  --card2:         rgba(255,255,255,0.95);
+  --card3:         rgba(248,250,252,1);
+
+  /* Borders */
   --border:        rgba(0,0,0,0.08);
   --border2:       rgba(0,0,0,0.14);
   --border3:       rgba(0,0,0,0.06);
-  --text:          #0f172a;
-  --text2:         #475569;
-  --text3:         #64748b;
-  --text4:         #94a3b8;
-  --input-bg:      rgba(0,0,0,0.03);
+
+  /* Text */
+  --text:          #0B0F1A;
+  --text2:         #374151;
+  --text3:         #6B7280;
+  --text4:         #9CA3AF;
+
+  /* Inputs */
+  --input-bg:      rgba(255,255,255,0.9);
   --input-border:  rgba(0,0,0,0.1);
-  --input-focus:   rgba(0,0,0,0.05);
-  --scrollbar:     #e2e8f0;
+  --input-focus:   rgba(124,58,237,0.08);
+
+  /* Misc */
+  --scrollbar:     #E2E8F0;
   --modal-bg:      rgba(0,0,0,0.5);
-  --modal-card:    #ffffff;
+  --modal-card:    #FFFFFF;
   --sidebar-bg:    rgba(248,250,252,0.97);
   --navbar-bg:     rgba(248,250,252,0.97);
-  --section-bg:    #f8fafc;
-  --pricing-bg:    #f8fafc;
-  --footer-bg:     #f1f5f9;
-  --hero-bg:       #f8fafc;
-  --dash-bg:       #f1f5f9;
-  --tag-bg:        rgba(139,92,246,0.08);
-  --tag-border:    rgba(139,92,246,0.2);
-  --hover-bg:      rgba(0,0,0,0.04);
-  --delete-modal:  #ffffff;
+  --section-bg:    #F8FAFC;
+  --pricing-bg:    #F8FAFC;
+  --footer-bg:     #F1F5F9;
+  --hero-bg:       #F8FAFC;
+  --dash-bg:       #F1F5F9;
+  --tag-bg:        rgba(124,58,237,0.08);
+  --tag-border:    rgba(124,58,237,0.2);
+  --hover-bg:      rgba(124,58,237,0.06);
+  --delete-modal:  #FFFFFF;
   --delete-border: rgba(0,0,0,0.1);
+
+  /* Brand colors */
+  --primary:       #7C3AED;
+  --primary-light: #6D28D9;
+  --accent:        #3B82F6;
+  --accent-light:  #2563EB;
+  --success:       #10B981;
+  --danger:        #EF4444;
 }
 
 /* ============================================================
@@ -95,9 +134,9 @@ body {
    ============================================================ */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--scrollbar); }
-::-webkit-scrollbar-thumb { background: rgba(139,92,246,0.4); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(139,92,246,0.7); }
-::selection { background: rgba(139,92,246,0.3); color: white; }
+::-webkit-scrollbar-thumb { background: rgba(124,58,237,0.4); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(124,58,237,0.7); }
+::selection { background: rgba(124,58,237,0.3); color: white; }
 
 /* ============================================================
    GLASS
@@ -120,13 +159,13 @@ body {
    GRADIENT TEXT
    ============================================================ */
 .gradient-text {
-  background: linear-gradient(135deg, #8b5cf6, #3b82f6, #06b6d4);
+  background: linear-gradient(135deg, #7C3AED, #3B82F6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 .gradient-text-pink {
-  background: linear-gradient(135deg, #ec4899, #8b5cf6);
+  background: linear-gradient(135deg, #7C3AED, #3B82F6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -136,7 +175,7 @@ body {
    GLOW
    ============================================================ */
 .glow-purple {
-  box-shadow: 0 0 30px rgba(139,92,246,0.3), 0 0 60px rgba(139,92,246,0.1);
+  box-shadow: 0 0 30px rgba(124,58,237,0.3), 0 0 60px rgba(124,58,237,0.1);
 }
 
 /* ============================================================
@@ -145,7 +184,7 @@ body {
 .animated-border {
   position: relative;
   background: linear-gradient(var(--bg), var(--bg)) padding-box,
-    linear-gradient(135deg, #8b5cf6, #3b82f6, #06b6d4, #8b5cf6) border-box;
+    linear-gradient(135deg, #7C3AED, #3B82F6, #7C3AED) border-box;
   border: 1px solid transparent;
   background-size: 300% 300%;
   animation: borderRotate 4s linear infinite;
@@ -161,21 +200,21 @@ body {
    ============================================================ */
 .grid-pattern {
   background-image:
-    linear-gradient(rgba(139,92,246,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(139,92,246,0.05) 1px, transparent 1px);
+    linear-gradient(rgba(124,58,237,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124,58,237,0.05) 1px, transparent 1px);
   background-size: 50px 50px;
 }
 [data-theme="light"] .grid-pattern {
   background-image:
-    linear-gradient(rgba(139,92,246,0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(139,92,246,0.07) 1px, transparent 1px);
+    linear-gradient(rgba(124,58,237,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124,58,237,0.07) 1px, transparent 1px);
 }
 
 /* ============================================================
    BUTTONS
    ============================================================ */
 .btn-primary {
-  background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+  background: linear-gradient(135deg, #7C3AED, #3B82F6);
   color: white;
   border: none;
   cursor: pointer;
@@ -183,7 +222,7 @@ body {
 }
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 40px rgba(139,92,246,0.4);
+  box-shadow: 0 10px 40px rgba(124,58,237,0.4);
 }
 
 /* ============================================================
@@ -198,8 +237,8 @@ body {
 }
 .input-glass:focus {
   outline: none;
-  border-color: rgba(139,92,246,0.5);
-  box-shadow: 0 0 0 3px rgba(139,92,246,0.1);
+  border-color: rgba(124,58,237,0.5);
+  box-shadow: 0 0 0 3px rgba(124,58,237,0.1);
   background: var(--input-focus);
 }
 .input-glass::placeholder { color: var(--text3); }
@@ -210,7 +249,7 @@ body {
 .card-hover { transition: all 0.4s cubic-bezier(0.175,0.885,0.32,1.275); }
 .card-hover:hover {
   transform: translateY(-6px) scale(1.01);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.2), 0 0 30px rgba(139,92,246,0.15);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2), 0 0 30px rgba(124,58,237,0.15);
 }
 
 /* ============================================================
@@ -284,7 +323,8 @@ body {
   transition: all 0.2s ease; flex-shrink: 0;
 }
 .theme-toggle:hover {
-  background: var(--card2);
+  background: rgba(124,58,237,0.15);
+  border-color: rgba(124,58,237,0.4);
   transform: scale(1.08);
 }
 
@@ -333,6 +373,11 @@ body {
   /* Register page — hide template preview panel on mobile */
   .hidden.md\:flex {
     display: none !important;
+  }
+  /* Reduce section padding on mobile */
+  section, .landing-section {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
   }
   .navbar-inner { padding: 0 1rem; }
   .hero-content  { padding: 0 1rem; }
@@ -386,6 +431,10 @@ body {
 }
 @keyframes spin {
   to { transform: rotate(360deg); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
 }
 
 /* ============================================================

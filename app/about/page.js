@@ -70,7 +70,7 @@ export default function AboutPage() {
         <div style={{ background: 'linear-gradient(135deg, rgba(139,92,246,0.08), rgba(59,130,246,0.06))', border: '1px solid rgba(139,92,246,0.2)', borderRadius: 16, padding: '24px 28px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
           <div>
             <p style={{ fontWeight: 700, color: 'var(--text)', fontSize: '1rem', marginBottom: 4 }}>Ready to build your resume?</p>
-            <p style={{ color: 'var(--text3)', fontSize: '0.85rem' }}>Join thousands of professionals who trust Resume Builder.</p>
+            <p style={{ color: 'var(--text3)', fontSize: '0.85rem' }}>Join thousands of professionals who trust Fresh CV.</p>
           </div>
           <Link href="/register" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 22px', borderRadius: 10, background: 'linear-gradient(135deg, #8b5cf6, #3b82f6)', color: 'white', fontWeight: 600, fontSize: '0.875rem', textDecoration: 'none' }}>
             Get Started Free <ArrowRight size={15} />

@@ -1,8 +1,9 @@
-'use client'
+  'use client'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { ArrowRight, Check, Sparkles, Star } from 'lucide-react'
+import Link from 'next/link'
 import ModernTemplate from '@/components/builder/templates/ModernTemplate'
 import ExecutiveTemplate from '@/components/builder/templates/ExecutiveTemplate'
 import CreativeTemplate from '@/components/builder/templates/CreativeTemplate'
@@ -117,14 +118,14 @@ export default function Templates() {
   const visibleTemplates = showAll ? templates : templates.slice(0, 4)
 
   return (
-    <section id="templates" style={{ width: '100%', padding: '80px 0', background: 'var(--bg)', position: 'relative', overflow: 'hidden' }}>
+    <section id="templates" style={{ width: '100%', padding: '40px 0 80px', background: 'var(--bg)', position: 'relative', overflow: 'hidden' }}>
 
       <div style={{ position: 'absolute', top: '20%', left: '50%', transform: 'translateX(-50%)', width: 800, height: 400, background: 'radial-gradient(ellipse, rgba(139,92,246,0.07) 0%, transparent 70%)', pointerEvents: 'none' }} />
 
       <div style={{ width: '100%', maxWidth: 1280, margin: '0 auto', padding: '0 24px' }}>
 
         {/* Header */}
-        <motion.div ref={ref} initial={{ opacity: 0, y: 32 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} style={{ textAlign: 'center', marginBottom: 48 }}>
+        <motion.div ref={ref} initial={{ opacity: 0, y: 32 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} style={{ textAlign: 'center', marginBottom: 32 }}>
           <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={inView ? { opacity: 1, scale: 1 } : {}} transition={{ delay: 0.1 }}
             style={{ display: 'inline-flex', alignItems: 'center', gap: 7, marginBottom: 20, padding: '7px 18px', borderRadius: 999, background: 'rgba(139,92,246,0.1)', border: '1px solid rgba(139,92,246,0.25)' }}>
             <Sparkles size={13} color="#a78bfa" />
@@ -161,13 +162,13 @@ export default function Templates() {
 
         {/* View All button */}
         <div style={{ textAlign: 'center', marginBottom: 48 }}>
-          <button onClick={() => setShowAll(s => !s)}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 28px', borderRadius: 12, background: 'var(--card)', border: '1px solid var(--border)', color: 'var(--text2)', fontSize: '0.875rem', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s' }}
+          <Link href="/templates"
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 28px', borderRadius: 12, background: 'var(--card)', border: '1px solid var(--border)', color: 'var(--text2)', fontSize: '0.875rem', fontWeight: 600, textDecoration: 'none', transition: 'all 0.2s' }}
             onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(139,92,246,0.4)'; e.currentTarget.style.color = '#a78bfa' }}
             onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text2)' }}
           >
-            {showAll ? 'Show Less ↑' : `View All ${templates.length} Templates →`}
-          </button>
+            View All {templates.length} Templates →
+          </Link>
         </div>
 
         {/* CTA */}

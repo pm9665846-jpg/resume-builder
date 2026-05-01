@@ -37,8 +37,8 @@ export default function Sidebar() {
       <aside className="dashboard-sidebar" style={{ display: 'flex' }}>
         {/* Logo */}
         <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 0, padding: '0 8px', marginBottom: 40, textDecoration: 'none' }}>
-          <img src="/logo.png" alt="Resume Maker" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
-          <span className="gradient-text" style={{ fontWeight: 700, fontSize: '1.1rem' }}>Resume Maker</span>
+          <img src="/logo.png" alt="Fresh CV" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
+          <span className="gradient-text" style={{ fontWeight: 700, fontSize: '1.1rem' }}>Fresh CV</span>
         </Link>
 
         {/* Nav */}
@@ -104,8 +104,8 @@ export default function Sidebar() {
         padding: '10px 16px', alignItems: 'center', justifyContent: 'space-between',
       }} className="mobile-topbar">
         <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 0, textDecoration: 'none' }}>
-          <img src="/logo.png" alt="Resume Maker" style={{ width: 32, height: 32, objectFit: 'contain' }} />
-          <span className="gradient-text" style={{ fontWeight: 700, fontSize: '1rem' }}>Resume Maker</span>
+          <img src="/logo.png" alt="Fresh CV" style={{ width: 32, height: 32, objectFit: 'contain' }} />
+          <span className="gradient-text" style={{ fontWeight: 700, fontSize: '1rem' }}>Fresh CV</span>
         </Link>
         <button onClick={() => setMobileOpen(true)}
           style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text2)', padding: 4 }}>
@@ -129,8 +129,8 @@ export default function Sidebar() {
               {/* Drawer header */}
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 28 }}>
                 <Link href="/" onClick={() => setMobileOpen(false)} style={{ display: 'flex', alignItems: 'center', gap: 0, textDecoration: 'none' }}>
-                  <img src="/logo.png" alt="Resume Maker" style={{ width: 32, height: 32, objectFit: 'contain' }} />
-                  <span className="gradient-text" style={{ fontWeight: 700, fontSize: '1rem' }}>Resume Maker</span>
+                  <img src="/logo.png" alt="Fresh CV" style={{ width: 32, height: 32, objectFit: 'contain' }} />
+                  <span className="gradient-text" style={{ fontWeight: 700, fontSize: '1rem' }}>Fresh CV</span>
                 </Link>
                 <button onClick={() => setMobileOpen(false)}
                   style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text2)' }}>

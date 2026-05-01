@@ -16,8 +16,8 @@ export default function Footer() {
           {/* Brand */}
           <div style={{ gridColumn: 'span 2', minWidth: 200 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 0, marginBottom: 16 }}>
-              <img src="/logo.png" alt="Resume Maker" style={{ width: 32, height: 32, objectFit: 'contain' }} />
-              <span className="gradient-text" style={{ fontWeight: 700, fontSize: '1.1rem' }}>Resume Maker</span>
+              <img src="/logo.png" alt="Fresh CV" style={{ width: 32, height: 32, objectFit: 'contain' }} />
+              <span className="gradient-text" style={{ fontWeight: 700, fontSize: '1.1rem' }}>Fresh CV</span>
             </div>
             <p style={{ color: 'var(--text3)', fontSize: '0.875rem', lineHeight: 1.7, maxWidth: 260 }}>
               The most powerful resume builder for modern professionals. Land your dream job faster.
@@ -49,9 +49,9 @@ export default function Footer() {
             </div>
           ))}
         </div>
-        <div style={{ borderTop: '1px solid var(--border3)', paddingTop: 24, display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center', justifyContent: 'space-between' }}>
-          <p style={{ color: 'var(--text3)', fontSize: '0.875rem' }}>© 2026 Resume Maker. All rights reserved.</p>
-          <p style={{ color: 'var(--text3)', fontSize: '0.875rem' }}>Made with ❤️ for job seekers worldwide</p>
+        <div style={{ borderTop: '1px solid var(--border3)', paddingTop: 24, display: 'flex', flexWrap: 'wrap', gap: 8, alignItems: 'center', justifyContent: 'center', textAlign: 'center', flexDirection: 'column' }}>
+          <p style={{ color: 'var(--text3)', fontSize: '0.875rem', margin: 0 }}>© 2026 Fresh CV. All rights reserved.</p>
+          <p style={{ color: 'var(--text3)', fontSize: '0.875rem', margin: 0 }}>Made with ❤️ for job seekers worldwide</p>
         </div>
       </div>
     </footer>

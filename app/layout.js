@@ -3,7 +3,7 @@ import AuthSessionProvider from '@/components/providers/SessionProvider'
 import { ThemeProvider } from '@/components/providers/ThemeProvider'
 
 export const metadata = {
-  title: 'Resume Maker — Build Your Dream Resume',
+  title: 'Fresh CV — Build Your Dream Resume',
   description: 'Premium resume maker with stunning templates, live preview, and one-click export.',
 }
 

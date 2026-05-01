@@ -1,7 +1,7 @@
 'use client'
 import { motion } from 'framer-motion'
 import { useState, useEffect, useRef } from 'react'
-import { User, Mail, Lock, Camera, Save, Loader2, Briefcase, GraduationCap, Code, Heart, Globe, Award, FolderOpen, Star } from 'lucide-react'
+import { User, Mail, Lock, Camera, Save, Loader2, Briefcase, GraduationCap, Code, Globe, Award, FolderOpen, Star } from 'lucide-react'
 
 const container = { hidden: {}, show: { transition: { staggerChildren: 0.07 } } }
 const item = { hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0, transition: { duration: 0.4 } } }
@@ -259,7 +259,7 @@ export default function ProfilePage() {
                 </motion.div>
               )}
 
-              {/* Languages + Interests row */}
+              {/* Languages row */}
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 16, marginBottom: 16 }}>
                 {resumeData.languages?.length > 0 && (
                   <motion.div variants={item} className="glass" style={{ borderRadius: 16, padding: 24 }}>
@@ -272,21 +272,6 @@ export default function ProfilePage() {
                           <span style={{ color: 'var(--text)', fontSize: '0.82rem', fontWeight: 500 }}>{l.name}</span>
                           <span style={{ color: '#ec4899', fontSize: '0.72rem', fontWeight: 600 }}>{l.proficiency}</span>
                         </div>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-
-                {resumeData.interests?.length > 0 && (
-                  <motion.div variants={item} className="glass" style={{ borderRadius: 16, padding: 24 }}>
-                    <h2 style={{ color: 'var(--text)', fontWeight: 700, fontSize: '0.95rem', marginBottom: 14, display: 'flex', alignItems: 'center', gap: 8 }}>
-                      <Heart size={16} color="#f97316" /> Interests
-                    </h2>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
-                      {resumeData.interests.map((it, i) => (
-                        <span key={i} style={{ fontSize: '0.78rem', padding: '4px 12px', borderRadius: 20, background: 'rgba(249,115,22,0.1)', border: '1px solid rgba(249,115,22,0.25)', color: '#f97316', fontWeight: 500 }}>
-                          {it.name}
-                        </span>
                       ))}
                     </div>
                   </motion.div>
