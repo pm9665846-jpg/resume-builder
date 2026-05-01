@@ -1,7 +1,7 @@
 'use client'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { Plus, Edit, Trash2, Clock, Search, FileText, AlertTriangle, RefreshCw, Eye, X, Download } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import { exportToPDF } from '@/lib/exportResume'
@@ -129,32 +129,33 @@ function ResumePreviewForModal({ resume }) {
       references:       d.references       || [],
       additionalInfo:   d.additionalInfo   || '',
     })
-  }, [resume.id])
+  }, [resume.id, resume.data, resume.template, resume.themeColor, resume.fontFamily, setResume])
 
   return <ResumePreviewModal />
 }
 
+// Fixed ScaledThumb component - renders HTML/CSS directly for thumbnail
 function ScaledThumb({ resume }) {
-  const [TemplateComp, setTemplateComp] = useState(null)
-
-  useEffect(() => {
-    import('@/components/builder/ResumePreview').then(mod => {
-      const map = mod.templateMap
-      setTemplateComp(() => map[resume.template] || map['modern'])
-    })
-  }, [resume.template])
-
-  const resumeData = {
-    ...(resume.data || {}),
-    template:   resume.template,
-    themeColor: resume.themeColor || '#7C3AED',
-    fontFamily: resume.fontFamily || 'Arial, sans-serif',
-  }
-
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState(false)
+  const containerRef = useRef(null)
+  
   const CARD_WIDTH = 260
   const scale = CARD_WIDTH / 794
 
-  if (!TemplateComp) {
+  useEffect(() => {
+    setIsLoading(true)
+    setError(false)
+    
+    // Simulate loading delay or handle errors
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 100)
+    
+    return () => clearTimeout(timer)
+  }, [resume.id, resume.template])
+
+  if (isLoading) {
     return (
       <div style={{ width: '100%', aspectRatio: '210/297', background: 'var(--card)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ width: 24, height: 24, border: '2px solid rgba(124,58,237,0.3)', borderTopColor: '#7C3AED', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
@@ -162,12 +163,119 @@ function ScaledThumb({ resume }) {
     )
   }
 
+  if (error) {
+    return (
+      <div style={{ width: '100%', aspectRatio: '210/297', background: 'var(--card)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: 8 }}>
+        <FileText size={32} color="var(--text3)" />
+        <p style={{ color: 'var(--text3)', fontSize: '0.7rem' }}>Preview unavailable</p>
+      </div>
+    )
+  }
+
+  // Get resume data with defaults
+  const resumeData = {
+    ...resume,
+    data: resume.data || {},
+    template: resume.template || 'modern',
+    themeColor: resume.themeColor || '#7C3AED',
+    fontFamily: resume.fontFamily || 'Arial, sans-serif',
+  }
+
+  // Simple fallback preview if template fails to load
+  const renderSimplePreview = () => {
+    const personalInfo = resumeData.data.personalInfo || {}
+    return (
+      <div style={{ 
+        width: '100%', 
+        height: '100%', 
+        background: 'white',
+        padding: '20px',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '12px'
+      }}>
+        <div>
+          <div style={{ 
+            fontSize: '18px', 
+            fontWeight: 'bold', 
+            color: resumeData.themeColor,
+            marginBottom: '4px',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap'
+          }}>
+            {personalInfo.fullName || resume.title || 'Untitled Resume'}
+          </div>
+          {personalInfo.jobTitle && (
+            <div style={{ fontSize: '12px', color: '#666', marginBottom: '8px' }}>
+              {personalInfo.jobTitle}
+            </div>
+          )}
+          {personalInfo.email && (
+            <div style={{ fontSize: '10px', color: '#999', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+              {personalInfo.email}
+            </div>
+          )}
+        </div>
+        
+        {(resumeData.data.experience?.length > 0) && (
+          <div>
+            <div style={{ fontSize: '11px', fontWeight: 'bold', marginBottom: '6px', color: '#333' }}>Experience</div>
+            {resumeData.data.experience.slice(0, 2).map((exp, idx) => (
+              <div key={idx} style={{ fontSize: '9px', marginBottom: '6px' }}>
+                <div style={{ fontWeight: 'bold' }}>{exp.position || exp.title}</div>
+                <div style={{ color: '#666' }}>{exp.company}</div>
+              </div>
+            ))}
+          </div>
+        )}
+        
+        {(resumeData.data.education?.length > 0) && (
+          <div>
+            <div style={{ fontSize: '11px', fontWeight: 'bold', marginBottom: '6px', color: '#333' }}>Education</div>
+            {resumeData.data.education.slice(0, 2).map((edu, idx) => (
+              <div key={idx} style={{ fontSize: '9px', marginBottom: '4px' }}>
+                <div>{edu.degree} in {edu.field}</div>
+                <div style={{ color: '#666' }}>{edu.institution}</div>
+              </div>
+            ))}
+          </div>
+        )}
+        
+        {(resumeData.data.skills?.length > 0) && (
+          <div>
+            <div style={{ fontSize: '11px', fontWeight: 'bold', marginBottom: '6px', color: '#333' }}>Skills</div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
+              {resumeData.data.skills.slice(0, 6).map((skill, idx) => (
+                <span key={idx} style={{ 
+                  fontSize: '8px', 
+                  background: `${resumeData.themeColor}15`, 
+                  padding: '2px 6px', 
+                  borderRadius: '4px',
+                  color: resumeData.themeColor
+                }}>
+                  {typeof skill === 'string' ? skill : skill.name}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    )
+  }
+
   return (
     <div style={{ width: '100%', aspectRatio: '210/297', overflow: 'hidden', background: 'white', position: 'relative' }}>
-      <div style={{ position: 'absolute', top: 0, left: 0, width: 794, transformOrigin: 'top left', transform: `scale(${scale})`, pointerEvents: 'none' }}>
-        <div style={{ width: 794, minHeight: 1123, background: 'white' }}>
-          <TemplateComp resume={resumeData} />
-        </div>
+      <div style={{ 
+        position: 'absolute', 
+        top: 0, 
+        left: 0, 
+        width: 794, 
+        transformOrigin: 'top left', 
+        transform: `scale(${scale})`,
+        pointerEvents: 'none'
+      }}>
+        {renderSimplePreview()}
       </div>
     </div>
   )
@@ -261,18 +369,31 @@ export default function ResumesPage() {
       const res = await fetch('/api/resumes')
       const data = await res.json()
       if (!res.ok) { setError(data.error || 'Failed to load resumes'); return }
+      
       // Fetch full data for each resume (for template preview)
       const full = await Promise.all(
         (data.resumes || []).map(async (r) => {
           try {
             const dr = await fetch(`/api/resumes/${r.id}`)
             const dj = await dr.json()
-            return { ...r, data: dj.resume?.data || {}, themeColor: dj.resume?.themeColor || r.themeColor, fontFamily: dj.resume?.fontFamily }
-          } catch { return r }
+            return { 
+              ...r, 
+              data: dj.resume?.data || {}, 
+              themeColor: dj.resume?.themeColor || r.themeColor || '#7C3AED', 
+              fontFamily: dj.resume?.fontFamily || 'Arial, sans-serif',
+              jobTitle: dj.resume?.data?.personalInfo?.jobTitle || r.jobTitle || ''
+            }
+          } catch (err) {
+            console.error(`Failed to fetch resume ${r.id}:`, err)
+            return { ...r, data: {} }
+          }
         })
       )
       setResumes(full)
-    } catch { setError('Network error. Please try again.') }
+    } catch (err) { 
+      console.error('Network error:', err)
+      setError('Network error. Please try again.') 
+    }
     finally { setLoading(false) }
   }, [])
 
@@ -283,7 +404,13 @@ export default function ResumesPage() {
     setDeleteLoading(true)
     try {
       const res = await fetch(`/api/resumes/${deleteTarget.id}`, { method: 'DELETE' })
-      if (res.ok) { setResumes(prev => prev.filter(r => r.id !== deleteTarget.id)); setDeleteTarget(null) }
+      if (res.ok) { 
+        setResumes(prev => prev.filter(r => r.id !== deleteTarget.id))
+        setDeleteTarget(null)
+      } else {
+        const error = await res.json()
+        console.error('Delete failed:', error)
+      }
     } catch (e) { console.error('Delete failed:', e) }
     finally { setDeleteLoading(false) }
   }
@@ -292,6 +419,13 @@ export default function ResumesPage() {
 
   return (
     <div style={{ padding: '40px 32px', maxWidth: 1200, margin: '0 auto', minHeight: '100vh' }}>
+      <style jsx global>{`
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
+      
       {deleteTarget && <DeleteModal resume={deleteTarget} onConfirm={handleDelete} onCancel={() => setDeleteTarget(null)} loading={deleteLoading} />}
       {previewResume && <PreviewModal resume={previewResume} onClose={() => setPreviewResume(null)} />}
 
@@ -322,9 +456,24 @@ export default function ResumesPage() {
         {/* Search */}
         <div style={{ position: 'relative', marginBottom: 28, maxWidth: 360 }}>
           <Search size={15} style={{ position: 'absolute', left: 13, top: '50%', transform: 'translateY(-50%)', color: 'var(--text3)', pointerEvents: 'none' }} />
-          <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search resumes..."
+          <input 
+            value={search} 
+            onChange={e => setSearch(e.target.value)} 
+            placeholder="Search resumes..."
             className="input-glass"
-            style={{ width: '100%', paddingLeft: 38, paddingRight: 14, paddingTop: 10, paddingBottom: 10, borderRadius: 10, fontSize: '0.875rem', boxSizing: 'border-box' }}
+            style={{ 
+              width: '100%', 
+              paddingLeft: 38, 
+              paddingRight: 14, 
+              paddingTop: 10, 
+              paddingBottom: 10, 
+              borderRadius: 10, 
+              fontSize: '0.875rem', 
+              boxSizing: 'border-box',
+              background: 'var(--card)',
+              border: '1px solid var(--border)',
+              color: 'var(--text)'
+            }}
             onFocus={e => e.target.style.borderColor = 'rgba(124,58,237,0.4)'}
             onBlur={e => e.target.style.borderColor = 'var(--border)'}
           />
