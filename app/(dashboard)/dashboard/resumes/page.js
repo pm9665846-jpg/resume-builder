@@ -148,7 +148,7 @@ function ScaledThumb({ resume }) {
   const educations = resumeData.education || []
   const skills = resumeData.skills || []
   const themeColor = resume.themeColor || '#7C3AED'
-  
+  const name = personalInfo.name || resume.title || 'Untitled Resume'
   const CARD_WIDTH = 260
   const scale = CARD_WIDTH / 794
 
@@ -176,7 +176,7 @@ function ScaledThumb({ resume }) {
               color: '#333',
               fontWeight: 'bold'
             }}>
-              {personalInfo.fullName || resume.title || 'Untitled Resume'}
+              {name}
             </h1>
             {personalInfo.jobTitle && (
               <p style={{ fontSize: '18px', color: '#666', margin: '8px 0 0 0' }}>
@@ -213,11 +213,11 @@ function ScaledThumb({ resume }) {
                 </h2>
                 {experiences.slice(0, 2).map((exp, idx) => (
                   <div key={idx} style={{ marginBottom: '15px' }}>
-                    <div style={{ fontWeight: 'bold', fontSize: '14px' }}>{exp.position || exp.title}</div>
-                    <div style={{ fontSize: '12px', color: '#666' }}>{exp.company}</div>
-                    {exp.startDate && exp.endDate && (
+                    <div style={{ fontWeight: 'bold', fontSize: '14px' }}>{exp.role || exp.position || exp.title || ''}</div>
+                    <div style={{ fontSize: '12px', color: '#666' }}>{exp.company || ''}</div>
+                    {(exp.startDate || exp.endDate) && (
                       <div style={{ fontSize: '11px', color: '#999' }}>
-                        {exp.startDate} - {exp.endDate}
+                        {exp.startDate}{exp.endDate ? ` - ${exp.current ? 'Present' : exp.endDate}` : ''}
                       </div>
                     )}
                     {exp.description && (
@@ -250,12 +250,12 @@ function ScaledThumb({ resume }) {
                 {educations.slice(0, 2).map((edu, idx) => (
                   <div key={idx} style={{ marginBottom: '12px' }}>
                     <div style={{ fontWeight: 'bold', fontSize: '14px' }}>
-                      {edu.degree} {edu.field && `in ${edu.field}`}
+                      {edu.degree || ''}{edu.field ? ` in ${edu.field}` : ''}
                     </div>
-                    <div style={{ fontSize: '12px', color: '#666' }}>{edu.institution}</div>
-                    {edu.startDate && edu.endDate && (
+                    <div style={{ fontSize: '12px', color: '#666' }}>{edu.school || edu.institution || ''}</div>
+                    {(edu.startDate || edu.endDate) && (
                       <div style={{ fontSize: '11px', color: '#999' }}>
-                        {edu.startDate} - {edu.endDate}
+                        {edu.startDate}{edu.endDate ? ` - ${edu.endDate}` : ''}
                       </div>
                     )}
                   </div>
