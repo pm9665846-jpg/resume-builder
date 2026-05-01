@@ -61,8 +61,8 @@ const sampleResume = {
 function TemplateCard({ template, selected, onSelect, onUse }) {
   const { Component } = template
   const resumeData = { ...sampleResume, themeColor: template.color, template: template.id }
-  const CARD_W = 220
-  const CARD_H = 293
+  const CARD_W = 160
+  const CARD_H = 213
   const RENDER_W = 794
   const scale = CARD_W / RENDER_W
   const ref = useRef(null)
@@ -73,7 +73,7 @@ function TemplateCard({ template, selected, onSelect, onUse }) {
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5 }}
-      style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 }}
+      style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12, width: '100%' }}
     >
       {/* Card */}
       <motion.div
@@ -81,7 +81,7 @@ function TemplateCard({ template, selected, onSelect, onUse }) {
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
         onClick={() => onSelect(template.id)}
         style={{
-          width: CARD_W, height: CARD_H, borderRadius: 14, overflow: 'hidden',
+          width: '100%', maxWidth: CARD_W, height: CARD_H, borderRadius: 14, overflow: 'hidden',
           cursor: 'pointer', position: 'relative', background: 'white', flexShrink: 0,
           border: selected ? `2px solid ${template.color}` : '2px solid var(--border)',
           boxShadow: selected
@@ -231,7 +231,7 @@ export default function TemplatesPage() {
             <p style={{ fontSize: '0.85rem' }}>Try a different search or category</p>
           </div>
         ) : (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 28, justifyItems: 'center', marginBottom: 60 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 20, justifyItems: 'center', marginBottom: 60 }} className="template-grid">
             {filtered.map(t => (
               <TemplateCard key={t.id} template={t} selected={selected === t.id}
                 onSelect={setSelected} onUse={handleUse} />
