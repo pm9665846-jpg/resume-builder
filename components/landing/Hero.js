@@ -63,13 +63,17 @@ export default function Hero() {
         {/* Badge */}
         <motion.div variants={item} style={{ display: 'flex', justifyContent: 'center', marginBottom: 32 }}>
           <div className="animated-border" style={{
-            display: 'inline-flex', alignItems: 'center', gap: 8,
-            borderRadius: 999, padding: '6px 16px',
-            fontSize: '0.75rem', fontWeight: 500, color: '#a78bfa',
+            display: 'inline-flex', alignItems: 'center', gap: 6,
+            borderRadius: 999, padding: '6px 14px',
+            fontSize: '0.72rem', fontWeight: 500, color: '#a78bfa',
+            maxWidth: '90vw', flexWrap: 'nowrap', whiteSpace: 'nowrap',
+            overflow: 'hidden', textOverflow: 'ellipsis',
           }}>
-            <Sparkles size={12} color="#a78bfa" />
-            AI-Powered Resume Builder — Now in Beta
-            <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#4ade80', display: 'inline-block', animation: 'pulse 2s infinite' }} />
+            <Sparkles size={11} color="#a78bfa" style={{ flexShrink: 0 }} />
+            <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+              AI-Powered Resume Builder — Now in Beta
+            </span>
+            <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#4ade80', display: 'inline-block', animation: 'pulse 2s infinite', flexShrink: 0 }} />
           </div>
         </motion.div>
 

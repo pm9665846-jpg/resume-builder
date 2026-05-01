@@ -35,10 +35,10 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Link columns — desktop: grid columns, mobile: inline row */}
-          <div style={{ gridColumn: 'span 3', display: 'flex', flexWrap: 'wrap', gap: '24px 40px' }}>
+          {/* Link columns — always in one row */}
+          <div style={{ gridColumn: 'span 3', display: 'flex', gap: '24px 40px', flexWrap: 'nowrap', alignItems: 'flex-start' }}>
             {footerLinks.map(col => (
-              <div key={col.title} style={{ minWidth: 80 }}>
+              <div key={col.title} style={{ minWidth: 70, flex: '1 1 0' }}>
                 <h4 style={{ color: 'var(--text)', fontWeight: 600, fontSize: '0.875rem', marginBottom: 16 }}>{col.title}</h4>
                 <ul style={{ display: 'flex', flexDirection: 'column', gap: 10, listStyle: 'none', margin: 0, padding: 0 }}>
                   {col.links.map((link, i) => (
