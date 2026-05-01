@@ -60,20 +60,40 @@ export default function Hero() {
           zIndex: 10,
         }}
       >
-        {/* Badge */}
+        {/* Badge - Responsive for mobile */}
         <motion.div variants={item} style={{ display: 'flex', justifyContent: 'center', marginBottom: 32 }}>
-          <div className="animated-border" style={{
-            display: 'inline-flex', alignItems: 'center', gap: 6,
-            borderRadius: 999, padding: '6px 14px',
-            fontSize: '0.72rem', fontWeight: 500, color: '#a78bfa',
-            maxWidth: '90vw', flexWrap: 'nowrap', whiteSpace: 'nowrap',
-            overflow: 'hidden', textOverflow: 'ellipsis',
-          }}>
+          <div
+            className="badge-container"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 6,
+              borderRadius: 999,
+              padding: '6px 14px',
+              fontSize: 'clamp(0.65rem, 3vw, 0.72rem)',
+              fontWeight: 500,
+              color: '#a78bfa',
+              background: 'rgba(139, 92, 246, 0.1)',
+              border: '1px solid rgba(139, 92, 246, 0.2)',
+              backdropFilter: 'blur(4px)',
+              whiteSpace: 'nowrap',
+            }}
+          >
             <Sparkles size={11} color="#a78bfa" style={{ flexShrink: 0 }} />
-            <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+            <span className="badge-text" style={{
+              whiteSpace: 'nowrap',
+            }}>
               AI-Powered Resume Builder — Now in Beta
             </span>
-            <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#4ade80', display: 'inline-block', animation: 'pulse 2s infinite', flexShrink: 0 }} />
+            <span style={{
+              width: 6,
+              height: 6,
+              borderRadius: '50%',
+              background: '#4ade80',
+              display: 'inline-block',
+              animation: 'pulse 2s infinite',
+              flexShrink: 0,
+            }} />
           </div>
         </motion.div>
 
@@ -105,9 +125,10 @@ export default function Hero() {
         }}>
           <Link href="/register" style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
-            padding: '14px 32px', borderRadius: 12,
+            padding: 'clamp(12px, 4vw, 14px) clamp(24px, 6vw, 32px)',
+            borderRadius: 12,
             background: 'linear-gradient(135deg, #8b5cf6, #3b82f6)',
-            color: 'white', fontWeight: 700, fontSize: '1rem',
+            color: 'white', fontWeight: 700, fontSize: 'clamp(0.875rem, 3vw, 1rem)',
             textDecoration: 'none', transition: 'all 0.3s',
             boxShadow: '0 0 30px rgba(139,92,246,0.3)',
           }}
@@ -118,10 +139,11 @@ export default function Hero() {
           </Link>
           <Link href="#templates" style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
-            padding: '14px 32px', borderRadius: 12,
+            padding: 'clamp(12px, 4vw, 14px) clamp(24px, 6vw, 32px)',
+            borderRadius: 12,
             background: 'var(--card2)',
             border: '1px solid var(--border2)',
-            color: 'var(--text)', fontWeight: 600, fontSize: '1rem',
+            color: 'var(--text)', fontWeight: 600, fontSize: 'clamp(0.875rem, 3vw, 1rem)',
             textDecoration: 'none', transition: 'all 0.3s',
           }}
             onMouseEnter={e => e.currentTarget.style.background = 'var(--card3)'}
@@ -137,25 +159,6 @@ export default function Hero() {
           justifyContent: 'center', alignItems: 'center',
           color: 'var(--text3)', fontSize: '0.875rem',
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            {/* <div style={{ display: 'flex' }}>
-              {['#8b5cf6', '#3b82f6', '#06b6d4', '#ec4899'].map((bg, i) => (
-                <div key={i} style={{
-                  width: 28, height: 28, borderRadius: '50%', background: bg,
-                  border: '2px solid #050508', marginLeft: i > 0 ? -8 : 0,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: '0.7rem', color: 'white', fontWeight: 700,
-                }}>
-                  {String.fromCharCode(65 + i)}
-                </div>
-              ))}
-            </div> */}
-            {/* <span>50,000+ resumes created</span> */}
-          </div>
-          {/* <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-            {[...Array(5)].map((_, i) => <Star key={i} size={14} color="#facc15" fill="#facc15" />)}
-            <span style={{ marginLeft: 4 }}>4.9/5 rating</span>
-          </div> */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
             <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#4ade80', display: 'inline-block' }} />
             No credit card required
@@ -173,32 +176,32 @@ export default function Hero() {
             <div style={{
               borderRadius: 16, overflow: 'hidden',
               background: 'var(--bg2)',
-              aspectRatio: '16/9', display: 'flex', padding: 24, gap: 16,
+              aspectRatio: '16/9', display: 'flex', padding: 'clamp(12px, 3vw, 24px)', gap: 'clamp(8px, 2vw, 16px)',
             }}>
               {/* Left panel */}
-              <div style={{ width: '33%', display: 'flex', flexDirection: 'column', gap: 10 }}>
+              <div style={{ width: '33%', display: 'flex', flexDirection: 'column', gap: 'clamp(6px, 1.5vw, 10px)' }}>
                 {[...Array(5)].map((_, i) => (
                   <motion.div key={i}
                     initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.6 + i * 0.1 }}
-                    style={{ background: 'var(--card)', border: '1px solid var(--border3)', borderRadius: 10, padding: 12 }}
+                    style={{ background: 'var(--card)', border: '1px solid var(--border3)', borderRadius: 'clamp(6px, 2vw, 10px)', padding: 'clamp(8px, 2vw, 12px)' }}
                   >
-                    <div style={{ height: 8, background: 'rgba(139,92,246,0.3)', borderRadius: 4, width: '70%', marginBottom: 8 }} />
-                    <div style={{ height: 6, background: 'var(--card3)', borderRadius: 4, marginBottom: 4 }} />
-                    <div style={{ height: 6, background: 'var(--card2)', borderRadius: 4, width: '60%' }} />
+                    <div style={{ height: 'clamp(6px, 1.5vw, 8px)', background: 'rgba(139,92,246,0.3)', borderRadius: 4, width: '70%', marginBottom: 'clamp(4px, 1vw, 8px)' }} />
+                    <div style={{ height: 'clamp(4px, 1vw, 6px)', background: 'var(--card3)', borderRadius: 4, marginBottom: 'clamp(2px, 0.5vw, 4px)' }} />
+                    <div style={{ height: 'clamp(4px, 1vw, 6px)', background: 'var(--card2)', borderRadius: 4, width: '60%' }} />
                   </motion.div>
                 ))}
               </div>
               {/* Right preview */}
-              <div style={{ flex: 1, background: 'var(--card)', border: '1px solid var(--border3)', borderRadius: 12, padding: 20 }}>
-                <div style={{ height: 16, background: 'linear-gradient(to right,rgba(139,92,246,0.4),rgba(59,130,246,0.4))', borderRadius: 6, width: '50%', marginBottom: 12 }} />
-                <div style={{ height: 8, background: 'var(--card3)', borderRadius: 4, marginBottom: 8 }} />
-                <div style={{ height: 8, background: 'var(--card2)', borderRadius: 4, width: '75%', marginBottom: 16 }} />
-                <div style={{ height: 1, background: 'var(--border)', marginBottom: 16 }} />
+              <div style={{ flex: 1, background: 'var(--card)', border: '1px solid var(--border3)', borderRadius: 'clamp(8px, 2vw, 12px)', padding: 'clamp(12px, 3vw, 20px)' }}>
+                <div style={{ height: 'clamp(12px, 2.5vw, 16px)', background: 'linear-gradient(to right,rgba(139,92,246,0.4),rgba(59,130,246,0.4))', borderRadius: 6, width: '50%', marginBottom: 'clamp(8px, 2vw, 12px)' }} />
+                <div style={{ height: 'clamp(6px, 1.5vw, 8px)', background: 'var(--card3)', borderRadius: 4, marginBottom: 'clamp(4px, 1vw, 8px)' }} />
+                <div style={{ height: 'clamp(6px, 1.5vw, 8px)', background: 'var(--card2)', borderRadius: 4, width: '75%', marginBottom: 'clamp(12px, 3vw, 16px)' }} />
+                <div style={{ height: 1, background: 'var(--border)', marginBottom: 'clamp(12px, 3vw, 16px)' }} />
                 {[...Array(3)].map((_, i) => (
-                  <div key={i} style={{ marginBottom: 14 }}>
-                    <div style={{ height: 10, background: 'rgba(139,92,246,0.2)', borderRadius: 4, width: '40%', marginBottom: 6 }} />
-                    <div style={{ height: 6, background: 'var(--card3)', borderRadius: 4, marginBottom: 4 }} />
-                    <div style={{ height: 6, background: 'var(--card2)', borderRadius: 4, width: '80%' }} />
+                  <div key={i} style={{ marginBottom: 'clamp(10px, 2.5vw, 14px)' }}>
+                    <div style={{ height: 'clamp(8px, 2vw, 10px)', background: 'rgba(139,92,246,0.2)', borderRadius: 4, width: '40%', marginBottom: 'clamp(4px, 1vw, 6px)' }} />
+                    <div style={{ height: 'clamp(4px, 1vw, 6px)', background: 'var(--card3)', borderRadius: 4, marginBottom: 'clamp(2px, 0.5vw, 4px)' }} />
+                    <div style={{ height: 'clamp(4px, 1vw, 6px)', background: 'var(--card2)', borderRadius: 4, width: '80%' }} />
                   </div>
                 ))}
               </div>
@@ -212,6 +215,40 @@ export default function Hero() {
           }} />
         </motion.div>
       </motion.div>
+
+      {/* Add keyframe animation for pulse */}
+      <style jsx>{`
+        @keyframes pulse {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.5; transform: scale(1.2); }
+        }
+        
+        /* Mobile responsive styles for badge */
+        @media (max-width: 640px) {
+          .badge-container {
+            max-width: 90vw !important;
+            white-space: normal !important;
+            padding: 6px 12px !important;
+          }
+          
+          .badge-text {
+            white-space: normal !important;
+            word-break: keep-all !important;
+            display: inline-block !important;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .badge-container {
+            gap: 4px !important;
+            padding: 4px 10px !important;
+          }
+          
+          .badge-text {
+            font-size: 0.6rem !important;
+          }
+        }
+      `}</style>
     </section>
   )
 }
