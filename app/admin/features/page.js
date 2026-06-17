@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { Plus, Save, Trash2, CheckCircle, AlertCircle, Eye, EyeOff } from 'lucide-react'
+import Select from '@/components/ui/Select'
 
 const ICON_OPTIONS = ['Wand2','Layout','Download','Eye','Palette','Shield','Zap','Globe','Star','Code','Lock','Heart','Award','Briefcase','FileText','Settings','Users','CheckCircle']
 const COLOR_OPTIONS = ['#8b5cf6','#3b82f6','#06b6d4','#ec4899','#f59e0b','#10b981','#f97316','#ef4444','#14b8a6','#6366f1']
@@ -59,15 +60,16 @@ export default function AdminFeaturesPage() {
     setFeatures(prev => prev.map(f => f.id === id ? { ...f, [field]: value } : f))
   }
 
-  const inputStyle = { width: '100%', padding: '8px 12px', borderRadius: 8, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', color: '#f1f5f9', fontSize: '0.85rem', outline: 'none', boxSizing: 'border-box' }
+  const fieldClass = 'input-glass'
+  const fieldStyle = { width: '100%', padding: '8px 12px', borderRadius: 10, fontSize: '0.85rem', boxSizing: 'border-box' }
 
   return (
     <div style={{ padding: '32px 28px', maxWidth: 1000, margin: '0 auto' }}>
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 28, flexWrap: 'wrap', gap: 12 }}>
         <div>
-          <h1 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#f1f5f9', marginBottom: 4 }}>Features</h1>
-          <p style={{ color: '#64748b', fontSize: '0.875rem' }}>Manage landing page feature cards</p>
+          <h1 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text)', marginBottom: 4 }}>Features</h1>
+          <p style={{ color: 'var(--text3)', fontSize: '0.875rem' }}>Manage landing page feature cards</p>
         </div>
         <button onClick={() => setShowAdd(s => !s)}
           style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '10px 20px', borderRadius: 10, background: 'linear-gradient(135deg, #ef4444, #f97316)', border: 'none', color: 'white', fontWeight: 600, fontSize: '0.875rem', cursor: 'pointer' }}
@@ -82,19 +84,18 @@ export default function AdminFeaturesPage() {
           <p style={{ color: '#f87171', fontWeight: 700, fontSize: '0.875rem', marginBottom: 16 }}>New Feature</p>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 12 }}>
             <div>
-              <label style={{ fontSize: '0.68rem', color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.08em', display: 'block', marginBottom: 6 }}>Title</label>
-              <input value={newFeature.title} onChange={e => setNewFeature(p => ({ ...p, title: e.target.value }))} placeholder="Feature title" style={inputStyle} />
+              <label className="form-label">Title</label>
+              <input value={newFeature.title} onChange={e => setNewFeature(p => ({ ...p, title: e.target.value }))} placeholder="Feature title" className={fieldClass} style={fieldStyle} />
             </div>
             <div>
-              <label style={{ fontSize: '0.68rem', color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.08em', display: 'block', marginBottom: 6 }}>Icon</label>
-              <select value={newFeature.icon} onChange={e => setNewFeature(p => ({ ...p, icon: e.target.value }))} style={{ ...inputStyle, cursor: 'pointer' }}>
+              <Select label="Icon" value={newFeature.icon} onChange={e => setNewFeature(p => ({ ...p, icon: e.target.value }))} className="!py-2 !text-sm">
                 {ICON_OPTIONS.map(ic => <option key={ic} value={ic}>{ic}</option>)}
-              </select>
+              </Select>
             </div>
           </div>
           <div style={{ marginBottom: 12 }}>
-            <label style={{ fontSize: '0.68rem', color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.08em', display: 'block', marginBottom: 6 }}>Description</label>
-            <textarea value={newFeature.description} onChange={e => setNewFeature(p => ({ ...p, description: e.target.value }))} placeholder="Feature description" rows={2} style={{ ...inputStyle, resize: 'vertical' }} />
+            <label className="form-label">Description</label>
+            <textarea value={newFeature.description} onChange={e => setNewFeature(p => ({ ...p, description: e.target.value }))} placeholder="Feature description" rows={2} className={fieldClass} style={{ ...fieldStyle, resize: 'vertical' }} />
           </div>
           <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginBottom: 16 }}>
             <div>
@@ -108,7 +109,7 @@ export default function AdminFeaturesPage() {
             </div>
             <div>
               <label style={{ fontSize: '0.68rem', color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.08em', display: 'block', marginBottom: 6 }}>Order</label>
-              <input type="number" value={newFeature.sort_order} onChange={e => setNewFeature(p => ({ ...p, sort_order: Number(e.target.value) }))} style={{ ...inputStyle, width: 80 }} />
+              <input type="number" value={newFeature.sort_order} onChange={e => setNewFeature(p => ({ ...p, sort_order: Number(e.target.value) }))} className={fieldClass} style={{ ...fieldStyle, width: 80 }} />
             </div>
           </div>
           <div style={{ display: 'flex', gap: 8 }}>
@@ -124,22 +125,21 @@ export default function AdminFeaturesPage() {
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           {features.map(f => (
-            <div key={f.id} style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 14, padding: '16px 20px' }}>
+            <div key={f.id} className="form-card">
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 12 }}>
                 <div>
-                  <label style={{ fontSize: '0.65rem', color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.08em', display: 'block', marginBottom: 5 }}>Title</label>
-                  <input value={f.title} onChange={e => updateFeature(f.id, 'title', e.target.value)} style={inputStyle} />
+                  <label className="form-label">Title</label>
+                  <input value={f.title} onChange={e => updateFeature(f.id, 'title', e.target.value)} className={fieldClass} style={fieldStyle} />
                 </div>
                 <div>
-                  <label style={{ fontSize: '0.65rem', color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.08em', display: 'block', marginBottom: 5 }}>Icon</label>
-                  <select value={f.icon} onChange={e => updateFeature(f.id, 'icon', e.target.value)} style={{ ...inputStyle, cursor: 'pointer' }}>
+                  <Select label="Icon" value={f.icon} onChange={e => updateFeature(f.id, 'icon', e.target.value)} className="!py-2 !text-sm">
                     {ICON_OPTIONS.map(ic => <option key={ic} value={ic}>{ic}</option>)}
-                  </select>
+                  </Select>
                 </div>
               </div>
               <div style={{ marginBottom: 12 }}>
-                <label style={{ fontSize: '0.65rem', color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.08em', display: 'block', marginBottom: 5 }}>Description</label>
-                <textarea value={f.description} onChange={e => updateFeature(f.id, 'description', e.target.value)} rows={2} style={{ ...inputStyle, resize: 'vertical' }} />
+                <label className="form-label">Description</label>
+                <textarea value={f.description} onChange={e => updateFeature(f.id, 'description', e.target.value)} rows={2} className={fieldClass} style={{ ...fieldStyle, resize: 'vertical' }} />
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
                 {/* Color */}
@@ -152,7 +152,7 @@ export default function AdminFeaturesPage() {
                 {/* Order */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                   <label style={{ fontSize: '0.65rem', color: '#64748b' }}>Order:</label>
-                  <input type="number" value={f.sort_order} onChange={e => updateFeature(f.id, 'sort_order', Number(e.target.value))} style={{ ...inputStyle, width: 60 }} />
+                  <input type="number" value={f.sort_order} onChange={e => updateFeature(f.id, 'sort_order', Number(e.target.value))} className={fieldClass} style={{ ...fieldStyle, width: 60 }} />
                 </div>
                 {/* Active toggle */}
                 <button onClick={() => updateFeature(f.id, 'is_active', f.is_active ? 0 : 1)}

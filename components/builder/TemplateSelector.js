@@ -285,8 +285,8 @@ export default function TemplateSelector() {
 
       {/* Template grid */}
       <div style={{ flex: 1, overflowY: 'auto', paddingBottom: 12 }}>
-        <p style={{ fontSize: '0.68rem', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 10 }}>
-          Template — <span style={{ color: '#a78bfa' }}>{templateList.find(t => t.id === resume.template)?.name || 'Modern'}</span>
+        <p style={{ fontSize: '0.68rem', color: 'var(--text2)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 10 }}>
+          Template — <span style={{ color: 'var(--primary-muted)' }}>{templateList.find(t => t.id === resume.template)?.name || 'Modern'}</span>
         </p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr))', gap: 10 }}>
           {templateList.map(t => {
@@ -296,8 +296,8 @@ export default function TemplateSelector() {
                 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 5, cursor: 'pointer', transform: active ? 'scale(1.04)' : 'scale(1)', transition: 'transform 0.2s' }}>
                 <TemplateThumbnail template={t} themeColor={resume.themeColor} active={active} />
                 <div style={{ textAlign: 'center' }}>
-                  <p style={{ fontSize: '0.68rem', fontWeight: 700, color: active ? '#a78bfa' : '#94a3b8' }}>{t.name}</p>
-                  <p style={{ fontSize: '0.58rem', color: t.tag === 'Pro' ? '#f59e0b' : t.tag === 'New' ? '#34d399' : '#475569' }}>{t.tag}</p>
+                  <p style={{ fontSize: '0.68rem', fontWeight: 700, color: active ? 'var(--primary-muted)' : 'var(--text2)' }}>{t.name}</p>
+                  <p style={{ fontSize: '0.58rem', color: t.tag === 'Pro' ? '#f59e0b' : t.tag === 'New' ? '#34d399' : 'var(--text4)' }}>{t.tag}</p>
                 </div>
               </div>
             )
@@ -306,14 +306,14 @@ export default function TemplateSelector() {
       </div>
 
       {/* Font Family */}
-      <div style={{ flexShrink: 0, borderTop: '1px solid rgba(255,255,255,0.08)', background: '#050508' }}>
+      <div className="panel-footer">
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 0', cursor: 'pointer' }} onClick={() => setFontOpen(o => !o)}>
-          <p style={{ fontSize: '0.68rem', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.1em', userSelect: 'none' }}>
+          <p style={{ fontSize: '0.68rem', color: 'var(--text2)', textTransform: 'uppercase', letterSpacing: '0.1em', userSelect: 'none' }}>
             Font Family
-            {fontOpen && <span style={{ color: '#a78bfa', fontFamily: 'monospace', marginLeft: 6 }}>{activeFontLabel}</span>}
+            {fontOpen && <span style={{ color: 'var(--primary-muted)', fontFamily: 'monospace', marginLeft: 6 }}>{activeFontLabel}</span>}
           </p>
           <button onClick={e => { e.stopPropagation(); setFontOpen(o => !o) }}
-            style={{ display: 'flex', alignItems: 'center', gap: 4, padding: fontOpen ? '0' : '3px 9px', width: fontOpen ? 20 : 'auto', height: fontOpen ? 20 : 'auto', borderRadius: fontOpen ? '50%' : 6, background: fontOpen ? 'rgba(248,113,113,0.15)' : 'rgba(139,92,246,0.15)', border: fontOpen ? '1px solid rgba(248,113,113,0.35)' : '1px solid rgba(139,92,246,0.35)', color: fontOpen ? '#f87171' : '#a78bfa', cursor: 'pointer', fontSize: '0.65rem', fontWeight: 700, justifyContent: 'center', transition: 'all 0.2s' }}>
+            style={{ display: 'flex', alignItems: 'center', gap: 4, padding: fontOpen ? '0' : '3px 9px', width: fontOpen ? 20 : 'auto', height: fontOpen ? 20 : 'auto', borderRadius: fontOpen ? '50%' : 6, background: fontOpen ? 'rgba(248,113,113,0.15)' : 'rgba(124,58,237,0.12)', border: fontOpen ? '1px solid rgba(248,113,113,0.35)' : '1px solid rgba(124,58,237,0.35)', color: fontOpen ? '#f87171' : 'var(--primary-muted)', cursor: 'pointer', fontSize: '0.65rem', fontWeight: 700, justifyContent: 'center', transition: 'all 0.2s' }}>
             {fontOpen ? <X size={11} /> : <><RotateCcw size={10} /> Show</>}
           </button>
         </div>
@@ -323,11 +323,10 @@ export default function TemplateSelector() {
               const active = resume.fontFamily === f.value
               return (
                 <button key={f.value} onClick={() => updateFontFamily(f.value)}
-                  style={{ width: '100%', textAlign: 'left', padding: '7px 10px', borderRadius: 7, border: 'none', cursor: 'pointer', background: active ? 'rgba(139,92,246,0.15)' : 'rgba(255,255,255,0.03)', outline: active ? '1px solid rgba(139,92,246,0.4)' : '1px solid rgba(255,255,255,0.06)', color: active ? '#a78bfa' : '#94a3b8', fontFamily: f.value, fontSize: '0.78rem', transition: 'all 0.15s', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
-                  onMouseEnter={e => { if (!active) e.currentTarget.style.background = 'rgba(255,255,255,0.06)' }}
-                  onMouseLeave={e => { if (!active) e.currentTarget.style.background = 'rgba(255,255,255,0.03)' }}>
+                  className={`picker-btn ${active ? 'active' : ''}`}
+                  style={{ fontFamily: f.value }}>
                   <span>{f.label}</span>
-                  {active && <Check size={11} color="#a78bfa" />}
+                  {active && <Check size={11} color="var(--primary-muted)" />}
                 </button>
               )
             })}
@@ -337,14 +336,14 @@ export default function TemplateSelector() {
 
       {/* Theme Color */}
       {supportsColor && (
-      <div style={{ flexShrink: 0, borderTop: '1px solid rgba(255,255,255,0.08)', background: '#050508', position: 'sticky', bottom: 0 }}>
+      <div className="panel-footer" style={{ position: 'sticky', bottom: 0 }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 0', cursor: 'pointer' }} onClick={() => setColorOpen(o => !o)}>
-          <p style={{ fontSize: '0.68rem', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.1em', userSelect: 'none' }}>
+          <p style={{ fontSize: '0.68rem', color: 'var(--text2)', textTransform: 'uppercase', letterSpacing: '0.1em', userSelect: 'none' }}>
             Theme Color
             {colorOpen && <span style={{ color: resume.themeColor, fontFamily: 'monospace', marginLeft: 6 }}>{resume.themeColor}</span>}
           </p>
           <button onClick={e => { e.stopPropagation(); setColorOpen(o => !o) }}
-            style={{ display: 'flex', alignItems: 'center', gap: 4, padding: colorOpen ? '0' : '3px 9px', width: colorOpen ? 20 : 'auto', height: colorOpen ? 20 : 'auto', borderRadius: colorOpen ? '50%' : 6, background: colorOpen ? 'rgba(248,113,113,0.15)' : 'rgba(139,92,246,0.15)', border: colorOpen ? '1px solid rgba(248,113,113,0.35)' : '1px solid rgba(139,92,246,0.35)', color: colorOpen ? '#f87171' : '#a78bfa', cursor: 'pointer', fontSize: '0.65rem', fontWeight: 700, justifyContent: 'center', transition: 'all 0.2s' }}
+            style={{ display: 'flex', alignItems: 'center', gap: 4, padding: colorOpen ? '0' : '3px 9px', width: colorOpen ? 20 : 'auto', height: colorOpen ? 20 : 'auto', borderRadius: colorOpen ? '50%' : 6, background: colorOpen ? 'rgba(248,113,113,0.15)' : 'rgba(124,58,237,0.12)', border: colorOpen ? '1px solid rgba(248,113,113,0.35)' : '1px solid rgba(124,58,237,0.35)', color: colorOpen ? '#f87171' : 'var(--primary-muted)', cursor: 'pointer', fontSize: '0.65rem', fontWeight: 700, justifyContent: 'center', transition: 'all 0.2s' }}
             onMouseEnter={e => e.currentTarget.style.opacity = '0.8'}
             onMouseLeave={e => e.currentTarget.style.opacity = '1'}>
             {colorOpen ? <X size={11} /> : <><RotateCcw size={10} /> Show</>}
@@ -355,17 +354,16 @@ export default function TemplateSelector() {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(8, 1fr)', gap: 7 }}>
               {colors.map(color => (
                 <button key={color} onClick={() => updateThemeColor(color)}
-                  style={{ width: '100%', aspectRatio: '1', borderRadius: '50%', background: color, border: 'none', cursor: 'pointer', outline: resume.themeColor === color ? '2px solid white' : 'none', outlineOffset: 2, display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'transform 0.15s' }}
-                  onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.2)'}
-                  onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}>
+                  className={`color-swatch ${resume.themeColor === color ? 'selected' : ''}`}
+                  style={{ background: color }}>
                   {resume.themeColor === color && <Check size={9} color="white" />}
                 </button>
               ))}
             </div>
             <div style={{ marginTop: 10, display: 'flex', alignItems: 'center', gap: 8 }}>
-              <label style={{ fontSize: '0.72rem', color: '#64748b' }}>Custom:</label>
+              <label style={{ fontSize: '0.72rem', color: 'var(--text3)' }}>Custom:</label>
               <input type="color" value={resume.themeColor} onChange={e => updateThemeColor(e.target.value)}
-                style={{ width: 30, height: 30, borderRadius: 6, border: 'none', cursor: 'pointer', background: 'transparent' }} />
+                style={{ width: 32, height: 32, borderRadius: 8, border: '2px solid var(--border)', cursor: 'pointer', background: 'transparent', padding: 2 }} />
             </div>
           </div>
         )}
@@ -374,8 +372,8 @@ export default function TemplateSelector() {
 
       {/* No color change notice */}
       {!supportsColor && (
-        <div style={{ flexShrink: 0, borderTop: '1px solid rgba(255,255,255,0.08)', background: '#050508', padding: '10px 0' }}>
-          <p style={{ fontSize: '0.68rem', color: '#475569', textAlign: 'center', margin: 0 }}>
+        <div className="panel-footer" style={{ padding: '10px 0' }}>
+          <p style={{ fontSize: '0.68rem', color: 'var(--text4)', textAlign: 'center', margin: 0 }}>
             🎨 This template uses a fixed color palette
           </p>
         </div>

@@ -1,14 +1,10 @@
 import { query } from '@/lib/db'
+import { resolvePhotoUrl } from '@/lib/photoUrl'
 import { templateMap } from '@/components/builder/ResumePreview'
 
 // This page is rendered server-side for PDF generation
 // URL: /print/[resumeId]
 
-function resolvePhotoUrl(photo) {
-  if (!photo) return ''
-  if (photo.startsWith('http') || photo.startsWith('data:') || photo.startsWith('/')) return photo
-  return `/uploads/${photo}`
-}
 
 export default async function PrintPage({ params }) {
   const { id } = await params

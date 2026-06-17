@@ -2,14 +2,7 @@
 import { useResumeStore } from '@/store/resumeStore'
 import { useEffect, useRef } from 'react'
 
-// Convert stored fileName to displayable URL
-function resolvePhotoUrl(photo) {
-  if (!photo) return ''
-  // Already a full URL or base64
-  if (photo.startsWith('http') || photo.startsWith('data:') || photo.startsWith('/')) return photo
-  // Just a filename — prepend uploads path
-  return `/uploads/${photo}`
-}
+import { resolvePhotoUrl } from '@/lib/photoUrl'
 import ModernTemplate from './templates/ModernTemplate'
 import ExecutiveTemplate from './templates/ExecutiveTemplate'
 import CreativeTemplate from './templates/CreativeTemplate'

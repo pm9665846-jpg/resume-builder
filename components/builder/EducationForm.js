@@ -18,14 +18,17 @@ export default function EducationForm() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, x: -20 }}
-            className="glass rounded-xl p-4 border border-white/5"
+            className="form-card"
           >
             <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2 text-blue-400">
+              <div className="form-section-title">
                 <GraduationCap size={16} />
-                <span className="text-sm font-medium">Education {i + 1}</span>
+                <span>Education {i + 1}</span>
               </div>
-              <button onClick={() => removeEducation(edu.id)} className="text-slate-600 hover:text-red-400 transition-colors">
+              <button onClick={() => removeEducation(edu.id)} style={{ color: 'var(--text4)', background: 'none', border: 'none', cursor: 'pointer', transition: 'color 0.2s' }}
+                onMouseEnter={e => e.currentTarget.style.color = '#f87171'}
+                onMouseLeave={e => e.currentTarget.style.color = 'var(--text4)'}
+              >
                 <Trash2 size={15} />
               </button>
             </div>

@@ -5,11 +5,16 @@ import Button from '@/components/ui/Button'
 import AIAssistButton from '@/components/ui/AIAssistButton'
 import { Plus, Trash2, Briefcase } from 'lucide-react'
 
-function Field({ label, ...props }) {
+function Field({ label, type = 'text', ...props }) {
+  const isMonth = type === 'month' || type === 'date'
   return (
     <div>
-      <label className="block text-xs font-medium uppercase tracking-wider mb-1.5" style={{ color: '#94a3b8' }}>{label}</label>
-      <input className="input-glass w-full rounded-xl px-4 py-3 text-sm" {...props} />
+      <label className="form-label">{label}</label>
+      <input
+        type={type}
+        className={`input-glass w-full rounded-xl px-4 py-3 text-sm text-[var(--text)] ${isMonth ? 'input-month' : ''}`}
+        {...props}
+      />
     </div>
   )
 }
@@ -28,17 +33,16 @@ export default function ExperienceForm() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, x: -20, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="rounded-xl p-4"
-            style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}
+            className="form-card"
           >
             <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2" style={{ color: '#a78bfa' }}>
+              <div className="form-section-title">
                 <Briefcase size={16} />
-                <span className="text-sm font-medium">Experience {i + 1}</span>
+                <span>Experience {i + 1}</span>
               </div>
-              <button onClick={() => removeExperience(exp.id)} style={{ color: '#475569' }}
+              <button onClick={() => removeExperience(exp.id)} style={{ color: 'var(--text4)', background: 'none', border: 'none', cursor: 'pointer' }}
                 onMouseEnter={e => e.currentTarget.style.color = '#f87171'}
-                onMouseLeave={e => e.currentTarget.style.color = '#475569'}
+                onMouseLeave={e => e.currentTarget.style.color = 'var(--text4)'}
               >
                 <Trash2 size={15} />
               </button>
@@ -51,14 +55,14 @@ export default function ExperienceForm() {
               <div>
                 <Field label="End Date" type="month" value={exp.endDate} onChange={(e) => updateExperience(exp.id, 'endDate', e.target.value)} disabled={exp.current} />
                 <label className="flex items-center gap-2 mt-2 cursor-pointer">
-                  <input type="checkbox" checked={exp.current} onChange={(e) => updateExperience(exp.id, 'current', e.target.checked)} style={{ accentColor: '#8b5cf6' }} />
-                  <span className="text-xs" style={{ color: '#94a3b8' }}>Currently working here</span>
+                  <input type="checkbox" checked={exp.current} onChange={(e) => updateExperience(exp.id, 'current', e.target.checked)} style={{ accentColor: 'var(--primary)' }} />
+                  <span className="text-xs" style={{ color: 'var(--text2)' }}>Currently working here</span>
                 </label>
               </div>
             </div>
             <div className="mt-3">
               <div className="flex items-center justify-between mb-1.5">
-                <label className="block text-xs font-medium uppercase tracking-wider" style={{ color: '#94a3b8' }}>Description</label>
+                <label className="form-label">Description</label>
                 <AIAssistButton
                   type="experience"
                   context={{ role: exp.role, company: exp.company }}

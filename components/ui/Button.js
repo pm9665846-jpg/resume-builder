@@ -15,10 +15,10 @@ export default function Button({
 
   const variants = {
     primary: 'btn-primary text-white px-6 py-3',
-    secondary: 'glass text-white hover:border-purple-500',
-    ghost: 'text-slate-400 hover:text-white',
+    secondary: 'glass text-[var(--text)] hover:border-[rgba(124,58,237,0.4)]',
+    ghost: 'text-[var(--text2)] hover:text-[var(--text)]',
     danger: 'text-red-400 border border-red-500',
-    outline: 'border border-purple-500 text-purple-400',
+    outline: 'border border-[rgba(124,58,237,0.4)] text-[var(--primary-muted)]',
   }
 
   const sizes = {

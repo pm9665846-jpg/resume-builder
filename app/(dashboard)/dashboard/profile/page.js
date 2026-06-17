@@ -1,5 +1,5 @@
 'use client'
-import { motion } from 'framer-motion'
+import { resolvePhotoUrl } from '@/lib/photoUrl'
 import { useState, useEffect, useRef } from 'react'
 import { User, Mail, Lock, Camera, Save, Loader2, Briefcase, GraduationCap, Code, Globe, Award, FolderOpen, Star } from 'lucide-react'
 
@@ -37,8 +37,8 @@ export default function ProfilePage() {
     formData.append('file', file)
     const res = await fetch('/api/upload', { method: 'POST', body: formData })
     const data = await res.json()
-    if (data.fileName) {
-      const avatarUrl = `/uploads/${data.fileName}`
+    if (data.url || data.fileName) {
+      const avatarUrl = data.url || `/uploads/${data.fileName}`
       setProfile(p => ({ ...p, avatar: avatarUrl }))
       await fetch('/api/profile', {
         method: 'PUT',
@@ -110,7 +110,7 @@ export default function ProfilePage() {
               <div style={{ position: 'relative', flexShrink: 0 }}>
                 <div style={{ width: 72, height: 72, borderRadius: '50%', overflow: 'hidden', background: 'linear-gradient(135deg, #8b5cf6, #3b82f6)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   {profile.avatar
-                    ? <img src={profile.avatar} alt={profile.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    ? <img src={resolvePhotoUrl(profile.avatar)} alt={profile.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     : <span style={{ fontSize: '1.4rem', fontWeight: 900, color: 'white' }}>{initials}</span>
                   }
                 </div>

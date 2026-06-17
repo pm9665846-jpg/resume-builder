@@ -4,11 +4,18 @@ import { useResumeStore } from '@/store/resumeStore'
 import { Plus, Trash2, Award } from 'lucide-react'
 
 function Field({ label, value, onChange, placeholder, type = 'text' }) {
+  const isMonth = type === 'month' || type === 'date'
   return (
     <div>
-      <label style={{ display: 'block', fontSize: '0.65rem', fontWeight: 600, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 5 }}>{label}</label>
-      <input type={type} value={value} onChange={onChange} placeholder={placeholder} className="input-glass"
-        style={{ paddingLeft: 12, paddingRight: 12, paddingTop: 9, paddingBottom: 9, borderRadius: 9, fontSize: '0.83rem', width: '100%' }} />
+      <label className="form-label">{label}</label>
+      <input
+        type={type}
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        className={`input-glass ${isMonth ? 'input-month' : ''}`}
+        style={{ padding: '9px 12px', borderRadius: 10, fontSize: '0.83rem', width: '100%' }}
+      />
     </div>
   )
 }
@@ -22,15 +29,15 @@ export default function CertificationsForm() {
       <AnimatePresence>
         {certifications.map((cert, i) => (
           <motion.div key={cert.id} initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, x: -16 }}
-            style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 12, padding: 14 }}>
+            className="form-card">
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#f59e0b' }}>
+              <div className="form-section-title" style={{ color: '#f59e0b' }}>
                 <Award size={14} />
                 <span style={{ fontSize: '0.78rem', fontWeight: 600 }}>Certification {i + 1}</span>
               </div>
-              <button onClick={() => removeCertification(cert.id)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#475569' }}
+              <button onClick={() => removeCertification(cert.id)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text4)' }}
                 onMouseEnter={e => e.currentTarget.style.color = '#f87171'}
-                onMouseLeave={e => e.currentTarget.style.color = '#475569'}>
+                onMouseLeave={e => e.currentTarget.style.color = 'var(--text4)'}>
                 <Trash2 size={14} />
               </button>
             </div>
@@ -47,9 +54,10 @@ export default function CertificationsForm() {
           </motion.div>
         ))}
       </AnimatePresence>
-      <button onClick={addCertification} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, padding: '10px', borderRadius: 10, border: '1px solid rgba(139,92,246,0.3)', background: 'rgba(139,92,246,0.08)', color: '#a78bfa', fontSize: '0.8rem', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s' }}
-        onMouseEnter={e => e.currentTarget.style.background = 'rgba(139,92,246,0.15)'}
-        onMouseLeave={e => e.currentTarget.style.background = 'rgba(139,92,246,0.08)'}>
+      <button onClick={addCertification}
+        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, padding: '10px', borderRadius: 10, border: '1px solid rgba(124,58,237,0.3)', background: 'linear-gradient(135deg, rgba(124,58,237,0.08), rgba(59,130,246,0.06))', color: 'var(--primary-muted)', fontSize: '0.8rem', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s' }}
+        onMouseEnter={e => { e.currentTarget.style.background = 'linear-gradient(135deg, rgba(124,58,237,0.15), rgba(59,130,246,0.1))'; e.currentTarget.style.boxShadow = '0 0 16px var(--primary-glow)' }}
+        onMouseLeave={e => { e.currentTarget.style.background = 'linear-gradient(135deg, rgba(124,58,237,0.08), rgba(59,130,246,0.06))'; e.currentTarget.style.boxShadow = 'none' }}>
         <Plus size={14} /> Add Certification
       </button>
     </div>

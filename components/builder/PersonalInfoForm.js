@@ -2,6 +2,7 @@
 import { useRef } from 'react'
 import { useResumeStore } from '@/store/resumeStore'
 import AIAssistButton from '@/components/ui/AIAssistButton'
+import { resolvePhotoUrl } from '@/lib/photoUrl'
 import { User, Mail, Phone, MapPin, Globe, Link2, Briefcase, GitBranch, Camera, X, Palette, Type } from 'lucide-react'
 
 const COLOR_PRESETS = [
@@ -25,7 +26,7 @@ const FONT_PRESETS = [
 function Field({ label, icon: Icon, value, onChange, placeholder, type = 'text', textarea, span2 }) {
   return (
     <div style={{ gridColumn: span2 ? 'span 2' : 'span 1' }}>
-      <label style={{ display: 'block', fontSize: '0.68rem', fontWeight: 600, color: 'var(--text2)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 6 }}>{label}</label>
+      <label className="form-label">{label}</label>
       <div style={{ position: 'relative' }}>
         {Icon && (
           <Icon size={13} color="#64748b" style={{ position: 'absolute', left: 11, top: textarea ? 12 : '50%', transform: textarea ? 'none' : 'translateY(-50%)', pointerEvents: 'none' }} />
@@ -56,7 +57,8 @@ export default function PersonalInfoForm() {
     try {
       const res = await fetch('/api/upload', { method: 'POST', body: formData })
       const data = await res.json()
-      if (data.fileName) updatePersonalInfo('photo', data.fileName)
+      if (data.url) updatePersonalInfo('photo', data.url)
+      else if (data.fileName) updatePersonalInfo('photo', data.fileName)
       else console.error('Upload error:', data.error)
     } catch (err) {
       console.error('Upload failed:', err)
@@ -64,11 +66,7 @@ export default function PersonalInfoForm() {
     e.target.value = ''
   }
 
-  const photoSrc = personalInfo.photo
-    ? (personalInfo.photo.startsWith('http') || personalInfo.photo.startsWith('data:') || personalInfo.photo.startsWith('/')
-        ? personalInfo.photo
-        : `/uploads/${personalInfo.photo}`)
-    : null
+  const photoSrc = personalInfo.photo ? resolvePhotoUrl(personalInfo.photo) : null
 
   const activeFont = FONT_PRESETS.find(f => f.value === resume.fontFamily)?.label || 'Arial'
 
@@ -130,12 +128,10 @@ export default function PersonalInfoForm() {
       </div>
 
       {/* ── Color Theme ── */}
-      <div style={{ padding: '14px 16px', borderRadius: 12, background: 'var(--card)', border: '1px solid var(--border)' }}>
+      <div className="form-card">
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10 }}>
           <Palette size={13} color={resume.themeColor || '#8b5cf6'} />
-          <label style={{ fontSize: '0.68rem', fontWeight: 700, color: 'var(--text2)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-            Theme Color
-          </label>
+          <label className="form-label" style={{ marginBottom: 0 }}>Theme Color</label>
           <span style={{ marginLeft: 'auto', fontSize: '0.68rem', color: resume.themeColor, fontFamily: 'monospace', fontWeight: 700 }}>
             {resume.themeColor || '#8b5cf6'}
           </span>
@@ -143,39 +139,35 @@ export default function PersonalInfoForm() {
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 7, marginBottom: 10 }}>
           {COLOR_PRESETS.map(color => (
             <button key={color} type="button" onClick={() => updateThemeColor(color)}
-              style={{ width: 24, height: 24, borderRadius: '50%', background: color, border: 'none', cursor: 'pointer', outline: resume.themeColor === color ? '2px solid white' : 'none', outlineOffset: 2, transition: 'transform 0.15s', flexShrink: 0 }}
-              onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.2)'}
-              onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+              className={`color-swatch ${resume.themeColor === color ? 'selected' : ''}`}
+              style={{ width: 28, height: 28, background: color }}
             />
           ))}
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <label style={{ fontSize: '0.7rem', color: 'var(--text3)' }}>Custom:</label>
           <input type="color" value={resume.themeColor || '#8b5cf6'} onChange={e => updateThemeColor(e.target.value)}
-            style={{ width: 32, height: 32, borderRadius: 6, border: 'none', cursor: 'pointer', background: 'transparent' }} />
+            style={{ width: 32, height: 32, borderRadius: 8, border: '2px solid var(--border)', cursor: 'pointer', background: 'transparent', padding: 2 }} />
         </div>
       </div>
 
       {/* ── Font Theme ── */}
-      <div style={{ padding: '14px 16px', borderRadius: 12, background: 'var(--card)', border: '1px solid var(--border)' }}>
+      <div className="form-card">
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10 }}>
-          <Type size={13} color="#a78bfa" />
-          <label style={{ fontSize: '0.68rem', fontWeight: 700, color: 'var(--text2)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-            Font Family
-          </label>
-          <span style={{ marginLeft: 'auto', fontSize: '0.68rem', color: '#a78bfa', fontWeight: 700 }}>{activeFont}</span>
+          <Type size={13} color="var(--primary-muted)" />
+          <label className="form-label" style={{ marginBottom: 0 }}>Font Family</label>
+          <span style={{ marginLeft: 'auto', fontSize: '0.68rem', color: 'var(--primary-muted)', fontWeight: 700 }}>{activeFont}</span>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
           {FONT_PRESETS.map(f => {
             const active = resume.fontFamily === f.value
             return (
               <button key={f.value} type="button" onClick={() => updateFontFamily(f.value)}
-                style={{ width: '100%', textAlign: 'left', padding: '7px 10px', borderRadius: 7, border: 'none', cursor: 'pointer', background: active ? 'rgba(139,92,246,0.15)' : 'rgba(255,255,255,0.03)', outline: active ? '1px solid rgba(139,92,246,0.4)' : '1px solid rgba(255,255,255,0.06)', color: active ? '#a78bfa' : 'var(--text2)', fontFamily: f.value, fontSize: '0.78rem', transition: 'all 0.15s', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
-                onMouseEnter={e => { if (!active) e.currentTarget.style.background = 'rgba(255,255,255,0.06)' }}
-                onMouseLeave={e => { if (!active) e.currentTarget.style.background = 'rgba(255,255,255,0.03)' }}
+                className={`picker-btn ${active ? 'active' : ''}`}
+                style={{ fontFamily: f.value }}
               >
                 <span>{f.label}</span>
-                {active && <span style={{ fontSize: '0.6rem', color: '#a78bfa' }}>✓</span>}
+                {active && <span style={{ fontSize: '0.6rem', color: 'var(--primary-muted)' }}>✓</span>}
               </button>
             )
           })}
