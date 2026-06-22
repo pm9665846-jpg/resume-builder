@@ -1,4 +1,5 @@
 import { Mail, Phone, MapPin, Globe, Link2, Award } from 'lucide-react'
+import { getSection } from '@/lib/resumeSections'
 const S = {
   name: 'xyz', jobTitle: 'Software Engineer', email: 'prachi@email.com', phone: '+91 98765 43210', location: 'Mumbai, India',
   summary: 'Senior Software Engineer with 4+ years building scalable full-stack applications. Led teams, reduced latency by 40%, shipped products used by 500K+ users.',
@@ -19,10 +20,10 @@ export function IvoryTemplate({ resume }) {
   const email = g(personalInfo.email, S.email), phone = g(personalInfo.phone, S.phone)
   const location = g(personalInfo.location, S.location), summary = g(personalInfo.summary, S.summary)
   const photo = personalInfo.photo || ''
-  const exp = experience.length > 0 ? experience : S.experience
-  const edu = education.length > 0 ? education : S.education
-  const skl = skills.length > 0 ? skills : S.skills
-  const prj = projects.length > 0 ? projects : S.projects
+  const exp = getSection(resume, 'experience', S.experience)
+  const edu = getSection(resume, 'education', S.education)
+  const skl = getSection(resume, 'skills', S.skills)
+  const prj = getSection(resume, 'projects', S.projects)
   return (
     <div style={{ background: '#fffff0', fontFamily: 'Georgia, serif', fontSize: 10.5, lineHeight: 1.65, padding: '32px 40px', minHeight: '297mm', color: '#2c1810' }}>
       <div style={{ textAlign: 'center', marginBottom: 20, paddingBottom: 16, borderBottom: `2px solid ${tc}` }}>
@@ -60,10 +61,10 @@ export function SteelTemplate({ resume }) {
   const email = g(personalInfo.email, S.email), phone = g(personalInfo.phone, S.phone)
   const location = g(personalInfo.location, S.location), summary = g(personalInfo.summary, S.summary)
   const photo = personalInfo.photo || ''
-  const exp = experience.length > 0 ? experience : S.experience
-  const edu = education.length > 0 ? education : S.education
-  const skl = skills.length > 0 ? skills : S.skills
-  const prj = projects.length > 0 ? projects : S.projects
+  const exp = getSection(resume, 'experience', S.experience)
+  const edu = getSection(resume, 'education', S.education)
+  const skl = getSection(resume, 'skills', S.skills)
+  const prj = getSection(resume, 'projects', S.projects)
   return (
     <div style={{ background: 'white', fontFamily: 'Arial, sans-serif', fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm' }}>
       <div style={{ background: `linear-gradient(to right, #0f172a, ${tc})`, padding: '26px 32px 20px', color: 'white', display: 'flex', alignItems: 'center', gap: 20 }}>
@@ -105,10 +106,10 @@ export function PlumTemplate({ resume }) {
   const email = g(personalInfo.email, S.email), phone = g(personalInfo.phone, S.phone)
   const location = g(personalInfo.location, S.location), summary = g(personalInfo.summary, S.summary)
   const photo = personalInfo.photo || ''
-  const exp = experience.length > 0 ? experience : S.experience
-  const edu = education.length > 0 ? education : S.education
-  const skl = skills.length > 0 ? skills : S.skills
-  const prj = projects.length > 0 ? projects : S.projects
+  const exp = getSection(resume, 'experience', S.experience)
+  const edu = getSection(resume, 'education', S.education)
+  const skl = getSection(resume, 'skills', S.skills)
+  const prj = getSection(resume, 'projects', S.projects)
   return (
     <div style={{ background: 'white', fontFamily: 'Arial, sans-serif', fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm', display: 'flex' }}>
       <div style={{ width: '35%', background: `linear-gradient(to bottom, ${tc}, #4a044e)`, padding: '26px 16px 40px', color: 'white', flexShrink: 0 }}>
@@ -140,10 +141,10 @@ export function JadeTemplate({ resume }) {
   const email = g(personalInfo.email, S.email), phone = g(personalInfo.phone, S.phone)
   const location = g(personalInfo.location, S.location), summary = g(personalInfo.summary, S.summary)
   const photo = personalInfo.photo || ''
-  const exp = experience.length > 0 ? experience : S.experience
-  const edu = education.length > 0 ? education : S.education
-  const skl = skills.length > 0 ? skills : S.skills
-  const prj = projects.length > 0 ? projects : S.projects
+  const exp = getSection(resume, 'experience', S.experience)
+  const edu = getSection(resume, 'education', S.education)
+  const skl = getSection(resume, 'skills', S.skills)
+  const prj = getSection(resume, 'projects', S.projects)
   return (
     <div style={{ background: '#f0fdf4', fontFamily: 'Arial, sans-serif', fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm', padding: '24px 28px 40px' }}>
       <div style={{ background: tc, borderRadius: 12, padding: '20px 24px', marginBottom: 14, display: 'flex', alignItems: 'center', gap: 18 }}>
@@ -191,10 +192,10 @@ export function GraphiteTemplate({ resume }) {
   const email = g(personalInfo.email, S.email), phone = g(personalInfo.phone, S.phone)
   const location = g(personalInfo.location, S.location), summary = g(personalInfo.summary, S.summary)
   const photo = personalInfo.photo || ''
-  const exp = experience.length > 0 ? experience : S.experience
-  const edu = education.length > 0 ? education : S.education
-  const skl = skills.length > 0 ? skills : S.skills
-  const prj = projects.length > 0 ? projects : S.projects
+  const exp = getSection(resume, 'experience', S.experience)
+  const edu = getSection(resume, 'education', S.education)
+  const skl = getSection(resume, 'skills', S.skills)
+  const prj = getSection(resume, 'projects', S.projects)
   return (
     <div style={{ background: '#111827', color: '#e5e7eb', fontFamily: 'Arial, sans-serif', fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm' }}>
       <div style={{ padding: '28px 32px 20px', borderBottom: `1px solid #374151`, display: 'flex', alignItems: 'center', gap: 20 }}>
@@ -236,10 +237,10 @@ export function BlushTemplate({ resume }) {
   const email = g(personalInfo.email, S.email), phone = g(personalInfo.phone, S.phone)
   const location = g(personalInfo.location, S.location), summary = g(personalInfo.summary, S.summary)
   const photo = personalInfo.photo || ''
-  const exp = experience.length > 0 ? experience : S.experience
-  const edu = education.length > 0 ? education : S.education
-  const skl = skills.length > 0 ? skills : S.skills
-  const prj = projects.length > 0 ? projects : S.projects
+  const exp = getSection(resume, 'experience', S.experience)
+  const edu = getSection(resume, 'education', S.education)
+  const skl = getSection(resume, 'skills', S.skills)
+  const prj = getSection(resume, 'projects', S.projects)
   return (
     <div style={{ background: 'white', fontFamily: 'Arial, sans-serif', fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm' }}>
       <div style={{ background: `linear-gradient(to bottom right, #fdf2f8, #fce7f3)`, padding: '26px 32px 20px', borderBottom: `3px solid ${tc}` }}>
@@ -283,10 +284,10 @@ export function OnyxTemplate({ resume }) {
   const email = g(personalInfo.email, S.email), phone = g(personalInfo.phone, S.phone)
   const location = g(personalInfo.location, S.location), summary = g(personalInfo.summary, S.summary)
   const photo = personalInfo.photo || ''
-  const exp = experience.length > 0 ? experience : S.experience
-  const edu = education.length > 0 ? education : S.education
-  const skl = skills.length > 0 ? skills : S.skills
-  const prj = projects.length > 0 ? projects : S.projects
+  const exp = getSection(resume, 'experience', S.experience)
+  const edu = getSection(resume, 'education', S.education)
+  const skl = getSection(resume, 'skills', S.skills)
+  const prj = getSection(resume, 'projects', S.projects)
   return (
     <div style={{ background: '#0a0a0a', color: '#e5e5e5', fontFamily: 'Georgia, serif', fontSize: 10.5, lineHeight: 1.6, minHeight: '297mm' }}>
       <div style={{ padding: '30px 34px 22px', borderBottom: `1px solid ${tc}40`, display: 'flex', alignItems: 'center', gap: 22 }}>
@@ -328,10 +329,10 @@ export function TerracottaTemplate({ resume }) {
   const email = g(personalInfo.email, S.email), phone = g(personalInfo.phone, S.phone)
   const location = g(personalInfo.location, S.location), summary = g(personalInfo.summary, S.summary)
   const photo = personalInfo.photo || ''
-  const exp = experience.length > 0 ? experience : S.experience
-  const edu = education.length > 0 ? education : S.education
-  const skl = skills.length > 0 ? skills : S.skills
-  const prj = projects.length > 0 ? projects : S.projects
+  const exp = getSection(resume, 'experience', S.experience)
+  const edu = getSection(resume, 'education', S.education)
+  const skl = getSection(resume, 'skills', S.skills)
+  const prj = getSection(resume, 'projects', S.projects)
   return (
     <div style={{ background: '#fff7ed', fontFamily: 'Georgia, serif', fontSize: 10.5, lineHeight: 1.65, minHeight: '297mm' }}>
       <div style={{ background: tc, padding: '26px 32px 20px', color: 'white', display: 'flex', alignItems: 'center', gap: 20 }}>
@@ -373,10 +374,10 @@ export function ArcticTemplate({ resume }) {
   const email = g(personalInfo.email, S.email), phone = g(personalInfo.phone, S.phone)
   const location = g(personalInfo.location, S.location), summary = g(personalInfo.summary, S.summary)
   const photo = personalInfo.photo || ''
-  const exp = experience.length > 0 ? experience : S.experience
-  const edu = education.length > 0 ? education : S.education
-  const skl = skills.length > 0 ? skills : S.skills
-  const prj = projects.length > 0 ? projects : S.projects
+  const exp = getSection(resume, 'experience', S.experience)
+  const edu = getSection(resume, 'education', S.education)
+  const skl = getSection(resume, 'skills', S.skills)
+  const prj = getSection(resume, 'projects', S.projects)
   return (
     <div style={{ background: '#f0f9ff', fontFamily: 'Arial, sans-serif', fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm', padding: '24px 28px 40px' }}>
       <div style={{ background: 'white', borderRadius: 12, padding: '20px 24px', marginBottom: 14, boxShadow: `0 2px 16px ${tc}15`, display: 'flex', alignItems: 'center', gap: 18 }}>
@@ -424,10 +425,10 @@ export function VelvetTemplate({ resume }) {
   const email = g(personalInfo.email, S.email), phone = g(personalInfo.phone, S.phone)
   const location = g(personalInfo.location, S.location), summary = g(personalInfo.summary, S.summary)
   const photo = personalInfo.photo || ''
-  const exp = experience.length > 0 ? experience : S.experience
-  const edu = education.length > 0 ? education : S.education
-  const skl = skills.length > 0 ? skills : S.skills
-  const prj = projects.length > 0 ? projects : S.projects
+  const exp = getSection(resume, 'experience', S.experience)
+  const edu = getSection(resume, 'education', S.education)
+  const skl = getSection(resume, 'skills', S.skills)
+  const prj = getSection(resume, 'projects', S.projects)
   return (
     <div style={{ background: '#1a0533', color: '#e9d5ff', fontFamily: 'Arial, sans-serif', fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm' }}>
       <div style={{ padding: '28px 32px 20px', borderBottom: `1px solid ${tc}40`, display: 'flex', alignItems: 'center', gap: 20 }}>
@@ -497,10 +498,10 @@ function ColorVariantTemplate({ resume, tc, bg, headerBg, name: tname, dark = fa
   const email = g(personalInfo.email, S.email), phone = g(personalInfo.phone, S.phone)
   const location = g(personalInfo.location, S.location), summary = g(personalInfo.summary, S.summary)
   const photo = personalInfo.photo || ''
-  const exp = experience.length > 0 ? experience : S.experience
-  const edu = education.length > 0 ? education : S.education
-  const skl = skills.length > 0 ? skills : S.skills
-  const prj = projects.length > 0 ? projects : S.projects
+  const exp = getSection(resume, 'experience', S.experience)
+  const edu = getSection(resume, 'education', S.education)
+  const skl = getSection(resume, 'skills', S.skills)
+  const prj = getSection(resume, 'projects', S.projects)
   const textColor = dark ? '#e2e8f0' : '#111'
   const subColor = dark ? '#94a3b8' : '#444'
   const cardBg = dark ? 'rgba(255,255,255,0.05)' : 'white'

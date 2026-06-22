@@ -1,6 +1,7 @@
 // src/components/builder/templates/codeCanvas.js
 
 import { Mail, Phone, MapPin, Globe, Link2, Briefcase, GraduationCap, Award, Heart, Code, GitBranch, Terminal, Cpu } from 'lucide-react'
+import { getSection } from '@/lib/resumeSections'
 
 const defaultData = {
   name: 'Amit Kumar Sharma',
@@ -86,10 +87,10 @@ export default function CodeCanvasTemplate({ resume = {} }) {
   const summary = getValue(personalInfo.summary, defaultData.summary)
   const photo = personalInfo.photo || ''
 
-  const exp = experience.length > 0 ? experience : defaultData.experience
-  const edu = education.length > 0 ? education : defaultData.education
-  const skl = skills.length > 0 ? skills : defaultData.skills
-  const prj = projects.length > 0 ? projects : defaultData.projects
+  const exp = getSection(resume, 'experience', defaultData.experience)
+  const edu = getSection(resume, 'education', defaultData.education)
+  const skl = getSection(resume, 'skills', defaultData.skills)
+  const prj = getSection(resume, 'projects', defaultData.projects)
   const cert = certifications.length > 0 ? certifications : defaultData.certifications
   const lang = languages.length > 0 ? languages : defaultData.languages
   const intr = interests.length > 0 ? interests : defaultData.interests

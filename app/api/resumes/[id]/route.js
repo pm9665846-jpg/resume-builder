@@ -45,6 +45,7 @@ export async function GET(req, context) {
           references:              data.references              || [],
           additionalInfo:          data.additionalInfo          || '',
           enabledOptionalSections: data.enabledOptionalSections || [],
+          hiddenSections:          data.hiddenSections          || [],
         },
       },
     })
@@ -96,6 +97,7 @@ export async function PUT(req, context) {
       references:              incomingData.references              ?? existingData.references,
       additionalInfo:          incomingData.additionalInfo          ?? existingData.additionalInfo,
       enabledOptionalSections: incomingData.enabledOptionalSections ?? existingData.enabledOptionalSections,
+      hiddenSections:          incomingData.hiddenSections          ?? existingData.hiddenSections,
     })
 
     await query(

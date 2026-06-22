@@ -1,4 +1,5 @@
 import { Mail, Phone, MapPin, Globe, Link2, Award } from 'lucide-react'
+import { getSection } from '@/lib/resumeSections'
 const S = {
   name: 'xyz', jobTitle: 'Software Engineer', email: 'prachi@email.com', phone: '+91 98765 43210', location: 'Mumbai, India',
   summary: 'Senior Software Engineer with 4+ years building scalable full-stack applications. Led teams, reduced latency by 40%, shipped products used by 500K+ users.',
@@ -19,10 +20,10 @@ export function AmberTemplate({ resume }) {
   const email = g(personalInfo.email, S.email), phone = g(personalInfo.phone, S.phone)
   const location = g(personalInfo.location, S.location), summary = g(personalInfo.summary, S.summary)
   const photo = personalInfo.photo || ''
-  const exp = experience.length > 0 ? experience : S.experience
-  const edu = education.length > 0 ? education : S.education
-  const skl = skills.length > 0 ? skills : S.skills
-  const prj = projects.length > 0 ? projects : S.projects
+  const exp = getSection(resume, 'experience', S.experience)
+  const edu = getSection(resume, 'education', S.education)
+  const skl = getSection(resume, 'skills', S.skills)
+  const prj = getSection(resume, 'projects', S.projects)
   return (
     <div style={{ background: 'white', fontFamily: 'Arial, sans-serif', fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm' }}>
       <div style={{ background: `linear-gradient(to bottom right, #fffbeb, #fef3c7)`, padding: '28px 32px 20px', borderBottom: `3px solid ${tc}` }}>
@@ -66,10 +67,10 @@ export function ForestTemplate({ resume }) {
   const email = g(personalInfo.email, S.email), phone = g(personalInfo.phone, S.phone)
   const location = g(personalInfo.location, S.location), summary = g(personalInfo.summary, S.summary)
   const photo = personalInfo.photo || ''
-  const exp = experience.length > 0 ? experience : S.experience
-  const edu = education.length > 0 ? education : S.education
-  const skl = skills.length > 0 ? skills : S.skills
-  const prj = projects.length > 0 ? projects : S.projects
+  const exp = getSection(resume, 'experience', S.experience)
+  const edu = getSection(resume, 'education', S.education)
+  const skl = getSection(resume, 'skills', S.skills)
+  const prj = getSection(resume, 'projects', S.projects)
   return (
     <div style={{ background: 'white', fontFamily: 'Arial, sans-serif', fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm', display: 'flex' }}>
       <div style={{ width: '35%', background: tc, padding: '26px 16px 40px', color: 'white', flexShrink: 0 }}>
@@ -101,10 +102,10 @@ export function OceanTemplate({ resume }) {
   const email = g(personalInfo.email, S.email), phone = g(personalInfo.phone, S.phone)
   const location = g(personalInfo.location, S.location), summary = g(personalInfo.summary, S.summary)
   const photo = personalInfo.photo || ''
-  const exp = experience.length > 0 ? experience : S.experience
-  const edu = education.length > 0 ? education : S.education
-  const skl = skills.length > 0 ? skills : S.skills
-  const prj = projects.length > 0 ? projects : S.projects
+  const exp = getSection(resume, 'experience', S.experience)
+  const edu = getSection(resume, 'education', S.education)
+  const skl = getSection(resume, 'skills', S.skills)
+  const prj = getSection(resume, 'projects', S.projects)
   return (
     <div style={{ background: 'white', fontFamily: 'Arial, sans-serif', fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm' }}>
       <div style={{ background: `linear-gradient(135deg, #0c4a6e 0%, ${tc} 60%, #0ea5e9 100%)`, padding: '28px 32px 22px', color: 'white', display: 'flex', alignItems: 'center', gap: 20 }}>
@@ -146,10 +147,10 @@ export function RoseTemplate({ resume }) {
   const email = g(personalInfo.email, S.email), phone = g(personalInfo.phone, S.phone)
   const location = g(personalInfo.location, S.location), summary = g(personalInfo.summary, S.summary)
   const photo = personalInfo.photo || ''
-  const exp = experience.length > 0 ? experience : S.experience
-  const edu = education.length > 0 ? education : S.education
-  const skl = skills.length > 0 ? skills : S.skills
-  const prj = projects.length > 0 ? projects : S.projects
+  const exp = getSection(resume, 'experience', S.experience)
+  const edu = getSection(resume, 'education', S.education)
+  const skl = getSection(resume, 'skills', S.skills)
+  const prj = getSection(resume, 'projects', S.projects)
   return (
     <div style={{ background: '#fff1f2', fontFamily: 'Arial, sans-serif', fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm', padding: '24px 28px 40px' }}>
       <div style={{ background: 'white', borderRadius: 16, padding: '20px 24px', marginBottom: 14, boxShadow: `0 4px 20px ${tc}15`, display: 'flex', alignItems: 'center', gap: 18 }}>
@@ -197,10 +198,10 @@ export function SlateTemplate({ resume }) {
   const email = g(personalInfo.email, S.email), phone = g(personalInfo.phone, S.phone)
   const location = g(personalInfo.location, S.location), summary = g(personalInfo.summary, S.summary)
   const photo = personalInfo.photo || ''
-  const exp = experience.length > 0 ? experience : S.experience
-  const edu = education.length > 0 ? education : S.education
-  const skl = skills.length > 0 ? skills : S.skills
-  const prj = projects.length > 0 ? projects : S.projects
+  const exp = getSection(resume, 'experience', S.experience)
+  const edu = getSection(resume, 'education', S.education)
+  const skl = getSection(resume, 'skills', S.skills)
+  const prj = getSection(resume, 'projects', S.projects)
   return (
     <div style={{ background: 'white', fontFamily: 'Arial, sans-serif', fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm' }}>
       <div style={{ background: '#1e293b', padding: '26px 32px 20px', color: 'white', display: 'flex', alignItems: 'center', gap: 20 }}>

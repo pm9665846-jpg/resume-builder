@@ -1,7 +1,6 @@
 'use client'
 import { useResumeStore } from '@/store/resumeStore'
 import { useEffect, useRef } from 'react'
-
 import { resolvePhotoUrl } from '@/lib/photoUrl'
 import ModernTemplate from './templates/ModernTemplate'
 import ExecutiveTemplate from './templates/ExecutiveTemplate'
@@ -338,6 +337,8 @@ export default function ResumePreview() {
   // Convert stored fileName to full URL for display
   const resolvedResume = {
     ...resume,
+    useSampleData: false,
+    hiddenSections: resume.hiddenSections || [],
     interests: resume.interests || [],
     achievementsList: resume.achievementsList || [],
     activities:       resume.activities       || [],

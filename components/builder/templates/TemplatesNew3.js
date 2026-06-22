@@ -1,5 +1,6 @@
 'use client'
 import { Mail, Phone, MapPin } from 'lucide-react'
+import { getSection } from '@/lib/resumeSections'
 
 const S = {
   name: 'xyz', jobTitle: 'Senior Software Engineer',
@@ -27,10 +28,10 @@ export function RibbonTemplate({ resume }) {
   const email = g(personalInfo.email, S.email), phone = g(personalInfo.phone, S.phone)
   const location = g(personalInfo.location, S.location), summary = g(personalInfo.summary, S.summary)
   const photo = personalInfo.photo || ''
-  const exp = experience.length > 0 ? experience : S.experience
-  const edu = education.length > 0 ? education : S.education
-  const skl = skills.length > 0 ? skills : S.skills
-  const prj = projects.length > 0 ? projects : S.projects
+  const exp = getSection(resume, 'experience', S.experience)
+  const edu = getSection(resume, 'education', S.education)
+  const skl = getSection(resume, 'skills', S.skills)
+  const prj = getSection(resume, 'projects', S.projects)
   const card = { background: 'white', borderRadius: 10, padding: '14px 16px', boxShadow: '0 1px 6px rgba(0,0,0,0.06)' }
   return (
     <div style={{ background: '#f3f4f6', fontFamily: 'Arial, sans-serif', fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm', display: 'flex' }}>
@@ -101,10 +102,10 @@ export function GlassProTemplate({ resume }) {
   const email = g(personalInfo.email, S.email), phone = g(personalInfo.phone, S.phone)
   const location = g(personalInfo.location, S.location), summary = g(personalInfo.summary, S.summary)
   const photo = personalInfo.photo || ''
-  const exp = experience.length > 0 ? experience : S.experience
-  const edu = education.length > 0 ? education : S.education
-  const skl = skills.length > 0 ? skills : S.skills
-  const prj = projects.length > 0 ? projects : S.projects
+  const exp = getSection(resume, 'experience', S.experience)
+  const edu = getSection(resume, 'education', S.education)
+  const skl = getSection(resume, 'skills', S.skills)
+  const prj = getSection(resume, 'projects', S.projects)
 
   const SH = ({ children }) => (
     <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
@@ -207,10 +208,10 @@ export function NordicTemplate({ resume }) {
   const email = g(personalInfo.email, S.email), phone = g(personalInfo.phone, S.phone)
   const location = g(personalInfo.location, S.location), summary = g(personalInfo.summary, S.summary)
   const photo = personalInfo.photo || ''
-  const exp = experience.length > 0 ? experience : S.experience
-  const edu = education.length > 0 ? education : S.education
-  const skl = skills.length > 0 ? skills : S.skills
-  const prj = projects.length > 0 ? projects : S.projects
+  const exp = getSection(resume, 'experience', S.experience)
+  const edu = getSection(resume, 'education', S.education)
+  const skl = getSection(resume, 'skills', S.skills)
+  const prj = getSection(resume, 'projects', S.projects)
   const NSec = ({ title, children }) => <div style={{ marginBottom: 24 }}><div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}><h2 style={{ fontSize: 8.5, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.2em', color: tc, margin: 0 }}>{title}</h2><div style={{ flex: 1, height: 1, background: '#e5e7eb' }} /></div>{children}</div>
   return (
     <div style={{ background: 'white', fontFamily: "'Helvetica Neue',Arial,sans-serif", fontSize: 10.5, lineHeight: 1.6, minHeight: '297mm', padding: '38px 42px' }}>
@@ -283,10 +284,10 @@ export function BoldBlocksTemplate({ resume }) {
   const email = g(personalInfo.email, S.email), phone = g(personalInfo.phone, S.phone)
   const location = g(personalInfo.location, S.location), summary = g(personalInfo.summary, S.summary)
   const photo = personalInfo.photo || ''
-  const exp = experience.length > 0 ? experience : S.experience
-  const edu = education.length > 0 ? education : S.education
-  const skl = skills.length > 0 ? skills : S.skills
-  const prj = projects.length > 0 ? projects : S.projects
+  const exp = getSection(resume, 'experience', S.experience)
+  const edu = getSection(resume, 'education', S.education)
+  const skl = getSection(resume, 'skills', S.skills)
+  const prj = getSection(resume, 'projects', S.projects)
   return (
     <div style={{ background: 'white', fontFamily: 'Arial,sans-serif', fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm' }}>
       <div style={{ background: '#111', padding: '26px 30px 22px', display: 'flex', alignItems: 'center', gap: 20 }}>
@@ -340,10 +341,10 @@ export function SpotlightTemplate({ resume }) {
   const email = g(personalInfo.email, S.email), phone = g(personalInfo.phone, S.phone)
   const location = g(personalInfo.location, S.location), summary = g(personalInfo.summary, S.summary)
   const photo = personalInfo.photo || ''
-  const exp = experience.length > 0 ? experience : S.experience
-  const edu = education.length > 0 ? education : S.education
-  const skl = skills.length > 0 ? skills : S.skills
-  const prj = projects.length > 0 ? projects : S.projects
+  const exp = getSection(resume, 'experience', S.experience)
+  const edu = getSection(resume, 'education', S.education)
+  const skl = getSection(resume, 'skills', S.skills)
+  const prj = getSection(resume, 'projects', S.projects)
 
   const SS = ({ title, children }) => (
     <div style={{ marginBottom: 16 }}>
@@ -442,10 +443,10 @@ export function TimelineProTemplate({ resume }) {
   const email = g(personalInfo.email, S.email), phone = g(personalInfo.phone, S.phone)
   const location = g(personalInfo.location, S.location), summary = g(personalInfo.summary, S.summary)
   const photo = personalInfo.photo || ''
-  const exp = experience.length > 0 ? experience : S.experience
-  const edu = education.length > 0 ? education : S.education
-  const skl = skills.length > 0 ? skills : S.skills
-  const prj = projects.length > 0 ? projects : S.projects
+  const exp = getSection(resume, 'experience', S.experience)
+  const edu = getSection(resume, 'education', S.education)
+  const skl = getSection(resume, 'skills', S.skills)
+  const prj = getSection(resume, 'projects', S.projects)
   return (
     <div style={{ background: 'white', fontFamily: 'Arial,sans-serif', fontSize: 10.5, lineHeight: 1.5, minHeight: '297mm' }}>
       <div style={{ background: 'linear-gradient(to right,' + tc + ',' + tc + 'cc)', padding: '24px 30px 20px', position: 'relative', overflow: 'hidden' }}>

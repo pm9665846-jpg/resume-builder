@@ -1,4 +1,5 @@
 import { Mail, Phone, MapPin, Globe, Link2, GitBranch } from 'lucide-react'
+import { getSection } from '@/lib/resumeSections'
 
 const S = {
   name: 'Alex Johnson', jobTitle: 'Senior Product Designer',
@@ -30,10 +31,10 @@ export function ZenTemplate({ resume }) {
   const location = g(personalInfo.location, S.location)
   const website = g(personalInfo.website, S.website)
   const summary = g(personalInfo.summary, S.summary)
-  const exp = experience.length > 0 ? experience : S.experience
-  const edu = education.length > 0 ? education : S.education
-  const skl = skills.length > 0 ? skills : S.skills
-  const prj = projects.length > 0 ? projects : S.projects
+  const exp = getSection(resume, 'experience', S.experience)
+  const edu = getSection(resume, 'education', S.education)
+  const skl = getSection(resume, 'skills', S.skills)
+  const prj = getSection(resume, 'projects', S.projects)
   const cert = certifications.length > 0 ? certifications : S.certifications
   const lang = languages.length > 0 ? languages : S.languages
 
@@ -150,10 +151,10 @@ export function CharcoalSideTemplate({ resume }) {
   const website = g(personalInfo.website, S.website)
   const github = g(personalInfo.github, S.github)
   const summary = g(personalInfo.summary, S.summary)
-  const exp = experience.length > 0 ? experience : S.experience
-  const edu = education.length > 0 ? education : S.education
-  const skl = skills.length > 0 ? skills : S.skills
-  const prj = projects.length > 0 ? projects : S.projects
+  const exp = getSection(resume, 'experience', S.experience)
+  const edu = getSection(resume, 'education', S.education)
+  const skl = getSection(resume, 'skills', S.skills)
+  const prj = getSection(resume, 'projects', S.projects)
   const cert = certifications.length > 0 ? certifications : S.certifications
   const lang = languages.length > 0 ? languages : S.languages
 
@@ -302,10 +303,10 @@ export function CinemaTemplate({ resume }) {
   const location = g(personalInfo.location, S.location)
   const website = g(personalInfo.website, S.website)
   const summary = g(personalInfo.summary, S.summary)
-  const exp = experience.length > 0 ? experience : S.experience
-  const edu = education.length > 0 ? education : S.education
-  const skl = skills.length > 0 ? skills : S.skills
-  const prj = projects.length > 0 ? projects : S.projects
+  const exp = getSection(resume, 'experience', S.experience)
+  const edu = getSection(resume, 'education', S.education)
+  const skl = getSection(resume, 'skills', S.skills)
+  const prj = getSection(resume, 'projects', S.projects)
   const cert = certifications.length > 0 ? certifications : S.certifications
   const lang = languages.length > 0 ? languages : S.languages
 
@@ -452,10 +453,10 @@ export function ArchiveTemplate({ resume }) {
   const location = g(personalInfo.location, S.location)
   const website = g(personalInfo.website, S.website)
   const summary = g(personalInfo.summary, S.summary)
-  const exp = experience.length > 0 ? experience : S.experience
-  const edu = education.length > 0 ? education : S.education
-  const skl = skills.length > 0 ? skills : S.skills
-  const prj = projects.length > 0 ? projects : S.projects
+  const exp = getSection(resume, 'experience', S.experience)
+  const edu = getSection(resume, 'education', S.education)
+  const skl = getSection(resume, 'skills', S.skills)
+  const prj = getSection(resume, 'projects', S.projects)
   const cert = certifications.length > 0 ? certifications : S.certifications
   const lang = languages.length > 0 ? languages : S.languages
 
@@ -589,10 +590,10 @@ export function PrismaTemplate({ resume }) {
   const website = g(personalInfo.website, S.website)
   const github = g(personalInfo.github, S.github)
   const summary = g(personalInfo.summary, S.summary)
-  const exp = experience.length > 0 ? experience : S.experience
-  const edu = education.length > 0 ? education : S.education
-  const skl = skills.length > 0 ? skills : S.skills
-  const prj = projects.length > 0 ? projects : S.projects
+  const exp = getSection(resume, 'experience', S.experience)
+  const edu = getSection(resume, 'education', S.education)
+  const skl = getSection(resume, 'skills', S.skills)
+  const prj = getSection(resume, 'projects', S.projects)
   const cert = certifications.length > 0 ? certifications : S.certifications
   const lang = languages.length > 0 ? languages : S.languages
 
@@ -738,10 +739,10 @@ export function NorthTemplate({ resume }) {
   const location = g(personalInfo.location, S.location)
   const website = g(personalInfo.website, S.website)
   const summary = g(personalInfo.summary, S.summary)
-  const exp = experience.length > 0 ? experience : S.experience
-  const edu = education.length > 0 ? education : S.education
-  const skl = skills.length > 0 ? skills : S.skills
-  const prj = projects.length > 0 ? projects : S.projects
+  const exp = getSection(resume, 'experience', S.experience)
+  const edu = getSection(resume, 'education', S.education)
+  const skl = getSection(resume, 'skills', S.skills)
+  const prj = getSection(resume, 'projects', S.projects)
   const cert = certifications.length > 0 ? certifications : S.certifications
   const lang = languages.length > 0 ? languages : S.languages
 
@@ -867,10 +868,10 @@ export function StudioTemplate({ resume }) {
   const website = g(personalInfo.website, S.website)
   const github = g(personalInfo.github, S.github)
   const summary = g(personalInfo.summary, S.summary)
-  const exp = experience.length > 0 ? experience : S.experience
-  const edu = education.length > 0 ? education : S.education
-  const skl = skills.length > 0 ? skills : S.skills
-  const prj = projects.length > 0 ? projects : S.projects
+  const exp = getSection(resume, 'experience', S.experience)
+  const edu = getSection(resume, 'education', S.education)
+  const skl = getSection(resume, 'skills', S.skills)
+  const prj = getSection(resume, 'projects', S.projects)
   const cert = certifications.length > 0 ? certifications : S.certifications
   const lang = languages.length > 0 ? languages : S.languages
 
@@ -1015,10 +1016,10 @@ export function LegacyTemplate({ resume }) {
   const location = g(personalInfo.location, S.location)
   const website = g(personalInfo.website, S.website)
   const summary = g(personalInfo.summary, S.summary)
-  const exp = experience.length > 0 ? experience : S.experience
-  const edu = education.length > 0 ? education : S.education
-  const skl = skills.length > 0 ? skills : S.skills
-  const prj = projects.length > 0 ? projects : S.projects
+  const exp = getSection(resume, 'experience', S.experience)
+  const edu = getSection(resume, 'education', S.education)
+  const skl = getSection(resume, 'skills', S.skills)
+  const prj = getSection(resume, 'projects', S.projects)
   const cert = certifications.length > 0 ? certifications : S.certifications
   const lang = languages.length > 0 ? languages : S.languages
 
@@ -1160,10 +1161,10 @@ export function SpectrumTemplate({ resume }) {
   const website = g(personalInfo.website, S.website)
   const github = g(personalInfo.github, S.github)
   const summary = g(personalInfo.summary, S.summary)
-  const exp = experience.length > 0 ? experience : S.experience
-  const edu = education.length > 0 ? education : S.education
-  const skl = skills.length > 0 ? skills : S.skills
-  const prj = projects.length > 0 ? projects : S.projects
+  const exp = getSection(resume, 'experience', S.experience)
+  const edu = getSection(resume, 'education', S.education)
+  const skl = getSection(resume, 'skills', S.skills)
+  const prj = getSection(resume, 'projects', S.projects)
   const cert = certifications.length > 0 ? certifications : S.certifications
   const lang = languages.length > 0 ? languages : S.languages
 
@@ -1312,10 +1313,10 @@ export function MonolithTemplate({ resume }) {
   const website = g(personalInfo.website, S.website)
   const github = g(personalInfo.github, S.github)
   const summary = g(personalInfo.summary, S.summary)
-  const exp = experience.length > 0 ? experience : S.experience
-  const edu = education.length > 0 ? education : S.education
-  const skl = skills.length > 0 ? skills : S.skills
-  const prj = projects.length > 0 ? projects : S.projects
+  const exp = getSection(resume, 'experience', S.experience)
+  const edu = getSection(resume, 'education', S.education)
+  const skl = getSection(resume, 'skills', S.skills)
+  const prj = getSection(resume, 'projects', S.projects)
   const cert = certifications.length > 0 ? certifications : S.certifications
   const lang = languages.length > 0 ? languages : S.languages
 

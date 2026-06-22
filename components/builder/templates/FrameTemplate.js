@@ -1,4 +1,5 @@
 import { Mail, Phone, MapPin, Globe, Link2, GitBranch } from 'lucide-react'
+import { getSection } from '@/lib/resumeSections'
 
 const S = {
   name: 'Rohan Singhania', jobTitle: 'Investment Banking Analyst',
@@ -87,10 +88,10 @@ export default function FrameTemplate({ resume }) {
   const github   = g(pi.github,   S.github)
   const summary  = g(pi.summary,  S.summary)
 
-  const exp  = resume?.experience?.length     ? resume.experience     : S.experience
-  const edu  = resume?.education?.length      ? resume.education      : S.education
-  const skl  = resume?.skills?.length         ? resume.skills         : S.skills
-  const prj  = resume?.projects?.length       ? resume.projects       : S.projects
+  const exp = getSection(resume, 'experience', S.experience)
+  const edu = getSection(resume, 'education', S.education)
+  const skl = getSection(resume, 'skills', S.skills)
+  const prj = getSection(resume, 'projects', S.projects)
   const cert = resume?.certifications?.length ? resume.certifications : S.certifications
   const lang = resume?.languages?.length      ? resume.languages      : S.languages
   const intr = resume?.interests?.length      ? resume.interests      : S.interests

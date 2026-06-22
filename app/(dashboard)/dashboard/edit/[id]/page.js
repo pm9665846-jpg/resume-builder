@@ -95,6 +95,8 @@ export default function EditResumePage() {
           publications:     r.data?.publications     || [],
           references:       r.data?.references       || [],
           additionalInfo:   r.data?.additionalInfo   || '',
+          enabledOptionalSections: r.data?.enabledOptionalSections || [],
+          hiddenSections:          r.data?.hiddenSections          || [],
         })
         setLoading(false)
       } catch {
@@ -135,6 +137,7 @@ export default function EditResumePage() {
               references:       resume.references       || [],
               additionalInfo:   resume.additionalInfo   || '',
               enabledOptionalSections: resume.enabledOptionalSections || [],
+              hiddenSections:          resume.hiddenSections          || [],
             },
           }),
         })
@@ -198,6 +201,7 @@ export default function EditResumePage() {
           references:       resume.references       || [],
           additionalInfo:   resume.additionalInfo   || '',
           enabledOptionalSections: resume.enabledOptionalSections || [],
+          hiddenSections:          resume.hiddenSections          || [],
         },
       }
       await fetch(`/api/resumes/${resume.id}`, {

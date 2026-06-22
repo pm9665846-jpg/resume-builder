@@ -21,6 +21,8 @@ export default async function PrintPage({ params }) {
         template: row.template,
         themeColor: row.theme_color,
         fontFamily: data.fontFamily || 'Arial, Helvetica, sans-serif',
+        useSampleData: false,
+        hiddenSections: data.hiddenSections || [],
         personalInfo: {
           ...data.personalInfo,
           photo: resolvePhotoUrl(data.personalInfo?.photo),

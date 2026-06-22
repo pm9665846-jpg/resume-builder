@@ -1,4 +1,5 @@
 import { Mail, Phone, MapPin, Globe, Link2, Award, Star } from 'lucide-react'
+import { getSection } from '@/lib/resumeSections'
 
 const SAMPLE = {
   name: 'xyz', jobTitle: 'Senior Software Engineer',
@@ -59,12 +60,12 @@ export default function ModernTemplate({ resume }) {
   const linkedin = get(personalInfo.linkedin, SAMPLE.linkedin)
   const summary = get(personalInfo.summary, SAMPLE.summary)
   const photo = personalInfo.photo || ''
-  const exp = experience.length > 0 ? experience : SAMPLE.experience
-  const edu = education.length > 0 ? education : SAMPLE.education
-  const skl = skills.length > 0 ? skills : SAMPLE.skills
-  const prj = projects.length > 0 ? projects : SAMPLE.projects
-  const certs = certifications.length > 0 ? certifications : SAMPLE.certifications
-  const langs = languages.length > 0 ? languages : SAMPLE.languages
+  const exp = getSection(resume, 'experience', SAMPLE.experience)
+  const edu = getSection(resume, 'education', SAMPLE.education)
+  const skl = getSection(resume, 'skills', SAMPLE.skills)
+  const prj = getSection(resume, 'projects', SAMPLE.projects)
+  const certs = getSection(resume, 'certifications', SAMPLE.certifications)
+  const langs = getSection(resume, 'languages', SAMPLE.languages)
 
   const contacts = [
     { icon: Mail, val: email },
@@ -178,6 +179,7 @@ export default function ModernTemplate({ resume }) {
         </Section>
 
         {/* ── SKILLS ── */}
+        {skl.length > 0 && (
         <Section title="Technical Skills" color={tc}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '6px 20px' }}>
             {skl.map(s => (
@@ -193,6 +195,7 @@ export default function ModernTemplate({ resume }) {
             ))}
           </div>
         </Section>
+        )}
 
         {/* ── PROJECTS ── */}
         <Section title="Projects" color={tc}>
@@ -217,6 +220,7 @@ export default function ModernTemplate({ resume }) {
         </Section>
 
         {/* ── CERTIFICATIONS ── force onto page 2 when printing ── */}
+        {certs.length > 0 && (
         <div data-page-break="true" style={{ pageBreakBefore: 'always', breakBefore: 'page', paddingTop: '32px' }}>
           <Section title="Certifications" color={tc}>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 8 }}>
@@ -233,8 +237,10 @@ export default function ModernTemplate({ resume }) {
             </div>
           </Section>
         </div>
+        )}
 
         {/* ── LANGUAGES ── */}
+        {langs.length > 0 && (
         <Section title="Languages" color={tc}>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
             {langs.map(l => {
@@ -249,8 +255,7 @@ export default function ModernTemplate({ resume }) {
             })}
           </div>
         </Section>
-
-        {/* ── INTERESTS ── */}
+        )}
         {interests.length > 0 && (
           <Section title="Interests" color={tc}>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>

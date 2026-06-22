@@ -26,6 +26,7 @@ const defaultResume = {
   publications: [],
   references: [],
   additionalInfo: '',
+  hiddenSections: [],
 }
 
 export const useResumeStore = create((set) => ({
@@ -109,6 +110,26 @@ export const useResumeStore = create((set) => ({
       resume: { ...state.resume, skills: state.resume.skills.filter(s => s.id !== id) },
       isDirty: true,
     })),
+  clearSkills: () =>
+    set((state) => ({
+      resume: { ...state.resume, skills: [] },
+      isDirty: true,
+    })),
+
+  toggleHiddenSection: (section) =>
+    set((state) => {
+      const hidden = state.resume.hiddenSections || []
+      const isHidden = hidden.includes(section)
+      return {
+        resume: {
+          ...state.resume,
+          hiddenSections: isHidden
+            ? hidden.filter(s => s !== section)
+            : [...hidden, section],
+        },
+        isDirty: true,
+      }
+    }),
 
   // Projects
   addProject: () =>

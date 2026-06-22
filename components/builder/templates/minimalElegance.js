@@ -1,6 +1,7 @@
 // src/components/builder/templates/minimalElegance.js
 
 import { Mail, Phone, MapPin, Globe, Link2, Briefcase, GraduationCap, Award, Heart, ChevronRight } from 'lucide-react'
+import { getSection } from '@/lib/resumeSections'
 
 const D = {
   name: 'James Chen',
@@ -69,10 +70,10 @@ export default function MinimalEleganceTemplate({ resume }) {
   const linkedin = getValue(personalInfo.linkedin, D.linkedin)
   const summary = getValue(personalInfo.summary, D.summary)
 
-  const exp = experience.length > 0 ? experience : D.experience
-  const edu = education.length > 0 ? education : D.education
-  const skl = skills.length > 0 ? skills : D.skills
-  const prj = projects.length > 0 ? projects : D.projects
+  const exp = getSection(resume, 'experience', D.experience)
+  const edu = getSection(resume, 'education', D.education)
+  const skl = getSection(resume, 'skills', D.skills)
+  const prj = getSection(resume, 'projects', D.projects)
   const cert = certifications.length > 0 ? certifications : D.certifications
   const lang = languages.length > 0 ? languages : D.languages
   const intr = interests.length > 0 ? interests : D.interests

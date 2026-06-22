@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { useResumeStore } from '@/store/resumeStore'
+import SectionVisibilityBar from '@/components/ui/SectionVisibilityBar'
 import { Plus, X, Heart } from 'lucide-react'
 
 const SUGGESTIONS = [
@@ -10,9 +11,10 @@ const SUGGESTIONS = [
 ]
 
 export default function InterestsForm() {
-  const { resume, addInterest, removeInterest } = useResumeStore()
+  const { resume, addInterest, removeInterest, toggleHiddenSection } = useResumeStore()
   const interests = resume.interests || []
   const [input, setInput] = useState('')
+  const isVisible = !(resume.hiddenSections || []).includes('interests')
 
   function handleAdd() {
     const val = input.trim()
@@ -30,8 +32,10 @@ export default function InterestsForm() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+      <SectionVisibilityBar section="interests" visible={isVisible} onToggle={() => toggleHiddenSection('interests')} />
 
-      {/* Header */}
+      {isVisible && (
+      <>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
         <Heart size={15} color="#ec4899" />
         <p style={{ color: '#e2e8f0', fontWeight: 600, fontSize: '0.875rem', margin: 0 }}>Interests & Hobbies</p>
@@ -123,10 +127,12 @@ export default function InterestsForm() {
       )}
 
       {interests.length === 0 && (
-        <div style={{ textAlign: 'center', padding: '24px 0', color: '#475569', fontSize: '0.8rem' }}>
-          <Heart size={24} color="#334155" style={{ marginBottom: 8, display: 'block', margin: '0 auto 8px' }} />
+        <div style={{ textAlign: 'center', padding: '24px 0', color: 'var(--text3)', fontSize: '0.8rem' }}>
+          <Heart size={24} color="var(--text4)" style={{ marginBottom: 8, display: 'block', margin: '0 auto 8px' }} />
           No interests added yet. Type above or pick from suggestions.
         </div>
+      )}
+      </>
       )}
     </div>
   )

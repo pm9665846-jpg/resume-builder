@@ -1,4 +1,5 @@
 import { Mail, Phone, MapPin, Globe, Link2, Award, Star, Zap } from 'lucide-react'
+import { getSection } from '@/lib/resumeSections'
 
 // ── NEON DARK: Full dark background resume with neon accents, glowing borders
 const SAMPLE = {
@@ -43,12 +44,12 @@ export default function NeonTemplate({ resume }) {
   const summary = g(personalInfo.summary, SAMPLE.summary)
   const photo = personalInfo.photo || ''
 
-  const exp = experience.length > 0 ? experience : SAMPLE.experience
-  const edu = education.length > 0 ? education : SAMPLE.education
-  const skl = skills.length > 0 ? skills : SAMPLE.skills
-  const prj = projects.length > 0 ? projects : SAMPLE.projects
-  const certs = certifications.length > 0 ? certifications : SAMPLE.certifications
-  const langs = languages.length > 0 ? languages : SAMPLE.languages
+  const exp = getSection(resume, 'experience', SAMPLE.experience)
+  const edu = getSection(resume, 'education', SAMPLE.education)
+  const skl = getSection(resume, 'skills', SAMPLE.skills)
+  const prj = getSection(resume, 'projects', SAMPLE.projects)
+  const certs = getSection(resume, 'certifications', SAMPLE.certifications)
+  const langs = getSection(resume, 'languages', SAMPLE.languages)
 
   const contacts = [
     { icon: Mail, val: email }, { icon: Phone, val: phone },

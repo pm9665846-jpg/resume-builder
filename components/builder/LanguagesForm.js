@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useResumeStore } from '@/store/resumeStore'
 import Select from '@/components/ui/Select'
+import SectionVisibilityBar from '@/components/ui/SectionVisibilityBar'
 import { Plus, X } from 'lucide-react'
 
 const proficiencyLevels = ['Native', 'Fluent', 'Professional', 'Intermediate', 'Basic']
@@ -11,10 +12,11 @@ const proficiencyColors = { Native: '#10b981', Fluent: '#3b82f6', Professional: 
 const suggestions = ['English', 'Hindi', 'Spanish', 'French', 'German', 'Mandarin', 'Japanese', 'Arabic', 'Portuguese', 'Russian']
 
 export default function LanguagesForm() {
-  const { resume, addLanguage, removeLanguage } = useResumeStore()
+  const { resume, addLanguage, removeLanguage, toggleHiddenSection } = useResumeStore()
   const { languages = [] } = resume
   const [input, setInput] = useState('')
   const [proficiency, setProficiency] = useState('Professional')
+  const isVisible = !(resume.hiddenSections || []).includes('languages')
   
   function handleAdd(name) {
     const n = name || input.trim()
@@ -26,6 +28,14 @@ export default function LanguagesForm() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+      <SectionVisibilityBar
+        section="languages"
+        visible={isVisible}
+        onToggle={() => toggleHiddenSection('languages')}
+      />
+
+      {isVisible && (
+      <>
       {/* Add input */}
       <div style={{ display: 'flex', gap: 8, alignItems: 'stretch' }}>
         <input
@@ -107,6 +117,8 @@ export default function LanguagesForm() {
           ))}
         </AnimatePresence>
       </div>
+      </>
+      )}
     </div>
   )
 }
